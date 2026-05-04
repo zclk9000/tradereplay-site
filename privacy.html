@@ -7,13 +7,71 @@
   <style>
     body { font-family: -apple-system, system-ui, sans-serif; max-width: 720px; margin: 60px auto; padding: 0 24px; line-height: 1.65; color: #1a1a1a; }
     h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.02em; }
+    h2 { font-size: 18px; margin: 36px 0 12px; letter-spacing: -0.01em; }
     .updated { color: #888; font-size: 14px; margin: 0 0 32px; }
     a { color: #0066cc; }
+    ul { padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    .back { margin-top: 48px; padding-top: 24px; border-top: 1px solid #e5e5e5; font-size: 14px; }
   </style>
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 2026-05-04</p>
-  <p>Content coming soon. <a href="/">← Back to TradeReplay</a></p>
-</body>
-</html>
+  <p class="updated">Last updated: May 4, 2026</p>
+
+  <p>This Privacy Policy describes how TradeReplay ("we", "our", or "the app") handles information when you use the TradeReplay desktop and mobile application. We have designed TradeReplay to operate as a local-first tool: by default, your data stays on your device and is not transmitted to us or any third party.</p>
+
+  <h2>1. Information We Collect</h2>
+  <p>We do not collect, store, or transmit any personally identifiable information about you on our own servers. Specifically, the app does <strong>not</strong> include any analytics, telemetry, advertising identifiers, crash reporters that send data to us, or any third-party tracking SDK.</p>
+
+  <h2>2. Information Stored On Your Device</h2>
+  <p>The app stores the following data locally on your device, in a private SQLite database that only TradeReplay can access:</p>
+  <ul>
+    <li>Trading sessions you create within the app, including positions, closed trades, notes, tags, and screenshots you attach.</li>
+    <li>Trade journal entries imported from broker statements (such as MT4, MT5, or CFMMC files) that you choose to import.</li>
+    <li>App preferences, layout choices, and indicator configurations.</li>
+    <li>Strategy definitions and backtest results you generate within the app.</li>
+  </ul>
+  <p>This data never leaves your device unless you explicitly export it (for example, by sharing a screenshot or saving a CSV file).</p>
+
+  <h2>3. API Keys (Optional, Bring-Your-Own-Key AI)</h2>
+  <p>If you choose to use the optional AI summary feature, you may enter your own API key from a third-party AI provider (such as DeepSeek or OpenAI). This key is stored securely in your operating system's keychain (Keychain on macOS and iOS) and is never sent to our servers.</p>
+  <p>When you trigger an AI summary, the app sends a request <strong>directly</strong> from your device to the AI provider you selected, using your API key. The request contains a structured summary of your trading statistics (such as win rate, profit factor, and trade count) so the provider can generate analysis. We do not proxy, log, or have access to this request.</p>
+  <p>You may remove your API key at any time in the app's Settings, which immediately disables the AI feature and deletes the key from your keychain.</p>
+
+  <h2>4. Third-Party Services</h2>
+  <p>The app communicates with the following external services on your behalf. Each is described below.</p>
+
+  <h2>4.1 Historical Market Data</h2>
+  <p>To populate sample charts and let you replay historical price data, the app downloads market data files from our content delivery network. These requests transmit only the standard information any web browser sends: your IP address, the requested file path, and the time of the request. We do not associate this information with any user identity, and the data files do not contain any user-specific content.</p>
+
+  <h2>4.2 AI Provider (Only If You Enable AI)</h2>
+  <p>If you enter an AI provider API key as described in Section 3, requests are sent directly from your device to that provider's API endpoint. The data transmitted consists of the trading statistics summary text plus your API key (used only for authentication with the provider).</p>
+  <p>The privacy practices of these providers are governed by their own policies:</p>
+  <ul>
+    <li>DeepSeek: <a href="https://platform.deepseek.com/privacy">https://platform.deepseek.com/privacy</a></li>
+    <li>OpenAI: <a href="https://openai.com/policies/privacy-policy">https://openai.com/policies/privacy-policy</a></li>
+  </ul>
+
+  <h2>4.3 Apple App Store</h2>
+  <p>Purchases of the paid version of TradeReplay are handled exclusively by Apple through the App Store. We never see your payment details, full name, or any account information beyond the anonymous receipt that Apple provides to verify purchase. Apple's own privacy practices are described at <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>.</p>
+
+  <h2>5. Data Retention</h2>
+  <p>Because all your data is stored locally on your device, it persists for as long as the app is installed. To delete your data, you can either remove individual sessions and trades within the app, or uninstall the app, which removes the entire local database along with the app.</p>
+
+  <h2>6. Children's Privacy</h2>
+  <p>TradeReplay is not directed at children under the age of 16. We do not knowingly collect any information from children. If you believe a child has provided personal information through the app, please contact us so we can take appropriate action.</p>
+
+  <h2>7. Your Rights</h2>
+  <p>Because we do not collect personal data on our servers, the access, deletion, and portability rights granted under regulations such as the GDPR (European Union) and the CCPA (California) apply primarily to data you keep on your device, which you control directly through the app. Specifically, you may at any time:</p>
+  <ul>
+    <li>Delete individual sessions, trades, notes, screenshots, or imported journals from within the app.</li>
+    <li>Remove your stored AI API key from Settings, instantly disabling all third-party AI calls.</li>
+    <li>Uninstall the app to remove the entire local database from your device.</li>
+  </ul>
+
+  <h2>8. Changes To This Policy</h2>
+  <p>We may update this Privacy Policy from time to time to reflect changes in the app's features. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically. Significant changes may also be communicated through an in-app notice on first launch after the update.</p>
+
+  <h2>9. Contact</h2>
+  <p>If you have questions or concerns about this Privacy
