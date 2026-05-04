@@ -7,13 +7,96 @@
   <style>
     body { font-family: -apple-system, system-ui, sans-serif; max-width: 720px; margin: 60px auto; padding: 0 24px; line-height: 1.65; color: #1a1a1a; }
     h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.02em; }
+    h2 { font-size: 18px; margin: 36px 0 12px; letter-spacing: -0.01em; }
+    h3 { font-size: 15px; margin: 24px 0 6px; color: #1a1a1a; }
     .updated { color: #888; font-size: 14px; margin: 0 0 32px; }
     a { color: #0066cc; }
+    .contact-card { background: #f5f7fa; border: 1px solid #e0e6ed; padding: 20px 22px; border-radius: 10px; margin: 24px 0 8px; }
+    .contact-card p { margin: 0 0 6px; }
+    .contact-card .email { font-size: 17px; font-weight: 500; }
+    .meta { color: #888; font-size: 13px; }
+    ul { padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    .back { margin-top: 48px; padding-top: 24px; border-top: 1px solid #e5e5e5; font-size: 14px; }
   </style>
 </head>
 <body>
   <h1>Support</h1>
-  <p class="updated">Last updated: 2026-05-04</p>
-  <p>Content coming soon. <a href="/">← Back to TradeReplay</a></p>
+  <p class="updated">Last updated: May 4, 2026</p>
+
+  <p>This page collects answers to common questions and ways to reach us if you need help with TradeReplay.</p>
+
+  <div class="contact-card">
+    <p class="meta">Contact</p>
+    <p class="email"><a href="mailto:zclk9000@me.com">zclk9000@me.com</a></p>
+    <p class="meta">We aim to reply within 2 business days. Including your operating system version and a description of what you were doing helps us respond faster.</p>
+  </div>
+
+  <h2>Getting Started</h2>
+
+  <h3>What does TradeReplay do?</h3>
+  <p>TradeReplay is a market replay and practice tool for discretionary traders. You load historical price data, scrub forward bar by bar (or tick by tick), and place simulated trades to review your decision-making. The app records every simulated trade so you can study your own behavior over time.</p>
+
+  <h3>How do I create my first practice session?</h3>
+  <p>Open the Library tab, select a market and date range from the built-in sample data, set your starting balance, and start the session. The chart, trade panel, and statistics update as you advance the replay cursor. You can pause at any bar to take a screenshot, write notes, or tag the moment for later review.</p>
+
+  <h3>Can I import my real trading history?</h3>
+  <p>Yes. The app reads MT4 and MT5 statement files, as well as CFMMC daily reports for CN futures. Use the import button on the Live tab and select the file you exported from your broker. Imported trades are kept separately from simulator-generated trades and never sent anywhere.</p>
+
+  <h2>Data and Privacy</h2>
+
+  <h3>Where is my data stored?</h3>
+  <p>Everything you create within the app — sessions, trades, notes, screenshots, strategy definitions — is stored locally on your device in a private SQLite database. The app does not include any analytics or telemetry. See the <a href="/privacy">Privacy Policy</a> for full details.</p>
+
+  <h3>How do I back up my data?</h3>
+  <p>Each platform's standard backup mechanism covers TradeReplay's data. On macOS, Time Machine includes the app's Library folder. On iOS, an iCloud or computer-encrypted backup of your device includes the app's container. You can also export individual sessions as screenshots or CSV files from within the app.</p>
+
+  <h3>How do I delete my data?</h3>
+  <p>You can remove individual sessions, trades, notes, or imported journals from within the app. To remove everything at once, uninstall the app — this deletes the entire local database along with the app.</p>
+
+  <h2>AI Features</h2>
+
+  <h3>How do I enable the AI summary?</h3>
+  <p>Open Settings → AI, choose a provider (DeepSeek or OpenAI), paste your own API key, and save. The key is stored in your operating system's keychain and never sent to us. After that, the Statistics tab will display an AI-generated coaching summary alongside the built-in rule-based one.</p>
+
+  <h3>Why is the AI summary optional?</h3>
+  <p>To keep the app fully functional offline and to give you control over your data and costs. The app's built-in statistics, rule-based diagnostics, and behavioral patterns work without any AI provider. AI is purely an optional layer for users who want a coaching-style narrative on top of the numbers.</p>
+
+  <h3>How much does the AI feature cost?</h3>
+  <p>Cost depends on the provider and pricing plan you choose. As a rough reference, a single AI summary uses roughly 2,000 input tokens and 250 output tokens, which costs a small fraction of a US cent on most current providers. The app caches results locally, so re-opening the same session does not re-incur costs unless your underlying data changes.</p>
+
+  <h2>Purchases and Refunds</h2>
+
+  <h3>How do I unlock the paid features?</h3>
+  <p>Inside the app, open Settings → TradeReplay Pro to view available options and complete the purchase through Apple's standard in-app purchase flow.</p>
+
+  <h3>How do I request a refund?</h3>
+  <p>All purchases are processed and refunded by Apple, not by us. To request a refund, visit <a href="https://reportaproblem.apple.com">https://reportaproblem.apple.com</a> and select the TradeReplay purchase. Apple's refund policy applies.</p>
+
+  <h3>Do my purchases sync across my Mac and iPhone?</h3>
+  <p>Yes, when both devices are signed in to the same Apple ID. Apple handles purchase syncing through StoreKit; you can also use "Restore Purchases" inside Settings if a previously paid feature shows as locked on a fresh install.</p>
+
+  <h2>Reporting Bugs and Requests</h2>
+
+  <h3>I found a bug — what do I send?</h3>
+  <p>Email us at <a href="mailto:zclk9000@me.com">zclk9000@me.com</a> with:</p>
+  <ul>
+    <li>Your operating system and version (for example: macOS 14.5, iOS 17.4).</li>
+    <li>The app version (Settings → About).</li>
+    <li>A short description of what you were doing when the issue happened.</li>
+    <li>If possible, a screenshot or screen recording.</li>
+  </ul>
+
+  <h3>How do I request a feature?</h3>
+  <p>The same email works. We read every message and reply, even if a request does not make it into the next release. Sharing your trading style and what task the app is helping you with makes your request more likely to be implemented.</p>
+
+  <h2>System Requirements</h2>
+  <ul>
+    <li>macOS 12 (Monterey) or later, on Apple Silicon or Intel.</li>
+    <li>iOS / iPadOS 16 or later.</li>
+    <li>Approximately 200 MB of free storage for the app, plus additional space for any historical market data you choose to download.</li>
+  </ul>
+
+  <p class="back"><a href="/">← Back to TradeReplay</a></p>
 </body>
 </html>
