@@ -199,22 +199,38 @@
     [data-theme="light"] .dark-only,
     [data-theme="dark"] .light-only { display: none; }
 
-    /* === Features === */
+    /* === Features (alternating rows: shot + text) === */
     .features {
       max-width: 1100px;
       margin: 96px auto 0;
       padding: 0 32px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 88px;
     }
 
-    .feature-card {
-      background: var(--surface-2);
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .feature-row:nth-child(even) .feature-shot { order: 2; }
+    .feature-row:nth-child(even) .feature-text { order: 1; }
+
+    .feature-shot {
+      border-radius: 12px;
+      overflow: hidden;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
       box-shadow: var(--shadow-card);
+      background: var(--surface-3);
+    }
+
+    .feature-shot img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .feature-icon {
@@ -230,30 +246,30 @@
       margin-bottom: 16px;
     }
 
-    .feature-card h3 {
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin: 0 0 8px;
+    .feature-text h3 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
       color: var(--text);
     }
 
-    .feature-card p {
-      font-size: 14px;
+    .feature-text p {
+      font-size: 16px;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.6;
       margin: 0;
     }
 
-    .feature-card ul {
-      font-size: 13px;
+    .feature-text ul {
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.5;
-      padding-left: 18px;
-      margin: 10px 0 0;
+      line-height: 1.65;
+      padding-left: 20px;
+      margin: 16px 0 0;
     }
 
-    .feature-card li { margin-bottom: 4px; }
+    .feature-text li { margin-bottom: 6px; }
 
     /* === Trust strip === */
     .trust {
@@ -310,7 +326,11 @@
     @media (max-width: 760px) {
       .hero h1 { font-size: 38px; }
       .hero .subtitle { font-size: 18px; }
-      .features { grid-template-columns: 1fr; }
+      .features { gap: 56px; }
+      .feature-row { grid-template-columns: 1fr; gap: 24px; }
+      .feature-row:nth-child(even) .feature-shot { order: 0; }
+      .feature-row:nth-child(even) .feature-text { order: 0; }
+      .feature-text h3 { font-size: 22px; }
       .trust { grid-template-columns: repeat(2, 1fr); }
       .footer { flex-direction: column; gap: 16px; }
     }
@@ -351,37 +371,58 @@
 
   <!-- Features -->
   <section class="features">
-    <div class="feature-card">
-      <div class="feature-icon">▶</div>
-      <h3 data-i18n="f1.title">Practice with replay</h3>
-      <p data-i18n="f1.body">Step through historical price data bar by bar, place simulated orders, manage stops and take-profits — train your decisions without risking capital.</p>
-      <ul>
-        <li data-i18n="f1.l1">Forex · Futures · Crypto · Metals · Stock indices</li>
-        <li data-i18n="f1.l2">Multi-timeframe charting (lightweight-charts v5)</li>
-        <li data-i18n="f1.l3">Custom indicators &amp; drawing tools</li>
-      </ul>
+    <!-- Feature 1: Replay -->
+    <div class="feature-row">
+      <div class="feature-shot">
+        <img src="feature-1-light.png" class="light-only" alt="TradeReplay Simulator with multi-chart bar-replay and order panel">
+        <img src="feature-1-dark.png"  class="dark-only"  alt="TradeReplay Simulator (dark theme)">
+      </div>
+      <div class="feature-text">
+        <div class="feature-icon">▶</div>
+        <h3 data-i18n="f1.title">Practice with replay</h3>
+        <p data-i18n="f1.body">Step through historical price data bar by bar, place simulated orders, manage stops and take-profits — train your decisions without risking capital.</p>
+        <ul>
+          <li data-i18n="f1.l1">Forex · Futures · Crypto · Metals · Stock indices</li>
+          <li data-i18n="f1.l2">Multi-timeframe charting (lightweight-charts v5)</li>
+          <li data-i18n="f1.l3">Custom indicators &amp; drawing tools</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">◧</div>
-      <h3 data-i18n="f2.title">Real trade journal</h3>
-      <p data-i18n="f2.body">Import broker statements once, get the full picture: win rate, profit factor, R-multiple, MAE/MFE, calendar heatmap, per-symbol breakdown.</p>
-      <ul>
-        <li data-i18n="f2.l1">MT4 · MT5 · CFMMC · Generic CSV importers</li>
-        <li data-i18n="f2.l2">Tags, setups, mistakes — searchable journal</li>
-        <li data-i18n="f2.l3">Cross-currency aggregation, multi-account view</li>
-      </ul>
+    <!-- Feature 2: Journal -->
+    <div class="feature-row">
+      <div class="feature-shot">
+        <img src="feature-2-light.png" class="light-only" alt="TradeReplay Calendar view with daily P&L heatmap">
+        <img src="feature-2-dark.png"  class="dark-only"  alt="TradeReplay Calendar view (dark theme)">
+      </div>
+      <div class="feature-text">
+        <div class="feature-icon">◧</div>
+        <h3 data-i18n="f2.title">Real trade journal</h3>
+        <p data-i18n="f2.body">Import broker statements once, get the full picture: win rate, profit factor, R-multiple, MAE/MFE, calendar heatmap, per-symbol breakdown.</p>
+        <ul>
+          <li data-i18n="f2.l1">MT4 · MT5 · CFMMC · Generic CSV importers</li>
+          <li data-i18n="f2.l2">Tags, setups, mistakes — searchable journal</li>
+          <li data-i18n="f2.l3">Cross-currency aggregation, multi-account view</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">✦</div>
-      <h3 data-i18n="f3.title">Quant scan + AI Mentor</h3>
-      <p data-i18n="f3.body">Scan thousands of symbols against rule-based strategies. Bring your own AI key for personalized weekly review, single-trade insight, and pattern discovery.</p>
-      <ul>
-        <li data-i18n="f3.l1">Strategy backtester with bar-replay verification</li>
-        <li data-i18n="f3.l2">BYOK AI (DeepSeek / OpenAI / compatible)</li>
-        <li data-i18n="f3.l3">Zero telemetry, key stays in macOS Keychain</li>
-      </ul>
+    <!-- Feature 3: Quant + AI -->
+    <div class="feature-row">
+      <div class="feature-shot">
+        <img src="feature-3-light.png" class="light-only" alt="TradeReplay Mentor AI panel with daily review and insight tabs">
+        <img src="feature-3-dark.png"  class="dark-only"  alt="TradeReplay Mentor AI panel (dark theme)">
+      </div>
+      <div class="feature-text">
+        <div class="feature-icon">✦</div>
+        <h3 data-i18n="f3.title">Quant scan + AI Mentor</h3>
+        <p data-i18n="f3.body">Scan thousands of symbols against rule-based strategies. Bring your own AI key for personalized weekly review, single-trade insight, and pattern discovery.</p>
+        <ul>
+          <li data-i18n="f3.l1">Strategy backtester with bar-replay verification</li>
+          <li data-i18n="f3.l2">BYOK AI (DeepSeek / OpenAI / compatible)</li>
+          <li data-i18n="f3.l3">Zero telemetry, key stays in macOS Keychain</li>
+        </ul>
+      </div>
     </div>
   </section>
 
