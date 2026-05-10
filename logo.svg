@@ -1,7 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 50">
-  <rect x="0" y="0" width="42" height="12" fill="#FFFFFF"/>
-  <rect x="16" y="0" width="12" height="50" fill="#FFFFFF"/>
-  <rect x="46" y="0" width="12" height="50" fill="#FFFFFF"/>
-  <path d="M 58 0 L 76 0 Q 88 0 88 14 Q 88 26 76 26 L 58 26 Z" fill="#FFFFFF"/>
-  <polygon points="70,22 82,22 88,50 76,50" fill="#FFFFFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 136" width="136" height="136">
+  <rect x="0" y="0" width="136" height="136" rx="0" ry="0" fill="#FFFFFF"></rect>
+  <g transform="translate(18 18)">
+    <rect x="4" y="18" width="42" height="12" fill="#000000"></rect>
+    <rect x="20" y="18" width="12" height="50" fill="#000000"></rect>
+    <rect x="50" y="18" width="12" height="50" fill="#000000"></rect>
+    <path d="M 62 18 L 80 18 Q 92 18 92 32 Q 92 44 80 44 L 62 44 Z" fill="#000000"></path>
+    <polygon points="74,40 86,40 92,68 80,68" fill="#000000"></polygon>
+    <rect x="4" y="76" width="88" height="2" fill="#000000"></rect>
+    <rect x="12" y="86" width="14" height="8" fill="#FF3B30"></rect>
+    <rect x="32" y="82" width="14" height="12" fill="#FF3B30"></rect>
+    <rect x="52" y="86" width="14" height="8" fill="#00C853"></rect>
+    <rect x="72" y="80" width="14" height="14" fill="#00C853"></rect>
+  </g>
 </svg>

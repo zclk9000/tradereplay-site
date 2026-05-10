@@ -78,13 +78,10 @@
     .logo-mark {
       width: 28px;
       height: 28px;
-      background: var(--accent);
       border-radius: 7px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px;
-      box-sizing: border-box;
+      overflow: hidden;
+      display: inline-block;
+      flex-shrink: 0;
     }
 
     .logo-mark img {
@@ -345,7 +342,10 @@
   <!-- Top bar -->
   <header class="topbar">
     <a href="/" class="logo">
-      <span class="logo-mark"><img src="logo.svg" alt="" width="20" height="20"></span>
+      <span class="logo-mark">
+        <img src="logo.svg" class="light-only" alt="">
+        <img src="logo-dark.svg" class="dark-only" alt="">
+      </span>
       <span data-i18n="brand">TradeReplay</span>
     </a>
     <div class="topbar-right">
