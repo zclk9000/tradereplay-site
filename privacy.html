@@ -17,7 +17,7 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: May 4, 2026</p>
+  <p class="updated">Last updated: May 10, 2026</p>
 
   <p>This Privacy Policy describes how TradeReplay ("we", "our", or "the app") handles information when you use the TradeReplay desktop and mobile application. We have designed TradeReplay to operate as a local-first tool: by default, your data stays on your device and is not transmitted to us or any third party.</p>
 
@@ -38,6 +38,7 @@
   <p>If you choose to use the optional AI summary feature, you may enter your own API key from a third-party AI provider (such as DeepSeek or OpenAI). This key is stored securely in your operating system's keychain (Keychain on macOS and iOS) and is never sent to our servers.</p>
   <p>When you trigger an AI summary, the app sends a request <strong>directly</strong> from your device to the AI provider you selected, using your API key. The request contains a structured summary of your trading statistics (such as win rate, profit factor, and trade count) so the provider can generate analysis. We do not proxy, log, or have access to this request.</p>
   <p>You may remove your API key at any time in the app's Settings, which immediately disables the AI feature and deletes the key from your keychain.</p>
+  <p><strong>Regional availability.</strong> AI features are not offered to users whose Apple App Store storefront country is China, and are entirely absent from any China-region build of the app. The China-region distribution channel does not include any AI provider integration.</p>
 
   <h2>4. Third-Party Services</h2>
   <p>The app communicates with the following external services on your behalf. Each is described below.</p>
@@ -56,17 +57,28 @@
   <h2>4.3 Apple App Store</h2>
   <p>Purchases of the paid version of TradeReplay are handled exclusively by Apple through the App Store. We never see your payment details, full name, or any account information beyond the anonymous receipt that Apple provides to verify purchase. Apple's own privacy practices are described at <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>.</p>
 
-  <h2>5. Data Retention</h2>
+  <h2>4.4 RevenueCat (Purchase Verification)</h2>
+  <p>To validate App Store receipts and track which subscription tier or lifetime entitlement you have purchased, the app uses <a href="https://www.revenuecat.com/">RevenueCat</a> as a purchase backend. The following information is sent to RevenueCat on your behalf:</p>
+  <ul>
+    <li>An <strong>anonymous user identifier</strong> generated on first launch — not your Apple ID, not your name, and not your email address.</li>
+    <li>The opaque receipt that Apple's StoreKit returns for each purchase, used solely to verify the purchase with Apple.</li>
+    <li>Your App Store storefront country code (for example, <code>US</code> or <code>HK</code>) so the app can display the correct pricing tier and feature set for your region.</li>
+  </ul>
+  <p>RevenueCat acts as our data processor for purchase events; we are the data controller. RevenueCat's own privacy policy is at <a href="https://www.revenuecat.com/privacy/">https://www.revenuecat.com/privacy/</a>. If you uninstall the app and reinstall it later, you can use the in-app "Restore Purchases" action to re-link your previous receipts to a new anonymous identifier on the new install.</p>
+
+  <h2>5. Data Retention and Portability</h2>
   <p>Because all your data is stored locally on your device, it persists for as long as the app is installed. To delete your data, you can either remove individual sessions and trades within the app, or uninstall the app, which removes the entire local database along with the app.</p>
+  <p>For portability, the app provides an export tool at <strong>Settings → Data → Backup → Export</strong> that produces a single portable SQLite file containing every row of your local database (sessions, imported trades, journal notes, settings, and indicators). You can keep this file as a backup or move it to another device. The backup file is yours; we do not receive a copy.</p>
 
   <h2>6. Children's Privacy</h2>
-  <p>TradeReplay is not directed at children under the age of 16. We do not knowingly collect any information from children. If you believe a child has provided personal information through the app, please contact us so we can take appropriate action.</p>
+  <p>TradeReplay is not directed at children under the age of 13. We do not knowingly collect any information from children. If you believe a child has used the app, please contact us so we can confirm that the relevant data lives entirely on the child's device and can be deleted by uninstalling the app.</p>
 
   <h2>7. Your Rights</h2>
   <p>Because we do not collect personal data on our servers, the access, deletion, and portability rights granted under regulations such as the GDPR (European Union) and the CCPA (California) apply primarily to data you keep on your device, which you control directly through the app. Specifically, you may at any time:</p>
   <ul>
     <li>Delete individual sessions, trades, notes, screenshots, or imported journals from within the app.</li>
     <li>Remove your stored AI API key from Settings, instantly disabling all third-party AI calls.</li>
+    <li>Export the entire local database via Settings → Data → Backup → Export.</li>
     <li>Uninstall the app to remove the entire local database from your device.</li>
   </ul>
 
@@ -74,4 +86,8 @@
   <p>We may update this Privacy Policy from time to time to reflect changes in the app's features. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically. Significant changes may also be communicated through an in-app notice on first launch after the update.</p>
 
   <h2>9. Contact</h2>
-  <p>If you have questions or concerns about this Privacy
+  <p>If you have questions or concerns about this Privacy Policy or about how the app handles your data, please contact us at <a href="mailto:zclk9000@me.com">zclk9000@me.com</a>. For purchase or billing concerns, Apple's App Store support handles refund and receipt records on Apple's side and is the appropriate channel for those matters.</p>
+
+  <p class="back"><a href="/">← Back to TradeReplay</a></p>
+</body>
+</html>
