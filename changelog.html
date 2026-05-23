@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Changelog · 更新日志 — TradeReplay</title>
+  <meta name="description" content="What's new in each release of TradeReplay — Mac & Windows market replay and trade journal.">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface-2: #f7f8fa;
+      --surface-3: #f0f3fa;
+      --border: #e7eaf3;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --accent: #2962ff;
+      --accent-hover: #1a4dd6;
+      --accent-soft: rgba(41, 98, 255, 0.08);
+      --pos: #00796b;
+      --pos-soft: rgba(0, 121, 107, 0.10);
+      --amber: #b45309;
+      --amber-soft: rgba(180, 83, 9, 0.10);
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+    }
+
+    [data-theme="dark"] {
+      --bg: #131722;
+      --surface-2: #1e222d;
+      --surface-3: #2a2e39;
+      --border: #363a45;
+      --text: #e8eaee;
+      --text-muted: #8b91a0;
+      --accent: #5b8def;
+      --accent-hover: #7da3ff;
+      --accent-soft: rgba(91, 141, 239, 0.12);
+      --pos: #26a69a;
+      --pos-soft: rgba(38, 166, 154, 0.14);
+      --amber: #e0a458;
+      --amber-soft: rgba(224, 164, 88, 0.14);
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* Language + theme show/hide */
+    [data-theme="light"] .dark-only,
+    [data-theme="dark"] .light-only { display: none; }
+    [data-lang="en"] .lang-zh,
+    [data-lang="zh"] .lang-en { display: none; }
+
+    /* === Top bar (matches homepage) === */
+    .topbar {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; display: inline-block; flex-shrink: 0; }
+    .logo-mark img { width: 100%; height: 100%; display: block; }
+
+    .topbar-right { display: flex; align-items: center; gap: 8px; }
+
+    .toggle-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .toggle-btn:hover { background: var(--surface-3); border-color: var(--accent); }
+
+    /* === Page head === */
+    .page-head { max-width: 880px; margin: 32px auto 0; padding: 0 24px; }
+    .page-head h1 { font-size: 38px; font-weight: 700; letter-spacing: -0.025em; margin: 0 0 8px; }
+    .page-head .sub { font-size: 17px; color: var(--text-muted); margin: 0; }
+
+    /* === Releases === */
+    .releases { max-width: 880px; margin: 40px auto 0; padding: 0 24px; }
+
+    .release {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border-radius: 14px;
+      padding: 24px 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .release-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .release-head .version { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .release-head .date { font-size: 14px; color: var(--text-muted); }
+    .release-head .latest {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--accent); background: var(--accent-soft);
+      padding: 2px 9px; border-radius: 999px;
+    }
+
+    .release ul { list-style: none; margin: 0; padding: 0; }
+    .release li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      line-height: 1.55;
+      margin-bottom: 11px;
+    }
+    .release li:last-child { margin-bottom: 0; }
+
+    .tag {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 2px 9px;
+      border-radius: 6px;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+    .tag-new { color: var(--accent); background: var(--accent-soft); }
+    .tag-fix { color: var(--pos); background: var(--pos-soft); }
+    .tag-improve { color: var(--amber); background: var(--amber-soft); }
+
+    /* === Footer === */
+    .footer {
+      max-width: 880px;
+      margin: 48px auto 40px;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-links { display: flex; gap: 22px; }
+    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s ease; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 620px) {
+      .page-head h1 { font-size: 30px; }
+      .footer { flex-direction: column; gap: 14px; }
+      .release { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a href="/" class="logo">
+      <span class="logo-mark">
+        <img src="logo.svg" class="light-only" alt="">
+        <img src="logo-dark.svg" class="dark-only" alt="">
+      </span>
+      <span>TradeReplay</span>
+    </a>
+    <div class="topbar-right">
+      <button class="toggle-btn" id="lang-toggle" type="button">中文</button>
+      <button class="toggle-btn" id="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <h1><span class="lang-zh">更新日志</span><span class="lang-en">Changelog</span></h1>
+    <p class="sub">
+      <span class="lang-zh">TradeReplay 各版本的更新内容。</span>
+      <span class="lang-en">What's new in each release of TradeReplay.</span>
+    </p>
+  </section>
+
+  <main class="releases">
+
+    <!-- v1.0.1 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.0.1</span>
+        <span class="date">2026-05-23</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>Windows 版发布 —— 支持 Windows 10 / 11（64 位）。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>复盘 / 训练的「开始·结束时间」选择器现在按图表时区解释；此前会把所选时间当作 UTC，可能导致时间跳变。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>导入 CSV 时自动去除重复的时间戳，修复加载部分数据时的报错。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>「关于」页现在动态显示当前版本号。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Windows release — supports Windows 10 / 11 (64-bit).</span></li>
+        <li><span class="tag tag-fix">Fix</span><span>The replay / training start &amp; end time pickers now follow the chart's time zone; previously they were read as UTC, which could shift the time.</span></li>
+        <li><span class="tag tag-fix">Fix</span><span>Duplicate timestamps in imported CSV data are now de-duplicated, fixing errors when loading certain files.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>The About page now shows the current version dynamically.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.0</span>
+        <span class="date">2026-05-19</span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">首发</span><span>TradeReplay 上架 Mac App Store —— Mac 原生的交易复盘训练 + 真实交易日志中心。</span></li>
+        <li><span class="tag tag-new">新增</span><span>K 线逐根回放：外汇 · 期货 · 加密 · 贵金属 · 股指，多周期图表。</span></li>
+        <li><span class="tag tag-new">新增</span><span>真实交易日志：MT4 / MT5 / CFMMC 对账单导入，胜率 · 盈亏比 · R 倍数 · MAE/MFE · 日历热力图。</span></li>
+        <li><span class="tag tag-new">新增</span><span>AI Mentor（自带 API key）+ 策略回测；全程本地优先，零 telemetry。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">Launch</span><span>TradeReplay on the Mac App Store — a Mac-native market replay trainer and real-trade journal.</span></li>
+        <li><span class="tag tag-new">New</span><span>Bar-by-bar replay across Forex · Futures · Crypto · Metals · Stock indices, with multi-timeframe charts.</span></li>
+        <li><span class="tag tag-new">New</span><span>Real trade journal: MT4 / MT5 / CFMMC statement import, with win rate, profit factor, R-multiple, MAE/MFE and a calendar heatmap.</span></li>
+        <li><span class="tag tag-new">New</span><span>AI Mentor (bring your own API key) plus a strategy backtester — local-first, zero telemetry.</span></li>
+      </ul>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <div>© 2026 TradeReplay</div>
+    <div class="footer-links">
+      <a href="/"><span class="lang-zh">首页</span><span class="lang-en">Home</span></a>
+      <a href="/privacy"><span class="lang-zh">隐私政策</span><span class="lang-en">Privacy</span></a>
+      <a href="/terms"><span class="lang-zh">使用条款</span><span class="lang-en">Terms</span></a>
+      <a href="/support"><span class="lang-zh">支持</span><span class="lang-en">Support</span></a>
+    </div>
+  </footer>
+
+  <script>
+    function applyLang(lang) {
+      document.documentElement.dataset.lang = lang;
+      document.documentElement.lang = lang === "zh" ? "zh-Hans" : "en";
+      document.getElementById("lang-toggle").textContent = lang === "zh" ? "EN" : "中文";
+    }
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      document.getElementById("theme-toggle").textContent = theme === "dark" ? "☀" : "🌙";
+      try { localStorage.setItem("trade-site-theme", theme); } catch (e) {}
+    }
+    (function init() {
+      let savedTheme = null;
+      try { savedTheme = localStorage.getItem("trade-site-theme"); } catch (e) {}
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+      const browserLang = (navigator.language || "en").toLowerCase();
+      applyLang(browserLang.startsWith("zh") ? "zh" : "en");
+    })();
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+    });
+    document.getElementById("lang-toggle").addEventListener("click", () => {
+      applyLang(document.documentElement.dataset.lang === "zh" ? "en" : "zh");
+    });
+  </script>
+</body>
+</html>
