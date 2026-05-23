@@ -147,35 +147,54 @@
       margin: 0 auto 32px;
     }
 
-    .download-chip {
+    /* === Download buttons === */
+    .dl-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .dl-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      background: var(--surface-2);
+      gap: 12px;
+      padding: 13px 22px;
+      min-width: 215px;
+      border-radius: 12px;
       border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 500;
       text-decoration: none;
+      font-family: inherit;
+      text-align: left;
       transition: all 0.15s ease;
     }
 
-    .download-chip:hover {
+    .dl-btn svg { flex-shrink: 0; }
+
+    .dl-label { display: flex; flex-direction: column; line-height: 1.2; }
+    .dl-label .dl-main { font-size: 15px; font-weight: 600; }
+    .dl-label .dl-sub { font-size: 12px; font-weight: 400; opacity: 0.78; margin-top: 2px; }
+
+    /* Windows — active primary */
+    .dl-btn.primary {
+      background: var(--accent);
       border-color: var(--accent);
-      background: var(--accent-soft);
+      color: #fff;
     }
 
-    .download-chip .apple-mark {
-      font-size: 16px;
-      line-height: 1;
+    .dl-btn.primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-hero);
     }
 
-    .download-chip .soon {
+    /* macOS — disabled, coming soon */
+    .dl-btn.disabled {
+      background: var(--surface-2);
       color: var(--text-muted);
-      font-weight: 400;
-      font-size: 13px;
+      cursor: default;
+      pointer-events: none;
     }
 
     /* === Hero screenshot === */
@@ -359,11 +378,22 @@
     <h1 data-i18n="hero.title">Replay your trades, find edge.</h1>
     <p class="subtitle" data-i18n="hero.subtitle">Mac-native market replay and trade journal for discretionary traders.</p>
     <p class="tagline" data-i18n="hero.tagline">Import broker statements, replay history bar by bar, train your decision-making — all locally on your Mac.</p>
-    <a href="#" class="download-chip" aria-disabled="true">
-      <span class="apple-mark"></span>
-      <span data-i18n="hero.cta">Download on the Mac App Store</span>
-      <span class="soon" data-i18n="hero.soon">· Coming soon</span>
-    </a>
+    <div class="dl-row">
+      <a href="https://dl.tradereplay.dev/TradeReplay-1.0.1-Setup.exe" class="dl-btn primary" download>
+        <svg viewBox="0 0 88 88" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M0 12.4 36 7.5v33.9H0zM40 6.9 88 0v41.4H40zM0 46.6h36v33.9L0 75.6zM40 46.6h48V88l-48-6.5z"/></svg>
+        <span class="dl-label">
+          <span class="dl-main" data-i18n="dl.win">Download for Windows</span>
+          <span class="dl-sub" data-i18n="dl.win.meta">v1.0.1 · Windows 10/11 · 64-bit</span>
+        </span>
+      </a>
+      <span class="dl-btn disabled" aria-disabled="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.23 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.27 3.13-2.53.99-1.45 1.4-2.85 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13M14.5 4.5c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44"/></svg>
+        <span class="dl-label">
+          <span class="dl-main" data-i18n="dl.mac">Download for Mac</span>
+          <span class="dl-sub" data-i18n="dl.mac.soon">Coming soon</span>
+        </span>
+      </span>
+    </div>
   </section>
 
   <!-- Hero screenshot -->
@@ -469,8 +499,10 @@
         "hero.title": "Replay your trades, find edge.",
         "hero.subtitle": "Mac-native market replay and trade journal for discretionary traders.",
         "hero.tagline": "Import broker statements, replay history bar by bar, train your decision-making — all locally on your Mac.",
-        "hero.cta": "Download on the Mac App Store",
-        "hero.soon": "· Coming soon",
+        "dl.win": "Download for Windows",
+        "dl.win.meta": "v1.0.1 · Windows 10/11 · 64-bit",
+        "dl.mac": "Download for Mac",
+        "dl.mac.soon": "Coming soon",
         "f1.title": "Practice with replay",
         "f1.body": "Step through historical price data bar by bar, place simulated orders, manage stops and take-profits — train your decisions without risking capital.",
         "f1.l1": "Forex · Futures · Crypto · Metals · Stock indices",
@@ -498,8 +530,10 @@
         "hero.title": "把对账单变成 K 线上的真实复盘",
         "hero.subtitle": "Mac 原生交易复盘训练 + 真实交易日志中心",
         "hero.tagline": "导入对账单一次，逐根回放历史 K 线，训练你的盘感与决策——所有数据留在本地。",
-        "hero.cta": "在 Mac App Store 下载",
-        "hero.soon": "· 即将上架",
+        "dl.win": "下载 Windows 版",
+        "dl.win.meta": "v1.0.1 · Windows 10/11 · 64 位",
+        "dl.mac": "下载 Mac 版",
+        "dl.mac.soon": "即将推出",
         "f1.title": "K 线回放训练",
         "f1.body": "逐根回放历史行情，模拟下单、止损止盈、持仓管理——训练交易决策，不动真金。",
         "f1.l1": "外汇 · 期货 · 加密 · 贵金属 · 股指",
