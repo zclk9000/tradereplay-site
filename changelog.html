@@ -205,12 +205,32 @@
 
   <main class="releases">
 
+    <!-- v1.20.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.20.0</span>
+        <span class="date">2026-06-05</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>通达信 / 同花顺公式指标语言 —— 自定义指标现在可以直接用通达信 / 同花顺的公式语法编写,内置 60+ 函数（MA · EMA · SMA · REF · CROSS 金叉死叉 · ZIG 顶底 等）加可调参数。从通达信 / 同花顺复制来的常见公式，基本粘贴即可运行。</span></li>
+        <li><span class="tag tag-new">新增</span><span>12 个常用内置指标 —— BIAS 乖离率 · BBI 多空指数 · DMA 平行线差 · TRIX · PSY 心理线 · ROC · MTM 动量 · VR · EXPMA · DPO · BRAR · ENE 轨道线。</span></li>
+        <li><span class="tag tag-new">新增</span><span>公式画图函数 —— 金叉 / 死叉信号箭头、DRAWICON / DRAWTEXT / DRAWNUMBER 标注、STICKLINE 柱体、DRAWLINE 画线，公式可直接在图上作图。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>全部内置指标都能查看公式源码，并一键 Fork 成自定义指标改写；新建指标时可直接命名。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>通达信 / 同花顺-style formula language for custom indicators — author indicators directly in TDX / THS formula syntax with 60+ built-in functions (MA · EMA · SMA · REF · CROSS · ZIG pivots …) plus adjustable params. Most formulas copied from 通达信 / 同花顺 paste in and run as-is.</span></li>
+        <li><span class="tag tag-new">New</span><span>12 common built-in indicators — BIAS · BBI · DMA · TRIX · PSY · ROC · MTM · VR · EXPMA · DPO · BRAR · ENE.</span></li>
+        <li><span class="tag tag-new">New</span><span>Formula drawing functions — golden / death-cross signal arrows, DRAWICON / DRAWTEXT / DRAWNUMBER annotations, STICKLINE bars and DRAWLINE, all drawable straight from a formula.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Every built-in indicator can reveal its formula source and fork into an editable custom indicator; you can name an indicator when creating it.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.10.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.10.0</span>
         <span class="date">2026-06-01</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>国内期货专业级支持 —— 82 个品种全量按交易所手续费表配置（含「开仓 / 平昨 / 平今」三笔手续费模型），新建训练对话框按品种自动切界面，价格按交易所 tick 精度显示，期货账户强制人民币计价。</span></li>
