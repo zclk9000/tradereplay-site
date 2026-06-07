@@ -205,12 +205,28 @@
 
   <main class="releases">
 
+    <!-- v1.21.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.21.0</span>
+        <span class="date">2026-06-07</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>行情数据「更新到最新」与「取更早历史」—— 数据缓存与训练存档彻底分离（soft4fx 模式），更新行情不影响已有存档；已下载品种可一键更新到最新，或向前补齐更早的历史数据。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>国内期货改为增量更新 —— 只下载新增的 K 线，不再每次重下全部；数据已是最新时不再重复下载。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>"Update to latest" and "Fetch earlier history" for market data — the data cache is now fully separate from training saves (soft4fx-style), so updating data never touches your saves; downloaded symbols can refresh to the latest bars in one click, or extend further back in time.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>CN futures now update incrementally — only new bars are downloaded instead of the whole history, and data that's already current isn't fetched again.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.20.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.20.0</span>
         <span class="date">2026-06-05</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>通达信 / 同花顺公式指标语言 —— 自定义指标现在可以直接用通达信 / 同花顺的公式语法编写,内置 60+ 函数（MA · EMA · SMA · REF · CROSS 金叉死叉 · ZIG 顶底 等）加可调参数。从通达信 / 同花顺复制来的常见公式，基本粘贴即可运行。</span></li>
