@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使用说明 · Guide — TradeReplay</title>
+  <meta name="description" content="TradeReplay 使用说明 —— 从下载安装、激活，到复盘训练、真实交易日志、策略回测的完整上手指南。">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface-2: #f7f8fa;
+      --surface-3: #f0f3fa;
+      --border: #e7eaf3;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --accent: #2962ff;
+      --accent-hover: #1a4dd6;
+      --accent-soft: rgba(41, 98, 255, 0.08);
+      --pos: #00796b;
+      --pos-soft: rgba(0, 121, 107, 0.10);
+      --amber: #b45309;
+      --amber-soft: rgba(180, 83, 9, 0.10);
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    [data-theme="dark"] {
+      --bg: #131722;
+      --surface-2: #1e222d;
+      --surface-3: #2a2e39;
+      --border: #363a45;
+      --text: #e8eaee;
+      --text-muted: #8b91a0;
+      --accent: #5b8def;
+      --accent-hover: #7da3ff;
+      --accent-soft: rgba(91, 141, 239, 0.12);
+      --pos: #26a69a;
+      --pos-soft: rgba(38, 166, 154, 0.14);
+      --amber: #e0a458;
+      --amber-soft: rgba(224, 164, 88, 0.14);
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", system-ui, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* === Top bar (matches homepage) === */
+    .topbar { max-width: 880px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .logo-mark { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; display: inline-block; flex-shrink: 0; }
+    .logo-mark img { width: 100%; height: 100%; display: block; }
+    .topbar-right { display: flex; align-items: center; gap: 8px; }
+    .toggle-btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; font-family: inherit; }
+    .toggle-btn:hover { background: var(--surface-3); border-color: var(--accent); }
+
+    /* === Page head === */
+    .page-head { max-width: 880px; margin: 28px auto 0; padding: 0 24px; }
+    .page-head h1 { font-size: 38px; font-weight: 700; letter-spacing: -0.025em; margin: 0 0 8px; }
+    .page-head .sub { font-size: 17px; color: var(--text-muted); margin: 0; }
+
+    main { max-width: 880px; margin: 0 auto; padding: 0 24px 64px; }
+
+    /* === Table of contents === */
+    .toc { margin: 32px 0 8px; padding: 18px 22px; border: 1px solid var(--border); background: var(--surface-2); border-radius: 14px; box-shadow: var(--shadow-card); }
+    .toc h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin: 0 0 12px; }
+    .toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+    .toc li { margin-bottom: 7px; break-inside: avoid; }
+    .toc a { color: var(--text); text-decoration: none; }
+    .toc a:hover { color: var(--accent); }
+
+    /* === Sections === */
+    section.guide { margin-top: 48px; scroll-margin-top: 20px; }
+    section.guide > h2 { font-size: 25px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 6px; display: flex; align-items: baseline; gap: 10px; }
+    section.guide > h2 .num { font-size: 15px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 7px; padding: 2px 9px; flex-shrink: 0; }
+    section.guide > .lead { color: var(--text-muted); margin: 0 0 18px; font-size: 15.5px; }
+    section.guide h3 { font-size: 17px; font-weight: 650; margin: 28px 0 8px; }
+
+    /* Steps */
+    ol.steps { counter-reset: step; list-style: none; padding: 0; margin: 14px 0; }
+    ol.steps > li { position: relative; padding: 2px 0 14px 38px; }
+    ol.steps > li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    ol.steps > li:not(:last-child)::after { content: ""; position: absolute; left: 13px; top: 28px; bottom: 0; width: 1.5px; background: var(--border); }
+    ul.plain { padding-left: 20px; margin: 12px 0; }
+    ul.plain li { margin-bottom: 7px; }
+
+    kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; background: var(--surface-3); border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; background: var(--surface-3); border-radius: 5px; padding: 1.5px 6px; color: var(--text); }
+    b, strong { font-weight: 650; }
+
+    /* Callout */
+    .note { margin: 16px 0; padding: 13px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); font-size: 14.5px; color: var(--text-muted); }
+    .note b { color: var(--text); }
+    .note.tip { border-color: color-mix(in srgb, var(--pos) 35%, var(--border)); background: var(--pos-soft); }
+    .note.warn { border-color: color-mix(in srgb, var(--amber) 35%, var(--border)); background: var(--amber-soft); }
+
+    /* Pills for the nav tabs */
+    .pill { display: inline-block; font-size: 13.5px; font-weight: 600; padding: 1px 9px; border-radius: 999px; background: var(--surface-3); border: 1px solid var(--border); white-space: nowrap; }
+
+    /* === Screenshots ===
+       Drop the image into a `guide/` folder next to this file with the
+       filename in the figcaption tag. Until then, a dashed placeholder
+       renders so the layout is final and the gaps are obvious. */
+    figure.shot { margin: 18px 0; }
+    figure.shot img { width: 100%; display: block; border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow-card); }
+    figure.shot figcaption { font-size: 13px; color: var(--text-muted); margin-top: 8px; text-align: center; }
+    figure.shot.is-empty { padding: 0; }
+    figure.shot.is-empty .ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 150px; border: 1.5px dashed var(--border); border-radius: 12px; background: var(--surface-2); color: var(--text-muted); text-align: center; padding: 20px; }
+    figure.shot.is-empty .ph .cam { font-size: 22px; opacity: 0.7; }
+    figure.shot.is-empty .ph .fn { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--accent); }
+
+    /* === Footer === */
+    .footer { max-width: 880px; margin: 40px auto 0; padding: 28px 24px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; color: var(--text-muted); font-size: 14px; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .page-head h1 { font-size: 30px; }
+      .toc ol { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="/">
+      <span class="logo-mark">
+        <img class="light-logo" src="logo.svg" alt="TradeReplay">
+      </span>
+      TradeReplay
+    </a>
+    <div class="topbar-right">
+      <button class="toggle-btn" id="theme-toggle" type="button" aria-label="切换主题">🌙</button>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <h1>使用说明</h1>
+    <p class="sub">从下载安装、激活，到复盘训练、记录真实交易、策略回测 —— 五分钟上手。</p>
+  </section>
+
+  <main>
+    <nav class="toc">
+      <h2>目录</h2>
+      <ol>
+        <li><a href="#intro">软件简介</a></li>
+        <li><a href="#install">下载 · 安装 · 激活</a></li>
+        <li><a href="#data">准备行情数据</a></li>
+        <li><a href="#replay">复盘训练（核心）</a></li>
+        <li><a href="#journal">真实交易日志</a></li>
+        <li><a href="#quant">量化策略与回测</a></li>
+        <li><a href="#mentor">AI 导师</a></li>
+        <li><a href="#settings">设置与快捷键</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1 -->
+    <section class="guide" id="intro">
+      <h2><span class="num">1</span>软件简介</h2>
+      <p class="lead">TradeReplay 是一款 Mac / Windows 原生的「交易复盘训练 + 真实交易日志中心」，覆盖外汇、期货、加密货币、贵金属与股指。</p>
+      <p>它做两件事：</p>
+      <ul class="plain">
+        <li><b>复盘训练</b> —— 在历史 K 线上逐根回放，像 MT4/5 的策略测试器一样，一边推进一边下模拟单，练你的盘感、出入场与纪律。</li>
+        <li><b>真实交易日志</b> —— 导入你在 MT4 / MT5 / 期货账户的真实成交，自动算胜率、盈亏比、R 倍数、MAE/MFE，配日历热力图与逐日复盘笔记。</li>
+      </ul>
+      <p>顶部有四个主区，右上角还有两个入口：</p>
+      <ul class="plain">
+        <li><span class="pill">概览</span> 仪表盘：训练 / 实盘账户的整体表现、最近成交、行为雷达。</li>
+        <li><span class="pill">模拟</span> 复盘训练的主战场（图表 + 下单 + 持仓 + 统计）。</li>
+        <li><span class="pill">实盘</span> 真实成交的复盘（月历 / 交易表 / 统计 / 账户）。</li>
+        <li><span class="pill">策略</span> 量化策略、指标、交易归集与日志。</li>
+        <li><span class="pill">数据</span>（右上）行情数据管理，<span class="pill">设置</span>（右上）应用设置与许可证。</li>
+      </ul>
+      <figure class="shot" data-img="guide/01-overview.png"><figcaption>截图 01 · 软件主界面总览（顶部四个主区一览）</figcaption></figure>
+    </section>
+
+    <!-- 2 -->
+    <section class="guide" id="install">
+      <h2><span class="num">2</span>下载 · 安装 · 激活</h2>
+      <p class="lead">下载 → 安装 → 用激活码解锁 Pro。</p>
+      <ol class="steps">
+        <li><b>下载</b>：在<a href="/">官网首页</a>下载对应版本 —— Windows 是 <code>.exe</code> 安装包，Mac 是 <code>.dmg</code>。</li>
+        <li><b>安装</b>：Windows 双击 <code>.exe</code> 按提示安装；Mac 打开 <code>.dmg</code> 后把 TradeReplay 拖进「应用程序」。</li>
+        <li><b>激活</b>：打开右上角 <span class="pill">设置</span> → <b>许可证</b>，输入<b>激活码</b>和<b>购买时使用的邮箱</b>，点「激活」。一个激活码最多可在 <b>2 台</b>设备使用。</li>
+      </ol>
+      <div class="note tip"><b>还没有激活码？</b>在「许可证」页点 <b>购买 / 续费</b> 即可前往店铺购买，付款后激活码会发到你购买时填的邮箱。换设备时，先在旧设备点「在本设备注销」释放名额。</div>
+      <figure class="shot" data-img="guide/02-license.png"><figcaption>截图 02 · 设置 → 许可证：输入激活码与邮箱，下方是「购买 / 续费」「使用说明」</figcaption></figure>
+    </section>
+
+    <!-- 3 -->
+    <section class="guide" id="data">
+      <h2><span class="num">3</span>准备行情数据</h2>
+      <p class="lead">复盘和回测都需要 K 线数据。打开右上角 <span class="pill">数据</span>，有三个来源。</p>
+      <h3>系统数据（下载）</h3>
+      <p>内置的外汇 / 贵金属 / 股指 / 加密 / 期货行情。点品种 → 选周期 → 下载即可。中国期货按交易所分类，可选<b>主力连续 / 指数 / 具体合约月份</b>。</p>
+      <h3>自定义（导入 CSV）</h3>
+      <p>导入你自己的数据：OHLC 的 K 线 CSV，或逐笔 Tick CSV（更真实的成交撮合）。填好品种、周期、币种后导入，之后就能用它新建训练。</p>
+      <h3>缓存</h3>
+      <p>当你导入真实成交时，软件会自动下载对应品种的 K 线放在这里，用于把你的真实单子在图上回放。</p>
+      <div class="note"><b>免费档</b>提供少量主流品种 + 近 1 年历史；<b>Pro</b> 解锁全部品种与完整历史、全部中国期货。</div>
+      <figure class="shot" data-img="guide/03-data.png"><figcaption>截图 03 · 数据面板：系统下载 / 自定义导入 / 缓存</figcaption></figure>
+    </section>
+
+    <!-- 4 -->
+    <section class="guide" id="replay">
+      <h2><span class="num">4</span>复盘训练（核心）</h2>
+      <p class="lead">在历史行情上逐根推进、下模拟单，这是 TradeReplay 的核心。</p>
+
+      <h3>4.1 新建一个训练</h3>
+      <ol class="steps">
+        <li>进入 <span class="pill">模拟</span>，新建一个训练（<b>新建训练</b>）。</li>
+        <li>选<b>数据来源</b>（系统 / 自定义）和<b>品种 · 周期</b>。</li>
+        <li>设<b>起始时间</b> —— 想避免「挑顺手的位置」，可以点<b>随机</b>，从数据范围里随机选一个交易日开盘。</li>
+        <li>设<b>初始资金</b>（外汇账户为美元，期货账户为人民币，币种由品种自动决定）。</li>
+        <li><b>高级</b>里可调杠杆、点差、手续费、隔夜费等；期货的手续费分<b>开仓 / 平昨 / 平今</b>三笔，保证金率可编辑。</li>
+        <li>点<b>创建</b>，训练就会载入图表。</li>
+      </ol>
+      <figure class="shot" data-img="guide/04-new-session.png"><figcaption>截图 04 · 新建训练对话框（数据 / 起始时间 / 资金 / 高级成本）</figcaption></figure>
+
+      <h3>4.2 回放与下单</h3>
+      <ul class="plain">
+        <li><b>回放控制</b>：用控制条<b>播放 / 暂停</b>、<b>单步前进 / 后退</b>、<b>加速 / 减速</b>，K 线就会逐根推进。</li>
+        <li><b>下单</b>：在下单面板选<b>手数</b>，或切到 <b>风险 $ / 风险 %</b> 让软件按止损距离自动算手数；填<b>止损 / 止盈</b>（可切「点」或「价格」），然后 <span class="pill">开多</span> 或 <span class="pill">开空</span>。</li>
+        <li><b>管理持仓</b>：持仓面板实时显示浮动盈亏，点单子可平仓；「平」按钮可一键<b>平盈利 / 平亏损 / 平多 / 平空 / 平部分</b>。</li>
+      </ul>
+      <figure class="shot" data-img="guide/05-training.png"><figcaption>截图 05 · 复盘训练界面：图表 + 下单面板 + 持仓面板 + 回放控制条</figcaption></figure>
+
+      <h3>4.3 复盘后看统计</h3>
+      <p>训练里的统计页会给出资金曲线、回撤、盈亏分布、日历热力图，以及胜率、期望（R 倍数）、最大回撤、MAE/MFE 等指标，帮你看清问题出在出场还是入场。</p>
+      <figure class="shot" data-img="guide/06-stats.png"><figcaption>截图 06 · 训练统计：资金曲线 / 回撤 / 日历热力图 / 关键指标</figcaption></figure>
+    </section>
+
+    <!-- 5 -->
+    <section class="guide" id="journal">
+      <h2><span class="num">5</span>真实交易日志</h2>
+      <p class="lead">把你在真实账户的成交导进来，自动统计、按天复盘。</p>
+      <h3>5.1 导入真实成交</h3>
+      <ol class="steps">
+        <li>进入 <span class="pill">实盘</span> → <b>账户</b>，点<b>导入</b>。</li>
+        <li>选择对账文件：MT4 的 <code>Statement.htm</code>、MT5 的 <code>ReportHistory-*.xlsx</code>，或中国期货的 <b>CFMMC 日结单</b>（<code>.xls</code>，可一次选多份）。</li>
+        <li>预览确认后导入 —— 重复的成交（同一票号）会自动跳过，并自动下载对应 K 线以便回放。</li>
+      </ol>
+      <div class="note">所有导入的真实成交与模拟成交<b>分开存放</b>，且只存在本机、不上传任何服务器。</div>
+      <figure class="shot" data-img="guide/07-import.png"><figcaption>截图 07 · 账户导入：选择 MT4 / MT5 / CFMMC 对账文件</figcaption></figure>
+
+      <h3>5.2 查看与记录</h3>
+      <ul class="plain">
+        <li><b>月历</b>：按天的盈亏热力图，点某天写当日复盘笔记（支持模板与标签）。</li>
+        <li><b>交易</b>：全部成交明细表，可加标签、筛选、看每笔的 MAE/MFE。</li>
+        <li><b>统计</b>：与复盘训练同一套统计面板，按账户汇总。</li>
+        <li><b>账户</b>：余额、出入金、按平台（MT4/MT5/CFMMC）管理多个账户。</li>
+      </ul>
+      <figure class="shot" data-img="guide/08-calendar.png"><figcaption>截图 08 · 实盘月历 + 当日复盘笔记</figcaption></figure>
+    </section>
+
+    <!-- 6 -->
+    <section class="guide" id="quant">
+      <h2><span class="num">6</span>量化策略与回测</h2>
+      <p class="lead">把交易想法写成规则，在历史数据上一键回测。</p>
+      <ul class="plain">
+        <li>进入 <span class="pill">策略</span> → <b>量化</b>。内置一批经典策略模板（双均线交叉、MACD、RSI 反转、布林带、海龟突破…），可<b>复制为自定义</b>再改。</li>
+        <li>规则用 <b>通达信（TDX）公式语法</b>书写 —— 和软件里图表指标是同一套语言，例如做多条件 <code>CROSS(EMA(C,12), EMA(C,26))</code>。可以点<b>插入模板</b>，或让 <b>AI 生成</b>。</li>
+        <li>写好后点<b>回测</b>：选数据、初始资金、时间范围，运行即可看到成交列表与资金曲线；还能「在数据库查看」，把回测结果生成一个只读复盘。</li>
+      </ul>
+      <div class="note tip">不熟悉通达信语法也没关系：先从内置模板改，或在量化页用 AI 描述你的想法让它生成规则。</div>
+      <figure class="shot" data-img="guide/09-quant.png"><figcaption>截图 09 · 量化策略编辑（通达信规则）</figcaption></figure>
+      <figure class="shot" data-img="guide/10-backtest.png"><figcaption>截图 10 · 回测结果（成交列表 + 资金曲线）</figcaption></figure>
+    </section>
+
+    <!-- 7 -->
+    <section class="guide" id="mentor">
+      <h2><span class="num">7</span>AI 导师（Mentor）</h2>
+      <p class="lead">用你自己的 AI key，给交易做教练式复盘。</p>
+      <ol class="steps">
+        <li>先到 <span class="pill">设置</span> → <b>Mentor AI</b> 填入你自己的 API key（存在本机系统钥匙串里，<b>不会外传</b>，只发给你选的服务商）。</li>
+        <li>点右上角 <b>✨</b> 打开 Mentor 面板。</li>
+        <li>三种能力：<b>复盘</b>（一段时间的总结）、<b>单笔深读</b>（结合行情/时段/波动分析某一笔）、<b>模式发现</b>（跨全部历史找你的行为倾向）。底部还能自由提问。</li>
+      </ol>
+      <figure class="shot" data-img="guide/11-mentor.png"><figcaption>截图 11 · Mentor AI 面板</figcaption></figure>
+    </section>
+
+    <!-- 8 -->
+    <section class="guide" id="settings">
+      <h2><span class="num">8</span>设置与快捷键</h2>
+      <p class="lead"><span class="pill">设置</span>里可调整外观、交易快捷键、AI 与许可证。</p>
+      <ul class="plain">
+        <li><b>个人</b>：昵称、头像（用于「概览」的问候）。</li>
+        <li><b>图表</b>：图表时区、默认多图布局。</li>
+        <li><b>交易</b>：键盘快捷键（播放/单步、快速买卖、全平等），可自定义。</li>
+        <li><b>通用</b>：语言（中 / 英）、明暗主题、检查更新。</li>
+        <li><b>Mentor AI</b>：填 API key、测试连接。</li>
+        <li><b>许可证</b>：激活 / 注销、购买 / 续费。</li>
+      </ul>
+      <div class="note">回放和下单支持键盘快捷键，能大幅提速；具体按键可在 <b>设置 → 交易</b> 查看与修改。</div>
+      <figure class="shot" data-img="guide/12-settings.png"><figcaption>截图 12 · 设置页</figcaption></figure>
+    </section>
+
+    <!-- 9 -->
+    <section class="guide" id="faq">
+      <h2><span class="num">9</span>常见问题</h2>
+      <ul class="plain">
+        <li><b>在哪里付费 / 买激活码？</b><br>软件里 <span class="pill">设置</span> → <b>许可证</b> → <b>购买 / 续费</b>，会打开店铺页面。</li>
+        <li><b>一个激活码能用几台设备？</b><br>2 台。换设备时先在旧设备点「在本设备注销」。</li>
+        <li><b>数据存在哪？安全吗？</b><br>全部存在你本机的私有数据库里，软件不含任何统计/telemetry，不上传你的数据。</li>
+        <li><b>必须联网吗？</b><br>只有下载行情、激活、使用 AI 时需要联网；复盘训练本身可离线使用。</li>
+        <li><b>怎么更新？</b><br>非 App Store 版在 <span class="pill">设置</span> → <b>通用</b> → 检查更新；有新版会提示下载，确认后重启更新。</li>
+      </ul>
+      <div class="note">还有问题？欢迎邮件联系 <a href="mailto:zclk9000@me.com">zclk9000@me.com</a>，我们会尽快回复。</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© 2026 TradeReplay</div>
+    <div class="footer-links">
+      <a href="/">首页</a>
+      <a href="/changelog">更新日志</a>
+      <a href="/privacy">隐私政策</a>
+      <a href="/terms">使用条款</a>
+      <a href="/support">支持</a>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle (persisted), matching the rest of the site.
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      document.getElementById("theme-toggle").textContent = theme === "dark" ? "☀" : "🌙";
+      try { localStorage.setItem("trade-site-theme", theme); } catch (e) {}
+    }
+    (function init() {
+      let saved = null;
+      try { saved = localStorage.getItem("trade-site-theme"); } catch (e) {}
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      applyTheme(saved || (prefersDark ? "dark" : "light"));
+    })();
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+    });
+
+    // Screenshot placeholders: if the image at data-img loads, show it;
+    // otherwise render a labelled dashed frame so the gap is obvious and
+    // the layout is final. Drop files into a `guide/` folder to fill them.
+    document.querySelectorAll("figure.shot[data-img]").forEach((fig) => {
+      const src = fig.getAttribute("data-img");
+      const img = new Image();
+      img.onload = () => { img.alt = ""; fig.insertBefore(img, fig.firstChild); };
+      img.onerror = () => {
+        fig.classList.add("is-empty");
+        const ph = document.createElement("div");
+        ph.className = "ph";
+        ph.innerHTML = '<span class="cam">📷</span><span>截图待补</span><span class="fn">' + src + "</span>";
+        fig.insertBefore(ph, fig.firstChild);
+      };
+      img.src = src;
+    });
+  </script>
+</body>
+</html>
