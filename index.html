@@ -1,651 +1,542 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TradeReplay — 交易复盘训练 + 真实交易日志</title>
-  <meta name="description" content="交易复盘训练 + 真实交易日志。在历史 K 线上逐根回放、反复模拟训练，练盘感与纪律；导入 MT4 / MT5 / 期货对账单，自动统计胜率、盈亏比、最大回撤。Mac / Windows，数据全部留在本地。">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TradeReplay — 交易复盘训练 + 真实交易日志</title>
+<meta name="description" content="交易复盘训练 + 真实交易日志。在历史 K 线上逐根回放、反复模拟训练，练盘感与纪律；导入 MT4 / MT5 / 期货对账单，自动统计胜率、盈亏比、最大回撤。Mac / Windows，数据全部留在本地。" />
+<link rel="icon" href="logo-dark.svg" />
+<style>
+  :root{
+    --bg:#0a0d13; --bg2:#0d1118; --panel:#10151e; --panel2:#0e131b;
+    --line:#1b2230; --line2:#232c3c;
+    --teal:#2dd4bf; --teal-dim:#26a69a;
+    --red:#f0544c; --red-dim:#ef5350;
+    --blue:#4d8df0;
+    --t1:#eef2f8; --t2:#9aa6b6; --t3:#5d6878;
+    --tealfill:rgba(45,212,191,.10); --redfill:rgba(240,84,76,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--t1);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  a{color:inherit;text-decoration:none}
 
-  <style>
-    :root {
-      /* Light (cream-paper) — matches app's light theme */
-      --bg: #ffffff;
-      --surface-2: #f7f8fa;
-      --surface-3: #f0f3fa;
-      --border: #e7eaf3;
-      --text: #1a1a1a;
-      --text-muted: #6b7280;
-      --accent: #2962ff;
-      --accent-hover: #1a4dd6;
-      --accent-soft: rgba(41, 98, 255, 0.08);
-      --pos: #00796b;
-      --neg: #c62828;
-      --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
-      --shadow-hero: 0 8px 32px rgba(41, 98, 255, 0.08), 0 2px 8px rgba(0,0,0,0.06);
-    }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 
-    [data-theme="dark"] {
-      /* Dark (TradingView signature) — matches app's dark theme */
-      --bg: #131722;
-      --surface-2: #1e222d;
-      --surface-3: #2a2e39;
-      --border: #363a45;
-      --text: #e8eaee;
-      --text-muted: #8b91a0;
-      --accent: #5b8def;
-      --accent-hover: #7da3ff;
-      --accent-soft: rgba(91, 141, 239, 0.10);
-      --pos: #26a69a;
-      --neg: #ef5350;
-      --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
-      --shadow-hero: 0 8px 32px rgba(91, 141, 239, 0.12), 0 2px 8px rgba(0,0,0,0.4);
-    }
+  nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(10,13,19,.72);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:14px;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:.2px}
+  .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#2dd4bf,#1f8f7f);
+    display:grid;place-items:center;color:#06231e;font-weight:800;font-size:12px}
+  .spacer{flex:1}
+  .navlink{color:var(--t2);font-size:13px;padding:7px 11px;border-radius:8px;border:1px solid transparent}
+  .navlink:hover{color:var(--t1);background:#141a24}
+  .dot{width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);display:grid;place-items:center;color:var(--t2)}
 
-    * { box-sizing: border-box; }
+  /* hero */
+  .hero{position:relative;overflow:hidden;padding:104px 0 72px}
+  .glow{position:absolute;left:50%;top:-160px;transform:translateX(-50%);
+    width:900px;height:520px;pointer-events:none;
+    background:radial-gradient(50% 50% at 50% 50%,rgba(45,212,191,.16),rgba(45,212,191,0) 70%);filter:blur(8px)}
+  .hero .wrap{position:relative;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--teal);
+    border:1px solid rgba(45,212,191,.28);background:rgba(45,212,191,.07);
+    padding:5px 12px;border-radius:999px;margin-bottom:22px}
+  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+  h1{font-size:62px;line-height:1.04;font-weight:800;letter-spacing:1px;
+    background:linear-gradient(180deg,#ffffff, #c8d2df);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{margin:20px auto 0;font-size:19px;color:var(--t1);font-weight:500}
+  .lede{margin:14px auto 0;max-width:640px;font-size:15px;line-height:1.75;color:var(--t2)}
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+  .btn{display:inline-flex;align-items:center;gap:11px;padding:12px 18px;border-radius:12px;
+    font-size:14px;font-weight:600;border:1px solid var(--line2);background:#121826;color:var(--t1);
+    transition:transform .12s ease,border-color .15s ease,background .15s ease}
+  .btn:hover{transform:translateY(-1px);border-color:#33405a;background:#161d2c}
+  .btn .ico{font-size:18px;line-height:0}
+  .btn small{display:block;font-size:11px;font-weight:500;color:var(--t3);margin-top:1px}
+  .btn-primary{background:linear-gradient(180deg,#3b82f6,#2f6fe0);border-color:#3b82f6;color:#fff}
+  .btn-primary small{color:#cfe0fb}
+  .btn-primary:hover{background:linear-gradient(180deg,#4a8cf8,#356fe0)}
+  .minilinks{display:flex;gap:18px;justify-content:center;margin-top:18px;font-size:13px;color:var(--t2)}
+  .minilinks a{display:inline-flex;align-items:center;gap:6px;color:var(--t2)}
+  .minilinks a:hover{color:var(--t1)}
+  .chip{width:16px;height:16px;border-radius:4px;display:inline-block}
 
-    /* === Top bar === */
-    .topbar {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  /* app window demo */
+  .stage{position:relative;margin:96px auto 0;max-width:1000px}
+  .win{border:1px solid var(--line2);border-radius:16px;overflow:hidden;
+    background:linear-gradient(180deg,#0e131b,#0b0f16);
+    box-shadow:0 40px 120px -40px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset}
+  .titlebar{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);background:#0c1118}
+  .lights{display:flex;gap:7px}
+  .lights span{width:11px;height:11px;border-radius:50%}
+  .tb-tabs{display:flex;gap:6px;margin-left:14px;font-size:12px;color:var(--t3)}
+  .tb-tabs b{color:var(--t1);font-weight:600;background:#161d28;padding:3px 9px;border-radius:6px}
+  .tb-tabs span{padding:3px 9px}
+  .toolbar{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-bottom:1px solid var(--line);background:#0b1017;color:var(--t2);font-size:11.5px}
+  .tf{display:flex;gap:2px;background:#0e141d;border:1px solid var(--line);border-radius:8px;padding:3px}
+  .tf b{color:var(--t1);background:#1b2433;padding:3px 7px;border-radius:5px;font-weight:600}
+  .tf span{padding:3px 7px;color:var(--t3)}
+  .seg{display:flex;align-items:center;gap:6px;background:#0e141d;border:1px solid var(--line);border-radius:8px;padding:4px 8px}
+  .seg .play{width:16px;height:16px;border-radius:50%;background:var(--teal);display:inline-block}
+  .speed{flex:1;display:flex;align-items:center;gap:8px;justify-content:flex-end}
+  .track{width:120px;height:4px;border-radius:3px;background:#1b2230;position:relative}
+  .track i{position:absolute;left:0;top:0;height:100%;width:54%;border-radius:3px;background:var(--blue)}
+  .track .knob{position:absolute;left:54%;top:50%;width:12px;height:12px;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
 
-    .logo {
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
+  .demo{display:grid;grid-template-columns:1fr 232px}
+  .chart{position:relative;background:#0a0e15}
+  .chart svg{display:block;width:100%;height:auto}
+  .panel{border-left:1px solid var(--line);background:#0c1119;padding:14px 14px 16px}
+  .pquote{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+  .pquote .sym{font-size:13px;font-weight:600}
+  .pquote .px{font-size:15px;font-weight:600;color:var(--blue)}
+  .row{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--t3);margin:9px 0}
+  .field{background:#0e141d;border:1px solid var(--line2);border-radius:8px;height:30px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:12.5px;font-weight:600;min-width:96px}
+  .field.sl{color:var(--red)} .field.tp{color:var(--teal)}
+  .pbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  .pb{height:38px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:700;letter-spacing:1px}
+  .sell{background:#7f1d1d;color:#fecaca} .buy{background:#0f5132;color:#bbf7d0}
+  .closeall{margin-top:8px;height:34px;border-radius:9px;background:#101722;border:1px solid var(--line2);display:grid;place-items:center;font-size:12px;color:var(--t2)}
 
-    .logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      overflow: hidden;
-      display: inline-block;
-      flex-shrink: 0;
-    }
+  .caption{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:18px;font-size:13px;color:var(--t2)}
+  .caption .k{color:var(--teal)}
 
-    .logo-mark img {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}.d4{animation-delay:.3s}.d5{animation-delay:.42s}
 
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .toggle-btn {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      font-family: inherit;
-    }
-
-    .toggle-btn:hover {
-      background: var(--surface-3);
-      border-color: var(--accent);
-    }
-
-    /* === Hero === */
-    .hero {
-      max-width: 1200px;
-      margin: 40px auto 0;
-      padding: 0 32px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 56px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin: 0 0 20px;
-      color: var(--text);
-    }
-
-    .hero .subtitle {
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 12px;
-      line-height: 1.4;
-    }
-
-    .hero .tagline {
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto 32px;
-    }
-
-    /* === Download buttons === */
-    .dl-row {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .dl-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 22px;
-      min-width: 215px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      text-decoration: none;
-      font-family: inherit;
-      text-align: left;
-      transition: all 0.15s ease;
-    }
-
-    .dl-btn svg { flex-shrink: 0; }
-
-    .dl-label { display: flex; flex-direction: column; line-height: 1.2; }
-    .dl-label .dl-main { font-size: 15px; font-weight: 600; }
-    .dl-label .dl-sub { font-size: 12px; font-weight: 400; opacity: 0.78; margin-top: 2px; }
-
-    /* Windows — active primary */
-    .dl-btn.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    .dl-btn.primary:hover {
-      background: var(--accent-hover);
-      border-color: var(--accent-hover);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-hero);
-    }
-
-    /* Mac App Store — secondary channel. High-contrast inverted fill that
-       flips with the theme (dark-on-light / light-on-dark, like Apple's own
-       badge), so it reads clearly yet stays visually distinct from the
-       accent-filled direct-download buttons. */
-    .dl-btn.appstore {
-      background: var(--text);
-      border-color: var(--text);
-      color: var(--bg);
-    }
-
-    .dl-btn.appstore:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-hero);
-      opacity: 0.9;
-    }
-
-    /* macOS — disabled, coming soon */
-    .dl-btn.disabled {
-      background: var(--surface-2);
-      color: var(--text-muted);
-      cursor: default;
-      pointer-events: none;
-    }
-
-    /* === Hero screenshot === */
-    .hero-shot {
-      max-width: 1100px;
-      margin: 56px auto 0;
-      padding: 0 32px;
-    }
-
-    .hero-shot-frame {
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: var(--shadow-hero);
-      border: 1px solid var(--border);
-    }
-
-    .hero-shot img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    [data-theme="light"] .dark-only,
-    [data-theme="dark"] .light-only { display: none; }
-
-    /* === Features (alternating rows: shot + text) === */
-    .features {
-      max-width: 1100px;
-      margin: 96px auto 0;
-      padding: 0 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 88px;
-    }
-
-    .feature-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .feature-row:nth-child(even) .feature-shot { order: 2; }
-    .feature-row:nth-child(even) .feature-text { order: 1; }
-
-    .feature-shot {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-card);
-      background: var(--surface-3);
-    }
-
-    .feature-shot img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      margin-bottom: 16px;
-    }
-
-    .feature-text h3 {
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 12px;
-      color: var(--text);
-    }
-
-    .feature-text p {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .feature-text ul {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      padding-left: 20px;
-      margin: 16px 0 0;
-    }
-
-    .feature-text li { margin-bottom: 6px; }
-
-    /* === Trust strip === */
-    .trust {
-      max-width: 1100px;
-      margin: 80px auto 0;
-      padding: 32px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      text-align: center;
-    }
-
-    .trust-item .label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .trust-item .value {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    /* === Footer === */
-    .footer {
-      max-width: 1200px;
-      margin: 96px auto 0;
-      padding: 32px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    .footer a:hover { color: var(--accent); }
-
-    @media (max-width: 760px) {
-      .hero h1 { font-size: 38px; }
-      .hero .subtitle { font-size: 18px; }
-      .features { gap: 56px; }
-      .feature-row { grid-template-columns: 1fr; gap: 24px; }
-      .feature-row:nth-child(even) .feature-shot { order: 0; }
-      .feature-row:nth-child(even) .feature-text { order: 0; }
-      .feature-text h3 { font-size: 22px; }
-      .trust { grid-template-columns: repeat(2, 1fr); }
-      .footer { flex-direction: column; gap: 16px; }
-    }
-  </style>
+  @media(max-width:760px){h1{font-size:40px}.demo{grid-template-columns:1fr}.panel{display:none}}
+</style>
 </head>
 <body>
-  <!-- Top bar -->
-  <header class="topbar">
-    <a href="/" class="logo">
-      <span class="logo-mark">
-        <img src="logo.svg" class="light-only" alt="">
-        <img src="logo-dark.svg" class="dark-only" alt="">
-      </span>
-      <span data-i18n="brand">TradeReplay</span>
-    </a>
-    <div class="topbar-right">
-      <button class="toggle-btn" id="lang-toggle" type="button">中文</button>
-      <button class="toggle-btn" id="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1 data-i18n="hero.title">No secret. Just practice.</h1>
-    <p class="subtitle" data-i18n="hero.subtitle">Market replay training + real trade journal.</p>
-    <p class="tagline" data-i18n="hero.tagline">Replay historical charts to drill your reads and discipline; import your broker statements to see real win rate, profit factor and drawdown. All data stays local.</p>
-    <div class="dl-row">
-      <a href="https://dl.tradereplay.dev/TradeReplay-1.31.0-Setup.exe" class="dl-btn primary" download>
-        <svg viewBox="0 0 88 88" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M0 12.4 36 7.5v33.9H0zM40 6.9 88 0v41.4H40zM0 46.6h36v33.9L0 75.6zM40 46.6h48V88l-48-6.5z"/></svg>
-        <span class="dl-label">
-          <span class="dl-main" data-i18n="dl.win">Download for Windows</span>
-          <span class="dl-sub" data-i18n="dl.win.meta">v1.31.0 · Windows 10/11 · 64-bit</span>
-        </span>
-      </a>
-      <a href="https://dl.tradereplay.dev/TradeReplay-1.31.0-arm64.dmg" class="dl-btn primary" download>
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.23 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.27 3.13-2.53.99-1.45 1.4-2.85 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13M14.5 4.5c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44"/></svg>
-        <span class="dl-label">
-          <span class="dl-main" data-i18n="dl.mac">Download for Mac</span>
-          <span class="dl-sub" data-i18n="dl.mac.meta">v1.31.0 · Apple Silicon</span>
-        </span>
-      </a>
-      <a href="https://apps.apple.com/app/id6766245495" class="dl-btn appstore" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.23 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.27 3.13-2.53.99-1.45 1.4-2.85 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13M14.5 4.5c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44"/></svg>
-        <span class="dl-label">
-          <span class="dl-main" data-i18n="dl.appstore">Mac App Store</span>
-          <span class="dl-sub" data-i18n="dl.appstore.meta">Apple Silicon · App Store edition</span>
-        </span>
-      </a>
-    </div>
-    <div style="margin-top:24px;display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;line-height:1">
-      <a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;line-height:1;opacity:.75;color:inherit;text-decoration:none">
-        <span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#ff5000;color:#fff;font-weight:800;font-size:16px;line-height:1;flex-shrink:0">淘</span>
-        <span data-i18n="buy.cta" style="text-decoration:underline;text-underline-offset:3px">Buy activation code</span>
-      </a>
-      <a href="https://qm.qq.com/q/xxGMPN3N2E" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;line-height:1;opacity:.75;color:inherit;text-decoration:none">
-        <img src="/qq.png" alt="QQ" style="height:26px;width:auto;flex-shrink:0" />
-        <span data-i18n="qq.group" style="text-decoration:underline;text-underline-offset:3px">Questions? Join QQ group 559076777</span>
-      </a>
-    </div>
-  </section>
+<nav><div class="wrap">
+  <div class="brand"><img src="logo-dark.svg" alt="TradeReplay" style="height:27px;width:auto;display:block"/>TradeReplay</div>
+  <span class="spacer" style="flex:1"></span>
+  <a class="navlink" href="/screenshots">界面截图</a><a class="navlink" href="/guide">使用说明</a><a class="navlink" href="/changelog">更新日志</a><a class="navlink" href="/support">支持</a>
+</div></nav>
 
-  <!-- Hero screenshot -->
-  <section class="hero-shot">
-    <div class="hero-shot-frame">
-      <img src="hero-light.png" class="light-only" alt="TradeReplay Overview panel showing P&L, win rate, combat radar and recent trades">
-      <img src="hero-dark.png"  class="dark-only"  alt="TradeReplay Overview panel (dark theme)">
-    </div>
-  </section>
+<section class="hero">
+  <span class="glow"></span>
+  <div class="wrap">
+    <h1 class="rise d2">无他，唯手熟尔</h1>
+    <p class="sub rise d2">交易复盘训练 + 真实交易日志中心</p>
+    <p class="lede rise d3">在历史 K 线上反复模拟训练，练盘感、练纪律；导入真实对账单，自动看清胜率、盈亏与回撤。一切只为把判断练成肌肉记忆。</p>
 
-  <!-- Features -->
-  <section class="features">
-    <!-- Feature 1: Replay -->
-    <div class="feature-row">
-      <div class="feature-shot">
-        <img src="feature-1-light.png" class="light-only" alt="TradeReplay Simulator with multi-chart bar-replay and order panel">
-        <img src="feature-1-dark.png"  class="dark-only"  alt="TradeReplay Simulator (dark theme)">
-      </div>
-      <div class="feature-text">
-        <div class="feature-icon">▶</div>
-        <h3 data-i18n="f1.title">Practice with replay</h3>
-        <p data-i18n="f1.body">Step through historical price data bar by bar, place simulated orders, manage stops and take-profits — train your decisions without risking capital.</p>
-        <ul>
-          <li data-i18n="f1.l1">Forex · Futures · Crypto · Metals · Stock indices</li>
-          <li data-i18n="f1.l2">Multi-timeframe charting (lightweight-charts v5)</li>
-          <li data-i18n="f1.l3">Custom indicators &amp; drawing tools</li>
-        </ul>
+    <div class="cta rise d4">
+      <a class="btn btn-primary" href="https://dl.tradereplay.dev/TradeReplay-1.31.0-Setup.exe"><span class="ico">⊞</span><span>下载 Windows 版<small>v1.31.0 · Win 10/11 · 64 位</small></span></a>
+      <a class="btn" href="https://dl.tradereplay.dev/TradeReplay-1.31.0-arm64.dmg"><span class="ico"><svg width="14" height="17" viewBox="0 0 814 1000" fill="currentColor" style="display:block"><path d="M788 340c-6 5-115 67-115 204 0 159 140 215 144 216-1 3-22 78-74 154-46 67-94 134-167 134s-92-43-176-43c-82 0-111 44-178 44s-114-62-167-138C16 800-34 530 73 366c53-81 148-132 251-134 70-1 132 47 178 47 44 0 120-58 202-58 35 0 159 3 240 120zM573 116c33-39 56-93 56-147 0-7-1-15-2-21-53 2-116 35-154 79-30 34-58 88-58 142 0 8 1 16 2 19 3 1 9 2 14 2 48 0 108-32 142-73z"/></svg></span><span>下载 Mac 版<small>v1.31.0 · Apple 芯片</small></span></a>
+      <a class="btn" href="https://apps.apple.com/app/id6766245495"><span class="ico"><svg width="14" height="17" viewBox="0 0 814 1000" fill="currentColor" style="display:block"><path d="M788 340c-6 5-115 67-115 204 0 159 140 215 144 216-1 3-22 78-74 154-46 67-94 134-167 134s-92-43-176-43c-82 0-111 44-178 44s-114-62-167-138C16 800-34 530 73 366c53-81 148-132 251-134 70-1 132 47 178 47 44 0 120-58 202-58 35 0 159 3 240 120zM573 116c33-39 56-93 56-147 0-7-1-15-2-21-53 2-116 35-154 79-30 34-58 88-58 142 0 8 1 16 2 19 3 1 9 2 14 2 48 0 108-32 142-73z"/></svg></span><span>Mac App Store<small>Apple 芯片 · App Store 版</small></span></a>
+    </div>
+    <div class="minilinks rise d4">
+      <a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"><span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:#ff5000;color:#fff;font-weight:800;font-size:13px;line-height:1;flex-shrink:0">淘</span>购买激活码</a>
+      <a href="https://qm.qq.com/q/xxGMPN3N2E"><img src="/qq.png" alt="QQ" style="height:20px;width:auto;flex-shrink:0" />交流答疑 · QQ 群 559076777</a>
+    </div>
+
+    <div class="stage rise d5">
+      <div class="win">
+        <div class="titlebar">
+          <div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+          <div class="tb-tabs"><b>模拟训练</b><span>历史</span><span>统计</span><span>存档</span></div>
+        </div>
+        <div class="toolbar">
+          <div class="tf"><span>M1</span><span>M5</span><b>M15</b><span>M30</span><span>H1</span><span>H4</span><span>D1</span></div>
+          <div class="seg"><span>‹</span><span class="play"></span><span>›</span></div>
+          <div class="speed"><span style="color:var(--t3)">⏱</span><span class="track"><i></i><span class="knob"></span></span><span style="color:var(--t1);font-weight:600" class="num">12 ×</span><span style="color:var(--t3)">CP ▾</span></div>
+        </div>
+        <div class="demo">
+          <div class="chart"><svg id="cv" viewBox="0 0 720 372" preserveAspectRatio="none" aria-label="训练图表：拖动设置止盈止损"></svg></div>
+          <div class="panel">
+            <div class="pquote"><span class="sym">EURUSD</span><span class="px num">1.17190</span></div>
+            <div class="row"><span>手数</span><span class="field num">1.00</span></div>
+            <div class="row"><span>SL 价格</span><span class="field sl num" id="slField">1.17000</span></div>
+            <div class="row"><span>TP 价格</span><span class="field tp num">1.17440</span></div>
+            <div class="row" style="margin-top:12px"><span>风险回报</span><span style="color:var(--t1);font-weight:600" class="num" id="rrField">R:R 1.10</span></div>
+            <div class="pbtns"><div class="pb sell">卖出</div><div class="pb buy">买入</div></div>
+            <div class="closeall">全部平仓 ▾</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Feature 2: Journal -->
-    <div class="feature-row">
-      <div class="feature-shot">
-        <img src="feature-2-light.png" class="light-only" alt="TradeReplay Calendar view with daily P&L heatmap">
-        <img src="feature-2-dark.png"  class="dark-only"  alt="TradeReplay Calendar view (dark theme)">
+    <div class="caption rise d5">
+      <span>训练 · 直接在图表上<span class="k"> 拖动 </span>设置止盈止损，点数 / 盈亏 / 风险回报实时联动</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section{padding:78px 0;border-top:1px solid var(--line)}
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  .feat.rev .copy{order:2}
+  .eyebrow2{font-size:12.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase}
+  .copy h2{font-size:34px;line-height:1.22;font-weight:800;letter-spacing:.4px;margin:14px 0 0}
+  .copy p{margin:16px 0 0;font-size:15.5px;line-height:1.8;color:var(--t2)}
+  .bullets{list-style:none;margin:22px 0 0;display:grid;gap:11px}
+  .bullets li{display:flex;gap:10px;font-size:14px;color:var(--t1)}
+  .bullets .bk{color:var(--teal);font-weight:700}
+  .mock{border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#0e131b,#0b0f16);box-shadow:0 34px 90px -44px rgba(0,0,0,.78)}
+  .mock .titlebar{height:34px}
+
+  .jr{display:grid;grid-template-columns:152px 1fr;min-height:272px}
+  .jr-list{border-right:1px solid var(--line);padding:8px 0;background:#0b1017;font-size:11px}
+  .jr-mh{padding:6px 12px;color:var(--t3);font-size:10px;letter-spacing:.5px}
+  .jr-row{display:flex;justify-content:space-between;padding:6px 12px;color:var(--t2)}
+  .jr-row.sel{background:#14202e;color:var(--t1);box-shadow:inset 2px 0 0 var(--blue)}
+  .jr-detail{padding:15px 16px}
+  .jr-h{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:13px}
+  .sstrat{display:inline-flex;align-items:center;gap:8px;background:#0e141d;border:1px solid var(--line2);border-radius:7px;padding:6px 11px;font-size:12px;color:var(--t1)}
+  .jr-lab{font-size:10.5px;color:var(--t3);margin:15px 0 6px;letter-spacing:.4px}
+  .jr-reason{font-size:13px;color:var(--t1);line-height:1.6;min-height:20px}
+  .jr-note{margin-top:12px;background:#0c1119;border:1px solid var(--line2);border-radius:8px;padding:11px 12px;font-size:12.5px;color:var(--t2);line-height:1.65;min-height:66px}
+  .cursor{display:inline-block;width:6px;height:14px;background:var(--teal);vertical-align:-2px;margin-left:1px;animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  .rp{padding:12px 12px 13px}
+  .rp-h{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--t3);margin-bottom:6px}
+  .rp-h b{color:var(--t1);font-weight:600;font-size:13px}
+  .rp-h .pl{margin-left:auto;font-weight:700;font-size:14px}
+  .rp-foot{display:flex;align-items:center;gap:11px;margin-top:6px;font-size:11px;color:var(--t3)}
+  .rp-play{display:inline-flex;align-items:center;gap:6px;background:#0f5132;color:#bbf7d0;border-radius:6px;padding:4px 11px;font-weight:600}
+
+  .ai{padding:16px;min-height:300px;display:flex;flex-direction:column;gap:13px}
+  .ai-head{display:flex;align-items:center;gap:7px;font-size:13px}
+  .ai-spark{color:#838aff;font-size:15px}
+  .ai-bar{display:flex;align-items:center;gap:8px}
+  .ai-pill{font-size:11px;color:var(--t2);background:#0e141d;border:1px solid var(--line);border-radius:7px;padding:5px 10px}
+  .ai-pill.on{color:#fff;background:#3730a3;border-color:#4f46e5}
+  .ai-gen{margin-left:auto;background:linear-gradient(180deg,#6d6ff5,#4f46e5);color:#fff;border-radius:9px;padding:7px 13px;font-size:12px;font-weight:600}
+  .ai-msg{background:#0c1119;border:1px solid var(--line2);border-radius:11px;padding:14px 15px;font-size:13.5px;line-height:1.8;color:var(--t1);flex:1}
+  .ai-cursor{display:inline-block;width:6px;height:14px;background:#838aff;vertical-align:-2px;animation:blink 1.05s steps(1) infinite}
+
+  .secthead{text-align:center;max-width:600px;margin:0 auto}
+  .secthead h2{font-size:32px;font-weight:800;letter-spacing:.4px}
+  .secthead p{color:var(--t2);margin-top:13px;font-size:15.5px;line-height:1.7}
+  .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+  .fcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;transition:border-color .15s,transform .15s}
+  .fcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+  .fic{width:40px;height:40px;border-radius:11px;background:#0f1923;border:1px solid var(--line2);display:grid;place-items:center;color:var(--teal);margin-bottom:15px}
+  .fcard h3{font-size:15.5px;font-weight:600;margin:0}
+  .fcard p{font-size:13px;color:var(--t2);line-height:1.65;margin:7px 0 0}
+
+  footer{border-top:1px solid var(--line);padding:64px 0 56px;margin-top:8px;text-align:center}
+  footer h2{font-size:32px;font-weight:800;letter-spacing:.4px}
+  .foot-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:13px}
+  .foot-links a{color:var(--t2)} .foot-links a:hover{color:var(--t1)}
+  .copyright{color:var(--t3);font-size:12px;margin-top:22px}
+  @media(max-width:760px){.feat{grid-template-columns:1fr;gap:28px}.feat.rev .copy{order:0}.grid6{grid-template-columns:1fr}.copy h2{font-size:27px}}
+</style>
+
+<section class="section"><div class="wrap"><div class="feat">
+  <div class="copy">
+    <span class="eyebrow2" style="color:var(--blue)">复盘日志</span>
+    <h2>每一笔，都问自己为什么</h2>
+    <p>下单时记下策略和入场理由，平仓后按天复盘。胜率、盈亏、回撤自动算好——日记不再是负担，而是你 edge 的来源。</p>
+    <ul class="bullets">
+      <li><span class="bk">✓</span>下单面板直接选策略、写入场理由</li>
+      <li><span class="bk">✓</span>训练 / 实盘分开记录，按日历归档</li>
+      <li><span class="bk">✓</span>每天的胜率、净盈亏、回撤自动统计</li>
+    </ul>
+  </div>
+  <div class="mock">
+    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>日志</b><span>每日复盘</span></div></div>
+    <div class="jr">
+      <div class="jr-list">
+        <div class="jr-mh">2026 · 6 月</div>
+        <div class="jr-row sel"><span>周五 5</span><b style="color:var(--red)">−$6,325</b></div>
+        <div class="jr-row"><span>周四 4</span><b style="color:var(--teal)">+$1,714</b></div>
+        <div class="jr-row"><span>周三 3</span><b style="color:var(--teal)">+$262</b></div>
+        <div class="jr-row"><span>周二 2</span><b style="color:var(--red)">−$83</b></div>
+        <div class="jr-mh" style="margin-top:6px">2026 · 5 月</div>
+        <div class="jr-row"><span>周五 30</span><b style="color:var(--teal)">+$1,287</b></div>
+        <div class="jr-row"><span>周四 29</span><b style="color:var(--red)">−$228</b></div>
       </div>
-      <div class="feature-text">
-        <div class="feature-icon">◧</div>
-        <h3 data-i18n="f2.title">Real trade journal</h3>
-        <p data-i18n="f2.body">Import broker statements once, get the full picture: win rate, profit factor, R-multiple, MAE/MFE, calendar heatmap, per-symbol breakdown.</p>
-        <ul>
-          <li data-i18n="f2.l1">MT4 · MT5 · CFMMC · Generic CSV importers</li>
-          <li data-i18n="f2.l2">Tags, setups, mistakes — searchable journal</li>
-          <li data-i18n="f2.l3">Cross-currency aggregation, multi-account view</li>
-        </ul>
+      <div class="jr-detail">
+        <div class="jr-h"><span>6 月 5 日 · 周五</span><span style="color:var(--red)">−$6,325</span></div>
+        <div style="display:flex;gap:9px;align-items:center"><span style="font-size:10.5px;color:var(--t3)">策略</span><span class="sstrat">回调 ▾</span></div>
+        <div class="jr-lab">入场理由</div>
+        <div class="jr-reason" id="jrReason"></div>
+        <div class="jr-note" id="jrNote"></div>
       </div>
     </div>
+  </div>
+</div></div></section>
 
-    <!-- Feature 3: Quant + AI -->
-    <div class="feature-row">
-      <div class="feature-shot">
-        <img src="feature-3-light.png" class="light-only" alt="TradeReplay Mentor AI panel with daily review and insight tabs">
-        <img src="feature-3-dark.png"  class="dark-only"  alt="TradeReplay Mentor AI panel (dark theme)">
-      </div>
-      <div class="feature-text">
-        <div class="feature-icon">✦</div>
-        <h3 data-i18n="f3.title">Quant scan + AI Mentor</h3>
-        <p data-i18n="f3.body">Scan thousands of symbols against rule-based strategies. Bring your own AI key for personalized weekly review, single-trade insight, and pattern discovery.</p>
-        <ul>
-          <li data-i18n="f3.l1">Strategy backtester with bar-replay verification</li>
-          <li data-i18n="f3.l2">BYOK AI (DeepSeek / OpenAI / compatible)</li>
-          <li data-i18n="f3.l3">Zero telemetry, key stays in macOS Keychain</li>
-        </ul>
-      </div>
+<section class="section"><div class="wrap"><div class="feat rev">
+  <div class="copy">
+    <span class="eyebrow2" style="color:var(--teal)">动态回放</span>
+    <h2>把每一笔交易，重新走一遍</h2>
+    <p>选中任意一笔历史成交，在原始 K 线上逐根回放进出场。看清当时该不该进、该不该走——错在哪，一目了然。</p>
+    <ul class="bullets">
+      <li><span class="bk">✓</span>进场、出场点标在真实 K 线上</li>
+      <li><span class="bk">✓</span>逐根重播，盈亏随行情实时滚动</li>
+      <li><span class="bk">✓</span>训练成交、导入实盘成交都能回放</li>
+    </ul>
+  </div>
+  <div class="mock">
+    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>历史</b><span>动态回放</span></div></div>
+    <div class="rp">
+      <div class="rp-h"><b>BTCUSD</b><span>多 · 0.30 手</span><span class="pl" id="rpPL">+$0</span></div>
+      <svg id="rpsvg" viewBox="0 0 460 232" style="width:100%;height:auto;display:block"></svg>
+      <div class="rp-foot"><span class="rp-play">▶ 回放</span><span class="num" id="rpClock">00:00</span><span style="margin-left:auto">逐根重走进出场</span></div>
     </div>
-  </section>
+  </div>
+</div></div></section>
 
-  <!-- Trust strip -->
-  <section class="trust">
-    <div class="trust-item">
-      <div class="label" data-i18n="t1.label">Privacy</div>
-      <div class="value" data-i18n="t1.value">Local-first, zero telemetry</div>
+<section class="section"><div class="wrap"><div class="feat">
+  <div class="copy">
+    <span class="eyebrow2" style="color:#838aff">AI 辅助</span>
+    <h2>一个读过你所有交易的教练</h2>
+    <p>Mentor 读遍你导入的真实账单和模拟训练，60 秒生成一份能读懂的复盘——找出你的优势时段、亏损模式和该改的习惯。</p>
+    <ul class="bullets">
+      <li><span class="bk">✓</span>跨训练 + 实盘，统一分析你的 edge</li>
+      <li><span class="bk">✓</span>复盘 / 单笔深度 / 模式发现 / 策略四个视角</li>
+      <li><span class="bk">✓</span>大白话给结论，不堆术语</li>
+    </ul>
+  </div>
+  <div class="mock">
+    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>Mentor AI</b></div></div>
+    <div class="ai">
+      <div class="ai-head"><span class="ai-spark">✦</span><b style="font-weight:600">Mentor</b><span style="color:var(--t3);font-size:11px">· DeepSeek</span></div>
+      <div class="ai-bar"><span class="ai-pill on">最近 30 天</span><span class="ai-pill">全部</span><span class="ai-gen">✦ 生成复盘</span></div>
+      <div class="ai-msg" id="aiMsg"></div>
     </div>
-    <div class="trust-item">
-      <div class="label" data-i18n="t2.label">Storage</div>
-      <div class="value" data-i18n="t2.value">SQLite on your device</div>
-    </div>
-    <div class="trust-item">
-      <div class="label" data-i18n="t3.label">Markets</div>
-      <div class="value" data-i18n="t3.value">FX · Futures · Crypto</div>
-    </div>
-    <div class="trust-item">
-      <div class="label" data-i18n="t4.label">Platform</div>
-      <div class="value" data-i18n="t4.value">Mac / Windows</div>
-    </div>
-  </section>
+  </div>
+</div></div></section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div data-i18n="footer.copy">© 2026 TradeReplay</div>
-    <div class="footer-links">
-      <a href="/guide" data-i18n="footer.guide">Guide</a>
-      <a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671" target="_blank" rel="noopener" data-i18n="footer.buy">Buy</a>
-      <a href="/changelog" data-i18n="footer.changelog">Changelog</a>
-      <a href="/privacy" data-i18n="footer.privacy">Privacy</a>
-      <a href="/terms" data-i18n="footer.terms">Terms</a>
-      <a href="/support" data-i18n="footer.support">Support</a>
-    </div>
-  </footer>
+<section class="section"><div class="wrap">
+  <div class="secthead">
+    <h2>一个工具，覆盖复盘训练全流程</h2>
+    <p>从练盘到记录、从统计到量化——这些也都在里面。</p>
+  </div>
+  <div class="grid6">
+    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>概览驾驶舱</h3><p>账户全貌、战力雷达、净值曲线，一屏看尽当前状态。</p></div>
+    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="21" x2="5" y2="13"/><line x1="12" y1="21" x2="12" y2="5"/><line x1="19" y1="21" x2="19" y2="9"/></svg></div><h3>找出优势与劣势</h3><p>按品种、时段、方向拆解胜率与盈亏，看清钱从哪来、往哪漏。</p></div>
+    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/></svg></div><h3>真实账单 · 月历</h3><p>导入券商对账单，按日历回看每天的真实表现。</p></div>
+    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l4-4 3 3 5-6 4 4"/></svg></div><h3>自定义通达信指标</h3><p>用熟悉的通达信公式，写你自己的指标挂上图表。</p></div>
+    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/></svg></div><h3>策略回测</h3><p>把想法跑在历史行情上，一键扫出胜率与盈亏。</p></div>
+    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 16.5l8 4 8-4"/></svg></div><h3>同策略归集</h3><p>相同策略的交易自动归并，统计它真实的期望与胜率。</p></div>
+  </div>
+  <div style="text-align:center;margin-top:34px"><a class="btn" href="/screenshots"><span>查看全部 10 个界面截图 →</span></a></div>
+</div></section>
 
-  <script>
-    // === i18n ===
-    const STR = {
-      en: {
-        "brand": "TradeReplay",
-        "hero.title": "No secret. Just practice.",
-        "hero.subtitle": "Market replay training + real trade journal.",
-        "hero.tagline": "Replay historical charts to drill your reads and discipline; import your broker statements to see real win rate, profit factor and drawdown. All data stays local.",
-        "dl.win": "Download for Windows",
-        "dl.win.meta": "v1.31.0 · Windows 10/11 · 64-bit",
-        "dl.mac": "Download for Mac",
-        "dl.mac.meta": "v1.31.0 · Apple Silicon",
-        "dl.appstore": "Mac App Store",
-        "dl.appstore.meta": "Apple Silicon · App Store edition",
-        "qq.group": "Questions? Join QQ group 559076777",
-        "buy.cta": "Buy activation code",
-        "footer.guide": "Guide",
-        "footer.buy": "Buy",
-        "f1.title": "Practice with replay",
-        "f1.body": "Step through historical price data bar by bar, place simulated orders, manage stops and take-profits — train your decisions without risking capital.",
-        "f1.l1": "Forex · Futures · Crypto · Metals · Stock indices",
-        "f1.l2": "Multi-timeframe charting (lightweight-charts v5)",
-        "f1.l3": "Custom indicators & drawing tools",
-        "f2.title": "Real trade journal",
-        "f2.body": "Import broker statements once, get the full picture: win rate, profit factor, R-multiple, MAE/MFE, calendar heatmap, per-symbol breakdown.",
-        "f2.l1": "MT4 · MT5 · CFMMC · Generic CSV importers",
-        "f2.l2": "Tags, setups, mistakes — searchable journal",
-        "f2.l3": "Cross-currency aggregation, multi-account view",
-        "f3.title": "Quant scan + AI Mentor",
-        "f3.body": "Scan thousands of symbols against rule-based strategies. Bring your own AI key for personalized weekly review, single-trade insight, and pattern discovery.",
-        "f3.l1": "Strategy backtester with bar-replay verification",
-        "f3.l2": "BYOK AI (DeepSeek / OpenAI / compatible)",
-        "f3.l3": "Zero telemetry, key stays in macOS Keychain",
-        "t1.label": "Privacy", "t1.value": "Local-first, zero telemetry",
-        "t2.label": "Storage", "t2.value": "SQLite on your device",
-        "t3.label": "Markets", "t3.value": "FX · Futures · Crypto",
-        "t4.label": "Platform", "t4.value": "Mac / Windows",
-        "footer.copy": "© 2026 TradeReplay",
-        "footer.changelog": "Changelog",
-        "footer.privacy": "Privacy", "footer.terms": "Terms", "footer.support": "Support"
-      },
-      zh: {
-        "brand": "TradeReplay",
-        "hero.title": "无他，唯手熟尔",
-        "hero.subtitle": "交易复盘训练 + 真实交易日志中心",
-        "hero.tagline": "在历史 K 线上反复模拟训练，练盘感、练纪律；导入真实对账单，自动看清胜率、盈亏与回撤。数据全部留在本地。",
-        "dl.win": "下载 Windows 版",
-        "dl.win.meta": "v1.31.0 · Windows 10/11 · 64 位",
-        "dl.mac": "下载 Mac 版",
-        "dl.mac.meta": "v1.31.0 · Apple 芯片",
-        "dl.appstore": "Mac App Store",
-        "dl.appstore.meta": "Apple 芯片 · App Store 版",
-        "qq.group": "交流答疑 · QQ 群 559076777",
-        "buy.cta": "购买激活码",
-        "footer.guide": "使用说明",
-        "footer.buy": "购买",
-        "f1.title": "K 线回放训练",
-        "f1.body": "逐根回放历史行情，模拟下单、止损止盈、持仓管理——训练交易决策，不动真金。",
-        "f1.l1": "外汇 · 期货 · 加密 · 贵金属 · 股指",
-        "f1.l2": "多周期图表（lightweight-charts v5）",
-        "f1.l3": "自定义指标与画图工具",
-        "f2.title": "真实交易日志",
-        "f2.body": "对账单一次导入，胜率 / 盈亏比 / R-multiple / MAE-MFE / 日历热力图 / 分品种统计全套出来。",
-        "f2.l1": "MT4 · MT5 · CFMMC · 通用 CSV",
-        "f2.l2": "Tags / Setup / Mistake 标签可搜索",
-        "f2.l3": "跨币种聚合，多账户视图",
-        "f3.title": "量化扫描 + AI Mentor",
-        "f3.body": "对几千品种跑规则策略扫描；自带 API key 即可用 AI 做周复盘 / 单笔深度 / 模式发现。",
-        "f3.l1": "策略回测器配合 K 线回放校验",
-        "f3.l2": "BYOK AI（DeepSeek / OpenAI / 兼容端点）",
-        "f3.l3": "零 telemetry，密钥仅存 macOS Keychain",
-        "t1.label": "隐私", "t1.value": "本地优先，零 telemetry",
-        "t2.label": "存储", "t2.value": "SQLite，留在你的电脑",
-        "t3.label": "市场", "t3.value": "外汇 · 期货 · 加密",
-        "t4.label": "平台", "t4.value": "Mac / Windows",
-        "footer.copy": "© 2026 TradeReplay",
-        "footer.changelog": "更新日志",
-        "footer.privacy": "隐私政策", "footer.terms": "使用条款", "footer.support": "支持"
-      }
-    };
+<footer><div class="wrap">
+  <h2>把判断，练成肌肉记忆</h2>
+  <div class="cta" style="margin-top:24px">
+    <a class="btn btn-primary" href="https://dl.tradereplay.dev/TradeReplay-1.31.0-Setup.exe"><span class="ico">⊞</span><span>下载 Windows 版<small>v1.31.0 · Win 10/11 · 64 位</small></span></a>
+    <a class="btn" href="https://dl.tradereplay.dev/TradeReplay-1.31.0-arm64.dmg"><span class="ico"><svg width="14" height="17" viewBox="0 0 814 1000" fill="currentColor" style="display:block"><path d="M788 340c-6 5-115 67-115 204 0 159 140 215 144 216-1 3-22 78-74 154-46 67-94 134-167 134s-92-43-176-43c-82 0-111 44-178 44s-114-62-167-138C16 800-34 530 73 366c53-81 148-132 251-134 70-1 132 47 178 47 44 0 120-58 202-58 35 0 159 3 240 120zM573 116c33-39 56-93 56-147 0-7-1-15-2-21-53 2-116 35-154 79-30 34-58 88-58 142 0 8 1 16 2 19 3 1 9 2 14 2 48 0 108-32 142-73z"/></svg></span><span>下载 Mac 版<small>v1.31.0 · Apple 芯片</small></span></a>
+    <a class="btn" href="https://apps.apple.com/app/id6766245495"><span class="ico"><svg width="14" height="17" viewBox="0 0 814 1000" fill="currentColor" style="display:block"><path d="M788 340c-6 5-115 67-115 204 0 159 140 215 144 216-1 3-22 78-74 154-46 67-94 134-167 134s-92-43-176-43c-82 0-111 44-178 44s-114-62-167-138C16 800-34 530 73 366c53-81 148-132 251-134 70-1 132 47 178 47 44 0 120-58 202-58 35 0 159 3 240 120zM573 116c33-39 56-93 56-147 0-7-1-15-2-21-53 2-116 35-154 79-30 34-58 88-58 142 0 8 1 16 2 19 3 1 9 2 14 2 48 0 108-32 142-73z"/></svg></span><span>Mac App Store<small>Apple 芯片 · App Store 版</small></span></a>
+  </div>
+  <div class="foot-links"><a href="/screenshots">界面截图</a><a href="/guide">使用说明</a><a href="/changelog">更新日志</a><a href="/privacy">隐私政策</a><a href="/terms">条款</a><a href="/support">支持</a><a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671">购买激活码</a><a href="https://qm.qq.com/q/xxGMPN3N2E">QQ 群 559076777</a></div>
+  <div class="copyright">© 2026 格物工坊 · TradeReplay</div>
+</div></footer>
 
-    function applyLang(lang) {
-      document.documentElement.dataset.lang = lang;
-      document.documentElement.lang = lang === "zh" ? "zh-Hans" : "en";
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (STR[lang][key]) el.textContent = STR[lang][key];
-      });
-      document.getElementById("lang-toggle").textContent = lang === "zh" ? "EN" : "中文";
-      document.title = lang === "zh"
-        ? "TradeReplay — 交易复盘训练 + 真实交易日志"
-        : "TradeReplay — Market replay training + trade journal";
-    }
+<script>
+(function(){
+  var svg=document.getElementById('cv');
+  var W=720,H=372,padR=70,padT=14,padB=24;
+  var NS='http://www.w3.org/2000/svg';
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function pw(s){var w=0;for(var i=0;i<s.length;i++)w+=s.charCodeAt(i)>255?13:6.6;return w+14;}
 
-    function applyTheme(theme) {
-      document.documentElement.dataset.theme = theme;
-      document.getElementById("theme-toggle").textContent = theme === "dark" ? "☀" : "🌙";
-      try { localStorage.setItem("trade-site-theme", theme); } catch (e) {}
-    }
+  // price domain
+  var hi=1.17560, lo=1.16840;
+  function y(p){return padT+(hi-p)/(hi-lo)*(H-padT-padB);}
+  var entry=1.17182, tp=1.17440;
+  var slLo=1.16930, slHi=1.17085;   // SL drags between these
+  var pointVal=1.0;                  // $ per point per lot
+  function pts(a,b){return Math.round(Math.abs(a-b)/0.00001);}
 
-    // Initial state — respect prefers-color-scheme + saved preference
-    (function init() {
-      let savedTheme = null;
-      try { savedTheme = localStorage.getItem("trade-site-theme"); } catch (e) {}
-      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
-      const browserLang = (navigator.language || "en").toLowerCase();
-      applyLang(browserLang.startsWith("zh") ? "zh" : "en");
-    })();
+  // gridlines
+  for(var g=0;g<6;g++){var gy=padT+g*(H-padT-padB)/5;
+    svg.appendChild(el('line',{x1:0,y1:gy,x2:W-padR,y2:gy,stroke:'#121925','stroke-width':1}));
+    var lp=(hi-(g*(hi-lo)/5)).toFixed(4);
+    var tx=el('text',{x:W-padR+8,y:gy+3,fill:'#566173','font-size':10,'font-family':'ui-monospace,monospace'});tx.textContent=lp;svg.appendChild(tx);
+  }
 
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      applyTheme(next);
-    });
+  // candles — textbook breakout-pullback (long): base chop → thrust up
+  // through resistance → controlled pullback that retests the broken level
+  // (= the entry line). Last bars hold at the retest, poised to continue.
+  var n=46, step=(W-padR-12)/n, w=Math.max(4,step*0.62), x0=10;
+  var seed=7; function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  var closes=[];
+  for(var i=0;i<n;i++){
+    var c;
+    if(i<=17)      c=1.17120+Math.sin(i*0.85)*0.00046+(rnd()-0.5)*0.00026;   // base
+    else if(i<=25) c=lerp(1.17150,1.17392,(i-17)/8)+(rnd()-0.5)*0.00030;      // breakout thrust
+    else if(i<=39){var tt=(i-25)/14; c=lerp(1.17392,1.17186,tt*0.55+tt*tt*0.45)+(rnd()-0.5)*0.00026;} // pullback retest
+    else           c=1.17190+(rnd()-0.5)*0.00034;                            // hold at retest
+    closes.push(c);
+  }
+  var series=[];
+  for(var i=0;i<n;i++){
+    var o=i?closes[i-1]:1.17112, c=closes[i], wick=0.00010+rnd()*0.00024;
+    series.push({o:o,c:c,h:Math.max(o,c)+wick,l:Math.min(o,c)-wick});
+  }
+  for(var i=0;i<n;i++){var s=series[i],cx=x0+i*step+step/2,up=s.c>=s.o;
+    var col=up?'#2aa898':'#e2554d';
+    svg.appendChild(el('line',{x1:cx,y1:y(s.h),x2:cx,y2:y(s.l),stroke:col,'stroke-width':1}));
+    var yt=y(Math.max(s.o,s.c)),yb=y(Math.min(s.o,s.c));
+    svg.appendChild(el('rect',{x:cx-w/2,y:yt,width:w,height:Math.max(1,yb-yt),fill:col,rx:1}));
+  }
 
-    document.getElementById("lang-toggle").addEventListener("click", () => {
-      const next = document.documentElement.dataset.lang === "zh" ? "en" : "zh";
-      applyLang(next);
-    });
-  </script>
+  // zones (drawn first, under lines)
+  var xRight=W-padR;
+  var zoneTP=el('rect',{x:0,y:y(tp),width:xRight,height:y(entry)-y(tp),fill:'rgba(45,212,191,.09)'});
+  var zoneSL=el('rect',{x:0,y:y(entry),width:xRight,height:y(slLo)-y(entry),fill:'rgba(240,84,76,.10)'});
+  svg.appendChild(zoneTP);svg.appendChild(zoneSL);
+
+  function hline(p,col,dash){return el('line',{x1:0,y1:y(p),x2:xRight,y2:y(p),stroke:col,'stroke-width':1.4,'stroke-dasharray':dash||'5 4'});}
+  var lTP=hline(tp,'#2dd4bf'); var lEN=el('line',{x1:0,y1:y(entry),x2:xRight,y2:y(entry),stroke:'#4d8df0','stroke-width':1.4}); var lSL=hline(slLo,'#f0544c');
+  svg.appendChild(lTP);svg.appendChild(lEN);svg.appendChild(lSL);
+
+  // pill labels (left)
+  function pill(p,txt,bg,fg){
+    var g=el('g',{});
+    var r=el('rect',{x:8,y:y(p)-9,rx:5,height:18,fill:bg});
+    var t=el('text',{x:14,y:y(p)+4,fill:fg,'font-size':11,'font-weight':600,'font-family':'ui-monospace,monospace'});
+    t.textContent=txt; g.appendChild(r);g.appendChild(t);svg.appendChild(g);
+    r.setAttribute('width',pw(txt));
+    return {g:g,r:r,t:t,p:p};
+  }
+  pill(tp,'TP  +'+pts(tp,entry)+'p · +$'+pts(tp,entry),'#0c3b34','#5be0c8');
+  var enPill=pill(entry,'1.00 · R:R --','#13314f','#9cc4f7');
+  var slPill=pill(slLo,'','#3f1512','#f2938c');
+
+  // SL handle + faux cursor
+  var handle=el('circle',{cx:xRight,cy:y(slLo),r:5,fill:'#0a0e15',stroke:'#f0544c','stroke-width':2});
+  svg.appendChild(handle);
+  var cur=el('path',{d:'M0 0 L0 15 L4 11 L7 17 L9 16 L6 10 L11 10 Z',fill:'#fff',stroke:'#0a0e15','stroke-width':1,opacity:.92});
+  svg.appendChild(cur);
+
+  var slField=document.getElementById('slField'), rrField=document.getElementById('rrField');
+
+  function setSL(p){
+    var yy=y(p);
+    lSL.setAttribute('y1',yy);lSL.setAttribute('y2',yy);
+    handle.setAttribute('cy',yy);
+    cur.setAttribute('transform','translate('+(xRight-150)+','+(yy-4)+')');
+    zoneSL.setAttribute('height',Math.max(0,yy-y(entry)));
+    var pp=pts(p,entry), dol=Math.round(pp*pointVal);
+    slPill.g.querySelector('rect').setAttribute('y',yy-9);
+    slPill.t.setAttribute('y',yy+4);
+    slPill.t.textContent='SL  −'+pp+'p · −$'+dol;
+    slPill.r.setAttribute('width',pw(slPill.t.textContent));
+    slField.textContent=p.toFixed(5);
+    var rr=(pts(tp,entry)/pp);
+    rrField.textContent='R:R '+rr.toFixed(2);
+    enPill.t.textContent='1.00 · R:R '+rr.toFixed(2);
+    enPill.r.setAttribute('width',pw(enPill.t.textContent));
+    slField.style.color=getComputedStyle(document.documentElement).getPropertyValue('--red');
+  }
+  setSL(slLo);
+
+  // animation loop: drag down, hold, drag up, hold
+  var T=0, DUR=320; // frames per full cycle quarter
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+  function frame(){
+    T=(T+1)% (DUR*2.4);
+    var u;
+    var a=DUR, hold=DUR*0.2;
+    if(T<a){u=ease(T/a);}                         // down
+    else if(T<a+hold){u=1;}                        // hold low
+    else if(T<a*2+hold){u=1-ease((T-a-hold)/a);}   // up
+    else {u=0;}                                    // hold high
+    var p=slHi-(slHi-slLo)*u;
+    setSL(p);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+/* 每日复盘 — 入场理由 + 当天笔记逐字打出 */
+(function(){
+  var reason=document.getElementById('jrReason'), note=document.getElementById('jrNote');
+  if(!reason)return;
+  var rTxt='突破前高，回踩不破支撑，顺势做多。';
+  var nTxt='方向对，但离场偏早——回踩确认后本可拿到 1:2。下次挂移动止损，让利润奔跑。';
+  function type(elm,txt,cb){
+    elm.innerHTML='';
+    var cur=document.createElement('span');cur.className='cursor';elm.appendChild(cur);
+    var i=0,id=setInterval(function(){
+      if(i>=txt.length){clearInterval(id);setTimeout(cb,1300);return;}
+      cur.insertAdjacentText('beforebegin',txt[i++]);
+    },52);
+  }
+  function loop(){type(reason,rTxt,function(){type(note,nTxt,function(){setTimeout(loop,2000);});});}
+  loop();
+})();
+
+/* Mentor AI — 复盘小结流式生成 */
+(function(){
+  var box=document.getElementById('aiMsg');if(!box)return;
+  var full='你最近 30 天 BTCUSD 多单胜率 71%，是你的主要 edge；ETHUSD 空单却贡献了 64% 的亏损——多发生在亚盘低波动时段。两条建议：① 给 ETH 空单加一道波动率过滤；② 止盈从固定点数改成跟随结构。';
+  function run(){
+    box.innerHTML='';
+    var cur=document.createElement('span');cur.className='ai-cursor';box.appendChild(cur);
+    var i=0,id=setInterval(function(){
+      if(i>=full.length){clearInterval(id);setTimeout(run,2800);return;}
+      cur.insertAdjacentText('beforebegin',full[i++]);
+    },32);
+  }
+  run();
+})();
+
+/* 动态回放 — 逐根揭示 K 线 + 进出场标记 + 盈亏滚动 */
+(function(){
+  var svg=document.getElementById('rpsvg');if(!svg)return;
+  var NS='http://www.w3.org/2000/svg';
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  var W=460,H=232,pT=14,pB=18,pL=10,pR=10;
+  var seed=11;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+  var n=34,entryI=8,exitI=28,cl=[];
+  for(var i=0;i<n;i++){
+    var c;
+    if(i<6)            c=100+Math.sin(i*1.3)*1.0+(rnd()-0.5)*1.3;
+    else if(i<entryI)  c=99-(entryI-i)*0.85+(rnd()-0.5)*0.9;
+    else               c=98.6+(i-entryI)*1.28+Math.sin(i*0.6)*1.5+(rnd()-0.5)*1.5;
+    cl.push(c);
+  }
+  var mn=Math.min.apply(null,cl)-2.4,mx=Math.max.apply(null,cl)+2.4;
+  function y(v){return pT+(mx-v)/(mx-mn)*(H-pT-pB);}
+  var step=(W-pL-pR)/n,w=Math.max(3,step*0.6),cd=[];
+  for(var i=0;i<n;i++){
+    var o=i?cl[i-1]:99.6,c=cl[i],up=c>=o,col=up?'#2aa898':'#e2554d',cx=pL+i*step+step/2,wk=0.5+rnd()*1.4;
+    var g=el('g',{opacity:0.06});
+    g.appendChild(el('line',{x1:cx,y1:y(Math.max(o,c)+wk),x2:cx,y2:y(Math.min(o,c)-wk),stroke:col,'stroke-width':1}));
+    var yt=y(Math.max(o,c)),yb=y(Math.min(o,c));
+    g.appendChild(el('rect',{x:cx-w/2,y:yt,width:w,height:Math.max(1,yb-yt),fill:col,rx:1}));
+    svg.appendChild(g);cd.push({g:g,cx:cx});
+  }
+  var enX=cd[entryI].cx,exX=cd[exitI].cx;
+  var enM=el('path',{d:'M'+enX+' '+(y(cl[entryI])+13)+' l-5 9 l10 0 z',fill:'#2dd4bf',opacity:0});
+  var exM=el('circle',{cx:exX,cy:y(cl[exitI])-12,r:4,fill:'#4d8df0','stroke':'#0a0e15','stroke-width':1.5,opacity:0});
+  svg.appendChild(enM);svg.appendChild(exM);
+  var plEl=document.getElementById('rpPL'),clk=document.getElementById('rpClock');
+  var unit=120;
+  var head=0,hold=0;
+  function tick(){
+    head+=0.45;var h=Math.floor(head);
+    for(var i=0;i<n;i++)cd[i].g.setAttribute('opacity',i<=h?1:0.06);
+    enM.setAttribute('opacity',h>=entryI?1:0);
+    exM.setAttribute('opacity',h>=exitI?1:0);
+    var cur=h<=entryI?0:Math.round((cl[Math.min(h,exitI)]-cl[entryI])*unit);
+    plEl.textContent=(cur>=0?'+$':'−$')+Math.abs(cur);
+    plEl.style.color=cur>=0?'var(--teal)':'var(--red)';
+    var s=Math.min(36,Math.round(head));clk.textContent='00:'+(s<10?'0':'')+s;
+    if(h>=n-1){hold++;if(hold>70){head=0;hold=0;}}
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>

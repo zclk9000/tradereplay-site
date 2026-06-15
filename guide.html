@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans" data-theme="light">
+<html lang="zh-Hans" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -129,7 +129,7 @@
   <header class="topbar">
     <a class="logo" href="/">
       <span class="logo-mark">
-        <img class="light-logo" src="logo.svg" alt="TradeReplay">
+        <img src="logo-dark.svg" alt="TradeReplay">
       </span>
       TradeReplay
     </a>
@@ -359,5 +359,6 @@
       img.src = src;
     });
   </script>
+<style>#theme-toggle{display:none!important}</style><script>document.documentElement.dataset.theme="dark";try{localStorage.setItem("trade-site-theme","dark")}catch(e){}</script>
 </body>
 </html>
