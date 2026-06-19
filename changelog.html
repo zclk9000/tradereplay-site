@@ -213,21 +213,21 @@
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
-        <li><span class="tag tag-improve">优化</span><span>复盘引擎升级 —— 重写复盘的计算与内存管理，导入大数据量行情复盘不再越播越卡、更顺滑；低配机内存也有界，超长复盘不爆内存。</span></li>
         <li><span class="tag tag-new">新增</span><span>下单时可选添加策略与入场理由 —— 下单时可顺手选择本单所属策略、记下入场理由，跟着这笔交易一路带到成交和记录里，方便事后复盘与归集统计。</span></li>
         <li><span class="tag tag-new">新增</span><span>下单习惯养成 —— 交易面板「高级」里三条可选的下单纪律：下单必设止损 / 必选策略 / 必填入场理由。开启后缺项时，买入 / 卖出会被拦下并提示补全；市价单和图表右键挂单都受控。帮你把好习惯练成肌肉记忆。</span></li>
-        <li><span class="tag tag-improve">优化</span><span>归集重做 —— 归集视图重做，真实交易与训练交易按策略自动分组，一眼看清每个策略的盈亏与胜率，方便发现真正有优势的策略。</span></li>
         <li><span class="tag tag-new">新增</span><span>周期快捷收藏栏 —— 把常用周期固定到收藏栏，一键切换，不用每次翻菜单。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>复盘引擎升级 —— 重写复盘的计算与内存管理，导入大数据量行情复盘不再越播越卡、更顺滑；低配机内存也有界，超长复盘不爆内存。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>归集重做 —— 归集视图重做，真实交易与训练交易按策略自动分组，一眼看清每个策略的盈亏与胜率，方便发现真正有优势的策略。</span></li>
         <li><span class="tag tag-improve">优化</span><span>界面打磨 —— 交易面板美化；持仓列表改为固定高度（不再随持仓增减上下跳动）；历史订单界面美化。</span></li>
         <li><span class="tag tag-improve">优化</span><span>交易日志界面重做 —— 记录、查看与回顾更清晰顺手。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复某些情况下手续费被重复计算、导致盈亏统计偏差的问题。</span></li>
       </ul>
       <ul class="lang-en">
-        <li><span class="tag tag-improve">Improved</span><span>Replay engine — rebuilt the replay computation and memory handling, so importing and replaying large datasets no longer stutters or slows down over time, and memory stays bounded so even very long replays won't run out on low-RAM machines.</span></li>
         <li><span class="tag tag-new">New</span><span>Tag a strategy &amp; entry reason when ordering — optionally pick the order's strategy and note your entry reason as you place it; both travel with the trade through to the fill and into your records, for easier review and per-strategy aggregation.</span></li>
         <li><span class="tag tag-new">New</span><span>Order-discipline habits — three optional pre-trade rules under the panel's Advanced menu: require a stop-loss / require a strategy / require an entry reason. With a rule on, a buy/sell that's missing it gets blocked with a prompt to fill it in — for both market orders and chart right-click pending orders. Turns good habits into muscle memory.</span></li>
-        <li><span class="tag tag-improve">Improved</span><span>Aggregation, rebuilt — the aggregation view now groups real and training trades by strategy, so you can read each strategy's P&amp;L and win rate at a glance and spot the ones with a real edge.</span></li>
         <li><span class="tag tag-new">New</span><span>Timeframe favorites bar — pin your most-used timeframes for one-click switching, instead of digging through the menu each time.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Replay engine — rebuilt the replay computation and memory handling, so importing and replaying large datasets no longer stutters or slows down over time, and memory stays bounded so even very long replays won't run out on low-RAM machines.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Aggregation, rebuilt — the aggregation view now groups real and training trades by strategy, so you can read each strategy's P&amp;L and win rate at a glance and spot the ones with a real edge.</span></li>
         <li><span class="tag tag-improve">Improved</span><span>UI polish — refreshed trade panel; the positions list now keeps a fixed height (no more jumping as positions open and close); refreshed order-history view.</span></li>
         <li><span class="tag tag-improve">Improved</span><span>Trade journal, rebuilt — clearer logging, browsing, and review.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Fixed cases where commission could be counted twice and skew the P&amp;L stats.</span></li>
@@ -241,14 +241,14 @@
         <span class="date">2026-06-13</span>
       </div>
       <ul class="lang-zh">
-        <li><span class="tag tag-improve">优化</span><span>量化策略统一为通达信(TDX)公式语法 —— 策略与图表指标现在同一套写法、互通无缝；旧策略加载时自动迁移，回测结果完全不变。</span></li>
         <li><span class="tag tag-new">新增</span><span>公式引擎补齐 RSI / MACD / ATR 等常用函数（通达信标准写法）。</span></li>
         <li><span class="tag tag-new">新增</span><span>「设置 → License」新增「购买激活码」入口 —— 没有激活码时可直达店铺购买，并附使用说明。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>量化策略统一为通达信(TDX)公式语法 —— 策略与图表指标现在同一套写法、互通无缝；旧策略加载时自动迁移，回测结果完全不变。</span></li>
       </ul>
       <ul class="lang-en">
-        <li><span class="tag tag-improve">Improved</span><span>Quant strategies now use TDX (通达信) formula syntax, unified with chart indicators — one syntax for both, seamlessly interoperable; existing strategies auto-migrate on load and backtest results are unchanged.</span></li>
         <li><span class="tag tag-new">New</span><span>Added RSI / MACD / ATR and more standard functions to the formula engine (TDX notation).</span></li>
         <li><span class="tag tag-new">New</span><span>A "Buy a license" entry under Settings → License — jump to the store to purchase when you don't have a code, with a quick-start guide.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Quant strategies now use TDX (通达信) formula syntax, unified with chart indicators — one syntax for both, seamlessly interoperable; existing strategies auto-migrate on load and backtest results are unchanged.</span></li>
       </ul>
     </article>
 
@@ -340,15 +340,15 @@
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>Windows 版发布 —— 支持 Windows 10 / 11（64 位）。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>「关于」页现在动态显示当前版本号。</span></li>
         <li><span class="tag tag-fix">修复</span><span>复盘 / 训练的「开始·结束时间」选择器现在按图表时区解释；此前会把所选时间当作 UTC，可能导致时间跳变。</span></li>
         <li><span class="tag tag-fix">修复</span><span>导入 CSV 时自动去除重复的时间戳，修复加载部分数据时的报错。</span></li>
-        <li><span class="tag tag-improve">优化</span><span>「关于」页现在动态显示当前版本号。</span></li>
       </ul>
       <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Windows release — supports Windows 10 / 11 (64-bit).</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>The About page now shows the current version dynamically.</span></li>
         <li><span class="tag tag-fix">Fix</span><span>The replay / training start &amp; end time pickers now follow the chart's time zone; previously they were read as UTC, which could shift the time.</span></li>
         <li><span class="tag tag-fix">Fix</span><span>Duplicate timestamps in imported CSV data are now de-duplicated, fixing errors when loading certain files.</span></li>
-        <li><span class="tag tag-improve">Improved</span><span>The About page now shows the current version dynamically.</span></li>
       </ul>
     </article>
 
