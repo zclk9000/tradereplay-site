@@ -205,12 +205,64 @@
 
   <main class="releases">
 
+    <!-- v1.37.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.37.0</span>
+        <span class="date">2026-06-26</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>斐波那契档位可调 —— 点中画好的斐波那契回撤线,旁边弹出小面板,逐档显示 / 隐藏,或一键套用「极简 / 经典 / 全部」预设,图上只留你在意的回撤位。</span></li>
+        <li><span class="tag tag-new">新增</span><span>指标彩带(DRAWBAND) —— 自定义指标公式新增 DRAWBAND,可在两条线之间填充半透明色带(布林带、通道等),走势区间更直观。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>复盘地图重做 —— 复盘(导入交易 / 回测)地图改为「静态全览」:一进去,这段行情的所有 K 线和每笔成交的进出场连线就全铺开,点任意一笔跳转居中、明灭高亮;取消了逐根播放(之前越播越卡),改成进去一眼看全、更快更稳。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>指标子图 —— 公式里的柱状 / 标记 / 线段图元可画在独立子图、支持自定义颜色(COLOR);回放时子图不再乱跳视野。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>行情数据面板重做 —— 抽屉式分层 + 语义配色 + 按钮全中文化,下载 / 管理行情数据更顺手。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>期货行情下载更稳 —— 网络偶发抖动时不再误报「需要 Pro」,会自动重试授权;连不上才提示网络问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>持仓 / 挂单标记子图重建偶发错位、手动步进跨数据缺口、回放按钮对比度等若干问题。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Adjustable Fibonacci levels — Click a drawn Fib retracement to pop a small panel: show/hide individual levels, or one-tap a "Minimal / Classic / All" preset, so the chart shows only the levels you care about.</span></li>
+        <li><span class="tag tag-new">New</span><span>Indicator color bands (DRAWBAND) — Custom formulas gain DRAWBAND, filling a translucent band between two lines (Bollinger bands, channels…) for clearer ranges.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Replay map, rebuilt — The review map (imported trades / backtests) is now a static overview: every candle and each trade's entry→exit line lays out at once; click any trade to center and flash-highlight it. Per-bar playback was removed (it bogged down on long reviews) — you get the whole picture instantly, faster and smoother.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Indicator subplots — A formula's bars / markers / segments can render in their own subplot and honor a custom COLOR; subplots no longer jump the viewport during playback.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Market-data panel, rebuilt — Drawer-layered, semantic colors, fully localized buttons — easier to download and manage market data.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Steadier futures download — A brief network hiccup is no longer misreported as "Pro required"; the app auto-retries and only flags a network error if it truly can't connect.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Position / pending-order marker misplacement on subplot rebuild, manual step across data gaps, replay-button contrast, and more.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.36.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.36.0</span>
+        <span class="date">2026-06-21</span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>成就系统 —— 138 个交易成就，训练中自动解锁，达成弹出奖杯 + 音效；可在「设置 → 个人」里开关。</span></li>
+        <li><span class="tag tag-new">新增</span><span>画框统计 K 线 —— 图表上按住 Shift 拖动（或用标尺工具），框选一段即可读出 K 线根数、涨跌幅、时间跨度。</span></li>
+        <li><span class="tag tag-new">新增</span><span>成交音效 —— 买入 / 卖出 / 平仓 各配「成交落地」提示音；可在「设置 → 个人」里关闭。</span></li>
+        <li><span class="tag tag-new">新增</span><span>指标公式新增 REFX（未来引用）函数 —— 用于 分型 / ZigZag 类指标的编写。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>复盘会话列表新增「序号」「创建时间」列。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>数字输入框聚焦时自动全选；止损 / 止盈价改到右轴显示。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修正多处界面中文显示。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Achievements — 138 trading achievements that unlock as you train, with a trophy pop and sound; toggle under Settings → Profile.</span></li>
+        <li><span class="tag tag-new">New</span><span>Measure on the chart — Shift-drag (or the ruler tool) to box a range and read off bar count, % change, and time span.</span></li>
+        <li><span class="tag tag-new">New</span><span>Fill sounds — distinct "deal-landing" sounds for buy / sell / close; can be turned off under Settings → Profile.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added the REFX (future reference) function to the formula engine — for 分型 / ZigZag-style indicators.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Sessions list now shows "No." and "Created" columns.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Number inputs select-all on focus; stop-loss / take-profit price now shown on the right axis.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Various interface text fixes.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.35.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.35.0</span>
         <span class="date">2026-06-19</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>下单时可选添加策略与入场理由 —— 下单时可顺手选择本单所属策略、记下入场理由，跟着这笔交易一路带到成交和记录里，方便事后复盘与归集统计。</span></li>
