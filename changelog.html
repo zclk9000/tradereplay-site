@@ -205,12 +205,40 @@
 
   <main class="releases">
 
+    <!-- v1.38.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.38.0</span>
+        <span class="date">2026-06-27</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>导入期货月报 —— 直接导入 CFMMC「客户交易结算月报」,整月成交一次导入;跨月持仓的开仓价从平仓盈亏精确反推、进出场价位对得上;.xls / .xlsx 两种格式都认。</span></li>
+        <li><span class="tag tag-new">新增</span><span>统计页重做 —— 拆成「概览 / 行为深入 / 分布深入」三页:概览给一句话结论 + 体检式评分 + KPI 进度条;新增持仓时段甜甜圈、亏损构成、盈亏热力图等可交互图表,钱从哪来、往哪漏看得更清。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>多窗格双击放大 —— 多图布局下双击任意一格放大到满屏专注看,再双击还原。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>训练面板布局可调 —— 下单栏可拖宽、一键折叠;交易列表可拖高、随手隐藏,屏幕小也能腾出地方。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>通达信公式大批补齐 —— 新增 REFDATE / FROMOPEN / SARTURN / IFN / NDAY / LAST / BACKSET 等函数、变量周期,以及 POLYLINE / PARTLINE / DRAWGBK 绘图;公式编辑器加「兼容性报告」,逐行标出不兼容 / 疑似复制 / 正常,粘别处的公式心里有底。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>盈亏口径统一 —— 堵住手续费在个别视图被重复计、导致盈利虚高的问题,各处盈亏口径一致。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>回放更稳 —— 手动存档播到数据实时末尾、更新数据后不再卡旧边界;回退重算余额时加回出入金、不再静默错乱;隔夜费平仓即时落库不清零。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>图表模板 + 杂项 —— 套用模板只作用当前图,不再波及其它图;期货止盈止损标签按账户币种显示(¥);BTCJPY / ETHJPY 不再被误判成日元外汇;副图缩放不再裁切柱子。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Import futures monthly statements — Import the CFMMC "monthly client settlement statement" directly — a whole month's fills in one go. Open prices of positions carried across months are reconstructed exactly from realized P&amp;L, so entry/exit prices line up; both .xls and .xlsx are accepted.</span></li>
+        <li><span class="tag tag-new">New</span><span>Statistics, rebuilt — Split into three tabs (Overview / Behavior / Distribution): the Overview gives a one-line verdict, a check-up score and KPI progress; new interactive charts (holding-time donut, loss breakdown, P&amp;L heatmap) make it clearer where money comes from and where it leaks.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Double-click to zoom a pane — In multi-pane layouts, double-click any pane to zoom it full-screen, double-click again to restore.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Resizable training panel — Drag the order bar wider or collapse it; drag the trade list taller or hide it — room to breathe on smaller screens.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Many more TDX (Tongdaxin) formula functions — Added REFDATE / FROMOPEN / SARTURN / IFN / NDAY / LAST / BACKSET, variable-period windows, and POLYLINE / PARTLINE / DRAWGBK drawing; the formula editor gains a Compatibility Report flagging each line as unsupported / likely-copied / OK.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Consistent P&amp;L accounting — Closed a case where commission was double-counted in some views (inflating profit); P&amp;L now reconciles everywhere.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Steadier replay — Manual sessions play through to the live data edge and no longer stall at an old boundary after a data update; balance recompute on rewind adds back deposits/withdrawals; swap is persisted on close and no longer zeroed.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Chart templates &amp; misc — Applying a template affects only the current chart; futures SL/TP labels show in the account's currency (¥); BTCJPY / ETHJPY are no longer misclassified as JPY FX; subplot zoom no longer clips bars.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.37.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.37.0</span>
         <span class="date">2026-06-26</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>斐波那契档位可调 —— 点中画好的斐波那契回撤线,旁边弹出小面板,逐档显示 / 隐藏,或一键套用「极简 / 经典 / 全部」预设,图上只留你在意的回撤位。</span></li>
