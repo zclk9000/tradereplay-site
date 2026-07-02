@@ -213,20 +213,20 @@
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
-        <li><span class="tag tag-new">新增</span><span>回测结果逐笔回放 —— 回测存档打开后能像账单复盘一样整段播放:每笔到点亮起、离场定格,可调倍速;播放 / 暂停 / 步进就是图表工具栏那套,和训练一个手感。</span></li>
-        <li><span class="tag tag-new">新增</span><span>回放右栏「全程战绩」 —— 期望值(R 与金额双口径)、盈亏比、胜率、毛盈亏 → 手续费 → 净盈亏一眼看全;成交列表移到图表下方、随播放逐笔点亮,两栏宽高都能拖。</span></li>
-        <li><span class="tag tag-new">新增</span><span>布林带、随机指标(KDJ)策略的回测,打开回放自动挂上对应指标 —— 以前布林策略只挂出一条孤零零的中轨均线。</span></li>
-        <li><span class="tag tag-improve">优化</span><span>进回放秒开 —— 先进界面,历史在后台补齐、补完自动铺开全貌;重复打开同一个回测直接秒开。「看全部」也即时切换,不再等待、不再闪错乱画面。</span></li>
-        <li><span class="tag tag-fix">修复</span><span>逐笔播放"播一会停一下"的周期性卡顿 —— 根子挖掉(内存垃圾风暴),任何周期长时间播放都稳定流畅。</span></li>
-        <li><span class="tag tag-fix">修复</span><span>退出回放偶发弹回回放界面、「看全部」后连线堆在一根 K 线上、看全部偶发报错等一批回放问题。</span></li>
+        <li><span class="tag tag-new">新增</span><span>交易诊断 —— 统计页新增「交易诊断」:先确定性深挖你的成交,再由 AI 分章写成诊断报告;满 30 笔可生成。</span></li>
+        <li><span class="tag tag-new">新增</span><span>复诊与诊断历史 —— 复诊自动和上一次报告对比,历次诊断留档、随时回看。</span></li>
+        <li><span class="tag tag-new">新增</span><span>回测逐笔回放 —— 回测结果能像账单复盘一样整段播放、可调倍速。</span></li>
+        <li><span class="tag tag-new">新增</span><span>回放「全程战绩」面板 —— 期望值、盈亏比、胜率、盈亏构成一眼看全。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>回放体验多处 —— 进入秒开、「看全部」即时切换、布林 / KDJ 策略回放自动挂指标、统计概览曲线改画累计净盈亏。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>回放长时间播放的周期性卡顿,以及退出回放、看全部等一批问题。</span></li>
       </ul>
       <ul class="lang-en">
-        <li><span class="tag tag-new">New</span><span>Trade-by-trade backtest replay — Open a backtest and play it through like a statement review: each trade lights up at entry and freezes at exit, with adjustable speed; play / pause / step are the chart-toolbar controls, same feel as training.</span></li>
-        <li><span class="tag tag-new">New</span><span>Run-stats panel for replays — Expectancy (in R and money), payoff ratio, win rate, and gross → fees → net at a glance; the trade list moved below the chart and lights up as playback advances, with both panes resizable.</span></li>
-        <li><span class="tag tag-new">New</span><span>Bollinger and Stochastic strategy backtests now auto-attach their indicators on open — Bollinger runs used to show a single lonely mid-band line.</span></li>
-        <li><span class="tag tag-improve">Improved</span><span>Replays open instantly — you're in right away while history fills in the background, then the full map lays itself out; reopening the same backtest is instant. “Fit all” now switches instantly too, no wait and no garbled flash.</span></li>
-        <li><span class="tag tag-fix">Fixed</span><span>The periodic play-a-bit-then-stall stutter in trade-by-trade playback — root cause (a memory-garbage storm) removed; long playback stays smooth on any timeframe.</span></li>
-        <li><span class="tag tag-fix">Fixed</span><span>A batch of replay issues: exiting replay occasionally bouncing you straight back in, trade connectors piling onto one candle after “Fit all”, and an occasional error on “Fit all”.</span></li>
+        <li><span class="tag tag-new">New</span><span>Trade Diagnosis — a new Statistics tab that digs through your trades deterministically, then has AI write a chaptered diagnosis report; available from 30 trades.</span></li>
+        <li><span class="tag tag-new">New</span><span>Follow-up diagnosis &amp; history — re-diagnose and it auto-compares with your last report; every report is archived for review.</span></li>
+        <li><span class="tag tag-new">New</span><span>Trade-by-trade backtest replay — play a backtest through like a statement review, with adjustable speed.</span></li>
+        <li><span class="tag tag-new">New</span><span>Run-stats panel for replays — expectancy, payoff ratio, win rate and P&amp;L breakdown at a glance.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Replay polish — instant open, instant “Fit all”, Bollinger / Stochastic runs auto-attach their indicators, and the overview equity curve now plots cumulative net P&amp;L.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>The periodic stall during long playback, plus a batch of replay exit / “Fit all” issues.</span></li>
       </ul>
     </article>
 
