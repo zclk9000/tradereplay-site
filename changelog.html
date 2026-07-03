@@ -205,12 +205,34 @@
 
   <main class="releases">
 
+    <!-- v1.39.80 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.39.80</span>
+        <span class="date">2026-07-04</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>大周期完整历史 —— 切到 H4 / 日线 / 周线不再只剩零星几根:历史自动从本地数据补全,播放中左侧老 K 线也不再一根根消失,想回看多远拖多远。</span></li>
+        <li><span class="tag tag-new">新增</span><span>播到头有提示 —— 数据播完时工具栏明确提示「已播放到数据末尾」,不再像被莫名暂停。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>播放莫名自动暂停 —— 一次修掉三个触发源:窗口滑动时视野被留在旧 K 线上、深历史载入瞬间的误判、播放中碰到 Enter 触发的窗格对齐。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>双击窗格放大聚焦时,其他窗格的标题条和边框透出来的残影。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>图表左下角不再显示第三方图表库水印;新数据下载后大周期预聚合自动刷新。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Full history on higher timeframes — switching to H4 / D1 / W1 no longer leaves a handful of bars: history back-fills from your local data, old bars stop vanishing during playback, and you can scroll back as far as you like.</span></li>
+        <li><span class="tag tag-new">New</span><span>End-of-data notice — when playback runs out of data, the toolbar now says so instead of looking like a random pause.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Playback pausing by itself — three triggers fixed in one go: the view being left on old bars during window slides, a mis-read the instant deep history lands, and the Enter pane-sync hotkey firing mid-playback.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Ghost header/border from sibling panes bleeding through when double-clicking a pane to maximize it.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>No more third-party chart-library watermark; higher-timeframe pre-aggregation now refreshes automatically after new data downloads.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.39.50 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.39.50</span>
         <span class="date">2026-07-03</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>交易诊断 —— 统计页新增「交易诊断」:先确定性深挖你的成交,再由 AI 分章写成诊断报告;满 30 笔可生成。</span></li>
