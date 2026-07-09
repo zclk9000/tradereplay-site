@@ -213,18 +213,18 @@
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
-        <li><span class="tag tag-improve">优化</span><span>国内期货 K 线全面对齐同花顺 / 文华 —— 天图以下(4小时 / 1小时 / 30分…)按「交易日 + 等交易时长」切分,日 / 周 / 月线按交易日切并识别节假日,主力连续换月跳空对齐,大周期可回看三四年。</span></li>
         <li><span class="tag tag-new">新增</span><span>复盘图叠加财经事件 —— 非农 / CPI / 央行等历史财经事件时间线直接叠在复盘 K 线上,自动更新。</span></li>
+        <li><span class="tag tag-new">新增</span><span>斐波那契支持自定义系数。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>国内期货 K 线全面对齐同花顺 / 文华 —— 天图以下(4小时 / 1小时 / 30分…)按「交易日 + 等交易时长」切分,日 / 周 / 月线按交易日切并识别节假日,主力连续换月跳空对齐,大周期可回看三四年。</span></li>
         <li><span class="tag tag-improve">优化</span><span>期货真实账单数据解析更准确 —— 修正夜盘成交按交易日误记导致的成交点 / 连线错位,回放时进出场精准落在 K 线上。</span></li>
         <li><span class="tag tag-fix">修复</span><span>画线 / 分隔线 —— 复盘逐根前进时画线不再跳动 / 塌缩 / 闪烁;夜盘 / 日盘 / 周期分隔线拖动跟手、多开也不卡。</span></li>
-        <li><span class="tag tag-new">新增</span><span>斐波那契支持自定义系数。</span></li>
       </ul>
       <ul class="lang-en">
-        <li><span class="tag tag-new">New</span><span>CN futures candles now fully match the major Chinese platforms (同花顺 / 文华) — sub-daily (4h / 1h / 30m…) use "trading-day + equal-trading-time" bucketing, daily / weekly / monthly bucket by trading day with holidays recognized, main-continuous roll gaps aligned, and coarse timeframes scroll back three to four years.</span></li>
         <li><span class="tag tag-new">New</span><span>Economic events on the replay chart — NFP / CPI / central-bank and other historical events overlaid on the candles as a timeline, auto-updating.</span></li>
+        <li><span class="tag tag-new">New</span><span>Fibonacci levels support custom ratios.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>CN futures candles now fully match the major Chinese platforms (同花顺 / 文华) — sub-daily (4h / 1h / 30m…) use "trading-day + equal-trading-time" bucketing, daily / weekly / monthly bucket by trading day with holidays recognized, main-continuous roll gaps aligned, and coarse timeframes scroll back three to four years.</span></li>
         <li><span class="tag tag-improve">Improved</span><span>More accurate parsing of real futures broker statements — fixes night-session fills being dated by trading day, which mis-placed entry / exit points and connectors; replayed trades now land precisely on the candles.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Drawings / separators — trendlines no longer jump / collapse / flicker as bars advance in replay; night / day / period separators track the candles smoothly and stay fast even with several enabled.</span></li>
-        <li><span class="tag tag-new">New</span><span>Fibonacci levels support custom ratios.</span></li>
       </ul>
     </article>
 
@@ -263,16 +263,16 @@
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>大周期完整历史 —— 切到 H4 / 日线 / 周线不再只剩零星几根:历史自动从本地数据补全,播放中左侧老 K 线也不再一根根消失,想回看多远拖多远。</span></li>
         <li><span class="tag tag-new">新增</span><span>播到头有提示 —— 数据播完时工具栏明确提示「已播放到数据末尾」,不再像被莫名暂停。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>图表左下角不再显示第三方图表库水印;新数据下载后大周期预聚合自动刷新。</span></li>
         <li><span class="tag tag-fix">修复</span><span>播放莫名自动暂停 —— 一次修掉三个触发源:窗口滑动时视野被留在旧 K 线上、深历史载入瞬间的误判、播放中碰到 Enter 触发的窗格对齐。</span></li>
         <li><span class="tag tag-fix">修复</span><span>双击窗格放大聚焦时,其他窗格的标题条和边框透出来的残影。</span></li>
-        <li><span class="tag tag-improve">优化</span><span>图表左下角不再显示第三方图表库水印;新数据下载后大周期预聚合自动刷新。</span></li>
       </ul>
       <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Full history on higher timeframes — switching to H4 / D1 / W1 no longer leaves a handful of bars: history back-fills from your local data, old bars stop vanishing during playback, and you can scroll back as far as you like.</span></li>
         <li><span class="tag tag-new">New</span><span>End-of-data notice — when playback runs out of data, the toolbar now says so instead of looking like a random pause.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>No more third-party chart-library watermark; higher-timeframe pre-aggregation now refreshes automatically after new data downloads.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Playback pausing by itself — three triggers fixed in one go: the view being left on old bars during window slides, a mis-read the instant deep history lands, and the Enter pane-sync hotkey firing mid-playback.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Ghost header/border from sibling panes bleeding through when double-clicking a pane to maximize it.</span></li>
-        <li><span class="tag tag-improve">Improved</span><span>No more third-party chart-library watermark; higher-timeframe pre-aggregation now refreshes automatically after new data downloads.</span></li>
       </ul>
     </article>
 
