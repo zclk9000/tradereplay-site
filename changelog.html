@@ -205,12 +205,60 @@
 
   <main class="releases">
 
+    <!-- v1.41.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.41.0</span>
+        <span class="date">2026-07-09</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-improve">优化</span><span>国内期货 K 线全面对齐同花顺 / 文华 —— 天图以下(4小时 / 1小时 / 30分…)按「交易日 + 等交易时长」切分,日 / 周 / 月线按交易日切并识别节假日,主力连续换月跳空对齐,大周期可回看三四年。</span></li>
+        <li><span class="tag tag-new">新增</span><span>复盘图叠加财经事件 —— 非农 / CPI / 央行等历史财经事件时间线直接叠在复盘 K 线上,自动更新。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>期货真实账单数据解析更准确 —— 修正夜盘成交按交易日误记导致的成交点 / 连线错位,回放时进出场精准落在 K 线上。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>画线 / 分隔线 —— 复盘逐根前进时画线不再跳动 / 塌缩 / 闪烁;夜盘 / 日盘 / 周期分隔线拖动跟手、多开也不卡。</span></li>
+        <li><span class="tag tag-new">新增</span><span>斐波那契支持自定义系数。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>CN futures candles now fully match the major Chinese platforms (同花顺 / 文华) — sub-daily (4h / 1h / 30m…) use "trading-day + equal-trading-time" bucketing, daily / weekly / monthly bucket by trading day with holidays recognized, main-continuous roll gaps aligned, and coarse timeframes scroll back three to four years.</span></li>
+        <li><span class="tag tag-new">New</span><span>Economic events on the replay chart — NFP / CPI / central-bank and other historical events overlaid on the candles as a timeline, auto-updating.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>More accurate parsing of real futures broker statements — fixes night-session fills being dated by trading day, which mis-placed entry / exit points and connectors; replayed trades now land precisely on the candles.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Drawings / separators — trendlines no longer jump / collapse / flicker as bars advance in replay; night / day / period separators track the candles smoothly and stay fast even with several enabled.</span></li>
+        <li><span class="tag tag-new">New</span><span>Fibonacci levels support custom ratios.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.40.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.40.0</span>
+        <span class="date">2026-07-05</span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>新手引导 —— 第一次打开软件,聚光灯分步带你走完「下载行情 → 建立存档 → 开始复盘训练」,新用户不再摸不着头脑。</span></li>
+        <li><span class="tag tag-new">新增</span><span>画线磁吸 —— 画趋势线、水平线时,端点自动吸附到最近 K 线的开 / 高 / 低 / 收价,靠近才吸,精准对齐不再靠手稳。</span></li>
+        <li><span class="tag tag-new">新增</span><span>真实账单交易回放 —— 导入券商真实成交账单后,可按品种存档回放,在图上重走每一笔的进出场;点任意交易直接跳到它的进出场位置并高亮连线。</span></li>
+        <li><span class="tag tag-new">新增</span><span>Tick 数据回测可选周期 —— 导入的 tick 数据现在和普通 K 线一样,回测时可自由选择 M1 / M5 / M15 / H1 等任意周期。</span></li>
+        <li><span class="tag tag-new">新增</span><span>数据集「下载 / 导入」分栏 —— 回测选数据时,官方下载的行情与你自己导入的账单分成两个标签切换;图表中央新增淡显品种 + 周期水印。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>大数据回测复盘不再卡顿 —— 几万笔交易、跨年的 tick 回测存档,从加载卡死 / 黑屏优化到秒开,拖动、缩放、点交易全程顺滑,内存占用大幅下降;回放交易列表补全完整年份,并新增平仓盈亏 / 手续费 / 净盈亏三列。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>导入账单手续费计算错误(方向算反、部分场景重复计费)导致净盈亏与胜率不准。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>First-run onboarding — a step-by-step spotlight walks new users through “download data → create an archive → start replay training,” so getting started is no longer a guessing game.</span></li>
+        <li><span class="tag tag-new">New</span><span>Drawing snap — line and level endpoints snap to the nearest candle's O / H / L / C as you draw near them, for precise alignment without a steady hand.</span></li>
+        <li><span class="tag tag-new">New</span><span>Real-statement trade replay — after importing your broker statement, replay it per instrument as a saved archive, re-walking every entry and exit on the chart; click any trade to jump straight to its entry / exit with the connector highlighted.</span></li>
+        <li><span class="tag tag-new">New</span><span>Timeframe choice for tick backtests — imported tick data can now be backtested on any timeframe (M1 / M5 / M15 / H1 …), just like bar data.</span></li>
+        <li><span class="tag tag-new">New</span><span>“Download / Import” dataset tabs — downloaded market data and your own imports are split into two tabs when picking data for a backtest; the chart also gains a faint center watermark of the symbol + timeframe.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>No more lag on large backtests — tick-backtest archives with tens of thousands of trades across years now open in a second instead of freezing / going black; panning, zooming and clicking trades stay smooth, with far lower memory use. Replay trade lists now show the full year and add Close P&amp;L / Commission / Net P&amp;L columns.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Commission miscalculated on imported statements (wrong sign, double-counting in some cases), throwing off net P&amp;L and win rate.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.39.80 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.39.80</span>
         <span class="date">2026-07-04</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>大周期完整历史 —— 切到 H4 / 日线 / 周线不再只剩零星几根:历史自动从本地数据补全,播放中左侧老 K 线也不再一根根消失,想回看多远拖多远。</span></li>
