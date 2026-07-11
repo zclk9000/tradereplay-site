@@ -205,12 +205,52 @@
 
   <main class="releases">
 
+    <!-- v1.42.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.42.0</span>
+        <span class="date">2026-07-12</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>交易笔记全面升级——已平仓交易和每日复盘支持 Markdown 富文本、粘贴图片、策略标记及图文回顾，并自动汇总当天的交易笔记。</span></li>
+        <li><span class="tag tag-new">新增</span><span>训练存档新增「历史」视图——集中查看全部已平仓交易，点击即可跳转到对应行情，自动居中并高亮进出场位置。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增单笔交易快速回顾——可直接查看交易快照，并在训练、回测和账单复盘侧栏同步查看交易信息与笔记。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增部分平仓比例选择——可按常用比例快速减仓，也可输入自定义比例。</span></li>
+        <li><span class="tag tag-new">新增</span><span>图表新增可视范围最高 / 最低价标注，以及国内期货主力连续合约的交割换月标记。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>交易日志新增账户筛选、搜索和分批加载历史复盘；大交易量下切换训练 / 实盘及账户的速度显著提升。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>优化笔记编辑体验——图片自适应显示，历史笔记展开更流畅，标题、策略选择和编辑区域更加紧凑清晰。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>国内期货换月数据改为每周自动更新；行情同步可自动跟随上游链接变化，降低数据断更风险。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>全面修正止损、止盈和挂单撮合——空单按卖价侧触发，控制点回放按真实路径逐段撮合，跳空成交及同一根 K 线内的触发顺序与 MT5 口径一致。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复回看或切换存档后止损止盈状态不准确的问题，保证重复播放结果一致。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复大周期手动单步时可能漏掉中间行情，导致止损、挂单或强平未触发；同时修复走到已加载行情边缘后无法继续前进。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复国内期货 M30、H1 等大周期进出场连线消失，以及深历史交易跳转加载不完整的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复播放中卖价线冻结、漂移或提前跳动的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复训练历史笔记被自动保存覆盖、编辑光标异常、正文出现蓝色横线，以及账单金额显示精度丢失的问题。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Fully upgraded trade notes with Markdown formatting, pasted images, strategy tags, rich closed-trade reviews, and automatic daily note summaries.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added a History view to training sessions. Review every closed trade and jump directly to its chart with entry and exit points highlighted.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added quick single-trade reviews with chart snapshots and synchronized trade notes across training, backtest, and statement replay sidebars.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added selectable and custom partial-close ratios.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added visible-range high / low labels and contract rollover markers for continuous China futures charts.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Added account filters, search, and batched loading to the journal, with substantially faster switching across large trade histories.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Refined note editing with responsive images, smoother history expansion, and clearer headers and strategy controls.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>China futures rollover data now refreshes weekly, while market-data synchronization automatically follows upstream link changes.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Corrected stop-loss, take-profit, and pending-order execution, including Ask-side short triggers, control-point price paths, gap fills, and MT5-compatible intrabar ordering.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Preserved exact SL / TP state when rewinding or switching cached sessions, ensuring deterministic replay results.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed higher-timeframe manual stepping skipping underlying bars and missing SL / TP, pending-order, or liquidation triggers; also fixed stepping stalling at loaded-data boundaries.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed missing trade lines on M30 / H1 China futures charts and incomplete deep-history trade jumps.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed frozen, drifting, or prematurely updating Ask-price lines during replay.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed overwritten training notes, editor cursor issues, unwanted focus lines, and lost statement amount precision.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.41.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.41.0</span>
         <span class="date">2026-07-09</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>复盘图叠加财经事件 —— 非农 / CPI / 央行等历史财经事件时间线直接叠在复盘 K 线上,自动更新。</span></li>
