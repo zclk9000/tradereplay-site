@@ -205,12 +205,46 @@
 
   <main class="releases">
 
+    <!-- v1.42.50 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.42.50</span>
+        <span class="date">2026-07-14</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>下单前 Markdown 笔记——开仓前即可记录交易计划、进场依据并粘贴图表截图，笔记会随仓位保存到交易记录。</span></li>
+        <li><span class="tag tag-new">新增</span><span>交易笔记模板——内置「进场快照」和「交易复盘」，也可把当前笔记保存成自己的模板，重复套用、预览或删除。</span></li>
+        <li><span class="tag tag-new">新增</span><span>画线样式编辑——选中画线后可直接调整颜色、线宽、线型、字号和斐波那契档位。</span></li>
+        <li><span class="tag tag-new">新增</span><span>通达信公式支持 DRAWCOLORKLINE 条件变色 K 线，DRAWTEXT / DRAWNUMBER 按准确价格绘制；自定义指标可指定主图或副图。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>多图布局支持拖动分隔线调整窗格大小，并自动记住布局比例。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>部分平仓支持保存自定义快捷比例；新开仓位自动继承最近使用的比例。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>图中文字可直接原位编辑并调整字号；画线样式会按工具分别记忆。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>进入训练历史自动暂停，重新播放自动回到「交易」；跨价格区间查看历史交易时价格轴自动重新适配。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复快捷键下单绕过止损、策略、进场理由等面板保护规则的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复修改颜色、线宽等样式时射线端点漂移，以及首次样式调整被旧快照覆盖的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复高亮笔、文字标注编辑后样式变化，以及只含绘图指令的公式被放入错误副图的问题。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Pre-order Markdown notes — record the trade plan and entry rationale, paste chart screenshots, and carry the note with the position into trade history.</span></li>
+        <li><span class="tag tag-new">New</span><span>Trade-note templates — built-in Entry Snapshot and Trade Review templates, plus reusable custom templates that can be previewed or deleted.</span></li>
+        <li><span class="tag tag-new">New</span><span>Editable drawing styles — change colour, width, line style, font size, and Fibonacci levels directly after selecting a drawing.</span></li>
+        <li><span class="tag tag-new">New</span><span>TDX formulas now support DRAWCOLORKLINE candle colouring and exact-price DRAWTEXT / DRAWNUMBER labels; custom indicators can be placed on the main chart or a subplot.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Multi-chart layouts now have draggable dividers and remember pane proportions.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Save custom partial-close shortcuts and automatically reuse the most recent ratio on new positions.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Edit chart text in place with font sizing, while each drawing tool remembers its own style.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Opening training history pauses replay; Play returns to the live Trade tab, and the price scale refits when reviewing trades from another price regime.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Keyboard orders now obey the same stop-loss, strategy, and entry-reason protection rules as panel orders.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed ray endpoints drifting during style edits and the first style change being overwritten by an old creation snapshot.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed highlighter and text annotation semantics changing after edits, and drawing-only formulas being placed on the wrong subplot.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.42.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.42.0</span>
         <span class="date">2026-07-12</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>交易笔记全面升级——已平仓交易和每日复盘支持 Markdown 富文本、粘贴图片、策略标记及图文回顾，并自动汇总当天的交易笔记。</span></li>
