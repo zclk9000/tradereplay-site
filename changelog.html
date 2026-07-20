@@ -205,12 +205,52 @@
 
   <main class="releases">
 
+    <!-- v1.50.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.50.0</span>
+        <span class="date">2026-07-20</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>全新交易系统工作流——统一管理系统说明、图标、入场条件、风险规则和退出规则；支持结构化条件、TDX 公式、主观判断及嵌套组合，并可在训练中使用手动核对、信号导航或自动回测。开仓会保存系统与执行快照，多系统持仓、同系统加仓、退出跟踪及平仓复核也已贯通。</span></li>
+        <li><span class="tag tag-new">新增</span><span>全新首页概览工作台，集中展示训练与真实交易表现、交易雷达、近期状态及 AI 教练建议。</span></li>
+        <li><span class="tag tag-new">新增</span><span>画线内容可随训练存档保存，重新打开训练时自动恢复各图表窗格的画线。</span></li>
+        <li><span class="tag tag-new">新增</span><span>开放仓位支持独立交易笔记；选择不同持仓时，右侧笔记和系统信息会随之切换，同时保留下一笔订单草稿。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>重整复盘工作区：训练历史、回测、真实账单、账户复核和存档管理使用统一导航，并保留分类、筛选和页签状态。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>优化交易定位与历史查看：点击交易后保持原列表位置，跨价格区间查看时自动适配图表，进入历史记录会暂停播放。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>提升工作区切换性能，并全面调整亮色与暗色主题、盈亏日历、卡片层级、拖动分隔线及交易工具栏的一致性。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>新安装不再预置演示账户、训练存档和行情数据；首次引导可在中断后继续，用户从自己的数据开始使用。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复切换图表周期后指标窗口和副图状态互相污染，以及跨训练存档残留旧价格轴的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复粘贴 Markdown 时标题、列表等格式未正确解析的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复部分平仓和分批退出未严格遵守品种最小手数步进的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复期货止损、止盈、追踪止损和测量中的点数单位错误：报价点、交易所最小跳动和品种乘数现在分别计算，品种乘数只参与风险金额，不再错误放大止损距离。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复离开图表工作区后历史回放仍继续运行的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>加强备份恢复、数据库迁移、许可证并发与超时、AI 请求、外部链接及文件读取的安全性和异常恢复能力。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>A complete trading-system workflow — manage descriptions, icons, entry conditions, risk rules, and exits in one place; combine structured conditions, TDX formulas, subjective checks, and nested groups; then run the system in Manual Check, Signal Navigation, or Automatic Backtest mode. Entry snapshots, multi-system positions, same-system scaling, exit tracking, and post-trade review are connected end to end.</span></li>
+        <li><span class="tag tag-new">New</span><span>A redesigned Overview workspace brings together training and live-trading performance, the trader radar, recent activity, and AI coach suggestions.</span></li>
+        <li><span class="tag tag-new">New</span><span>Chart drawings are now stored with training sessions and restored per chart pane when a session is reopened.</span></li>
+        <li><span class="tag tag-new">New</span><span>Open positions now have independent trade notes. Selecting another position switches its note and system context without overwriting the next-order draft.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>The review workspace now uses unified navigation for training history, backtests, statements, account review, and archives while preserving categories, filters, and selected tabs.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Trade focus and history review now keep the clicked row in place, refit the chart across different price regimes, and pause playback when History is opened.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Workspace switching is faster, with a broader light/dark theme polish across the P&amp;L calendar, cards, draggable dividers, and trading toolbars.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Fresh installs no longer include demo accounts, sessions, or market data. The first-run guide can resume after interruptions so users begin with their own data.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed indicator windows and subplot state leaking across timeframe changes, plus stale price-scale ranges carrying across training sessions.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed pasted Markdown headings and lists not being parsed correctly.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed partial and scaling exits not always respecting the instrument's minimum volume step.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed futures point units in stops, targets, trailing stops, and measurement: quote points, exchange ticks, and contract multipliers are now handled separately, so the multiplier affects monetary risk without inflating the stop distance.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed historical replay continuing after leaving the chart workspace.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Improved failure safety for backup/restore, database migrations, concurrent licence checks, timeouts, AI requests, external navigation, and file access.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.42.50 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.42.50</span>
         <span class="date">2026-07-14</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>下单前 Markdown 笔记——开仓前即可记录交易计划、进场依据并粘贴图表截图，笔记会随仓位保存到交易记录。</span></li>
