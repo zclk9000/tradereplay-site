@@ -1,131 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>界面截图 — TradeReplay</title>
-<meta name="description" content="TradeReplay 的 10 个核心界面：模拟训练、动态回放、统计、月历、自定义指标、策略回测、每日复盘、Mentor AI。深色为主，数据全部留在本地。" />
-<link rel="icon" href="logo-dark.svg" />
-<style>
-  :root{
-    --bg:#0a0d13;--panel:#10151e;--line:#1b2230;--line2:#232c3c;
-    --teal:#2dd4bf;--blue:#4d8df0;--t1:#eef2f8;--t2:#9aa6b6;--t3:#5d6878;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg);color:var(--t1);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
-  nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(140%) blur(10px);background:rgba(10,13,19,.72);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;gap:14px;height:60px;max-width:1120px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
-  .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#2dd4bf,#1f8f7f);display:grid;place-items:center;color:#06231e;font-weight:800;font-size:12px}
-  .navlink{color:var(--t2);font-size:13px;padding:7px 11px;border-radius:8px}
-  .navlink:hover{color:var(--t1);background:#141a24}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:10px;font-size:13px;font-weight:600;border:1px solid var(--line2);background:#121826;color:var(--t1)}
-  .btn-primary{background:linear-gradient(180deg,#3b82f6,#2f6fe0);border-color:#3b82f6;color:#fff}
-  .head{text-align:center;padding:64px 0 8px}
-  .eyebrow{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(45,212,191,.28);background:rgba(45,212,191,.07);padding:5px 12px;border-radius:999px}
-  .head h1{font-size:42px;font-weight:800;letter-spacing:.6px;margin:20px 0 0}
-  .head p{color:var(--t2);font-size:16px;margin:14px auto 0;max-width:560px;line-height:1.7}
-  .shots{padding:40px 0 20px;display:grid;gap:60px}
-  .shot .cap{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
-  .shot .no{font-size:13px;font-weight:700;color:var(--teal);font-variant-numeric:tabular-nums;min-width:26px}
-  .shot h2{font-size:21px;font-weight:700;letter-spacing:.3px}
-  .shot .desc{color:var(--t2);font-size:14px;margin-left:38px;margin-top:-8px;margin-bottom:14px;line-height:1.6}
-  .frame{border:1px solid var(--line2);border-radius:13px;overflow:hidden;background:#0c1119;box-shadow:0 36px 90px -46px rgba(0,0,0,.8)}
-  .frame img{display:block;width:100%;height:auto}
-  footer{border-top:1px solid var(--line);padding:60px 0 56px;margin-top:60px;text-align:center}
-  footer h2{font-size:28px;font-weight:800;letter-spacing:.4px}
-  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
-  .foot-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:13px}
-  .foot-links a{color:var(--t2)} .foot-links a:hover{color:var(--t1)}
-  .copyright{color:var(--t3);font-size:12px;margin-top:22px}
-  @media(max-width:760px){.head h1{font-size:30px}.shot h2{font-size:18px}.shot .desc{margin-left:0}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>产品界面 — TradeReplay</title>
+  <meta name="description" content="查看 TradeReplay v1.50.20 的交易系统、逐根复盘与统计诊断真实界面。">
+  <meta name="theme-color" content="#f7f9fc">
+  <link rel="icon" href="logo.svg">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="TradeReplay 首页">
+        <img src="logo.svg" width="32" height="32" alt="">
+        <span>TradeReplay</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>菜单</button>
+      <nav class="site-nav" id="site-nav" aria-label="主导航" data-menu>
+        <a href="index.html#product">产品</a>
+        <a href="index.html#pricing">定价</a>
+        <a href="guide.html">帮助</a>
+      </nav>
+      <a class="button button-small header-cta" href="index.html#download">免费下载</a>
+    </div>
+  </header>
 
-<nav><div class="wrap">
-  <a class="brand" href="/"><img src="logo-dark.svg" alt="TradeReplay" style="height:27px;width:auto;display:block"/>TradeReplay</a>
-  <span style="flex:1"></span>
-  <a class="navlink" href="/">首页</a>
-  <a class="navlink" href="/changelog">更新日志</a>
-  <a class="navlink" href="/support">支持</a>
-</div></nav>
+  <main id="main" class="subpage-main">
+    <section class="page-hero">
+      <div class="shell">
+        <p class="section-kicker">v1.50.20 实际界面</p>
+        <h1>先看产品，再决定要不要下载。</h1>
+        <p>没有概念渲染，没有交易员素材。下面三张图直接来自隔离的样例数据库，展示 TradeReplay 最重要的闭环。</p>
+      </div>
+    </section>
 
-<main class="shots" style="padding-top:56px"><div class="wrap" style="display:grid;gap:60px">
+    <section class="shot-gallery" aria-label="TradeReplay 界面截图">
+      <article class="shot-block">
+        <div class="shell shot-layout">
+          <div class="shot-copy">
+            <p class="section-kicker">01 · 交易系统</p>
+            <h2>把交易前清单和交易后样本放进同一套系统。</h2>
+            <p>入场、风险、出场、禁做条件可以混合客观信号与主观确认，并保存版本和执行样本。</p>
+          </div>
+          <figure class="feature-visual">
+            <img src="assets/app-current-system-workspace-dark.png" width="1440" height="900" alt="TradeReplay 交易系统工作台">
+            <figcaption>系统概览 · 自动核对 · 规则分区 · 样本归集</figcaption>
+          </figure>
+        </div>
+      </article>
 
-  <section class="shot">
-    <div class="cap"><span class="no">01</span><h2>概览驾驶舱</h2></div>
-    <p class="desc">账户全貌、战力雷达、净值曲线与最近交易，一屏掌握当前状态。</p>
-    <div class="frame"><img src="/screenshots/01-overview.png" alt="概览驾驶舱" loading="lazy" /></div>
-  </section>
+      <article class="shot-block shot-block-tinted">
+        <div class="shell shot-layout shot-layout-reverse">
+          <figure class="feature-visual">
+            <img src="assets/app-current-replay-dark.png" width="1440" height="900" alt="TradeReplay 逐根复盘图表与下单面板">
+            <figcaption>多周期图表 · 逐根回放 · 绘图 · 真实撮合</figcaption>
+          </figure>
+          <div class="shot-copy">
+            <p class="section-kicker">02 · 历史演练</p>
+            <h2>在当时能看到的信息里，重新做一遍决定。</h2>
+            <p>拖动止盈止损，管理仓位和保证金；模拟结果、执行理由与系统核对结果一起保存。</p>
+          </div>
+        </div>
+      </article>
 
-  <section class="shot">
-    <div class="cap"><span class="no">02</span><h2>模拟训练 · 拖拽止盈止损</h2></div>
-    <p class="desc">在历史 K 线上逐根推进，直接在图表上拖动设置 SL / TP，点数、盈亏、风险回报实时联动。</p>
-    <div class="frame"><img src="/screenshots/02-training.png" alt="模拟训练" loading="lazy" /></div>
-  </section>
+      <article class="shot-block">
+        <div class="shell shot-layout">
+          <div class="shot-copy">
+            <p class="section-kicker">03 · 真实诊断</p>
+            <h2>先算清发生了什么，再决定下一步改什么。</h2>
+            <p>净盈亏、回撤、期望、MAE/MFE 和行为泄漏由确定性引擎计算，Mentor 再给出有上下文的行动建议。</p>
+          </div>
+          <figure class="feature-visual">
+            <img src="assets/app-current-stats-dark.png" width="1440" height="900" alt="TradeReplay 统计诊断与 AI 评论">
+            <figcaption>统计结论 · 风险指标 · DeepSeek 评论 · 系统反馈</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
 
-  <section class="shot">
-    <div class="cap"><span class="no">03</span><h2>回看进出场 · 动态回放</h2></div>
-    <p class="desc">选中任意一笔成交，在原始 K 线上逐根重走进出场——该不该进、该不该走，一目了然。</p>
-    <div class="frame"><img src="/screenshots/03-replay.png" alt="动态回放" loading="lazy" /></div>
-  </section>
+    <section class="subpage-cta">
+      <div class="shell subpage-cta-inner">
+        <div>
+          <p class="section-kicker">无他，唯手熟尔。</p>
+          <h2>下一次复盘，留下可以改进的证据。</h2>
+        </div>
+        <a class="button" href="index.html#download">免费下载</a>
+      </div>
+    </section>
+  </main>
 
-  <section class="shot">
-    <div class="cap"><span class="no">04</span><h2>统计交易表现 · 找出优势与劣势</h2></div>
-    <p class="desc">按品种、时段、方向拆解胜率与盈亏，看清钱从哪来、往哪漏。</p>
-    <div class="frame"><img src="/screenshots/04-stats.png" alt="统计交易表现" loading="lazy" /></div>
-  </section>
-
-  <section class="shot">
-    <div class="cap"><span class="no">05</span><h2>导入真实账单 · 月历查看</h2></div>
-    <p class="desc">导入 MT4 / MT5 / 期货对账单，按日历回看每天的真实盈亏。</p>
-    <div class="frame"><img src="/screenshots/05-calendar.png" alt="真实账单月历" loading="lazy" /></div>
-  </section>
-
-  <section class="shot">
-    <div class="cap"><span class="no">06</span><h2>自定义通达信指标</h2></div>
-    <p class="desc">用熟悉的通达信公式，写你自己的指标挂上图表。</p>
-    <div class="frame"><img src="/screenshots/06-indicators.png" alt="自定义通达信指标" loading="lazy" /></div>
-  </section>
-
-  <section class="shot">
-    <div class="cap"><span class="no">07</span><h2>策略回测 · 扫描胜率盈亏</h2></div>
-    <p class="desc">把想法跑在历史行情上，一键扫出胜率与盈亏。</p>
-    <div class="frame"><img src="/screenshots/07-backtest.png" alt="策略回测" loading="lazy" /></div>
-  </section>
-
-  <section class="shot">
-    <div class="cap"><span class="no">08</span><h2>同策略归集 · 统计胜率</h2></div>
-    <p class="desc">相同策略的交易自动归并，统计它真实的期望与胜率。</p>
-    <div class="frame"><img src="/screenshots/08-aggregate.png" alt="同策略归集" loading="lazy" /></div>
-  </section>
-
-  <section class="shot">
-    <div class="cap"><span class="no">09</span><h2>每日复盘日记</h2></div>
-    <p class="desc">训练 / 实盘分开记录，下单时记下策略与入场理由，按日历归档复盘。</p>
-    <div class="frame"><img src="/screenshots/09-journal.png" alt="每日复盘日记" loading="lazy" /></div>
-  </section>
-
-  <section class="shot">
-    <div class="cap"><span class="no">10</span><h2>Mentor AI</h2></div>
-    <p class="desc">读遍你导入的真实账单和模拟训练，60 秒生成一份能读懂的复盘。</p>
-    <div class="frame" style="max-width:430px;margin:0 auto"><img src="/screenshots/10-mentor.png" alt="Mentor AI" loading="lazy" /></div>
-  </section>
-
-</div></main>
-
-<footer><div class="wrap">
-  <h2>把判断，练成肌肉记忆</h2>
-  <div class="cta">
-    <a class="btn btn-primary" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-Setup.exe">下载 Windows 版</a>
-    <a class="btn" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-arm64.dmg">下载 Mac 版</a>
-  </div>
-  <div class="foot-links"><a href="/">首页</a><a href="/changelog">更新日志</a><a href="/privacy">隐私政策</a><a href="/terms">条款</a><a href="/support">支持</a><a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671">购买激活码</a></div>
-  <div class="copyright">© 2026 格物工坊 · TradeReplay</div>
-</div></footer>
-
+  <footer class="site-footer">
+    <div class="shell footer-layout">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="logo.svg" width="32" height="32" alt="">
+          <span>TradeReplay</span>
+        </a>
+        <p>练的不是行情，是你的交易系统。</p>
+      </div>
+      <div class="footer-links">
+        <div><h2>产品</h2><a href="index.html#product">核心功能</a><a href="index.html#pricing">定价</a><a href="index.html#download">下载</a></div>
+        <div><h2>资源</h2><a href="guide.html">使用说明</a><a href="changelog.html">更新日志</a><a href="support.html">支持</a></div>
+        <div><h2>条款</h2><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
+      </div>
+    </div>
+    <div class="shell footer-bottom"><p>© <span data-year>2026</span> 格物工坊 · TradeReplay</p><p>Mac / Windows · 本地优先</p></div>
+  </footer>
 </body>
 </html>

@@ -1,542 +1,355 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TradeReplay — 交易复盘训练 + 真实交易日志</title>
-<meta name="description" content="交易复盘训练 + 真实交易日志。在历史 K 线上逐根回放、反复模拟训练，练盘感与纪律；导入 MT4 / MT5 / 期货对账单，自动统计胜率、盈亏比、最大回撤。Mac / Windows，数据全部留在本地。" />
-<link rel="icon" href="logo-dark.svg" />
-<style>
-  :root{
-    --bg:#0a0d13; --bg2:#0d1118; --panel:#10151e; --panel2:#0e131b;
-    --line:#1b2230; --line2:#232c3c;
-    --teal:#2dd4bf; --teal-dim:#26a69a;
-    --red:#f0544c; --red-dim:#ef5350;
-    --blue:#4d8df0;
-    --t1:#eef2f8; --t2:#9aa6b6; --t3:#5d6878;
-    --tealfill:rgba(45,212,191,.10); --redfill:rgba(240,84,76,.10);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg);color:var(--t1);
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
-  a{color:inherit;text-decoration:none}
-
-  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
-
-  nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(140%) blur(10px);
-    background:rgba(10,13,19,.72);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;gap:14px;height:60px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:.2px}
-  .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#2dd4bf,#1f8f7f);
-    display:grid;place-items:center;color:#06231e;font-weight:800;font-size:12px}
-  .spacer{flex:1}
-  .navlink{color:var(--t2);font-size:13px;padding:7px 11px;border-radius:8px;border:1px solid transparent}
-  .navlink:hover{color:var(--t1);background:#141a24}
-  .dot{width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);display:grid;place-items:center;color:var(--t2)}
-
-  /* hero */
-  .hero{position:relative;overflow:hidden;padding:104px 0 72px}
-  .glow{position:absolute;left:50%;top:-160px;transform:translateX(-50%);
-    width:900px;height:520px;pointer-events:none;
-    background:radial-gradient(50% 50% at 50% 50%,rgba(45,212,191,.16),rgba(45,212,191,0) 70%);filter:blur(8px)}
-  .hero .wrap{position:relative;text-align:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--teal);
-    border:1px solid rgba(45,212,191,.28);background:rgba(45,212,191,.07);
-    padding:5px 12px;border-radius:999px;margin-bottom:22px}
-  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
-  h1{font-size:62px;line-height:1.04;font-weight:800;letter-spacing:1px;
-    background:linear-gradient(180deg,#ffffff, #c8d2df);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{margin:20px auto 0;font-size:19px;color:var(--t1);font-weight:500}
-  .lede{margin:14px auto 0;max-width:640px;font-size:15px;line-height:1.75;color:var(--t2)}
-
-  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:44px}
-  .btn{display:inline-flex;align-items:center;gap:11px;padding:12px 18px;border-radius:12px;
-    font-size:14px;font-weight:600;border:1px solid var(--line2);background:#121826;color:var(--t1);
-    transition:transform .12s ease,border-color .15s ease,background .15s ease}
-  .btn:hover{transform:translateY(-1px);border-color:#33405a;background:#161d2c}
-  .btn .ico{font-size:18px;line-height:0}
-  .btn small{display:block;font-size:11px;font-weight:500;color:var(--t3);margin-top:1px}
-  .btn-primary{background:linear-gradient(180deg,#3b82f6,#2f6fe0);border-color:#3b82f6;color:#fff}
-  .btn-primary small{color:#cfe0fb}
-  .btn-primary:hover{background:linear-gradient(180deg,#4a8cf8,#356fe0)}
-  .minilinks{display:flex;gap:18px;justify-content:center;margin-top:18px;font-size:13px;color:var(--t2)}
-  .minilinks a{display:inline-flex;align-items:center;gap:6px;color:var(--t2)}
-  .minilinks a:hover{color:var(--t1)}
-  .chip{width:16px;height:16px;border-radius:4px;display:inline-block}
-
-  /* app window demo */
-  .stage{position:relative;margin:96px auto 0;max-width:1000px}
-  .win{border:1px solid var(--line2);border-radius:16px;overflow:hidden;
-    background:linear-gradient(180deg,#0e131b,#0b0f16);
-    box-shadow:0 40px 120px -40px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset}
-  .titlebar{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);background:#0c1118}
-  .lights{display:flex;gap:7px}
-  .lights span{width:11px;height:11px;border-radius:50%}
-  .tb-tabs{display:flex;gap:6px;margin-left:14px;font-size:12px;color:var(--t3)}
-  .tb-tabs b{color:var(--t1);font-weight:600;background:#161d28;padding:3px 9px;border-radius:6px}
-  .tb-tabs span{padding:3px 9px}
-  .toolbar{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-bottom:1px solid var(--line);background:#0b1017;color:var(--t2);font-size:11.5px}
-  .tf{display:flex;gap:2px;background:#0e141d;border:1px solid var(--line);border-radius:8px;padding:3px}
-  .tf b{color:var(--t1);background:#1b2433;padding:3px 7px;border-radius:5px;font-weight:600}
-  .tf span{padding:3px 7px;color:var(--t3)}
-  .seg{display:flex;align-items:center;gap:6px;background:#0e141d;border:1px solid var(--line);border-radius:8px;padding:4px 8px}
-  .seg .play{width:16px;height:16px;border-radius:50%;background:var(--teal);display:inline-block}
-  .speed{flex:1;display:flex;align-items:center;gap:8px;justify-content:flex-end}
-  .track{width:120px;height:4px;border-radius:3px;background:#1b2230;position:relative}
-  .track i{position:absolute;left:0;top:0;height:100%;width:54%;border-radius:3px;background:var(--blue)}
-  .track .knob{position:absolute;left:54%;top:50%;width:12px;height:12px;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
-
-  .demo{display:grid;grid-template-columns:1fr 232px}
-  .chart{position:relative;background:#0a0e15}
-  .chart svg{display:block;width:100%;height:auto}
-  .panel{border-left:1px solid var(--line);background:#0c1119;padding:14px 14px 16px}
-  .pquote{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
-  .pquote .sym{font-size:13px;font-weight:600}
-  .pquote .px{font-size:15px;font-weight:600;color:var(--blue)}
-  .row{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--t3);margin:9px 0}
-  .field{background:#0e141d;border:1px solid var(--line2);border-radius:8px;height:30px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:12.5px;font-weight:600;min-width:96px}
-  .field.sl{color:var(--red)} .field.tp{color:var(--teal)}
-  .pbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-  .pb{height:38px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:700;letter-spacing:1px}
-  .sell{background:#7f1d1d;color:#fecaca} .buy{background:#0f5132;color:#bbf7d0}
-  .closeall{margin-top:8px;height:34px;border-radius:9px;background:#101722;border:1px solid var(--line2);display:grid;place-items:center;font-size:12px;color:var(--t2)}
-
-  .caption{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:18px;font-size:13px;color:var(--t2)}
-  .caption .k{color:var(--teal)}
-
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}.d4{animation-delay:.3s}.d5{animation-delay:.42s}
-
-  @media(max-width:760px){h1{font-size:40px}.demo{grid-template-columns:1fr}.panel{display:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TradeReplay — 练的不是行情，是你的交易系统</title>
+  <meta name="description" content="把交易规则写清楚，在历史行情里反复验证，再用 MT4、MT5 与期货月报检查自己有没有做到。TradeReplay 提供逐根复盘、交易系统、真实账单与确定性诊断，支持 Mac 和 Windows。">
+  <meta name="theme-color" content="#f7f9fc">
+  <meta property="og:title" content="TradeReplay — 练的不是行情，是你的交易系统">
+  <meta property="og:description" content="从定义规则、历史演练到真实账单与诊断改进，一套本地桌面工具完成交易复盘闭环。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tradereplay.dev/">
+  <meta property="og:image" content="https://tradereplay.dev/assets/app-current-system-workspace-dark.png">
+  <link rel="icon" href="logo.svg">
+  <link rel="preload" href="assets/app-current-system-workspace-dark.png" as="image">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到正文</a>
 
-<nav><div class="wrap">
-  <div class="brand"><img src="logo-dark.svg" alt="TradeReplay" style="height:27px;width:auto;display:block"/>TradeReplay</div>
-  <span class="spacer" style="flex:1"></span>
-  <a class="navlink" href="/screenshots">界面截图</a><a class="navlink" href="/guide">使用说明</a><a class="navlink" href="/changelog">更新日志</a><a class="navlink" href="/support">支持</a>
-</div></nav>
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="TradeReplay 首页">
+        <img src="logo.svg" width="32" height="32" alt="">
+        <span>TradeReplay</span>
+      </a>
 
-<section class="hero">
-  <span class="glow"></span>
-  <div class="wrap">
-    <h1 class="rise d2">无他，唯手熟尔</h1>
-    <p class="sub rise d2">交易复盘训练 + 真实交易日志中心</p>
-    <p class="lede rise d3">在历史 K 线上反复模拟训练，练盘感、练纪律；导入真实对账单，自动看清胜率、盈亏与回撤。一切只为把判断练成肌肉记忆。</p>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>菜单</button>
 
-    <div class="cta rise d4">
-      <a class="btn btn-primary" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-Setup.exe"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M3 3h8.4v8.4H3zM12.6 3H21v8.4h-8.4zM3 12.6h8.4V21H3zM12.6 12.6H21V21h-8.4z"/></svg></span><span>下载 Windows 版<small>v1.50.20 · Win 10/11 · 64 位</small></span></a>
-      <a class="btn" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-arm64.dmg"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.47 7.82 1.3 10.38.86 1.25 1.89 2.66 3.24 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.28-1.28 3.14-2.54.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.72-1.05-2.75-4.16zM14.5 4.5c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-.99 3.18 1.15.09 2.32-.59 2.94-1.46z"/></svg></span><span>下载 Mac 版<small>v1.50.20 · Apple 芯片</small></span></a>
-      <a class="btn" href="https://apps.apple.com/app/id6766245495"><span class="ico"><img src="app-store.webp" width="16" height="16" alt="App Store" style="display:block;border-radius:4px"/></span><span>Mac App Store<small>Apple 芯片 · App Store 版</small></span></a>
+      <nav class="site-nav" id="site-nav" aria-label="主导航" data-menu>
+        <a href="#product">产品</a>
+        <a href="#pricing">定价</a>
+        <a href="guide.html">帮助</a>
+      </nav>
+
+      <a class="button button-small header-cta" href="#download">免费下载</a>
     </div>
-    <div class="minilinks rise d4">
-      <a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"><span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:#ff5000;color:#fff;font-weight:800;font-size:13px;line-height:1;flex-shrink:0">淘</span>购买激活码</a>
-      <a href="https://qm.qq.com/q/xxGMPN3N2E"><img src="/qq.png" alt="QQ" style="height:20px;width:auto;flex-shrink:0" />交流答疑 · QQ 群 559076777</a>
-    </div>
+  </header>
 
-    <div class="stage rise d5">
-      <div class="win">
-        <div class="titlebar">
-          <div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
-          <div class="tb-tabs"><b>模拟训练</b><span>历史</span><span>统计</span><span>存档</span></div>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="shell hero-layout">
+        <div class="hero-copy">
+          <p class="brand-line">无他，唯手熟尔。</p>
+          <h1 id="hero-title"><span class="hero-line">练的不是行情，</span><span class="hero-line">是你的交易系统<span class="hero-dot">。</span></span></h1>
+          <p class="hero-lede">把规则写清楚，在历史行情里反复验证，再用真实交易检查自己有没有做到。</p>
+          <div class="hero-actions">
+            <a class="button" href="#download">开始免费训练</a>
+            <a class="button button-quiet" href="#loop">看完整闭环</a>
+          </div>
+          <ul class="trust-row" aria-label="产品特征">
+            <li>Mac / Windows</li>
+            <li>数据本地保存</li>
+            <li>一次买断</li>
+          </ul>
         </div>
-        <div class="toolbar">
-          <div class="tf"><span>M1</span><span>M5</span><b>M15</b><span>M30</span><span>H1</span><span>H4</span><span>D1</span></div>
-          <div class="seg"><span>‹</span><span class="play"></span><span>›</span></div>
-          <div class="speed"><span style="color:var(--t3)">⏱</span><span class="track"><i></i><span class="knob"></span></span><span style="color:var(--t1);font-weight:600" class="num">12 ×</span><span style="color:var(--t3)">CP ▾</span></div>
+
+        <div class="hero-product" aria-label="TradeReplay 产品画面">
+          <div class="product-frame">
+            <div class="product-frame-bar">
+              <span class="frame-name">TradeReplay · 交易系统</span>
+              <div class="frame-tabs" role="tablist" aria-label="产品画面切换">
+                <button type="button" role="tab" aria-selected="true" data-shot="system">系统</button>
+                <button type="button" role="tab" aria-selected="false" data-shot="replay">复盘</button>
+                <button type="button" role="tab" aria-selected="false" data-shot="diagnosis">诊断</button>
+              </div>
+            </div>
+            <img
+              src="assets/app-current-system-workspace-dark.png"
+              width="1440"
+              height="900"
+              alt="TradeReplay 交易系统工作台，展示入场检查、风险规则、出场规则和禁做条件"
+              data-product-image
+            >
+          </div>
+          <p class="product-caption" data-product-caption>把入场、风险、出场与禁做条件放进同一套系统。</p>
         </div>
-        <div class="demo">
-          <div class="chart"><svg id="cv" viewBox="0 0 720 372" preserveAspectRatio="none" aria-label="训练图表：拖动设置止盈止损"></svg></div>
-          <div class="panel">
-            <div class="pquote"><span class="sym">EURUSD</span><span class="px num">1.17190</span></div>
-            <div class="row"><span>手数</span><span class="field num">1.00</span></div>
-            <div class="row"><span>SL 价格</span><span class="field sl num" id="slField">1.17000</span></div>
-            <div class="row"><span>TP 价格</span><span class="field tp num">1.17440</span></div>
-            <div class="row" style="margin-top:12px"><span>风险回报</span><span style="color:var(--t1);font-weight:600" class="num" id="rrField">R:R 1.10</span></div>
-            <div class="pbtns"><div class="pb sell">卖出</div><div class="pb buy">买入</div></div>
-            <div class="closeall">全部平仓 ▾</div>
+
+        <ol class="hero-loop" id="loop" aria-label="TradeReplay 复盘闭环">
+          <li>
+            <span>01</span>
+            <strong>定义规则</strong>
+            <p>写下系统边界与执行条件</p>
+          </li>
+          <li>
+            <span>02</span>
+            <strong>历史演练</strong>
+            <p>在过去行情里反复执行</p>
+          </li>
+          <li>
+            <span>03</span>
+            <strong>真实账单</strong>
+            <p>导入交易记录验证一致性</p>
+          </li>
+          <li>
+            <span>04</span>
+            <strong>诊断改进</strong>
+            <p>把漏洞变成下一条规则</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="statement" aria-label="产品定位">
+      <div class="shell statement-inner">
+        <p>从主观判断，到可回放、可统计、可改进的执行证据。</p>
+        <div class="statement-proof">
+          <span>逐根回放</span>
+          <span>真实账单</span>
+          <span>交易系统</span>
+          <span>确定性诊断</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section product-section" id="product" aria-labelledby="system-title">
+      <div class="shell feature-layout">
+        <div class="feature-copy">
+          <p class="section-kicker">01 · 交易系统</p>
+          <h2 id="system-title">同一套规则，贯穿交易前、交易中和复盘后。</h2>
+          <p>条件不再散落在笔记、指标和脑海里。客观条件自动判断，主观条件由你确认；系统版本、核对结果与交易样本一起保存。</p>
+          <dl class="feature-facts">
+            <div>
+              <dt>手动核对</dt>
+              <dd>下单前按清单逐项确认，培养纪律。</dd>
+            </div>
+            <div>
+              <dt>信号导航</dt>
+              <dd>扫描历史信号，命中后暂停并生成风险计划。</dd>
+            </div>
+            <div>
+              <dt>自动回测</dt>
+              <dd>让同一套客观规则直接进入回测执行。</dd>
+            </div>
+          </dl>
+        </div>
+        <figure class="feature-visual visual-wide">
+          <img src="assets/app-current-system-workspace-dark.png" width="1440" height="900" alt="深色主题的 TradeReplay 交易系统工作台">
+          <figcaption>v1.50.20 实际界面 · 系统、规则、样本与表现放在同一个工作区</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-tinted" aria-labelledby="replay-title">
+      <div class="shell feature-layout feature-layout-reverse">
+        <figure class="feature-visual">
+          <img src="assets/app-current-replay-dark.png" width="1440" height="900" alt="TradeReplay 深色复盘图表，显示逐根 K 线回放和下单面板">
+          <figcaption>真正的桌面级复盘：多周期、绘图、撮合、保证金与仓位管理</figcaption>
+        </figure>
+        <div class="feature-copy">
+          <p class="section-kicker">02 · 历史演练</p>
+          <h2 id="replay-title">不是看完一张图，而是重新做一遍决定。</h2>
+          <p>在历史 K 线上逐根前进，按当时能看到的信息下单。止损、止盈、部分平仓、保本、移动止损和强平逻辑都按真实规则运行。</p>
+          <ul class="plain-list">
+            <li>外汇、贵金属、股指、加密货币与中国期货</li>
+            <li>多周期同步、绘图工具、自定义通达信公式指标</li>
+            <li>手续费、隔夜费、保证金与期货平今/平昨口径</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="diagnosis-title">
+      <div class="shell feature-layout">
+        <div class="feature-copy">
+          <p class="section-kicker">03 · 真实诊断</p>
+          <h2 id="diagnosis-title">让真实账单反证你的系统。</h2>
+          <p>导入 MT4、MT5 或中国期货监控中心月报，把真实进出场重新放回历史图表。先由确定性引擎计算，再让 Mentor 把问题翻成能执行的改进动作。</p>
+          <ul class="plain-list">
+            <li>MAE / MFE、半 Kelly、盈利因子、回撤与 R 分布</li>
+            <li>小时 × 星期热力图、成本泄漏与行为偏差检测</li>
+            <li>按交易系统归集实盘与训练样本，比较执行一致性</li>
+          </ul>
+        </div>
+        <figure class="feature-visual">
+          <img src="assets/app-current-stats-dark.png" width="1440" height="900" alt="TradeReplay 统计诊断界面，展示净盈亏、风险指标和 AI 评论">
+          <figcaption>确定性指标先算清，再由 AI 给出有上下文的短评与行动建议</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section evidence-section" aria-labelledby="evidence-title">
+      <div class="shell">
+        <div class="section-heading compact-heading">
+          <p class="section-kicker">不是功能堆砌</p>
+          <h2 id="evidence-title">这些难事，TradeReplay 已经替你处理好。</h2>
+        </div>
+        <div class="evidence-grid">
+          <article>
+            <p class="evidence-number">82</p>
+            <h3>中国期货品种规格</h3>
+            <p>交易所 tick、合约乘数、保证金率和开仓/平今/平昨手续费按品种驱动。</p>
+          </article>
+          <article>
+            <p class="evidence-number">1</p>
+            <h3>指标与回测引擎</h3>
+            <p>通达信公式在图表与回测里共用同一套求值逻辑，减少“显示能用、回测失真”。</p>
+          </article>
+          <article>
+            <p class="evidence-number">4</p>
+            <h3>系统规则分区</h3>
+            <p>入场、风险、出场、禁做条件一起保存，主观判断和客观信号可以共存。</p>
+          </article>
+          <article>
+            <p class="evidence-number">0</p>
+            <h3>云端交易库依赖</h3>
+            <p>核心数据默认保存在本机。你可以备份、恢复和迁移，而不是被锁在网页账户里。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing-section" id="pricing" aria-labelledby="pricing-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="section-kicker">清楚的定价</p>
+          <h2 id="pricing-title">先免费练，确定有用再升级。</h2>
+          <p>不订阅，不靠云端保存你的交易库。专业版 ¥299，一次买断。</p>
+        </div>
+
+        <div class="pricing-layout">
+          <article class="plan plan-free">
+            <div class="plan-heading">
+              <div>
+                <p class="plan-name">Free</p>
+                <h3>完整体验复盘闭环</h3>
+              </div>
+              <p class="plan-price"><strong>¥0</strong><span>永久免费</span></p>
+            </div>
+            <ul>
+              <li>1 个真实账户</li>
+              <li>最多 2 个训练 session</li>
+              <li>5 个常用品种、近 2 年历史数据</li>
+              <li>复盘、日志、基础统计与自定义指标</li>
+            </ul>
+            <a class="button button-quiet button-block" href="#download">免费下载</a>
+          </article>
+
+          <article class="plan plan-pro">
+            <div class="plan-badge">推荐</div>
+            <div class="plan-heading">
+              <div>
+                <p class="plan-name">Pro</p>
+                <h3>把交易系统真正跑起来</h3>
+              </div>
+              <p class="plan-price"><strong>¥299</strong><span>终身买断</span></p>
+            </div>
+            <ul>
+              <li>不限真实账户与训练 session</li>
+              <li>完整历史数据、中国期货与多品种</li>
+              <li>交易系统、信号导航与完整回测</li>
+              <li>高级统计、交易诊断与 Mentor 模块</li>
+            </ul>
+            <a class="button button-block" href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671" target="_blank" rel="noopener">购买专业版激活码</a>
+          </article>
+        </div>
+        <p class="pricing-note">专业版为桌面直售激活码。AI 模型服务由用户在软件内自行配置；交易数据不会因为升级而上传到 TradeReplay 账户。</p>
+      </div>
+    </section>
+
+    <section class="section download-section" id="download" aria-labelledby="download-title">
+      <div class="shell download-layout">
+        <div class="download-copy">
+          <p class="section-kicker">v1.50.20 · 2026-07-21</p>
+          <h2 id="download-title">从下一次复盘开始，留下可以改进的证据。</h2>
+          <p>免费版无需注册即可开始。安装后数据保存在本机，支持随时备份与恢复。</p>
+          <div class="download-links">
+            <a class="button" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-Setup.exe">下载 Windows 版</a>
+            <a class="button button-quiet" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-arm64.dmg">下载 Mac 版</a>
+          </div>
+          <div class="download-meta">
+            <a href="https://apps.apple.com/app/id6766245495" target="_blank" rel="noopener">Mac App Store 版</a>
+            <a href="changelog.html">查看更新日志</a>
           </div>
         </div>
+
+        <aside class="requirements" aria-label="系统要求">
+          <h3>系统要求</h3>
+          <dl>
+            <div><dt>Windows</dt><dd>Windows 10 / 11 · 64 位</dd></div>
+            <div><dt>Mac</dt><dd>Apple 芯片 · macOS 12+</dd></div>
+            <div><dt>数据</dt><dd>核心数据默认保存在本机</dd></div>
+            <div><dt>支持</dt><dd><a href="https://qm.qq.com/q/xxGMPN3N2E" target="_blank" rel="noopener">QQ 群 559076777</a></dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section faq-section" aria-labelledby="faq-title">
+      <div class="shell faq-layout">
+        <div class="section-heading faq-heading">
+          <p class="section-kicker">常见问题</p>
+          <h2 id="faq-title">下载前，你可能还想确认这些。</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>免费版能不能真正做复盘？</summary>
+            <p>可以。免费版保留完整的基础复盘体验：创建训练、逐根回放、记录交易、写日志和查看基础统计。限制主要在账户/session 数量、数据范围、中国期货与专业分析模块。</p>
+          </details>
+          <details>
+            <summary>我的交易记录会上传到云端吗？</summary>
+            <p>核心交易库默认保存在本机。导入账单、训练记录、日志和统计都由桌面端管理；你可以自己备份和恢复。</p>
+          </details>
+          <details>
+            <summary>支持哪些真实交易账单？</summary>
+            <p>当前支持 MT4、MT5 报表，以及中国期货市场监控中心（CFMMC）月度账单。导入后可按账户、交易系统和品种统计，并回到历史图表查看进出场。</p>
+          </details>
+          <details>
+            <summary>专业版是不是订阅？</summary>
+            <p>不是。官网直售专业版为 ¥299 一次买断。激活码通过购买渠道发放，可在软件设置里绑定设备并激活。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-layout">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <img src="logo.svg" width="32" height="32" alt="">
+          <span>TradeReplay</span>
+        </a>
+        <p>练的不是行情，是你的交易系统。</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h2>产品</h2>
+          <a href="#product">核心功能</a>
+          <a href="screenshots.html">界面截图</a>
+          <a href="#pricing">定价</a>
+          <a href="#download">下载</a>
+        </div>
+        <div>
+          <h2>资源</h2>
+          <a href="guide.html">使用说明</a>
+          <a href="changelog.html">更新日志</a>
+          <a href="support.html">支持</a>
+          <a href="https://qm.qq.com/q/xxGMPN3N2E" target="_blank" rel="noopener">QQ 交流群</a>
+        </div>
+        <div>
+          <h2>条款</h2>
+          <a href="privacy.html">隐私政策</a>
+          <a href="terms.html">服务条款</a>
+        </div>
       </div>
     </div>
-
-    <div class="caption rise d5">
-      <span>训练 · 直接在图表上<span class="k"> 拖动 </span>设置止盈止损，点数 / 盈亏 / 风险回报实时联动</span>
+    <div class="shell footer-bottom">
+      <p>© <span data-year>2026</span> 格物工坊 · TradeReplay</p>
+      <p>Mac / Windows · 本地优先</p>
     </div>
-  </div>
-</section>
-
-<style>
-  .section{padding:78px 0;border-top:1px solid var(--line)}
-  .feat{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
-  .feat.rev .copy{order:2}
-  .eyebrow2{font-size:12.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase}
-  .copy h2{font-size:34px;line-height:1.22;font-weight:800;letter-spacing:.4px;margin:14px 0 0}
-  .copy p{margin:16px 0 0;font-size:15.5px;line-height:1.8;color:var(--t2)}
-  .bullets{list-style:none;margin:22px 0 0;display:grid;gap:11px}
-  .bullets li{display:flex;gap:10px;font-size:14px;color:var(--t1)}
-  .bullets .bk{color:var(--teal);font-weight:700}
-  .mock{border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#0e131b,#0b0f16);box-shadow:0 34px 90px -44px rgba(0,0,0,.78)}
-  .mock .titlebar{height:34px}
-
-  .jr{display:grid;grid-template-columns:152px 1fr;min-height:272px}
-  .jr-list{border-right:1px solid var(--line);padding:8px 0;background:#0b1017;font-size:11px}
-  .jr-mh{padding:6px 12px;color:var(--t3);font-size:10px;letter-spacing:.5px}
-  .jr-row{display:flex;justify-content:space-between;padding:6px 12px;color:var(--t2)}
-  .jr-row.sel{background:#14202e;color:var(--t1);box-shadow:inset 2px 0 0 var(--blue)}
-  .jr-detail{padding:15px 16px}
-  .jr-h{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:13px}
-  .sstrat{display:inline-flex;align-items:center;gap:8px;background:#0e141d;border:1px solid var(--line2);border-radius:7px;padding:6px 11px;font-size:12px;color:var(--t1)}
-  .jr-lab{font-size:10.5px;color:var(--t3);margin:15px 0 6px;letter-spacing:.4px}
-  .jr-reason{font-size:13px;color:var(--t1);line-height:1.6;min-height:20px}
-  .jr-note{margin-top:12px;background:#0c1119;border:1px solid var(--line2);border-radius:8px;padding:11px 12px;font-size:12.5px;color:var(--t2);line-height:1.65;min-height:66px}
-  .cursor{display:inline-block;width:6px;height:14px;background:var(--teal);vertical-align:-2px;margin-left:1px;animation:blink 1.05s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
-
-  .rp{padding:12px 12px 13px}
-  .rp-h{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--t3);margin-bottom:6px}
-  .rp-h b{color:var(--t1);font-weight:600;font-size:13px}
-  .rp-h .pl{margin-left:auto;font-weight:700;font-size:14px}
-  .rp-foot{display:flex;align-items:center;gap:11px;margin-top:6px;font-size:11px;color:var(--t3)}
-  .rp-play{display:inline-flex;align-items:center;gap:6px;background:#0f5132;color:#bbf7d0;border-radius:6px;padding:4px 11px;font-weight:600}
-
-  .ai{padding:16px;min-height:300px;display:flex;flex-direction:column;gap:13px}
-  .ai-head{display:flex;align-items:center;gap:7px;font-size:13px}
-  .ai-spark{color:#838aff;font-size:15px}
-  .ai-bar{display:flex;align-items:center;gap:8px}
-  .ai-pill{font-size:11px;color:var(--t2);background:#0e141d;border:1px solid var(--line);border-radius:7px;padding:5px 10px}
-  .ai-pill.on{color:#fff;background:#3730a3;border-color:#4f46e5}
-  .ai-gen{margin-left:auto;background:linear-gradient(180deg,#6d6ff5,#4f46e5);color:#fff;border-radius:9px;padding:7px 13px;font-size:12px;font-weight:600}
-  .ai-msg{background:#0c1119;border:1px solid var(--line2);border-radius:11px;padding:14px 15px;font-size:13.5px;line-height:1.8;color:var(--t1);flex:1}
-  .ai-cursor{display:inline-block;width:6px;height:14px;background:#838aff;vertical-align:-2px;animation:blink 1.05s steps(1) infinite}
-
-  .secthead{text-align:center;max-width:600px;margin:0 auto}
-  .secthead h2{font-size:32px;font-weight:800;letter-spacing:.4px}
-  .secthead p{color:var(--t2);margin-top:13px;font-size:15.5px;line-height:1.7}
-  .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
-  .fcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;transition:border-color .15s,transform .15s}
-  .fcard:hover{border-color:var(--line2);transform:translateY(-2px)}
-  .fic{width:40px;height:40px;border-radius:11px;background:#0f1923;border:1px solid var(--line2);display:grid;place-items:center;color:var(--teal);margin-bottom:15px}
-  .fcard h3{font-size:15.5px;font-weight:600;margin:0}
-  .fcard p{font-size:13px;color:var(--t2);line-height:1.65;margin:7px 0 0}
-
-  footer{border-top:1px solid var(--line);padding:64px 0 56px;margin-top:8px;text-align:center}
-  footer h2{font-size:32px;font-weight:800;letter-spacing:.4px}
-  .foot-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:13px}
-  .foot-links a{color:var(--t2)} .foot-links a:hover{color:var(--t1)}
-  .copyright{color:var(--t3);font-size:12px;margin-top:22px}
-  @media(max-width:760px){.feat{grid-template-columns:1fr;gap:28px}.feat.rev .copy{order:0}.grid6{grid-template-columns:1fr}.copy h2{font-size:27px}}
-</style>
-
-<section class="section"><div class="wrap"><div class="feat">
-  <div class="copy">
-    <span class="eyebrow2" style="color:var(--blue)">复盘日志</span>
-    <h2>每一笔，都问自己为什么</h2>
-    <p>下单时记下策略和入场理由，平仓后按天复盘。胜率、盈亏、回撤自动算好——日记不再是负担，而是你 edge 的来源。</p>
-    <ul class="bullets">
-      <li><span class="bk">✓</span>下单面板直接选策略、写入场理由</li>
-      <li><span class="bk">✓</span>训练 / 实盘分开记录，按日历归档</li>
-      <li><span class="bk">✓</span>每天的胜率、净盈亏、回撤自动统计</li>
-    </ul>
-  </div>
-  <div class="mock">
-    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>日志</b><span>每日复盘</span></div></div>
-    <div class="jr">
-      <div class="jr-list">
-        <div class="jr-mh">2026 · 6 月</div>
-        <div class="jr-row sel"><span>周五 5</span><b style="color:var(--red)">−$6,325</b></div>
-        <div class="jr-row"><span>周四 4</span><b style="color:var(--teal)">+$1,714</b></div>
-        <div class="jr-row"><span>周三 3</span><b style="color:var(--teal)">+$262</b></div>
-        <div class="jr-row"><span>周二 2</span><b style="color:var(--red)">−$83</b></div>
-        <div class="jr-mh" style="margin-top:6px">2026 · 5 月</div>
-        <div class="jr-row"><span>周五 30</span><b style="color:var(--teal)">+$1,287</b></div>
-        <div class="jr-row"><span>周四 29</span><b style="color:var(--red)">−$228</b></div>
-      </div>
-      <div class="jr-detail">
-        <div class="jr-h"><span>6 月 5 日 · 周五</span><span style="color:var(--red)">−$6,325</span></div>
-        <div style="display:flex;gap:9px;align-items:center"><span style="font-size:10.5px;color:var(--t3)">策略</span><span class="sstrat">回调 ▾</span></div>
-        <div class="jr-lab">入场理由</div>
-        <div class="jr-reason" id="jrReason"></div>
-        <div class="jr-note" id="jrNote"></div>
-      </div>
-    </div>
-  </div>
-</div></div></section>
-
-<section class="section"><div class="wrap"><div class="feat rev">
-  <div class="copy">
-    <span class="eyebrow2" style="color:var(--teal)">动态回放</span>
-    <h2>把每一笔交易，重新走一遍</h2>
-    <p>选中任意一笔历史成交，在原始 K 线上逐根回放进出场。看清当时该不该进、该不该走——错在哪，一目了然。</p>
-    <ul class="bullets">
-      <li><span class="bk">✓</span>进场、出场点标在真实 K 线上</li>
-      <li><span class="bk">✓</span>逐根重播，盈亏随行情实时滚动</li>
-      <li><span class="bk">✓</span>训练成交、导入实盘成交都能回放</li>
-    </ul>
-  </div>
-  <div class="mock">
-    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>历史</b><span>动态回放</span></div></div>
-    <div class="rp">
-      <div class="rp-h"><b>BTCUSD</b><span>多 · 0.30 手</span><span class="pl" id="rpPL">+$0</span></div>
-      <svg id="rpsvg" viewBox="0 0 460 232" style="width:100%;height:auto;display:block"></svg>
-      <div class="rp-foot"><span class="rp-play">▶ 回放</span><span class="num" id="rpClock">00:00</span><span style="margin-left:auto">逐根重走进出场</span></div>
-    </div>
-  </div>
-</div></div></section>
-
-<section class="section"><div class="wrap"><div class="feat">
-  <div class="copy">
-    <span class="eyebrow2" style="color:#838aff">AI 辅助</span>
-    <h2>一个读过你所有交易的教练</h2>
-    <p>Mentor 读遍你导入的真实账单和模拟训练，60 秒生成一份能读懂的复盘——找出你的优势时段、亏损模式和该改的习惯。</p>
-    <ul class="bullets">
-      <li><span class="bk">✓</span>跨训练 + 实盘，统一分析你的 edge</li>
-      <li><span class="bk">✓</span>复盘 / 单笔深度 / 模式发现 / 策略四个视角</li>
-      <li><span class="bk">✓</span>大白话给结论，不堆术语</li>
-    </ul>
-  </div>
-  <div class="mock">
-    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>Mentor AI</b></div></div>
-    <div class="ai">
-      <div class="ai-head"><span class="ai-spark">✦</span><b style="font-weight:600">Mentor</b><span style="color:var(--t3);font-size:11px">· DeepSeek</span></div>
-      <div class="ai-bar"><span class="ai-pill on">最近 30 天</span><span class="ai-pill">全部</span><span class="ai-gen">✦ 生成复盘</span></div>
-      <div class="ai-msg" id="aiMsg"></div>
-    </div>
-  </div>
-</div></div></section>
-
-<section class="section"><div class="wrap">
-  <div class="secthead">
-    <h2>一个工具，覆盖复盘训练全流程</h2>
-    <p>从练盘到记录、从统计到量化——这些也都在里面。</p>
-  </div>
-  <div class="grid6">
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>概览驾驶舱</h3><p>账户全貌、战力雷达、净值曲线，一屏看尽当前状态。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="21" x2="5" y2="13"/><line x1="12" y1="21" x2="12" y2="5"/><line x1="19" y1="21" x2="19" y2="9"/></svg></div><h3>找出优势与劣势</h3><p>按品种、时段、方向拆解胜率与盈亏，看清钱从哪来、往哪漏。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/></svg></div><h3>真实账单 · 月历</h3><p>导入券商对账单，按日历回看每天的真实表现。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l4-4 3 3 5-6 4 4"/></svg></div><h3>自定义通达信指标</h3><p>用熟悉的通达信公式，写你自己的指标挂上图表。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/></svg></div><h3>策略回测</h3><p>把想法跑在历史行情上，一键扫出胜率与盈亏。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 16.5l8 4 8-4"/></svg></div><h3>同策略归集</h3><p>相同策略的交易自动归并，统计它真实的期望与胜率。</p></div>
-  </div>
-  <div style="text-align:center;margin-top:34px"><a class="btn" href="/screenshots"><span>查看全部 10 个界面截图 →</span></a></div>
-</div></section>
-
-<footer><div class="wrap">
-  <h2>把判断，练成肌肉记忆</h2>
-  <div class="cta" style="margin-top:24px">
-    <a class="btn btn-primary" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-Setup.exe"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M3 3h8.4v8.4H3zM12.6 3H21v8.4h-8.4zM3 12.6h8.4V21H3zM12.6 12.6H21V21h-8.4z"/></svg></span><span>下载 Windows 版<small>v1.50.20 · Win 10/11 · 64 位</small></span></a>
-    <a class="btn" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-arm64.dmg"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.47 7.82 1.3 10.38.86 1.25 1.89 2.66 3.24 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.28-1.28 3.14-2.54.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.72-1.05-2.75-4.16zM14.5 4.5c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-.99 3.18 1.15.09 2.32-.59 2.94-1.46z"/></svg></span><span>下载 Mac 版<small>v1.50.20 · Apple 芯片</small></span></a>
-    <a class="btn" href="https://apps.apple.com/app/id6766245495"><span class="ico"><img src="app-store.webp" width="16" height="16" alt="App Store" style="display:block;border-radius:4px"/></span><span>Mac App Store<small>Apple 芯片 · App Store 版</small></span></a>
-  </div>
-  <div class="foot-links"><a href="/screenshots">界面截图</a><a href="/guide">使用说明</a><a href="/changelog">更新日志</a><a href="/privacy">隐私政策</a><a href="/terms">条款</a><a href="/support">支持</a><a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671">购买激活码</a><a href="https://qm.qq.com/q/xxGMPN3N2E">QQ 群 559076777</a></div>
-  <div class="copyright">© 2026 格物工坊 · TradeReplay</div>
-</div></footer>
-
-<script>
-(function(){
-  var svg=document.getElementById('cv');
-  var W=720,H=372,padR=70,padT=14,padB=24;
-  var NS='http://www.w3.org/2000/svg';
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
-  function pw(s){var w=0;for(var i=0;i<s.length;i++)w+=s.charCodeAt(i)>255?13:6.6;return w+14;}
-
-  // price domain
-  var hi=1.17560, lo=1.16840;
-  function y(p){return padT+(hi-p)/(hi-lo)*(H-padT-padB);}
-  var entry=1.17182, tp=1.17440;
-  var slLo=1.16930, slHi=1.17085;   // SL drags between these
-  var pointVal=1.0;                  // $ per point per lot
-  function pts(a,b){return Math.round(Math.abs(a-b)/0.00001);}
-
-  // gridlines
-  for(var g=0;g<6;g++){var gy=padT+g*(H-padT-padB)/5;
-    svg.appendChild(el('line',{x1:0,y1:gy,x2:W-padR,y2:gy,stroke:'#121925','stroke-width':1}));
-    var lp=(hi-(g*(hi-lo)/5)).toFixed(4);
-    var tx=el('text',{x:W-padR+8,y:gy+3,fill:'#566173','font-size':10,'font-family':'ui-monospace,monospace'});tx.textContent=lp;svg.appendChild(tx);
-  }
-
-  // candles — textbook breakout-pullback (long): base chop → thrust up
-  // through resistance → controlled pullback that retests the broken level
-  // (= the entry line). Last bars hold at the retest, poised to continue.
-  var n=46, step=(W-padR-12)/n, w=Math.max(4,step*0.62), x0=10;
-  var seed=7; function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
-  function lerp(a,b,t){return a+(b-a)*t;}
-  var closes=[];
-  for(var i=0;i<n;i++){
-    var c;
-    if(i<=17)      c=1.17120+Math.sin(i*0.85)*0.00046+(rnd()-0.5)*0.00026;   // base
-    else if(i<=25) c=lerp(1.17150,1.17392,(i-17)/8)+(rnd()-0.5)*0.00030;      // breakout thrust
-    else if(i<=39){var tt=(i-25)/14; c=lerp(1.17392,1.17186,tt*0.55+tt*tt*0.45)+(rnd()-0.5)*0.00026;} // pullback retest
-    else           c=1.17190+(rnd()-0.5)*0.00034;                            // hold at retest
-    closes.push(c);
-  }
-  var series=[];
-  for(var i=0;i<n;i++){
-    var o=i?closes[i-1]:1.17112, c=closes[i], wick=0.00010+rnd()*0.00024;
-    series.push({o:o,c:c,h:Math.max(o,c)+wick,l:Math.min(o,c)-wick});
-  }
-  for(var i=0;i<n;i++){var s=series[i],cx=x0+i*step+step/2,up=s.c>=s.o;
-    var col=up?'#2aa898':'#e2554d';
-    svg.appendChild(el('line',{x1:cx,y1:y(s.h),x2:cx,y2:y(s.l),stroke:col,'stroke-width':1}));
-    var yt=y(Math.max(s.o,s.c)),yb=y(Math.min(s.o,s.c));
-    svg.appendChild(el('rect',{x:cx-w/2,y:yt,width:w,height:Math.max(1,yb-yt),fill:col,rx:1}));
-  }
-
-  // zones (drawn first, under lines)
-  var xRight=W-padR;
-  var zoneTP=el('rect',{x:0,y:y(tp),width:xRight,height:y(entry)-y(tp),fill:'rgba(45,212,191,.09)'});
-  var zoneSL=el('rect',{x:0,y:y(entry),width:xRight,height:y(slLo)-y(entry),fill:'rgba(240,84,76,.10)'});
-  svg.appendChild(zoneTP);svg.appendChild(zoneSL);
-
-  function hline(p,col,dash){return el('line',{x1:0,y1:y(p),x2:xRight,y2:y(p),stroke:col,'stroke-width':1.4,'stroke-dasharray':dash||'5 4'});}
-  var lTP=hline(tp,'#2dd4bf'); var lEN=el('line',{x1:0,y1:y(entry),x2:xRight,y2:y(entry),stroke:'#4d8df0','stroke-width':1.4}); var lSL=hline(slLo,'#f0544c');
-  svg.appendChild(lTP);svg.appendChild(lEN);svg.appendChild(lSL);
-
-  // pill labels (left)
-  function pill(p,txt,bg,fg){
-    var g=el('g',{});
-    var r=el('rect',{x:8,y:y(p)-9,rx:5,height:18,fill:bg});
-    var t=el('text',{x:14,y:y(p)+4,fill:fg,'font-size':11,'font-weight':600,'font-family':'ui-monospace,monospace'});
-    t.textContent=txt; g.appendChild(r);g.appendChild(t);svg.appendChild(g);
-    r.setAttribute('width',pw(txt));
-    return {g:g,r:r,t:t,p:p};
-  }
-  pill(tp,'TP  +'+pts(tp,entry)+'p · +$'+pts(tp,entry),'#0c3b34','#5be0c8');
-  var enPill=pill(entry,'1.00 · R:R --','#13314f','#9cc4f7');
-  var slPill=pill(slLo,'','#3f1512','#f2938c');
-
-  // SL handle + faux cursor
-  var handle=el('circle',{cx:xRight,cy:y(slLo),r:5,fill:'#0a0e15',stroke:'#f0544c','stroke-width':2});
-  svg.appendChild(handle);
-  var cur=el('path',{d:'M0 0 L0 15 L4 11 L7 17 L9 16 L6 10 L11 10 Z',fill:'#fff',stroke:'#0a0e15','stroke-width':1,opacity:.92});
-  svg.appendChild(cur);
-
-  var slField=document.getElementById('slField'), rrField=document.getElementById('rrField');
-
-  function setSL(p){
-    var yy=y(p);
-    lSL.setAttribute('y1',yy);lSL.setAttribute('y2',yy);
-    handle.setAttribute('cy',yy);
-    cur.setAttribute('transform','translate('+(xRight-150)+','+(yy-4)+')');
-    zoneSL.setAttribute('height',Math.max(0,yy-y(entry)));
-    var pp=pts(p,entry), dol=Math.round(pp*pointVal);
-    slPill.g.querySelector('rect').setAttribute('y',yy-9);
-    slPill.t.setAttribute('y',yy+4);
-    slPill.t.textContent='SL  −'+pp+'p · −$'+dol;
-    slPill.r.setAttribute('width',pw(slPill.t.textContent));
-    slField.textContent=p.toFixed(5);
-    var rr=(pts(tp,entry)/pp);
-    rrField.textContent='R:R '+rr.toFixed(2);
-    enPill.t.textContent='1.00 · R:R '+rr.toFixed(2);
-    enPill.r.setAttribute('width',pw(enPill.t.textContent));
-    slField.style.color=getComputedStyle(document.documentElement).getPropertyValue('--red');
-  }
-  setSL(slLo);
-
-  // animation loop: drag down, hold, drag up, hold
-  var T=0, DUR=320; // frames per full cycle quarter
-  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
-  function frame(){
-    T=(T+1)% (DUR*2.4);
-    var u;
-    var a=DUR, hold=DUR*0.2;
-    if(T<a){u=ease(T/a);}                         // down
-    else if(T<a+hold){u=1;}                        // hold low
-    else if(T<a*2+hold){u=1-ease((T-a-hold)/a);}   // up
-    else {u=0;}                                    // hold high
-    var p=slHi-(slHi-slLo)*u;
-    setSL(p);
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-</script>
-
-<script>
-/* 每日复盘 — 入场理由 + 当天笔记逐字打出 */
-(function(){
-  var reason=document.getElementById('jrReason'), note=document.getElementById('jrNote');
-  if(!reason)return;
-  var rTxt='突破前高，回踩不破支撑，顺势做多。';
-  var nTxt='方向对，但离场偏早——回踩确认后本可拿到 1:2。下次挂移动止损，让利润奔跑。';
-  function type(elm,txt,cb){
-    elm.innerHTML='';
-    var cur=document.createElement('span');cur.className='cursor';elm.appendChild(cur);
-    var i=0,id=setInterval(function(){
-      if(i>=txt.length){clearInterval(id);setTimeout(cb,1300);return;}
-      cur.insertAdjacentText('beforebegin',txt[i++]);
-    },52);
-  }
-  function loop(){type(reason,rTxt,function(){type(note,nTxt,function(){setTimeout(loop,2000);});});}
-  loop();
-})();
-
-/* Mentor AI — 复盘小结流式生成 */
-(function(){
-  var box=document.getElementById('aiMsg');if(!box)return;
-  var full='你最近 30 天 BTCUSD 多单胜率 71%，是你的主要 edge；ETHUSD 空单却贡献了 64% 的亏损——多发生在亚盘低波动时段。两条建议：① 给 ETH 空单加一道波动率过滤；② 止盈从固定点数改成跟随结构。';
-  function run(){
-    box.innerHTML='';
-    var cur=document.createElement('span');cur.className='ai-cursor';box.appendChild(cur);
-    var i=0,id=setInterval(function(){
-      if(i>=full.length){clearInterval(id);setTimeout(run,2800);return;}
-      cur.insertAdjacentText('beforebegin',full[i++]);
-    },32);
-  }
-  run();
-})();
-
-/* 动态回放 — 逐根揭示 K 线 + 进出场标记 + 盈亏滚动 */
-(function(){
-  var svg=document.getElementById('rpsvg');if(!svg)return;
-  var NS='http://www.w3.org/2000/svg';
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
-  var W=460,H=232,pT=14,pB=18,pL=10,pR=10;
-  var seed=11;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
-  var n=34,entryI=8,exitI=28,cl=[];
-  for(var i=0;i<n;i++){
-    var c;
-    if(i<6)            c=100+Math.sin(i*1.3)*1.0+(rnd()-0.5)*1.3;
-    else if(i<entryI)  c=99-(entryI-i)*0.85+(rnd()-0.5)*0.9;
-    else               c=98.6+(i-entryI)*1.28+Math.sin(i*0.6)*1.5+(rnd()-0.5)*1.5;
-    cl.push(c);
-  }
-  var mn=Math.min.apply(null,cl)-2.4,mx=Math.max.apply(null,cl)+2.4;
-  function y(v){return pT+(mx-v)/(mx-mn)*(H-pT-pB);}
-  var step=(W-pL-pR)/n,w=Math.max(3,step*0.6),cd=[];
-  for(var i=0;i<n;i++){
-    var o=i?cl[i-1]:99.6,c=cl[i],up=c>=o,col=up?'#2aa898':'#e2554d',cx=pL+i*step+step/2,wk=0.5+rnd()*1.4;
-    var g=el('g',{opacity:0.06});
-    g.appendChild(el('line',{x1:cx,y1:y(Math.max(o,c)+wk),x2:cx,y2:y(Math.min(o,c)-wk),stroke:col,'stroke-width':1}));
-    var yt=y(Math.max(o,c)),yb=y(Math.min(o,c));
-    g.appendChild(el('rect',{x:cx-w/2,y:yt,width:w,height:Math.max(1,yb-yt),fill:col,rx:1}));
-    svg.appendChild(g);cd.push({g:g,cx:cx});
-  }
-  var enX=cd[entryI].cx,exX=cd[exitI].cx;
-  var enM=el('path',{d:'M'+enX+' '+(y(cl[entryI])+13)+' l-5 9 l10 0 z',fill:'#2dd4bf',opacity:0});
-  var exM=el('circle',{cx:exX,cy:y(cl[exitI])-12,r:4,fill:'#4d8df0','stroke':'#0a0e15','stroke-width':1.5,opacity:0});
-  svg.appendChild(enM);svg.appendChild(exM);
-  var plEl=document.getElementById('rpPL'),clk=document.getElementById('rpClock');
-  var unit=120;
-  var head=0,hold=0;
-  function tick(){
-    head+=0.45;var h=Math.floor(head);
-    for(var i=0;i<n;i++)cd[i].g.setAttribute('opacity',i<=h?1:0.06);
-    enM.setAttribute('opacity',h>=entryI?1:0);
-    exM.setAttribute('opacity',h>=exitI?1:0);
-    var cur=h<=entryI?0:Math.round((cl[Math.min(h,exitI)]-cl[entryI])*unit);
-    plEl.textContent=(cur>=0?'+$':'−$')+Math.abs(cur);
-    plEl.style.color=cur>=0?'var(--teal)':'var(--red)';
-    var s=Math.min(36,Math.round(head));clk.textContent='00:'+(s<10?'0':'')+s;
-    if(h>=n-1){hold++;if(hold>70){head=0;hold=0;}}
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
-</script>
+  </footer>
 </body>
 </html>
