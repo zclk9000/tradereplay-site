@@ -1,113 +1,73 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>产品界面 — TradeReplay</title>
-  <meta name="description" content="查看 TradeReplay v1.50.20 的交易系统、逐根复盘与统计诊断真实界面。">
+  <title>Product screens — TradeReplay</title>
+  <meta name="description" content="See the real TradeReplay v1.50.20 system, replay, and diagnostic workspaces.">
   <meta name="theme-color" content="#f7f9fc">
   <link rel="icon" href="logo.svg">
   <link rel="stylesheet" href="site.css">
   <script src="site.js" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#main">跳到正文</a>
+<body data-page="screenshots">
+  <a class="skip-link" href="#main" data-en="Skip to content" data-zh="跳到正文">Skip to content</a>
+
   <header class="site-header">
     <div class="shell header-inner">
-      <a class="brand" href="index.html" aria-label="TradeReplay 首页">
-        <img src="logo.svg" width="32" height="32" alt="">
-        <span>TradeReplay</span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>菜单</button>
-      <nav class="site-nav" id="site-nav" aria-label="主导航" data-menu>
-        <a href="index.html#product">产品</a>
-        <a href="index.html#pricing">定价</a>
-        <a href="guide.html">帮助</a>
+      <a class="brand" href="index.html" aria-label="TradeReplay home" data-aria-en="TradeReplay home" data-aria-zh="TradeReplay 首页"><img src="logo.svg" width="34" height="34" alt=""><span>TradeReplay</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle data-en="Menu" data-zh="菜单">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-menu data-aria-en="Primary navigation" data-aria-zh="主导航">
+        <a href="index.html#product" data-en="Product" data-zh="产品">Product</a>
+        <a href="index.html#workflow" data-en="Workflow" data-zh="闭环">Workflow</a>
+        <a href="index.html#pricing" data-en="Pricing" data-zh="定价">Pricing</a>
+        <a href="changelog.html" data-en="Release notes" data-zh="更新日志">Release notes</a>
       </nav>
-      <a class="button button-small header-cta" href="index.html#download">免费下载</a>
+      <div class="header-actions"><button class="language-toggle" type="button" data-lang-toggle aria-label="Switch to Chinese">中文</button><a class="button button-small header-cta" href="index.html#download" data-en="Download free" data-zh="免费下载">Download free</a></div>
     </div>
   </header>
 
   <main id="main" class="subpage-main">
     <section class="page-hero">
       <div class="shell">
-        <p class="section-kicker">v1.50.20 实际界面</p>
-        <h1>先看产品，再决定要不要下载。</h1>
-        <p>没有概念渲染，没有交易员素材。下面三张图直接来自隔离的样例数据库，展示 TradeReplay 最重要的闭环。</p>
+        <p class="section-kicker" data-en="REAL v1.50.20 PRODUCT SCREENS" data-zh="v1.50.20 真实产品界面">REAL v1.50.20 PRODUCT SCREENS</p>
+        <h1 data-en="See the product before you download it." data-zh="先看产品，再决定要不要下载。">See the product before you download it.</h1>
+        <p data-en="No concept renders and no stock traders. These screens come directly from an isolated sample database and show the core TradeReplay practice loop." data-zh="没有概念渲染，没有交易员素材。下面界面来自隔离样例数据库，展示 TradeReplay 最重要的练习闭环。">No concept renders and no stock traders. These screens come directly from an isolated sample database and show the core TradeReplay practice loop.</p>
       </div>
     </section>
 
-    <section class="shot-gallery" aria-label="TradeReplay 界面截图">
+    <section class="shot-gallery" aria-label="TradeReplay product screens" data-aria-en="TradeReplay product screens" data-aria-zh="TradeReplay 产品界面">
       <article class="shot-block">
         <div class="shell shot-layout">
-          <div class="shot-copy">
-            <p class="section-kicker">01 · 交易系统</p>
-            <h2>把交易前清单和交易后样本放进同一套系统。</h2>
-            <p>入场、风险、出场、禁做条件可以混合客观信号与主观确认，并保存版本和执行样本。</p>
-          </div>
-          <figure class="feature-visual">
-            <img src="assets/app-current-system-workspace-dark.png" width="1440" height="900" alt="TradeReplay 交易系统工作台">
-            <figcaption>系统概览 · 自动核对 · 规则分区 · 样本归集</figcaption>
-          </figure>
+          <div class="shot-copy"><p class="section-kicker" data-en="01 · TRADING SYSTEM" data-zh="01 · 交易系统">01 · TRADING SYSTEM</p><h2 data-en="Keep the pre-trade checklist and post-trade evidence in one system." data-zh="把交易前清单和交易后证据放进同一套系统。">Keep the pre-trade checklist and post-trade evidence in one system.</h2><p data-en="Entry, risk, exit, and no-trade rules can combine objective signals with subjective confirmation, then preserve versions and execution samples." data-zh="入场、风险、出场和禁做条件可以混合客观信号与主观确认，并保存版本与执行样本。">Entry, risk, exit, and no-trade rules can combine objective signals with subjective confirmation.</p></div>
+          <figure class="feature-visual"><img src="assets/app-current-system-workspace-dark.png" width="1440" height="900" alt="TradeReplay system workspace" data-alt-en="TradeReplay system workspace" data-alt-zh="TradeReplay 交易系统工作台"><figcaption data-en="System overview · automatic checks · rule zones · sample evidence" data-zh="系统概览 · 自动核对 · 规则分区 · 样本归集">System overview · automatic checks · rule zones · sample evidence</figcaption></figure>
         </div>
       </article>
 
       <article class="shot-block shot-block-tinted">
         <div class="shell shot-layout shot-layout-reverse">
-          <figure class="feature-visual">
-            <img src="assets/app-current-replay-dark.png" width="1440" height="900" alt="TradeReplay 逐根复盘图表与下单面板">
-            <figcaption>多周期图表 · 逐根回放 · 绘图 · 真实撮合</figcaption>
-          </figure>
-          <div class="shot-copy">
-            <p class="section-kicker">02 · 历史演练</p>
-            <h2>在当时能看到的信息里，重新做一遍决定。</h2>
-            <p>拖动止盈止损，管理仓位和保证金；模拟结果、执行理由与系统核对结果一起保存。</p>
-          </div>
+          <figure class="feature-visual"><img src="assets/app-current-replay-dark.png" width="1440" height="900" alt="TradeReplay replay chart and order panel" data-alt-en="TradeReplay replay chart and order panel" data-alt-zh="TradeReplay 逐根复盘图表与下单面板"><figcaption data-en="Multi-timeframe charts · bar replay · drawing · realistic execution" data-zh="多周期图表 · 逐根回放 · 绘图 · 真实撮合">Multi-timeframe charts · bar replay · drawing · realistic execution</figcaption></figure>
+          <div class="shot-copy"><p class="section-kicker" data-en="02 · HISTORICAL PRACTICE" data-zh="02 · 历史演练">02 · HISTORICAL PRACTICE</p><h2 data-en="Make the decision again with only the information available then." data-zh="在当时能看到的信息里，重新做一遍决定。">Make the decision again with only the information available then.</h2><p data-en="Move stops and targets, manage positions and margin, and preserve the reasoning and system-check result with every simulated execution." data-zh="拖动止盈止损，管理仓位和保证金；模拟结果、执行理由与系统核对结果一起保存。">Move stops and targets, manage positions and margin, and preserve every decision.</p></div>
         </div>
       </article>
 
       <article class="shot-block">
         <div class="shell shot-layout">
-          <div class="shot-copy">
-            <p class="section-kicker">03 · 真实诊断</p>
-            <h2>先算清发生了什么，再决定下一步改什么。</h2>
-            <p>净盈亏、回撤、期望、MAE/MFE 和行为泄漏由确定性引擎计算，Mentor 再给出有上下文的行动建议。</p>
-          </div>
-          <figure class="feature-visual">
-            <img src="assets/app-current-stats-dark.png" width="1440" height="900" alt="TradeReplay 统计诊断与 AI 评论">
-            <figcaption>统计结论 · 风险指标 · DeepSeek 评论 · 系统反馈</figcaption>
-          </figure>
+          <div class="shot-copy"><p class="section-kicker" data-en="03 · EVIDENCE-BASED DIAGNOSIS" data-zh="03 · 证据诊断">03 · EVIDENCE-BASED DIAGNOSIS</p><h2 data-en="Measure what happened before deciding what to change." data-zh="先算清发生了什么，再决定下一步改什么。">Measure what happened before deciding what to change.</h2><p data-en="Net P&L, drawdown, expectancy, MAE/MFE, and behavioral leakage come from deterministic calculations. Mentor then turns the context into a practical next action." data-zh="净盈亏、回撤、期望、MAE/MFE 与行为泄漏由确定性引擎计算，Mentor 再给出有上下文的行动建议。">Net P&amp;L, drawdown, expectancy, MAE/MFE, and behavioral leakage come from deterministic calculations.</p></div>
+          <figure class="feature-visual"><img src="assets/app-current-stats-dark.png" width="1440" height="900" alt="TradeReplay diagnostics and AI review" data-alt-en="TradeReplay diagnostics and AI review" data-alt-zh="TradeReplay 统计诊断与 AI 复盘"><figcaption data-en="Deterministic metrics · risk diagnosis · AI review · system feedback" data-zh="确定性指标 · 风险诊断 · AI 复盘 · 系统反馈">Deterministic metrics · risk diagnosis · AI review · system feedback</figcaption></figure>
         </div>
       </article>
     </section>
 
-    <section class="subpage-cta">
-      <div class="shell subpage-cta-inner">
-        <div>
-          <p class="section-kicker">无他，唯手熟尔。</p>
-          <h2>下一次复盘，留下可以改进的证据。</h2>
-        </div>
-        <a class="button" href="index.html#download">免费下载</a>
-      </div>
-    </section>
+    <section class="subpage-cta"><div class="shell subpage-cta-inner"><div><p class="section-kicker" data-en="PRACTICE DECISIONS. BUILD THE SYSTEM." data-zh="无他，唯手熟尔。">PRACTICE DECISIONS. BUILD THE SYSTEM.</p><h2 data-en="Leave evidence you can improve." data-zh="留下可以改进的证据。">Leave evidence you can improve.</h2></div><a class="button" href="index.html#download" data-en="Download free" data-zh="免费下载">Download free</a></div></section>
   </main>
 
   <footer class="site-footer">
     <div class="shell footer-layout">
-      <div class="footer-brand">
-        <a class="brand" href="index.html">
-          <img src="logo.svg" width="32" height="32" alt="">
-          <span>TradeReplay</span>
-        </a>
-        <p>练的不是行情，是你的交易系统。</p>
-      </div>
-      <div class="footer-links">
-        <div><h2>产品</h2><a href="index.html#product">核心功能</a><a href="index.html#pricing">定价</a><a href="index.html#download">下载</a></div>
-        <div><h2>资源</h2><a href="guide.html">使用说明</a><a href="changelog.html">更新日志</a><a href="support.html">支持</a></div>
-        <div><h2>条款</h2><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
-      </div>
+      <div class="footer-brand"><a class="brand" href="index.html"><img src="logo.svg" width="34" height="34" alt=""><span>TradeReplay</span></a><p data-en="Practice decisions. Build the system." data-zh="练的不是行情，是你的交易系统。">Practice decisions. Build the system.</p></div>
+      <div class="footer-links"><div><h2 data-en="Product" data-zh="产品">Product</h2><a href="index.html#product" data-en="Overview" data-zh="产品概览">Overview</a><a href="index.html#pricing" data-en="Pricing" data-zh="定价">Pricing</a><a href="index.html#download" data-en="Download" data-zh="下载">Download</a></div><div><h2 data-en="Resources" data-zh="资源">Resources</h2><a href="changelog.html" data-en="Release notes" data-zh="更新日志">Release notes</a><a href="support.html" data-en="Support" data-zh="支持">Support</a></div><div><h2 data-en="Legal" data-zh="条款">Legal</h2><a href="privacy.html" data-en="Privacy" data-zh="隐私政策">Privacy</a><a href="terms.html" data-en="Terms" data-zh="服务条款">Terms</a></div></div>
     </div>
-    <div class="shell footer-bottom"><p>© <span data-year>2026</span> 格物工坊 · TradeReplay</p><p>Mac / Windows · 本地优先</p></div>
+    <div class="shell footer-bottom"><p>© <span data-year>2026</span> TradeReplay · <span data-en="GeWu Studio" data-zh="格物工坊">GeWu Studio</span></p><p data-en="Mac / Windows · Local-first" data-zh="Mac / Windows · 本地优先">Mac / Windows · Local-first</p></div>
   </footer>
 </body>
 </html>
