@@ -205,12 +205,34 @@
 
   <main class="releases">
 
+    <!-- v1.50.20 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.50.20</span>
+        <span class="date">2026-07-21</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>交易系统支持导出与导入，可将完整的系统说明、图标、入场、风险、出场和禁做规则分享给其他用户。</span></li>
+        <li><span class="tag tag-new">新增</span><span>统计页增加「交易系统」视图，归集训练、回测和真实账单样本，从盈利能力、风险质量、稳定性、证据可信度、品种、星期和时段等维度分析系统优势。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>自动执行条件改为以明确的进场信号和下单量为核心；出场规则可选，只有依赖止损计算仓位时才必须设置止损。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>训练存档卡片新增回放进度百分比，笔记编辑器工具栏也更加紧凑易用。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>加强安装包内容保护、启动异常诊断和生产环境安全限制，并修正亮色模式启动画面的背景衔接。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Trading systems can now be exported and imported, including their description, icon, entry, risk, exit, and prohibition rules.</span></li>
+        <li><span class="tag tag-new">New</span><span>A new Trading Systems statistics view combines training, backtest, and live-statement samples to assess profitability, risk quality, stability, evidence confidence, instruments, weekdays, and time-of-day fit.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Automatic execution now centres on an unambiguous entry signal and position size. Exit rules are optional; a stop is required only when position sizing depends on stop risk.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Training archive cards now show replay progress, and the note editor toolbar is more compact and easier to use.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Hardened packaged-app contents, production runtime restrictions, and startup diagnostics, with a smoother light-theme launch background.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.50.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.50.0</span>
         <span class="date">2026-07-20</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>全新交易系统工作流——统一管理系统说明、图标、入场条件、风险规则和退出规则；支持结构化条件、TDX 公式、主观判断及嵌套组合，并可在训练中使用手动核对、信号导航或自动回测。开仓会保存系统与执行快照，多系统持仓、同系统加仓、退出跟踪及平仓复核也已贯通。</span></li>
