@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TradeReplay — Build a trading system you can trust</title>
-  <meta name="description" content="Replay historical markets, test your rules, review real trades, and turn every mistake into evidence. TradeReplay is a local-first desktop practice system for Mac and Windows.">
+  <title>TradeReplay — Practice the decision. Prove the system.</title>
+  <meta name="description" content="Practice decisions in historical markets, define your trading system, import real trades, and improve with evidence. TradeReplay is local-first desktop software for Mac and Windows.">
   <meta name="theme-color" content="#f7f9fc">
-  <meta property="og:title" content="TradeReplay — Build a trading system you can trust">
-  <meta property="og:description" content="Define the rules. Replay the decision. Verify it against real trades. Improve with evidence.">
+  <meta property="og:title" content="TradeReplay — Practice the decision. Prove the system.">
+  <meta property="og:description" content="Historical replay, explicit rules, real-trade evidence, and AI diagnosis in one local-first desktop workflow.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tradereplay.dev/">
-  <meta property="og:image" content="https://tradereplay.dev/assets/app-current-replay-dark.png">
   <link rel="icon" href="logo.svg">
-  <link rel="preload" href="assets/app-current-replay-dark.png" as="image">
-  <link rel="preload" href="assets/app-current-stats-dark.png" as="image">
   <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="home-v8.css">
   <script src="site.js" defer></script>
+  <script src="home-v8.js" defer></script>
 </head>
-<body>
+<body class="home-page landing-v6 home-v8" data-page="home">
   <a class="skip-link" href="#main" data-en="Skip to content" data-zh="跳到正文">Skip to content</a>
+  <div class="page-progress" aria-hidden="true"><span data-page-progress></span></div>
 
-  <header class="site-header">
+  <header class="site-header landing-header">
     <div class="shell header-inner">
       <a class="brand" href="#top" aria-label="TradeReplay home" data-aria-en="TradeReplay home" data-aria-zh="TradeReplay 首页">
         <img src="logo.svg" width="34" height="34" alt="">
@@ -30,10 +30,10 @@
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle data-en="Menu" data-zh="菜单">Menu</button>
 
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-menu data-aria-en="Primary navigation" data-aria-zh="主导航">
-        <a href="#product" data-en="Product" data-zh="产品">Product</a>
-        <a href="#workflow" data-en="Workflow" data-zh="闭环">Workflow</a>
+        <a href="#product" data-en="How it works" data-zh="如何运作">How it works</a>
+        <a href="#evidence" data-en="Capabilities" data-zh="核心能力">Capabilities</a>
         <a href="#pricing" data-en="Pricing" data-zh="定价">Pricing</a>
-        <a href="screenshots.html" data-en="Resources" data-zh="资源">Resources</a>
+        <a href="#evidence" data-en="Resources" data-zh="资源">Resources</a>
       </nav>
 
       <div class="header-actions">
@@ -44,197 +44,237 @@
   </header>
 
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="shell hero-shell">
-        <div class="hero-copy">
-          <p class="eyebrow" data-en="The operating system for deliberate trading practice" data-zh="为刻意练习而生的交易系统">The operating system for deliberate trading practice</p>
+    <section class="landing-hero" id="top" aria-labelledby="hero-title" data-motion-hero>
+      <img class="decision-trace" src="assets/decision-trace-background-v1.png" alt="" aria-hidden="true">
+      <div class="shell landing-hero-grid">
+        <div class="landing-hero-copy">
+          <p class="eyebrow" data-en="DESKTOP TRADING PRACTICE &amp; REVIEW" data-zh="桌面端交易训练与复盘系统">DESKTOP TRADING PRACTICE &amp; REVIEW</p>
           <h1 id="hero-title">
-            <span data-en="Your edge comes" data-zh="你的优势来自">Your edge comes</span>
-            <span data-en="from a system—" data-zh="一套系统，">from a system—</span>
-            <span><span data-en="not a feeling" data-zh="而不是感觉">not a feeling</span><b data-en="." data-zh="。">.</b></span>
+            <span data-en="Practice the decision." data-zh="练的是决定。">Practice the decision.</span>
+            <span><span data-en="Prove the system" data-zh="验证的是系统">Prove the system</span><b data-en="." data-zh="。">.</b></span>
           </h1>
-          <p class="hero-lede" data-en="Define the rules. Replay the decision. Verify it against real trades. Improve with evidence." data-zh="写清规则，重做决定，用真实交易验证，再用证据持续改进。">Define the rules. Replay the decision. Verify it against real trades. Improve with evidence.</p>
-          <div class="hero-actions">
+          <p class="landing-hero-lede" data-en="Replay historical markets without seeing the future. Define the rules. Import real trades. Let evidence—not memory—show you what to change next." data-zh="在看不到未来的历史行情中重做决定，写清规则，导入真实交易，再让证据而不是记忆告诉你下一步该改什么。">Replay historical markets without seeing the future. Define the rules. Import real trades. Let evidence—not memory—show you what to change next.</p>
+          <div class="landing-hero-actions">
             <a class="button" href="#download" data-en="Download free" data-zh="免费下载">Download free</a>
-            <a class="hero-pro-link" href="#pricing"><span data-en="Get Pro on Whop" data-zh="购买专业版">Get Pro on Whop</span><span aria-hidden="true">→</span></a>
+            <a class="landing-text-link" href="#pricing"><span data-en="Get Pro on Whop" data-zh="购买专业版">Get Pro on Whop</span><span aria-hidden="true">→</span></a>
           </div>
-          <ul class="trust-row" aria-label="Product facts" data-aria-en="Product facts" data-aria-zh="产品特征">
-            <li data-en="Mac & Windows" data-zh="Mac 与 Windows">Mac &amp; Windows</li>
-            <li data-en="Your data stays local" data-zh="数据保存在本机">Your data stays local</li>
-            <li data-en="One-time purchase" data-zh="一次买断">One-time purchase</li>
-          </ul>
+          <ul class="landing-facts" aria-label="Product facts" data-aria-en="Product facts" data-aria-zh="产品特征"><li data-en="Mac + Windows" data-zh="Mac + Windows">Mac + Windows</li><li data-en="Local database" data-zh="数据库保存在本机">Local database</li><li data-en="One-time Pro licence" data-zh="专业版一次买断">One-time Pro licence</li></ul>
         </div>
 
-        <div class="hero-stage" aria-label="TradeReplay product interface" data-aria-en="TradeReplay product interface" data-aria-zh="TradeReplay 产品界面">
-          <figure class="product-layer product-layer-main">
-            <img src="assets/app-current-replay-dark.png" width="1440" height="900" alt="TradeReplay replay chart and order panel" data-alt-en="TradeReplay replay chart and order panel" data-alt-zh="TradeReplay 逐根复盘图表与下单面板">
-            <figcaption data-en="Actual v1.50.20 replay workspace · isolated sample data" data-zh="v1.50.20 真实复盘工作台 · 隔离样例数据">Actual v1.50.20 replay workspace · isolated sample data</figcaption>
-          </figure>
+        <div class="landing-hero-visual" data-parallax-stage data-hero-showcase>
+          <div class="hero-product-stage product-window">
+            <div class="product-window-bar"><span class="product-window-mark">TR</span><span data-hero-label data-en="Historical replay workspace" data-zh="历史复盘工作台">Historical replay workspace</span><i></i><span data-en="Actual desktop interface" data-zh="真实桌面界面">Actual desktop interface</span></div>
+            <div class="hero-capture-stack">
+              <img class="hero-capture is-active" id="hero-shot-replay" role="tabpanel" aria-labelledby="hero-tab-replay" aria-hidden="false" data-hero-shot="replay" src="assets/app-current-replay-dark.png" alt="TradeReplay historical replay workspace" data-alt-en="TradeReplay historical replay workspace" data-alt-zh="TradeReplay 历史复盘工作台">
+              <img class="hero-capture" id="hero-shot-system" role="tabpanel" aria-labelledby="hero-tab-system" aria-hidden="true" data-hero-shot="system" src="assets/app-current-system-workspace-dark.png" alt="TradeReplay trading system workspace" data-alt-en="TradeReplay trading system workspace" data-alt-zh="TradeReplay 交易系统工作台">
+              <img class="hero-capture" id="hero-shot-evidence" role="tabpanel" aria-labelledby="hero-tab-evidence" aria-hidden="true" data-hero-shot="evidence" src="assets/app-current-stats-dark.png" alt="TradeReplay statistics and diagnosis workspace" data-alt-en="TradeReplay statistics and diagnosis workspace" data-alt-zh="TradeReplay 统计与诊断工作台">
+            </div>
+          </div>
+          <div class="hero-frame-nav" role="tablist" aria-label="TradeReplay product views" data-aria-en="TradeReplay product views" data-aria-zh="TradeReplay 产品界面">
+            <button class="is-active" id="hero-tab-replay" type="button" role="tab" aria-selected="true" aria-controls="hero-shot-replay" data-hero-frame="replay"><span>01</span><b data-en="Replay" data-zh="复盘">Replay</b></button>
+            <button id="hero-tab-system" type="button" role="tab" aria-selected="false" aria-controls="hero-shot-system" data-hero-frame="system"><span>02</span><b data-en="System" data-zh="系统">System</b></button>
+            <button id="hero-tab-evidence" type="button" role="tab" aria-selected="false" aria-controls="hero-shot-evidence" data-hero-frame="evidence"><span>03</span><b data-en="Evidence" data-zh="证据">Evidence</b></button>
+          </div>
+          <p class="visual-caption" data-en="One desktop workflow—from practice to proof." data-zh="一套桌面工作流，从练习走到证据。">One desktop workflow—from practice to proof.</p>
         </div>
+      </div>
+      <div class="hero-scroll-cue" aria-hidden="true"><span>SCROLL TO EXPLORE</span><i></i></div>
+    </section>
+
+    <section class="landing-proof" aria-label="TradeReplay practice loop" data-aria-en="TradeReplay practice loop" data-aria-zh="TradeReplay 训练闭环">
+      <div class="shell landing-proof-grid">
+          <article><span>01</span><div><strong data-en="Replay without hindsight" data-zh="不带后见之明地回放">Replay without hindsight</strong><p data-en="Only the information that existed then." data-zh="只使用当时真实存在的信息。">Only the information that existed then.</p></div></article>
+        <article><span>02</span><div><strong data-en="Trade with rules" data-zh="按规则交易">Trade with rules</strong><p data-en="Entry, risk, exit, and prohibition." data-zh="入场、风险、出场与禁做条件。">Entry, risk, exit, and prohibition.</p></div></article>
+        <article><span>03</span><div><strong data-en="Measure objectively" data-zh="客观衡量">Measure objectively</strong><p data-en="Training, backtest, and live evidence." data-zh="训练、回测与实盘证据。">Training, backtest, and live evidence.</p></div></article>
+        <article><span>04</span><div><strong data-en="Improve continuously" data-zh="持续改进">Improve continuously</strong><p data-en="Change one rule. Test it again." data-zh="改一条规则，再验证一次。">Change one rule. Test it again.</p></div></article>
       </div>
     </section>
 
-    <section class="proof-strip" aria-label="TradeReplay practice loop" data-aria-en="TradeReplay practice loop" data-aria-zh="TradeReplay 训练闭环">
-      <div class="shell proof-grid">
-        <div><span class="proof-index">01</span><div><strong data-en="Trade with rules" data-zh="按规则交易">Trade with rules</strong><p data-en="Codify and test your edge." data-zh="把优势写清并反复验证。">Codify and test your edge.</p></div></div>
-        <div><span class="proof-index">02</span><div><strong data-en="Replay faithfully" data-zh="忠实复盘">Replay faithfully</strong><p data-en="Market data. Your decisions." data-zh="真实行情，你的决定。">Market data. Your decisions.</p></div></div>
-        <div><span class="proof-index">03</span><div><strong data-en="Measure what matters" data-zh="衡量关键证据">Measure what matters</strong><p data-en="Objective metrics, not vibes." data-zh="用客观指标代替感觉。">Objective metrics, not vibes.</p></div></div>
-        <div><span class="proof-index">04</span><div><strong data-en="Improve continuously" data-zh="持续改进">Improve continuously</strong><p data-en="Evidence over opinion." data-zh="让证据胜过观点。">Evidence over opinion.</p></div></div>
-      </div>
-    </section>
-
-    <section class="product-theatre" id="product" aria-labelledby="product-title">
+    <section class="landing-product" id="product" aria-labelledby="product-title">
       <div class="shell">
-        <div class="theatre-heading">
-          <p class="section-kicker" data-en="THE PRODUCT, NOT A PROMISE" data-zh="展示产品，而不是概念">THE PRODUCT, NOT A PROMISE</p>
-          <h2 id="product-title" data-en="Practice with purpose." data-zh="带着目的练习。">Practice with purpose.</h2>
-          <p data-en="The same rules move from pre-trade review to historical practice and deterministic diagnosis. Nothing gets lost between screens." data-zh="同一套规则从交易前核对，贯穿历史演练与确定性诊断，不再散落在不同页面和笔记里。">The same rules move from pre-trade review to historical practice and deterministic diagnosis. Nothing gets lost between screens.</p>
+        <header class="landing-section-heading landing-section-heading-split">
+          <div>
+            <p class="section-kicker" data-en="ONE SYSTEM. THREE SOURCES OF TRUTH." data-zh="一套系统，三种证据来源">ONE SYSTEM. THREE SOURCES OF TRUTH.</p>
+            <h2 id="product-title" data-en="From practice to proof." data-zh="从练习，走到证据。">From practice to proof.</h2>
+          </div>
+          <p data-en="TradeReplay connects historical practice, explicit trading rules, and real execution records. The same system follows every decision instead of disappearing into notes and screenshots." data-zh="TradeReplay 把历史训练、明确规则与真实执行记录连在一起。同一套系统贯穿每个决定，不再散落在笔记和截图里。">TradeReplay connects historical practice, explicit trading rules, and real execution records. The same system follows every decision instead of disappearing into notes and screenshots.</p>
+        </header>
+
+        <div class="landing-story-tabs" role="tablist" aria-label="Product workflows" data-aria-en="Product workflows" data-aria-zh="产品工作流">
+          <button id="story-tab-replay" type="button" role="tab" aria-selected="true" aria-controls="story-replay" data-story="replay"><span>01</span><b data-en="Replay the market" data-zh="回放市场">Replay the market</b></button>
+          <button id="story-tab-system" type="button" role="tab" aria-selected="false" aria-controls="story-system" data-story="system"><span>02</span><b data-en="Define the system" data-zh="定义系统">Define the system</b></button>
+          <button id="story-tab-evidence" type="button" role="tab" aria-selected="false" aria-controls="story-evidence" data-story="evidence"><span>03</span><b data-en="Prove the edge" data-zh="验证优势">Prove the edge</b></button>
         </div>
 
-        <div class="story-tabs" role="tablist" aria-label="Product views" data-aria-en="Product views" data-aria-zh="产品视图">
-          <button id="story-tab-system" type="button" role="tab" aria-selected="true" aria-controls="story-system" data-story="system"><span>01</span><b data-en="Define the system" data-zh="定义系统">Define the system</b></button>
-          <button id="story-tab-replay" type="button" role="tab" aria-selected="false" aria-controls="story-replay" data-story="replay"><span>02</span><b data-en="Replay the decision" data-zh="重做决定">Replay the decision</b></button>
-          <button id="story-tab-diagnosis" type="button" role="tab" aria-selected="false" aria-controls="story-diagnosis" data-story="diagnosis"><span>03</span><b data-en="Diagnose the evidence" data-zh="诊断证据">Diagnose the evidence</b></button>
-        </div>
-
-        <div class="story-stage">
-          <article class="story-panel is-active" id="story-system" role="tabpanel" aria-labelledby="story-tab-system" data-story-panel="system">
-            <div class="story-copy">
+        <div class="landing-story-stage">
+          <article class="landing-story-panel is-active" id="story-replay" role="tabpanel" aria-labelledby="story-tab-replay" data-story-panel="replay">
+            <div class="landing-story-copy">
               <p class="story-index">01 / 03</p>
-              <h3 data-en="Turn the playbook in your head into executable rules." data-zh="把脑海里的交易方法，变成可以执行的规则。">Turn the playbook in your head into executable rules.</h3>
-              <p data-en="Combine objective signals, subjective checks, risk boundaries, exits, and no-trade conditions. Save the exact system version with every trade." data-zh="客观信号、主观确认、风险边界、出场条件与禁做场景可以共存；每一笔交易都保存当时使用的系统版本。">Combine objective signals, subjective checks, risk boundaries, exits, and no-trade conditions. Save the exact system version with every trade.</p>
-              <ul>
-                <li data-en="Manual checklist before entry" data-zh="下单前手动清单核对">Manual checklist before entry</li>
-                <li data-en="Signal navigation through history" data-zh="在历史数据中导航信号">Signal navigation through history</li>
-                <li data-en="Automatic backtest from the same rules" data-zh="同一套规则直接进入自动回测">Automatic backtest from the same rules</li>
-              </ul>
-            </div>
-            <figure><img src="assets/app-current-system-workspace-dark.png" width="1440" height="900" alt="TradeReplay system workspace" data-alt-en="TradeReplay system workspace" data-alt-zh="TradeReplay 交易系统工作台"><figcaption data-en="Actual v1.50.20 system workspace" data-zh="v1.50.20 真实交易系统工作台">Actual v1.50.20 system workspace</figcaption></figure>
-          </article>
-
-          <article class="story-panel" id="story-replay" role="tabpanel" aria-labelledby="story-tab-replay" data-story-panel="replay" hidden>
-            <div class="story-copy">
-              <p class="story-index">02 / 03</p>
               <h3 data-en="Re-enter the moment before the outcome was obvious." data-zh="回到结果尚未揭晓的那一刻。">Re-enter the moment before the outcome was obvious.</h3>
-              <p data-en="Advance bar by bar, manage the position, and make decisions with only the information that existed at the time." data-zh="逐根推进 K 线，管理仓位，只使用当时真实可见的信息重新做决定。">Advance bar by bar, manage the position, and make decisions with only the information that existed at the time.</p>
+              <p data-en="Advance through historical markets without seeing what comes next. Manage positions with realistic costs, margin, and liquidation while every drawing and decision stays attached to the session." data-zh="在看不到未来的历史行情中推进。使用真实成本、保证金与强平逻辑管理仓位，画线和每次决定都随训练存档保存。">Advance through historical markets without seeing what comes next. Manage positions with realistic costs, margin, and liquidation while every drawing and decision stays attached to the session.</p>
               <ul>
-                <li data-en="Multi-timeframe replay and drawing tools" data-zh="多周期回放与绘图工具">Multi-timeframe replay and drawing tools</li>
-                <li data-en="Realistic costs, margin, and liquidation" data-zh="真实成本、保证金与强平逻辑">Realistic costs, margin, and liquidation</li>
-                <li data-en="FX, futures, crypto, metals, and indices" data-zh="外汇、期货、加密货币、贵金属与股指">FX, futures, crypto, metals, and indices</li>
+                <li data-en="Tick-aware and adaptive historical replay" data-zh="支持 Tick 与自适应历史回放">Tick-aware and adaptive historical replay</li>
+                <li data-en="Multi-timeframe charts and drawing tools" data-zh="多周期图表与画线工具">Multi-timeframe charts and drawing tools</li>
+                <li data-en="Instrument-aware costs and risk mechanics" data-zh="按品种驱动的成本与风险机制">Instrument-aware costs and risk mechanics</li>
               </ul>
             </div>
-            <figure><img src="assets/app-current-replay-dark.png" width="1440" height="900" alt="TradeReplay historical replay workspace" data-alt-en="TradeReplay historical replay workspace" data-alt-zh="TradeReplay 历史复盘工作台"><figcaption data-en="Actual replay chart and order panel" data-zh="真实逐根复盘图表与下单面板">Actual replay chart and order panel</figcaption></figure>
+            <figure class="story-capture"><div class="story-capture-bar"><span>PRODUCT / REPLAY</span><span data-en="Full interface" data-zh="完整界面">Full interface</span></div><img src="assets/app-current-replay-dark.png" alt="TradeReplay replay workspace with full chart and order panel" data-alt-en="TradeReplay replay workspace with full chart and order panel" data-alt-zh="包含完整图表与下单面板的 TradeReplay 复盘工作台"><figcaption data-en="Historical replay · Multi-timeframe chart · Realistic execution" data-zh="历史回放 · 多周期图表 · 真实交易机制">Historical replay · Multi-timeframe chart · Realistic execution</figcaption></figure>
           </article>
 
-          <article class="story-panel" id="story-diagnosis" role="tabpanel" aria-labelledby="story-tab-diagnosis" data-story-panel="diagnosis" hidden>
-            <div class="story-copy">
-              <p class="story-index">03 / 03</p>
-              <h3 data-en="Let real trades prove where the system leaks." data-zh="让真实账单证明系统究竟漏在哪里。">Let real trades prove where the system leaks.</h3>
-              <p data-en="Import MT4, MT5, or CFMMC statements. Deterministic metrics find the pattern first; Mentor turns it into a practical next action." data-zh="导入 MT4、MT5 或 CFMMC 账单。先用确定性指标定位问题，再由 Mentor 转化为下一步行动。">Import MT4, MT5, or CFMMC statements. Deterministic metrics find the pattern first; Mentor turns it into a practical next action.</p>
+          <article class="landing-story-panel" id="story-system" role="tabpanel" aria-labelledby="story-tab-system" data-story-panel="system" hidden>
+            <div class="landing-story-copy">
+              <p class="story-index">02 / 03</p>
+              <h3 data-en="Turn the playbook in your head into executable rules." data-zh="把脑海里的方法，变成可以执行的规则。">Turn the playbook in your head into executable rules.</h3>
+              <p data-en="Build entry conditions, risk boundaries, exits, and no-trade rules in one workspace. Run the same system through Manual Check, Signal Navigation, or Automatic Backtest—and save the exact version with every trade." data-zh="在一个工作台中管理入场条件、风险边界、出场与禁做规则。用手动核对、信号导航或自动回测运行同一套系统，并为每笔交易保存当时的准确版本。">Build entry conditions, risk boundaries, exits, and no-trade rules in one workspace. Run the same system through Manual Check, Signal Navigation, or Automatic Backtest—and save the exact version with every trade.</p>
               <ul>
-                <li data-en="MAE/MFE, drawdown, expectancy, and R" data-zh="MAE/MFE、回撤、期望与 R 分布">MAE/MFE, drawdown, expectancy, and R</li>
-                <li data-en="Cost leakage and behavioral patterns" data-zh="交易成本泄漏与行为模式">Cost leakage and behavioral patterns</li>
-                <li data-en="Training and live evidence by system" data-zh="按系统归集训练与实盘证据">Training and live evidence by system</li>
+                <li data-en="Structured, formula-based, and subjective rules" data-zh="结构化、公式化与主观规则">Structured, formula-based, and subjective rules</li>
+                <li data-en="Versioned system snapshot on every entry" data-zh="每次开仓保存系统版本快照">Versioned system snapshot on every entry</li>
+                <li data-en="Portable systems through import and export" data-zh="通过导入导出分享完整系统">Portable systems through import and export</li>
               </ul>
             </div>
-            <figure><img src="assets/app-current-stats-dark.png" width="1440" height="900" alt="TradeReplay diagnostics workspace" data-alt-en="TradeReplay diagnostics workspace" data-alt-zh="TradeReplay 统计诊断工作台"><figcaption data-en="Deterministic metrics first, contextual AI review second" data-zh="先算确定性指标，再做有上下文的 AI 复盘">Deterministic metrics first, contextual AI review second</figcaption></figure>
+            <figure class="story-capture"><div class="story-capture-bar"><span>PRODUCT / SYSTEM</span><span data-en="Full interface" data-zh="完整界面">Full interface</span></div><img src="assets/app-current-system-workspace-dark.png" alt="TradeReplay trading system workspace" data-alt-en="TradeReplay trading system workspace" data-alt-zh="TradeReplay 交易系统工作台"><figcaption data-en="Entry · Risk · Exit · No-trade rules" data-zh="入场 · 风险 · 出场 · 禁做规则">Entry · Risk · Exit · No-trade rules</figcaption></figure>
+          </article>
+
+          <article class="landing-story-panel" id="story-evidence" role="tabpanel" aria-labelledby="story-tab-evidence" data-story-panel="evidence" hidden>
+            <div class="landing-story-copy">
+              <p class="story-index">03 / 03</p>
+              <h3 data-en="Let training and real trades prove what actually works." data-zh="让训练与真实交易证明什么真正有效。">Let training and real trades prove what actually works.</h3>
+              <p data-en="Bring together training sessions, automatic backtests, MT4/MT5 statements, and CFMMC reports. Evaluate each system by profitability, risk quality, stability, evidence confidence, instrument, weekday, and time of day." data-zh="汇总训练、自动回测、MT4/MT5 账单与 CFMMC 月报，从盈利能力、风险质量、稳定性、证据可信度、品种、星期与时段验证每套系统。">Bring together training sessions, automatic backtests, MT4/MT5 statements, and CFMMC reports. Evaluate each system by profitability, risk quality, stability, evidence confidence, instrument, weekday, and time of day.</p>
+              <ul>
+                <li data-en="Training, backtest, and live evidence together" data-zh="训练、回测与实盘证据统一">Training, backtest, and live evidence together</li>
+                <li data-en="Behavior, distribution, and cost diagnostics" data-zh="行为、分布与成本诊断">Behavior, distribution, and cost diagnostics</li>
+                <li data-en="AI review grounded in your own trades" data-zh="基于个人交易数据的 AI 复盘">AI review grounded in your own trades</li>
+              </ul>
+            </div>
+            <figure class="story-capture"><div class="story-capture-bar"><span>PRODUCT / EVIDENCE</span><span data-en="Full interface" data-zh="完整界面">Full interface</span></div><img src="assets/app-current-stats-dark.png" alt="TradeReplay statistics and AI diagnosis workspace" data-alt-en="TradeReplay statistics and AI diagnosis workspace" data-alt-zh="TradeReplay 统计与 AI 诊断工作台"><figcaption data-en="Behavior · Distribution · Costs · AI diagnosis" data-zh="行为 · 分布 · 成本 · AI 诊断">Behavior · Distribution · Costs · AI diagnosis</figcaption></figure>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="workflow-section" id="workflow" aria-labelledby="workflow-title">
-      <div class="shell workflow-layout">
-        <div class="workflow-intro">
-          <p class="section-kicker" data-en="A CLOSED PRACTICE LOOP" data-zh="完整的练习闭环">A CLOSED PRACTICE LOOP</p>
-          <h2 id="workflow-title" data-en="Every session should change what you do next." data-zh="每一次复盘，都应该改变你的下一次执行。">Every session should change what you do next.</h2>
-          <p data-en="TradeReplay connects preparation, execution, evidence, and improvement so practice produces a better operating system—not another folder of screenshots." data-zh="TradeReplay 把准备、执行、证据与改进连在一起，让练习沉淀成更好的交易系统，而不是更多截图。">TradeReplay connects preparation, execution, evidence, and improvement so practice produces a better operating system—not another folder of screenshots.</p>
+    <section class="landing-evidence" id="evidence" aria-labelledby="evidence-title">
+      <div class="shell capability-shell">
+        <header class="capability-heading"><p class="section-kicker" data-en="BUILT FOR THE PART THAT MOST TOOLS FORGET" data-zh="专注多数工具忽略的关键部分">BUILT FOR THE PART THAT MOST TOOLS FORGET</p><h2 id="evidence-title" data-en="The decision has context. Keep it." data-zh="每个决定都有语境，把它留下来。">The decision has context. Keep it.</h2><p data-en="TradeReplay preserves the market, the rule version, the execution, and the review as one connected record." data-zh="TradeReplay 把行情、规则版本、执行和复盘保存在同一条记录里。">TradeReplay preserves the market, the rule version, the execution, and the review as one connected record.</p></header>
+        <div class="capability-index">
+          <article><span>01 / REPLAY MAP</span><h3 data-en="Return to the exact price action." data-zh="回到准确的行情位置。">Return to the exact price action.</h3><p data-en="Open the whole market, follow entry-to-exit lines, and jump directly to any trade." data-zh="打开完整行情，查看进出场连线，并直接跳转到任意交易。">Open the whole market, follow entry-to-exit lines, and jump directly to any trade.</p></article>
+          <article><span>02 / SYSTEM SNAPSHOT</span><h3 data-en="Know which rules you actually traded." data-zh="知道当时真正执行了哪套规则。">Know which rules you actually traded.</h3><p data-en="Every entry keeps the exact version of the system that was active at that moment." data-zh="每次开仓都保存当时正在使用的准确系统版本。">Every entry keeps the exact version of the system that was active at that moment.</p></article>
+          <article><span>03 / REAL STATEMENTS</span><h3 data-en="Bring live behavior into the same review." data-zh="把真实执行带进同一套复盘。">Bring live behavior into the same review.</h3><p data-en="Import MT4, MT5, and CFMMC statements without connecting a brokerage account." data-zh="无需连接券商账户，直接导入 MT4、MT5 与 CFMMC 账单。">Import MT4, MT5, and CFMMC statements without connecting a brokerage account.</p></article>
+          <article><span>04 / TDX ENGINE</span><h3 data-en="Use formulas you already understand." data-zh="使用你已经熟悉的公式。">Use formulas you already understand.</h3><p data-en="Write indicators and strategies in the TongDaXin formula language, then replay or backtest them." data-zh="用通达信公式编写指标和策略，再用于复盘或回测。">Write indicators and strategies in the TongDaXin formula language, then replay or backtest them.</p></article>
+          <article><span>05 / MARKET REALISM</span><h3 data-en="Costs and risk behave by instrument." data-zh="成本与风险按品种真实运作。">Costs and risk behave by instrument.</h3><p data-en="Commission, margin, precision, volume steps, stops, and liquidation are specification-driven." data-zh="手续费、保证金、精度、手数、止损与强平都由品种规格驱动。">Commission, margin, precision, volume steps, stops, and liquidation are specification-driven.</p></article>
+          <article><span>06 / AI DIAGNOSIS</span><h3 data-en="Turn the biggest leak into the next drill." data-zh="把最大的漏洞变成下一次训练。">Turn the biggest leak into the next drill.</h3><p data-en="Mentor reads deterministic statistics first, then explains patterns using your own trades." data-zh="Mentor 先读取确定性统计，再结合你的交易解释行为模式。">Mentor reads deterministic statistics first, then explains patterns using your own trades.</p></article>
         </div>
-        <ol class="workflow-list">
-          <li><span>01</span><div><h3 data-en="Define the edge" data-zh="定义优势">Define the edge</h3><p data-en="Write conditions, boundaries, and the situations where no trade is allowed." data-zh="写下条件、边界，以及绝不交易的场景。">Write conditions, boundaries, and the situations where no trade is allowed.</p></div></li>
+      </div>
+    </section>
+
+    <section class="landing-difference" id="difference" aria-labelledby="difference-title">
+      <div class="shell difference-shell">
+        <header class="difference-heading">
+          <p class="section-kicker" data-en="NOT ANOTHER ONLINE JOURNAL" data-zh="不是又一个在线交易日志">NOT ANOTHER ONLINE JOURNAL</p>
+          <h2 id="difference-title" data-en="Desktop software that remembers the system behind the trade." data-zh="一款记得每笔交易背后系统的桌面软件。">Desktop software that remembers the system behind the trade.</h2>
+          <p data-en="Most tools either replay the chart or journal the result. TradeReplay connects the rule, the decision, the execution, and the review." data-zh="多数工具要么回放图表，要么记录结果。TradeReplay 把规则、决定、执行和复盘连成一个闭环。">Most tools either replay the chart or journal the result. TradeReplay connects the rule, the decision, the execution, and the review.</p>
+        </header>
+        <div class="difference-grid">
+          <article><span>01</span><h3 data-en="One system across every mode" data-zh="一套系统贯穿所有模式">One system across every mode</h3><p data-en="Use the same rules in manual practice, signal navigation, automatic backtest, and live-trade review." data-zh="同一套规则用于手动训练、信号导航、自动回测与实盘复核。">Use the same rules in manual practice, signal navigation, automatic backtest, and live-trade review.</p></article>
+          <article><span>02</span><h3 data-en="Market mechanics, not a toy simulator" data-zh="真实市场机制，不是玩具模拟器">Market mechanics, not a toy simulator</h3><p data-en="Instrument specifications drive commission, margin, price precision, volume steps, stops, and liquidation." data-zh="手续费、保证金、价格精度、手数步进、止损与强平都由品种规格驱动。">Instrument specifications drive commission, margin, price precision, volume steps, stops, and liquidation.</p></article>
+          <article><span>03</span><h3 data-en="Local-first by default" data-zh="默认本地优先">Local-first by default</h3><p data-en="Practice sessions, imported statements, notes, and the core database stay on your own computer." data-zh="训练、导入账单、笔记与核心数据库保存在你自己的电脑上。">Practice sessions, imported statements, notes, and the core database stay on your own computer.</p></article>
+          <article><span>04</span><h3 data-en="Pay once. Keep practicing." data-zh="一次买断，持续练习">Pay once. Keep practicing.</h3><p data-en="Core replay is free. Pro is a one-time desktop licence—not another monthly trading subscription." data-zh="核心复盘免费。Pro 是一次买断的桌面许可证，不再增加每月交易订阅。">Core replay is free. Pro is a one-time desktop licence—not another monthly trading subscription.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-workflow" id="workflow" aria-labelledby="workflow-title">
+      <div class="shell landing-workflow-grid">
+        <header class="landing-workflow-intro">
+          <p class="section-kicker" data-en="A CLOSED PRACTICE LOOP" data-zh="完整的练习闭环">A CLOSED PRACTICE LOOP</p>
+          <h2 id="workflow-title" data-en="Every review should change the next decision." data-zh="每次复盘，都应该改变下一次决定。">Every review should change the next decision.</h2>
+          <p data-en="Practice becomes useful when it produces a clearer rule, a better decision, and evidence you can test again." data-zh="当练习沉淀出更清晰的规则、更好的决定，以及可以再次验证的证据，它才真正有用。">Practice becomes useful when it produces a clearer rule, a better decision, and evidence you can test again.</p>
+        </header>
+        <ol class="landing-workflow-list">
+          <li><span>01</span><div><h3 data-en="Define the edge" data-zh="定义优势">Define the edge</h3><p data-en="Write the conditions, boundaries, and situations where no trade is allowed." data-zh="写下条件、边界，以及绝不交易的场景。">Write the conditions, boundaries, and situations where no trade is allowed.</p></div></li>
           <li><span>02</span><div><h3 data-en="Practice the process" data-zh="演练过程">Practice the process</h3><p data-en="Execute inside historical markets without seeing what happens next." data-zh="在看不到未来的历史行情中执行。">Execute inside historical markets without seeing what happens next.</p></div></li>
-          <li><span>03</span><div><h3 data-en="Verify the behavior" data-zh="验证行为">Verify the behavior</h3><p data-en="Compare live statements and archived decisions with the system you intended to follow." data-zh="把真实账单与历史决策，同原本计划执行的系统进行比较。">Compare live statements and archived decisions with the system you intended to follow.</p></div></li>
+          <li><span>03</span><div><h3 data-en="Verify the behavior" data-zh="验证行为">Verify the behavior</h3><p data-en="Compare training, backtest, and live evidence against the system you intended to follow." data-zh="把训练、回测与实盘证据，同原本计划执行的系统进行比较。">Compare training, backtest, and live evidence against the system you intended to follow.</p></div></li>
           <li><span>04</span><div><h3 data-en="Improve one rule" data-zh="改进一条规则">Improve one rule</h3><p data-en="Turn the largest leak into a specific change you can test again." data-zh="把最大的漏洞变成一条可以再次验证的具体改动。">Turn the largest leak into a specific change you can test again.</p></div></li>
         </ol>
       </div>
     </section>
 
-    <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
-      <div class="shell pricing-shell">
-        <div class="pricing-heading">
+    <section class="landing-pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="shell">
+        <header class="landing-section-heading landing-section-heading-compact">
           <p class="section-kicker" data-en="START FREE. UPGRADE ON PURPOSE." data-zh="先免费练，再决定升级">START FREE. UPGRADE ON PURPOSE.</p>
-          <h2 id="pricing-title" data-en="A serious desktop tool without another subscription." data-zh="一款认真做事、无需订阅的桌面工具。">A serious desktop tool without another subscription.</h2>
-          <p data-en="Core replay is free. Pro unlocks the full system workflow, complete data coverage, advanced diagnostics, and backtesting." data-zh="基础复盘免费使用；Pro 解锁完整交易系统、全量数据、高级诊断与回测。">Core replay is free. Pro unlocks the full system workflow, complete data coverage, advanced diagnostics, and backtesting.</p>
-        </div>
+          <h2 id="pricing-title" data-en="Serious desktop software without another subscription." data-zh="认真做事，也无需订阅。">Serious desktop software without another subscription.</h2>
+          <p data-en="Core replay stays free. Pro unlocks the complete trading-system workflow, full data coverage, advanced diagnostics, and automatic backtesting." data-zh="核心复盘永久免费。Pro 解锁完整交易系统、全量数据、高级诊断与自动回测。">Core replay stays free. Pro unlocks the complete trading-system workflow, full data coverage, advanced diagnostics, and automatic backtesting.</p>
+        </header>
 
-        <div class="pricing-table">
-          <article class="plan">
-            <div class="plan-top"><p class="plan-name">Free</p><p class="plan-price"><strong>¥0</strong><span data-en="forever" data-zh="永久免费">forever</span></p></div>
-            <h3 data-en="The complete basic replay loop" data-zh="完整基础复盘闭环">The complete basic replay loop</h3>
+        <div class="landing-pricing-table">
+          <article class="landing-plan">
+            <div class="landing-plan-top"><p class="landing-plan-name">Free</p><p class="landing-plan-price"><strong data-en="Free" data-zh="¥0">Free</strong><span data-en="forever" data-zh="永久免费">forever</span></p></div>
+            <h3 data-en="Start the replay loop" data-zh="开始完整基础复盘">Start the replay loop</h3>
             <ul>
-              <li data-en="1 live account" data-zh="1 个真实账户">1 live account</li>
-              <li data-en="Up to 2 training sessions" data-zh="最多 2 个训练 session">Up to 2 training sessions</li>
+              <li data-en="Bar-by-bar replay and simulated execution" data-zh="逐根回放与模拟交易">Bar-by-bar replay and simulated execution</li>
+              <li data-en="1 live account and up to 2 training sessions" data-zh="1 个真实账户与最多 2 个训练 session">1 live account and up to 2 training sessions</li>
               <li data-en="5 core instruments and 2 years of data" data-zh="5 个常用品种与近 2 年数据">5 core instruments and 2 years of data</li>
-              <li data-en="Replay, journal, basic stats, custom indicators" data-zh="复盘、日志、基础统计与自定义指标">Replay, journal, basic stats, custom indicators</li>
+              <li data-en="Journal, basic statistics, and custom indicators" data-zh="日志、基础统计与自定义指标">Journal, basic statistics, and custom indicators</li>
             </ul>
             <a class="button button-quiet button-block" href="#download" data-en="Download free" data-zh="免费下载">Download free</a>
           </article>
 
-          <article class="plan plan-pro" id="whop-plan">
-            <div class="plan-top"><p class="plan-name">Pro</p><p class="plan-price"><strong>¥299</strong><span data-en="one-time" data-zh="终身买断">one-time</span></p></div>
-            <h3 data-en="Run the whole system" data-zh="让整套交易系统真正运转">Run the whole system</h3>
+          <article class="landing-plan landing-plan-pro" id="whop-plan">
+            <div class="landing-plan-top"><p class="landing-plan-name">Pro</p><p class="landing-plan-price"><strong data-en="One-time" data-zh="¥299">One-time</strong><span data-en="desktop licence" data-zh="终身买断">desktop licence</span></p></div>
+            <h3 data-en="Run the whole system" data-zh="让整套系统真正运转">Run the whole system</h3>
             <ul>
               <li data-en="Unlimited accounts and training sessions" data-zh="不限真实账户与训练 session">Unlimited accounts and training sessions</li>
-              <li data-en="Complete history, Chinese futures, all instruments" data-zh="完整历史、中国期货与全品种">Complete history, Chinese futures, all instruments</li>
-              <li data-en="Trading systems, signal navigation, full backtest" data-zh="交易系统、信号导航与完整回测">Trading systems, signal navigation, full backtest</li>
-              <li data-en="Advanced diagnostics and Mentor" data-zh="高级诊断与 Mentor 模块">Advanced diagnostics and Mentor</li>
+              <li data-en="Complete history, Chinese futures, and all instruments" data-zh="完整历史、中国期货与全品种">Complete history, Chinese futures, and all instruments</li>
+              <li data-en="Trading systems, signal navigation, and automatic backtest" data-zh="交易系统、信号导航与自动回测">Trading systems, signal navigation, and automatic backtest</li>
+              <li data-en="Advanced diagnostics and AI review" data-zh="高级诊断与 AI 复盘">Advanced diagnostics and AI review</li>
             </ul>
             <a class="button button-block" href="#whop-plan" data-purchase-link data-href-en="#whop-plan" data-href-zh="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671" data-en="Get Pro on Whop" data-zh="淘宝购买专业版">Get Pro on Whop</a>
-            <p class="plan-note" data-en="Whop checkout will be connected when the listing URL is ready." data-zh="购买后通过邮箱接收激活码，可激活 2 台设备。">Whop checkout will be connected when the listing URL is ready.</p>
+            <p class="landing-plan-note" data-en="International price and checkout link will appear when the Whop listing is live." data-zh="购买后通过邮箱接收激活码，可激活 2 台设备。">International price and checkout link will appear when the Whop listing is live.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="download-section" id="download" aria-labelledby="download-title">
-      <div class="shell download-layout">
-        <div>
+    <section class="landing-download" id="download" aria-labelledby="download-title">
+      <div class="shell landing-download-grid">
+        <div class="landing-download-copy">
           <p class="section-kicker">v1.50.20 · 2026-07-21</p>
           <h2 id="download-title" data-en="Start with the next decision." data-zh="从下一次决定开始。">Start with the next decision.</h2>
-          <p data-en="No account required for the free edition. Install it, keep the database on your own machine, and begin with your own market data." data-zh="免费版无需注册。安装后交易库保存在本机，从你自己的行情数据开始练习。">No account required for the free edition. Install it, keep the database on your own machine, and begin with your own market data.</p>
-          <div class="download-actions">
+          <p data-en="No account is required for the free edition. Install the desktop app, keep the database on your own machine, and begin with your own market data." data-zh="免费版无需注册。安装桌面端，让数据库留在本机，从你自己的行情数据开始练习。">No account is required for the free edition. Install the desktop app, keep the database on your own machine, and begin with your own market data.</p>
+          <div class="landing-download-actions">
             <a class="button" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-Setup.exe" data-en="Download for Windows" data-zh="下载 Windows 版">Download for Windows</a>
-            <a class="button button-dark-quiet" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-arm64.dmg" data-en="Download for Mac" data-zh="下载 Mac 版">Download for Mac</a>
+            <a class="button landing-button-dark" href="https://dl.tradereplay.dev/TradeReplay-1.50.20-arm64.dmg" data-en="Download for Mac" data-zh="下载 Mac 版">Download for Mac</a>
           </div>
-          <div class="download-meta"><a href="https://apps.apple.com/app/id6766245495" target="_blank" rel="noopener">Mac App Store</a><a href="changelog.html" data-en="Release notes" data-zh="更新日志">Release notes</a></div>
+          <div class="landing-download-links"><a href="https://apps.apple.com/app/id6766245495" target="_blank" rel="noopener">Mac App Store</a><a href="changelog.html" data-en="Release notes" data-zh="更新日志">Release notes</a></div>
         </div>
-        <dl class="requirements">
+        <dl class="landing-requirements">
           <div><dt data-en="Windows" data-zh="Windows">Windows</dt><dd>Windows 10 / 11 · 64-bit</dd></div>
           <div><dt data-en="Mac" data-zh="Mac">Mac</dt><dd>Apple silicon · macOS 12+</dd></div>
           <div><dt data-en="Storage" data-zh="数据">Storage</dt><dd data-en="Core database stays local" data-zh="核心数据库保存在本机">Core database stays local</dd></div>
-          <div><dt data-en="License" data-zh="许可">License</dt><dd data-en="Up to 2 devices" data-zh="最多 2 台设备">Up to 2 devices</dd></div>
+          <div><dt data-en="Licence" data-zh="许可">Licence</dt><dd data-en="Pro activates up to 2 devices" data-zh="Pro 最多激活 2 台设备">Pro activates up to 2 devices</dd></div>
         </dl>
       </div>
     </section>
 
-    <section class="faq-section" id="faq" aria-labelledby="faq-title">
-      <div class="shell faq-layout">
-        <div class="faq-heading"><p class="section-kicker" data-en="BEFORE YOU DOWNLOAD" data-zh="下载前">BEFORE YOU DOWNLOAD</p><h2 id="faq-title" data-en="Questions worth answering." data-zh="值得先确认的问题。">Questions worth answering.</h2></div>
-        <div class="faq-list">
-          <details><summary data-en="Can the free edition do real replay practice?" data-zh="免费版能不能真正做复盘？">Can the free edition do real replay practice?</summary><p data-en="Yes. It includes session creation, bar-by-bar replay, simulated trades, journals, and basic statistics. Limits mainly apply to account count, session count, data range, Chinese futures, and advanced analysis." data-zh="可以。免费版包含创建训练、逐根回放、模拟交易、日志和基础统计；限制主要在账户、session、数据范围、中国期货与高级分析。">Yes. It includes session creation, bar-by-bar replay, simulated trades, journals, and basic statistics.</p></details>
+    <section class="landing-faq" id="faq" aria-labelledby="faq-title">
+      <div class="shell landing-faq-grid">
+        <header class="landing-faq-heading"><p class="section-kicker" data-en="BEFORE YOU DOWNLOAD" data-zh="下载前">BEFORE YOU DOWNLOAD</p><h2 id="faq-title" data-en="Questions worth answering." data-zh="值得先确认的问题。">Questions worth answering.</h2></header>
+        <div class="landing-faq-list">
+          <details><summary data-en="Can the free edition do real replay practice?" data-zh="免费版能不能真正做复盘？">Can the free edition do real replay practice?</summary><p data-en="Yes. It includes session creation, historical replay, simulated trades, journals, basic statistics, and custom indicators. The main limits are account count, session count, data range, Chinese futures, and advanced analysis." data-zh="可以。免费版包含创建训练、历史回放、模拟交易、日志、基础统计和自定义指标；主要限制在账户、session、数据范围、中国期货与高级分析。">Yes. It includes session creation, historical replay, simulated trades, journals, basic statistics, and custom indicators.</p></details>
           <details><summary data-en="Does TradeReplay upload my trade database?" data-zh="TradeReplay 会上传我的交易库吗？">Does TradeReplay upload my trade database?</summary><p data-en="The core database stays on your computer. Imported statements, practice sessions, journals, and statistics are managed by the desktop app and can be backed up by you." data-zh="核心数据库保存在你的电脑上。导入账单、训练、日志和统计都由桌面端管理，并可自行备份。">The core database stays on your computer.</p></details>
-          <details><summary data-en="Which live statements can I import?" data-zh="支持导入哪些真实账单？">Which live statements can I import?</summary><p data-en="TradeReplay currently supports MT4 and MT5 reports plus monthly statements from the China Futures Market Monitoring Center (CFMMC)." data-zh="当前支持 MT4、MT5 报表，以及中国期货市场监控中心（CFMMC）月度账单。">TradeReplay currently supports MT4 and MT5 reports plus CFMMC monthly statements.</p></details>
-          <details><summary data-en="Is Pro a subscription?" data-zh="专业版是订阅吗？">Is Pro a subscription?</summary><p data-en="No. Pro is a one-time desktop license. International checkout is being prepared on Whop; the current Chinese direct-sale price is ¥299." data-zh="不是。Pro 是一次买断的桌面许可证，当前国内直售价为 ¥299。">No. Pro is a one-time desktop license.</p></details>
+          <details><summary data-en="Which live statements can I import?" data-zh="支持导入哪些真实账单？">Which live statements can I import?</summary><p data-en="TradeReplay supports MT4 and MT5 reports plus monthly statements from the China Futures Market Monitoring Center (CFMMC)." data-zh="当前支持 MT4、MT5 报表，以及中国期货市场监控中心（CFMMC）月度账单。">TradeReplay supports MT4 and MT5 reports plus CFMMC monthly statements.</p></details>
+          <details><summary data-en="Is Pro a subscription?" data-zh="专业版是订阅吗？">Is Pro a subscription?</summary><p data-en="No. Pro is a one-time desktop licence. International checkout is being prepared on Whop; the current Chinese direct-sale price is ¥299." data-zh="不是。Pro 是一次买断的桌面许可证，当前国内直售价为 ¥299。">No. Pro is a one-time desktop licence.</p></details>
+          <details><summary data-en="Does the app support both light and dark themes?" data-zh="软件支持亮色和暗色主题吗？">Does the app support both light and dark themes?</summary><p data-en="Yes. The desktop interface supports both themes. The website uses dark product captures against a light editorial canvas for visual consistency." data-zh="支持。桌面界面提供亮色与暗色主题；官网为了保持一致性，将主要使用浅色画布上的暗色产品截图。">Yes. The desktop interface supports both themes.</p></details>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer landing-footer">
     <div class="shell footer-layout">
-      <div class="footer-brand"><a class="brand" href="#top"><img src="logo.svg" width="34" height="34" alt=""><span>TradeReplay</span></a><p data-en="Practice decisions. Build the system." data-zh="练的不是行情，是你的交易系统。">Practice decisions. Build the system.</p></div>
+      <div class="footer-brand"><a class="brand" href="#top"><img src="logo.svg" width="34" height="34" alt=""><span>TradeReplay</span></a><p data-en="Practice the decision. Prove the system." data-zh="练的是决定，验证的是系统。">Practice the decision. Prove the system.</p></div>
       <div class="footer-links">
-        <div><h2 data-en="Product" data-zh="产品">Product</h2><a href="#product" data-en="Overview" data-zh="产品概览">Overview</a><a href="screenshots.html" data-en="Screenshots" data-zh="界面截图">Screenshots</a><a href="#pricing" data-en="Pricing" data-zh="定价">Pricing</a><a href="#download" data-en="Download" data-zh="下载">Download</a></div>
+        <div><h2 data-en="Product" data-zh="产品">Product</h2><a href="#product" data-en="Overview" data-zh="产品概览">Overview</a><a href="#evidence" data-en="Feature gallery" data-zh="功能展示">Feature gallery</a><a href="#pricing" data-en="Pricing" data-zh="定价">Pricing</a><a href="#download" data-en="Download" data-zh="下载">Download</a></div>
         <div><h2 data-en="Resources" data-zh="资源">Resources</h2><a href="changelog.html" data-en="Release notes" data-zh="更新日志">Release notes</a><a href="support.html" data-en="Support" data-zh="支持">Support</a><a href="guide.html" data-en="Chinese guide" data-zh="使用说明">Chinese guide</a></div>
         <div><h2 data-en="Legal" data-zh="条款">Legal</h2><a href="privacy.html" data-en="Privacy" data-zh="隐私政策">Privacy</a><a href="terms.html" data-en="Terms" data-zh="服务条款">Terms</a></div>
       </div>
