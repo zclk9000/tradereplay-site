@@ -205,12 +205,60 @@
 
   <main class="releases">
 
+    <!-- v1.50.50 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.50.50</span>
+        <span class="date">2026-07-23</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>新增 Q1 季线和 Y1 年线，月线同步统一为自然月边界；主图、回放、指标、策略、回测、预览和复盘地图均可使用。</span></li>
+        <li><span class="tag tag-new">新增</span><span>指标库新增 DEMA、TEMA、MFI、OsMA、AO、AC 等 13 个国际常用指标，并提供完整的中英文说明和公式参考。</span></li>
+        <li><span class="tag tag-new">新增</span><span>重构内置策略回测：内置策略均可按数据、周期、区间、交易成本和仓位直接运行，完成后自动定位到新存档。</span></li>
+        <li><span class="tag tag-new">新增</span><span>训练、回测、真实账单及图表底部历史列表统一支持可配置列与排序，并增加 MAE、MFE 和退出效率。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增成本感知的 R 倍数统计，计入手续费、隔夜费和税费，并提供 R 盈利因子、覆盖率与止损完整率审计。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增回放时钟、当前 K 线收线倒计时和按行情时间计算的回放倍速。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>提升图表性能与操作体验：复用未变化的指标窗口，布局模板可保存缩放范围，指标图例可折叠，十字光标日期增加星期显示。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>简化新建训练设置，并完整记忆最近使用的账户、交易成本和交易配置。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>统一策略、指标、仓位、训练历史和交易系统统计的间距、对齐、信息密度及明暗主题表现。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>中国期货行情摄取迁移到云端，已下载数据可按修订版本刷新，并加强增量追加、周期识别和异常数据校验。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>长时间复盘和大数据导入更流畅：存档采用增量自动保存，时间查询使用索引，行情导入采用有界流式处理。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>首次安装从免费档 EURUSD 开始，同时完善经济事件、指标名称和外汇品种的中英文显示。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复信号导航、日线推进、禁止回退、目标存档选择及回退后状态不一致等多项回放控制问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>统一回测与模拟器的时间、手续费、保证金、点差、隔夜费、预热区间、同柱成交顺序和 MAE/MFE 口径，并禁止未来函数。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复 Tick CSV 时区、报价精度、零点差、粗周期点差聚合、期货跨周末平今费及最小手数校验问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复波段标签引用未来 K 线、中国期货十字光标错位、切换图表类型后数据未补齐及指标删除后遗留按钮等问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>加强存档、回测回滚、备份恢复、凭据写入、License 激活兑换、笔记图片和 CFMMC 临时会话的数据安全与一致性。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复 Windows 打包后的 ASAR 与原生模块路径兼容，并避免官网直售版误初始化 Mac App Store 购买模块。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Added Q1 quarterly and Y1 yearly timeframes, with calendar-aligned monthly bars across charts, replay, indicators, strategies, backtests, previews, and Replay Map.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added 13 widely used indicators, including DEMA, TEMA, MFI, OsMA, AO, and AC, with bilingual descriptions and formula references.</span></li>
+        <li><span class="tag tag-new">New</span><span>Rebuilt built-in strategy backtesting so every built-in strategy can run directly with chosen data, timeframe, range, costs, and position sizing.</span></li>
+        <li><span class="tag tag-new">New</span><span>Training, backtest, statement, and chart-bottom history tables now share configurable columns and sorting, with MAE, MFE, and exit efficiency.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added cost-aware R-multiple analytics, including commissions, swaps, and taxes, plus R profit factor, coverage, and stop-completeness audits.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added a replay clock, current-bar countdown, and playback speed measured against actual market time.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Faster, easier charts with reused indicator panes, saved zoom ranges in layouts, collapsible legends, and weekday labels on crosshair dates.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Simplified new-session setup while remembering the most recently used account, trading costs, and execution settings.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Unified spacing, alignment, information density, and light/dark appearance across strategies, indicators, positions, history, and system statistics.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Moved CN-futures ingestion to the cloud, added revision-aware refreshes, and strengthened incremental appends, timeframe detection, and anomaly validation.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Long replays and large imports now use incremental autosave, indexed time lookups, and bounded streaming ingestion.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Fresh installs now start with free-tier EURUSD, with broader bilingual coverage for economic events, indicators, and FX instruments.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed replay-control issues involving signal navigation, daily stepping, rewind protection, target-session selection, and state after rewinding.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Aligned backtest and simulator semantics for time, fees, margin, spreads, swaps, warm-up, same-bar execution, and MAE/MFE, while blocking future-looking formulas.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed Tick CSV timezone and precision handling, zero spreads, coarse-timeframe spread aggregation, weekend CN-futures close-today fees, and minimum-volume checks.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed swing labels using future bars, CN-futures crosshair offsets, incomplete chart-type refills, and orphaned legend controls after deleting indicators.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Strengthened consistency and failure safety for saves, backtest rollback, backup/restore, credential writes, licence activation and redemption, note images, and CFMMC sessions.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed packaged Windows ASAR/native-module paths and prevented direct-sale builds from initialising Mac App Store purchases.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.50.20 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.50.20</span>
         <span class="date">2026-07-21</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>交易系统支持导出与导入，可将完整的系统说明、图标、入场、风险、出场和禁做规则分享给其他用户。</span></li>
