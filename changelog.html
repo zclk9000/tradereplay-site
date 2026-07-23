@@ -229,6 +229,7 @@
         <li><span class="tag tag-fix">修复</span><span>统一回测与模拟器的时间、手续费、保证金、点差、隔夜费、预热区间、同柱成交顺序和 MAE/MFE 口径，并禁止未来函数。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复 Tick CSV 时区、报价精度、零点差、粗周期点差聚合、期货跨周末平今费及最小手数校验问题。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复波段标签引用未来 K 线、中国期货十字光标错位、切换图表类型后数据未补齐及指标删除后遗留按钮等问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复中国期货主连换月时同一交易日可能混入两个合约，并避免日线及更高周期的十字光标将交易日误显示为午夜时间。</span></li>
         <li><span class="tag tag-fix">修复</span><span>加强存档、回测回滚、备份恢复、凭据写入、License 激活兑换、笔记图片和 CFMMC 临时会话的数据安全与一致性。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复 Windows 打包后的 ASAR 与原生模块路径兼容，并避免官网直售版误初始化 Mac App Store 购买模块。</span></li>
       </ul>
@@ -249,6 +250,7 @@
         <li><span class="tag tag-fix">Fixed</span><span>Aligned backtest and simulator semantics for time, fees, margin, spreads, swaps, warm-up, same-bar execution, and MAE/MFE, while blocking future-looking formulas.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Fixed Tick CSV timezone and precision handling, zero spreads, coarse-timeframe spread aggregation, weekend CN-futures close-today fees, and minimum-volume checks.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Fixed swing labels using future bars, CN-futures crosshair offsets, incomplete chart-type refills, and orphaned legend controls after deleting indicators.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Prevented CN-futures continuous contracts from mixing two contract months within one rollover trading day, and removed misleading midnight times from daily and higher-timeframe crosshair labels.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Strengthened consistency and failure safety for saves, backtest rollback, backup/restore, credential writes, licence activation and redemption, note images, and CFMMC sessions.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Fixed packaged Windows ASAR/native-module paths and prevented direct-sale builds from initialising Mac App Store purchases.</span></li>
       </ul>
