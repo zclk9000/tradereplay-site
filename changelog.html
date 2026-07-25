@@ -205,12 +205,50 @@
 
   <main class="releases">
 
+    <!-- v1.51.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.51.0</span>
+        <span class="date">2026-07-26</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span><strong>行情数据与训练存档正式解绑</strong>：清理本地 K 线或 Tick 数据不再连带删除存档；交易记录、训练进度、画线和笔记都会保留，重新下载或导入原数据后即可继续复盘。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增用户自有 S3 云备份：可使用腾讯云 COS、Cloudflare R2、Amazon S3、MinIO 等兼容服务，备份交易、日志、存档及不可重新下载的自导入行情，并可在新设备恢复。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增完整资料库管理：首次启动可选择语言和数据位置，之后也能把整个资料库安全迁移到其他本地磁盘或外置硬盘，或直接切换到已有资料库。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增交易历史 CSV 导出；托管 Tick 数据支持按品种、年份和范围选择下载。</span></li>
+        <li><span class="tag tag-new">新增</span><span>Hub 新增复盘习惯洞察，展示近期复盘完成情况和习惯变化。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>数据页统一整理为系统 K 线、自导入、Tick 数据和缓存四类；缺少行情的存档会明确提示，并直接引导重新下载或导入。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>云备份按内容去重并自动保留最近快照；恢复前先保存当前资料库，官方可重新下载的行情不重复占用云空间。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>分批止盈止损现在可直接编辑所选持仓，图表按 TP1、SL1 等阶段清楚标记各条规则。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>优化启动与首次进入主要页面的速度，经济日历和较重页面改为使用时再加载。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复通过 B / S 快捷键下单时，止盈止损、跟踪止损、分批规则、挂单价格或交易系统信息可能没有正确带入的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复多周期回放偶发不同步、粗周期显示早于训练起点，以及中国期货图表中的交易日期错位。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复 MACD 柱状图与通达信口径不一致的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复部分页面净盈亏口径不一致，以及挂单面板选择交易系统后意外关闭的问题。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span><strong>Market data is now independent from training archives.</strong> Clearing local K-line or Tick data no longer deletes an archive. Trades, progress, drawings, and notes stay intact, and replay resumes after the original data is downloaded or imported again.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added bring-your-own S3 cloud backup for Tencent COS, Cloudflare R2, Amazon S3, MinIO, and compatible services. Backups cover trades, journals, archives, and user-imported market data that cannot be downloaded again.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added complete library management. Choose language and data location on first launch, safely move the whole library to another local or external drive, or switch to an existing library.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added CSV export for trade history, plus symbol-, year-, and range-based downloads for hosted Tick data.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added review-habit insights to Hub, showing recent review completion and changes in consistency.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Reorganised Data into System K-lines, Imports, Tick Data, and Cache. Archives with missing data now explain the issue and lead directly to redownload or re-import.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Cloud backups now deduplicate unchanged content, retain recent snapshots automatically, save a safety copy before restore, and skip official data that can be downloaded again.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Scaling rules can now be edited for the selected position, with clear TP1, SL1, and later-stage labels on the chart.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Faster startup and first visits to major pages by loading the economic calendar and heavier views only when needed.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed B / S shortcut orders sometimes missing protection, trailing-stop, scaling, pending-price, or trading-system settings.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed occasional multi-timeframe playback drift, coarse bars appearing before the training start, and date alignment on CN-futures charts.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Aligned the MACD histogram with TongdaXin semantics.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed inconsistent net P&amp;L in several views and pending tickets closing after selecting a trading system.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.50.50 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.50.50</span>
         <span class="date">2026-07-23</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>新增 Q1 季线和 Y1 年线，月线同步统一为自然月边界；主图、回放、指标、策略、回测、预览和复盘地图均可使用。</span></li>
