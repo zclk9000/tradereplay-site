@@ -205,12 +205,42 @@
 
   <main class="releases">
 
+    <!-- v1.52.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.52.0</span>
+        <span class="date">2026-07-27</span>
+        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-new">新增</span><span>交易回放、账单复盘和成交预览的开平仓位置新增紧凑买卖标记：绿色 / 红色三角贴在真实成交价上，进场方向与反向平仓动作一眼可辨。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>新建训练默认加载 5 天历史，减少首次进入等待；用户自己改过的范围仍会继续记忆。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>账户连接页把“品种名称未匹配”“本地缺少 K 线”“数据源暂不可用”分开显示；中国期货对账单使用真实期货目录作为映射目标，避免把缺行情误判成品种名错误。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>对账单追加入口会按账户类型显示为“追加对账单”或“追加数据”；交易预览错误提示补齐中英文。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复 v1.51.0 清理行情后重新下载或导入时，原存档可能受空数据描述或缓存占位影响、无法精确接回原数据的问题；现在会恢复原数据条目、范围和存档关联。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复多窗格账单复盘时，不同周期窗格反复替换同一份数据而持续重绘、卡顿的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复下单面板及交易记录编辑器中，策略列表较长时无法正常滚动选择的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复中国期货盘间休市、跨夜时段及 15 秒 / 30 秒图表的当前 K 线收线倒计时不准确。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复平行通道锚点移出可视区域后填充消失，以及部分新上市期货品种交易所归类不正确。</span></li>
+      </ul>
+      <ul class="lang-en">
+        <li><span class="tag tag-new">New</span><span>Added compact buy / sell markers at the exact execution price in replay, statement review, and trade preview. Green and red triangles make entries and reverse closes immediately recognisable.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>New training sessions now load five days of history by default for a faster first open; any range you choose yourself is still remembered.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Account Connections now distinguishes an unmatched symbol name, missing local K-lines, and an unavailable data source. CN-futures statements map against the actual futures catalogue instead of treating missing data as a naming error.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Statement import actions now say “Append statement” or “Append data” according to the account type, and trade-preview errors are fully localised in Chinese and English.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed market data cleared in v1.51.0 sometimes failing to reconnect to its original archive after being downloaded or imported again. The original data entry, range, and archive link are now restored precisely.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed multi-pane statement replay repeatedly replacing shared data between timeframes, causing continuous redraws and sluggishness.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed long strategy lists in the order panel and trade editor not scrolling normally.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed the current-bar countdown across CN-futures session breaks and overnight trading, plus 15-second and 30-second charts driven by real ticks.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed parallel-channel fills disappearing when their anchors moved off-screen, and corrected exchange mapping for several newly listed CN-futures products.</span></li>
+      </ul>
+    </article>
+
     <!-- v1.51.0 -->
     <article class="release">
       <div class="release-head">
         <span class="version">v1.51.0</span>
         <span class="date">2026-07-26</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span><strong>行情数据与训练存档正式解绑</strong>：清理本地 K 线或 Tick 数据不再连带删除存档；交易记录、训练进度、画线和笔记都会保留，重新下载或导入原数据后即可继续复盘。</span></li>
