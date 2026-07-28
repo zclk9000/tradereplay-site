@@ -1,540 +1,1081 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TradeReplay — 交易复盘训练 + 真实交易日志</title>
-<meta name="description" content="交易复盘训练 + 真实交易日志。在历史 K 线上逐根回放、反复模拟训练，练盘感与纪律；导入 MT4 / MT5 / 期货对账单，自动统计胜率、盈亏比、最大回撤。Mac / Windows，数据全部留在本地。" />
-<link rel="icon" href="logo-dark.svg" />
-<style>
-  :root{
-    --bg:#0a0d13; --bg2:#0d1118; --panel:#10151e; --panel2:#0e131b;
-    --line:#1b2230; --line2:#232c3c;
-    --teal:#2dd4bf; --teal-dim:#26a69a;
-    --red:#f0544c; --red-dim:#ef5350;
-    --blue:#4d8df0;
-    --t1:#eef2f8; --t2:#9aa6b6; --t3:#5d6878;
-    --tealfill:rgba(45,212,191,.10); --redfill:rgba(240,84,76,.10);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg);color:var(--t1);
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
-  a{color:inherit;text-decoration:none}
-
-  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
-
-  nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(140%) blur(10px);
-    background:rgba(10,13,19,.72);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;gap:14px;height:60px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:.2px}
-  .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#2dd4bf,#1f8f7f);
-    display:grid;place-items:center;color:#06231e;font-weight:800;font-size:12px}
-  .spacer{flex:1}
-  .navlink{color:var(--t2);font-size:13px;padding:7px 11px;border-radius:8px;border:1px solid transparent}
-  .navlink:hover{color:var(--t1);background:#141a24}
-  .dot{width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);display:grid;place-items:center;color:var(--t2)}
-
-  /* hero */
-  .hero{position:relative;overflow:hidden;padding:104px 0 72px}
-  .glow{position:absolute;left:50%;top:-160px;transform:translateX(-50%);
-    width:900px;height:520px;pointer-events:none;
-    background:radial-gradient(50% 50% at 50% 50%,rgba(45,212,191,.16),rgba(45,212,191,0) 70%);filter:blur(8px)}
-  .hero .wrap{position:relative;text-align:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--teal);
-    border:1px solid rgba(45,212,191,.28);background:rgba(45,212,191,.07);
-    padding:5px 12px;border-radius:999px;margin-bottom:22px}
-  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
-  h1{font-size:62px;line-height:1.04;font-weight:800;letter-spacing:1px;
-    background:linear-gradient(180deg,#ffffff, #c8d2df);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{margin:20px auto 0;font-size:19px;color:var(--t1);font-weight:500}
-  .lede{margin:14px auto 0;max-width:640px;font-size:15px;line-height:1.75;color:var(--t2)}
-
-  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:44px}
-  .btn{display:inline-flex;align-items:center;gap:11px;padding:12px 18px;border-radius:12px;
-    font-size:14px;font-weight:600;border:1px solid var(--line2);background:#121826;color:var(--t1);
-    transition:transform .12s ease,border-color .15s ease,background .15s ease}
-  .btn:hover{transform:translateY(-1px);border-color:#33405a;background:#161d2c}
-  .btn .ico{font-size:18px;line-height:0}
-  .btn small{display:block;font-size:11px;font-weight:500;color:var(--t3);margin-top:1px}
-  .btn-primary{background:linear-gradient(180deg,#3b82f6,#2f6fe0);border-color:#3b82f6;color:#fff}
-  .btn-primary small{color:#cfe0fb}
-  .btn-primary:hover{background:linear-gradient(180deg,#4a8cf8,#356fe0)}
-  .minilinks{display:flex;gap:18px;justify-content:center;margin-top:18px;font-size:13px;color:var(--t2)}
-  .minilinks a{display:inline-flex;align-items:center;gap:6px;color:var(--t2)}
-  .minilinks a:hover{color:var(--t1)}
-  .chip{width:16px;height:16px;border-radius:4px;display:inline-block}
-
-  /* app window demo */
-  .stage{position:relative;margin:96px auto 0;max-width:1000px}
-  .win{border:1px solid var(--line2);border-radius:16px;overflow:hidden;
-    background:linear-gradient(180deg,#0e131b,#0b0f16);
-    box-shadow:0 40px 120px -40px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset}
-  .titlebar{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);background:#0c1118}
-  .lights{display:flex;gap:7px}
-  .lights span{width:11px;height:11px;border-radius:50%}
-  .tb-tabs{display:flex;gap:6px;margin-left:14px;font-size:12px;color:var(--t3)}
-  .tb-tabs b{color:var(--t1);font-weight:600;background:#161d28;padding:3px 9px;border-radius:6px}
-  .tb-tabs span{padding:3px 9px}
-  .toolbar{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-bottom:1px solid var(--line);background:#0b1017;color:var(--t2);font-size:11.5px}
-  .tf{display:flex;gap:2px;background:#0e141d;border:1px solid var(--line);border-radius:8px;padding:3px}
-  .tf b{color:var(--t1);background:#1b2433;padding:3px 7px;border-radius:5px;font-weight:600}
-  .tf span{padding:3px 7px;color:var(--t3)}
-  .seg{display:flex;align-items:center;gap:6px;background:#0e141d;border:1px solid var(--line);border-radius:8px;padding:4px 8px}
-  .seg .play{width:16px;height:16px;border-radius:50%;background:var(--teal);display:inline-block}
-  .speed{flex:1;display:flex;align-items:center;gap:8px;justify-content:flex-end}
-  .track{width:120px;height:4px;border-radius:3px;background:#1b2230;position:relative}
-  .track i{position:absolute;left:0;top:0;height:100%;width:54%;border-radius:3px;background:var(--blue)}
-  .track .knob{position:absolute;left:54%;top:50%;width:12px;height:12px;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
-
-  .demo{display:grid;grid-template-columns:1fr 232px}
-  .chart{position:relative;background:#0a0e15}
-  .chart svg{display:block;width:100%;height:auto}
-  .panel{border-left:1px solid var(--line);background:#0c1119;padding:14px 14px 16px}
-  .pquote{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
-  .pquote .sym{font-size:13px;font-weight:600}
-  .pquote .px{font-size:15px;font-weight:600;color:var(--blue)}
-  .row{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--t3);margin:9px 0}
-  .field{background:#0e141d;border:1px solid var(--line2);border-radius:8px;height:30px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:12.5px;font-weight:600;min-width:96px}
-  .field.sl{color:var(--red)} .field.tp{color:var(--teal)}
-  .pbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-  .pb{height:38px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:700;letter-spacing:1px}
-  .sell{background:#7f1d1d;color:#fecaca} .buy{background:#0f5132;color:#bbf7d0}
-  .closeall{margin-top:8px;height:34px;border-radius:9px;background:#101722;border:1px solid var(--line2);display:grid;place-items:center;font-size:12px;color:var(--t2)}
-
-  .caption{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:18px;font-size:13px;color:var(--t2)}
-  .caption .k{color:var(--teal)}
-
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}.d4{animation-delay:.3s}.d5{animation-delay:.42s}
-
-  @media(max-width:760px){h1{font-size:40px}.demo{grid-template-columns:1fr}.panel{display:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TradeReplay — 把盘感练成交易系统</title>
+  <meta name="description" content="把主观判断、结构化条件和公式规则写进同一套系统。让软件处理重复筛选，把时间留给关键判断。">
+  <meta name="theme-color" content="#080b12">
+  <meta property="og:title" content="TradeReplay — 把盘感练成交易系统">
+  <meta property="og:description" content="主观判断、结构化条件和公式规则，都能进入同一套可验证的交易系统。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tradereplay.dev/">
+  <link rel="icon" href="logo-dark.svg">
+  <link rel="stylesheet" href="home-v10.css">
+  <script src="home-v9.js" defer></script>
 </head>
-<body>
+<body data-page="home">
+  <a class="skip-link" href="#main" data-zh="跳到正文" data-en="Skip to content">跳到正文</a>
+  <div class="page-progress" aria-hidden="true"><span data-page-progress></span></div>
 
-<nav><div class="wrap">
-  <div class="brand"><img src="logo-dark.svg" alt="TradeReplay" style="height:27px;width:auto;display:block"/>TradeReplay</div>
-  <span class="spacer" style="flex:1"></span>
-  <a class="navlink" href="/screenshots">界面截图</a><a class="navlink" href="/guide">使用说明</a><a class="navlink" href="/changelog">更新日志</a><a class="navlink" href="/support">支持</a>
-</div></nav>
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="TradeReplay 首页" data-aria-zh="TradeReplay 首页" data-aria-en="TradeReplay home">
+        <img src="logo-dark.svg" width="34" height="34" alt="">
+        <span>TradeReplay</span>
+      </a>
 
-<section class="hero">
-  <span class="glow"></span>
-  <div class="wrap">
-    <h1 class="rise d2">无他，唯手熟尔</h1>
-    <p class="sub rise d2">交易复盘训练 + 真实交易日志中心</p>
-    <p class="lede rise d3">在历史 K 线上反复模拟训练，练盘感、练纪律；导入真实对账单，自动看清胜率、盈亏与回撤。一切只为把判断练成肌肉记忆。</p>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle data-zh="菜单" data-en="Menu">菜单</button>
 
-    <div class="cta rise d4">
-      <a class="btn btn-primary" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-Setup.exe"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M3 3h8.4v8.4H3zM12.6 3H21v8.4h-8.4zM3 12.6h8.4V21H3zM12.6 12.6H21V21h-8.4z"/></svg></span><span>下载 Windows 版<small>v1.52.0 · Win 10/11 · 64 位</small></span></a>
-      <a class="btn" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-arm64.dmg"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.47 7.82 1.3 10.38.86 1.25 1.89 2.66 3.24 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.28-1.28 3.14-2.54.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.72-1.05-2.75-4.16zM14.5 4.5c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-.99 3.18 1.15.09 2.32-.59 2.94-1.46z"/></svg></span><span>下载 Mac 版<small>v1.52.0 · Apple 芯片</small></span></a>
+      <nav class="site-nav" id="site-nav" aria-label="主导航" data-menu data-aria-zh="主导航" data-aria-en="Primary navigation">
+        <a href="#system" data-zh="交易系统" data-en="Trading system">交易系统</a>
+        <a href="#modes" data-zh="三种模式" data-en="Three modes">三种模式</a>
+        <a href="#capabilities" data-zh="核心能力" data-en="Capabilities">核心能力</a>
+        <a href="#guides" data-zh="教程与支持" data-en="Guides & support">教程与支持</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="header-link" href="guide.html" data-zh="查看教程" data-en="View guide">查看教程</a>
+        <a class="button button-small" href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"
+          data-purchase-link
+          data-href-zh="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"
+          data-href-en="#whop"
+          data-zh="淘宝购买"
+          data-en="Get Pro">淘宝购买</a>
+      </div>
     </div>
-    <div class="minilinks rise d4">
-      <a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"><span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:#ff5000;color:#fff;font-weight:800;font-size:13px;line-height:1;flex-shrink:0">淘</span>购买激活码</a>
-      <a href="https://qm.qq.com/q/xxGMPN3N2E"><img src="/qq.png" alt="QQ" style="height:20px;width:auto;flex-shrink:0" />交流答疑 · QQ 群 559076777</a>
-    </div>
+  </header>
 
-    <div class="stage rise d5">
-      <div class="win">
-        <div class="titlebar">
-          <div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
-          <div class="tb-tabs"><b>模拟训练</b><span>历史</span><span>统计</span><span>存档</span></div>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-atmosphere" aria-hidden="true"></div>
+      <div class="shell hero-inner">
+        <div class="hero-copy" data-reveal-group>
+          <p class="eyebrow" data-zh="定制规则 · 三种运行模式 · 多来源证据" data-en="CUSTOM RULES · THREE MODES · MULTI-SOURCE EVIDENCE">定制规则 · 三种运行模式 · 多来源证据</p>
+          <h1 id="hero-title">
+            <span data-zh="把盘感练成交易系统" data-en="Turn trading instinct into a system.">把盘感练成交易系统</span>
+          </h1>
+          <p class="hero-lede"
+            data-zh="结构化复盘，让直觉有迹可循。"
+            data-en="Structured replay makes trading instinct traceable.">
+            结构化复盘，让直觉有迹可循。
+          </p>
+
+          <div class="hero-actions">
+            <a class="button hero-download-button"
+              href="#download"
+              aria-label="免费下载 Windows 与 macOS 桌面版"
+              data-aria-zh="免费下载 Windows 与 macOS 桌面版"
+              data-aria-en="Download for Windows and macOS">
+              <span class="button-platform-icons" aria-hidden="true">
+                <svg class="button-platform-windows" viewBox="0 0 24 24">
+                  <path d="M2.5 4.5 10.8 3.35v8.05H2.5V4.5Zm9.45-1.3L21.5 1.9v9.5h-9.55V3.2ZM2.5 12.6h8.3v8.05L2.5 19.5v-6.9Zm9.45 0h9.55v9.5l-9.55-1.3v-8.2Z"/>
+                </svg>
+                <svg class="button-platform-apple" viewBox="0 0 24 24">
+                  <path d="M15.8 5.2c1-1.15 1.65-2.7 1.48-4.2-1.43.06-3.16.96-4.2 2.12-.94 1.02-1.75 2.6-1.54 4.03 1.6.12 3.24-.8 4.26-1.95Zm3.58 7.28c-.03-3.08 2.51-4.57 2.63-4.64-1.44-2.1-3.68-2.39-4.47-2.42-1.9-.19-3.72 1.13-4.68 1.13-.96 0-2.45-1.1-4.02-1.07-2.07.03-3.97 1.2-5.03 3.05-2.15 3.72-.55 9.23 1.54 12.25 1.02 1.48 2.24 3.14 3.84 3.08 1.54-.06 2.12-.99 3.98-.99 1.86 0 2.38.99 4.01.96 1.66-.03 2.71-1.5 3.72-2.98 1.17-1.71 1.65-3.36 1.68-3.45-.04-.02-3.2-1.23-3.2-4.92Z" transform="scale(.82) translate(2.15 1.1)"/>
+                </svg>
+              </span>
+              <span data-zh="免费下载" data-en="Download">免费下载</span>
+            </a>
+            <a class="button button-secondary hero-video-button"
+              href="#hero-demo"
+              aria-label="观看 TradeReplay 演示"
+              data-aria-zh="观看 TradeReplay 演示"
+              data-aria-en="Watch the TradeReplay demo">
+              <span class="button-play-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9.25"/>
+                  <path d="m10 8.6 5.25 3.4L10 15.4V8.6Z"/>
+                </svg>
+              </span>
+              <span data-zh="观看演示" data-en="Watch demo">观看演示</span>
+            </a>
+          </div>
         </div>
-        <div class="toolbar">
-          <div class="tf"><span>M1</span><span>M5</span><b>M15</b><span>M30</span><span>H1</span><span>H4</span><span>D1</span></div>
-          <div class="seg"><span>‹</span><span class="play"></span><span>›</span></div>
-          <div class="speed"><span style="color:var(--t3)">⏱</span><span class="track"><i></i><span class="knob"></span></span><span style="color:var(--t1);font-weight:600" class="num">12 ×</span><span style="color:var(--t3)">CP ▾</span></div>
+
+        <figure class="hero-product" id="hero-demo">
+          <div class="hero-product-glow" aria-hidden="true"></div>
+          <div class="hero-laptop">
+            <img class="hero-laptop-frame"
+              src="assets/hero-laptop-static.png"
+              width="4400"
+              height="2700"
+              loading="eager"
+              fetchpriority="high"
+              alt="笔记本电脑中的 TradeReplay 多图表复盘界面"
+              data-alt-zh="笔记本电脑中的 TradeReplay 多图表复盘界面"
+              data-alt-en="TradeReplay multi-chart replay workspace displayed in a laptop">
+
+            <div class="hero-screen-demo"
+              hidden
+              aria-hidden="true"
+              aria-label="TradeReplay 多图表复盘与交易系统核对界面"
+              data-aria-zh="TradeReplay 多图表复盘与交易系统核对界面"
+              data-aria-en="TradeReplay multi-chart replay and trading-system checklist workspace">
+              <img class="hero-demo-shot"
+                src="assets/hero-screen-static.png"
+                width="3454"
+                height="2156"
+                alt="TradeReplay 多图表复盘与交易系统核对界面"
+                data-alt-zh="TradeReplay 多图表复盘与交易系统核对界面"
+                data-alt-en="TradeReplay multi-chart replay and trading-system checklist workspace">
+
+              <svg class="hero-demo-chart"
+                viewBox="0 0 3526 2228"
+                preserveAspectRatio="none"
+                aria-hidden="true">
+                <defs>
+                  <pattern id="hero-chart-grid"
+                    x="166.5"
+                    y="278"
+                    width="169.5"
+                    height="65.35"
+                    patternUnits="userSpaceOnUse">
+                    <path d="M169.5 0H0V65.35"
+                      fill="none"
+                      stroke="#171922"
+                      stroke-dasharray="2 8"
+                      stroke-width="2"/>
+                  </pattern>
+                  <clipPath id="hero-chart-replay-clip">
+                    <rect x="936" y="308" width="1318" height="1473"/>
+                  </clipPath>
+                  <clipPath id="hero-average-progress-clip">
+                    <rect class="hero-demo-average-progress"
+                      x="936"
+                      y="308"
+                      width="1318"
+                      height="1473"/>
+                  </clipPath>
+                  <clipPath id="hero-macd-progress-clip">
+                    <rect class="hero-demo-macd-progress"
+                      x="936"
+                      y="1804"
+                      width="1318"
+                      height="280"/>
+                  </clipPath>
+                </defs>
+
+                <g clip-path="url(#hero-chart-replay-clip)">
+                  <rect class="hero-demo-chart-mask"
+                    x="936"
+                    y="308"
+                    width="1318"
+                    height="1473"/>
+                  <rect class="hero-demo-chart-grid"
+                    x="936"
+                    y="308"
+                    width="1318"
+                    height="1473"/>
+
+                  <g clip-path="url(#hero-average-progress-clip)">
+                    <path class="hero-demo-average hero-demo-average-slow"
+                      d="M936 735 L950 749 L964 764 L978 778 L992 791 L1006 802 L1020 818 L1034 842 L1048 866 L1062 890 L1076 916 L1090 940 L1104 964 L1118 986 L1132 1005 L1146 1022 L1160 1039 L1174 1054 L1188 1067 L1202 1080 L1216 1093 L1230 1106 L1244 1118 L1258 1131 L1272 1146 L1286 1158 L1300 1170 L1314 1178 L1328 1186 L1342 1193 L1356 1197 L1370 1201 L1384 1207 L1398 1212 L1412 1217 L1426 1221 L1440 1227 L1454 1235 L1468 1242 L1482 1248 L1496 1252 L1510 1256 L1524 1261 L1538 1269 L1552 1280 L1566 1290 L1580 1296 L1594 1299 L1608 1303 L1622 1308 L1636 1315 L1650 1321 L1664 1327 L1678 1334 L1692 1339 L1706 1344 L1720 1348 L1734 1356 L1748 1363 L1762 1370 L1776 1376 L1790 1382 L1804 1387 L1818 1393 L1832 1397 L1846 1401 L1860 1404 L1874 1407 L1888 1410 L1902 1416 L1916 1421 L1930 1427 L1944 1431 L1958 1435 L1972 1438 L1986 1441 L2000 1444 L2014 1444 L2028 1444 L2042 1444 L2056 1445 L2070 1447 L2084 1450 L2098 1455 L2112 1461 L2126 1467 L2140 1472 L2154 1476 L2168 1479 L2182 1484 L2196 1490 L2210 1474 L2224 1442 L2238 1412"/>
+                    <path class="hero-demo-average hero-demo-average-fast"
+                      d="M936 853 L950 873 L964 893 L978 910 L992 924 L1006 936 L1020 955 L1034 991 L1048 1025 L1062 1057 L1076 1093 L1090 1126 L1104 1157 L1118 1184 L1132 1206 L1146 1225 L1160 1242 L1174 1255 L1188 1266 L1202 1277 L1216 1288 L1230 1298 L1244 1309 L1258 1320 L1272 1334 L1286 1345 L1300 1353 L1314 1357 L1328 1359 L1342 1361 L1356 1360 L1370 1356 L1384 1356 L1398 1356 L1412 1356 L1426 1355 L1440 1356 L1454 1361 L1468 1367 L1482 1369 L1496 1369 L1510 1369 L1524 1371 L1538 1377 L1552 1391 L1566 1402 L1580 1406 L1594 1405 L1608 1405 L1622 1407 L1636 1412 L1650 1418 L1664 1423 L1678 1429 L1692 1432 L1706 1434 L1720 1436 L1734 1445 L1748 1453 L1762 1459 L1776 1465 L1790 1470 L1804 1473 L1818 1477 L1832 1480 L1846 1482 L1860 1482 L1874 1482 L1888 1483 L1902 1490 L1916 1494 L1930 1499 L1944 1502 L1958 1504 L1972 1506 L1986 1507 L2000 1508 L2014 1506 L2028 1502 L2042 1499 L2056 1496 L2070 1496 L2084 1497 L2098 1503 L2112 1511 L2126 1519 L2140 1525 L2154 1529 L2168 1531 L2182 1536 L2196 1544 L2210 1510 L2224 1451 L2238 1395"/>
+                  </g>
+
+                  <g data-hero-candles></g>
+                </g>
+
+                <line class="hero-demo-price-line"
+                  data-hero-price-line
+                  x1="220"
+                  y1="595"
+                  x2="2710"
+                  y2="595"/>
+
+                <g class="hero-demo-macd-replay">
+                  <rect class="hero-demo-macd-mask"
+                    x="936"
+                    y="1804"
+                    width="1318"
+                    height="280"/>
+                  <rect class="hero-demo-macd-grid"
+                    x="936"
+                    y="1804"
+                    width="1318"
+                    height="280"/>
+                  <image
+                    href="assets/hero-signal-clean.png"
+                    x="0"
+                    y="0"
+                    width="3526"
+                    height="2228"
+                    preserveAspectRatio="none"
+                    clip-path="url(#hero-macd-progress-clip)"/>
+                </g>
+              </svg>
+
+              <div class="hero-demo-rule-state" aria-hidden="true">
+                <span class="hero-demo-rule-not-met">
+                  <i>×</i>
+                  Not met
+                </span>
+                <span class="hero-demo-rule-met">
+                  <i>✓</i>
+                  Met
+                </span>
+              </div>
+
+              <div class="hero-demo-signal" role="status" aria-live="polite">
+                <svg class="hero-demo-signal-line"
+                  viewBox="0 0 3526 2230"
+                  preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path pathLength="1" d="M2217 1463 L2050 930 L1980 930"/>
+                </svg>
+                <span class="hero-demo-signal-point" aria-hidden="true"></span>
+                <div class="hero-demo-signal-copy">
+                  <span>SIGNAL</span>
+                  <strong>Golden cross detected</strong>
+                  <small>EMA 30 crossed above EMA 55</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="system-loop section" id="system" aria-labelledby="system-title">
+      <div class="shell">
+        <header class="section-heading section-heading-split" data-reveal>
+          <div>
+            <p class="section-kicker" data-zh="从方法到证据" data-en="FROM METHOD TO EVIDENCE">从方法到证据</p>
+            <h2 id="system-title" data-zh="一套系统，贯穿每一次决定" data-en="One system behind every decision">一套系统，贯穿每一次决定</h2>
+          </div>
+          <p data-zh="不是把规则写在笔记里，而是让同一套系统真实运行在训练、回测和实盘记录中。"
+            data-en="Rules do not disappear into notes. The same system runs through practice, backtests and live-trade records.">
+            不是把规则写在笔记里，而是让同一套系统真实运行在训练、回测和实盘记录中。
+          </p>
+        </header>
+
+        <ol class="loop-steps">
+          <li data-step="01" data-reveal>
+            <div class="loop-step-head">
+              <span class="loop-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 6h11M8 12h11M8 18h11"/>
+                  <path d="m3.5 6 1.4 1.4L7.5 4.8M3.5 12l1.4 1.4 2.6-2.6M3.5 18l1.4 1.4 2.6-2.6"/>
+                </svg>
+              </span>
+            </div>
+            <div class="loop-step-copy">
+              <h3 data-zh="定义规则" data-en="Define rules">定义规则</h3>
+              <p data-zh="入场、风险、出场、禁做条件" data-en="Entry, risk, exit and no-trade conditions">入场、风险、出场、禁做条件</p>
+            </div>
+          </li>
+          <li data-step="02" data-reveal>
+            <div class="loop-step-head">
+              <span class="loop-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 4v16M19 4v16M3 8h4M17 15h4M12 3v18M10 7h4M10 17h4"/>
+                </svg>
+              </span>
+            </div>
+            <div class="loop-step-copy">
+              <h3 data-zh="放进 K 线" data-en="Put them on the chart">放进 K 线</h3>
+              <p data-zh="让主观判断与客观规则协同运行" data-en="Run discretionary judgment and objective rules together">让主观判断与客观规则协同运行</p>
+            </div>
+          </li>
+          <li data-step="03" data-reveal>
+            <div class="loop-step-head">
+              <span class="loop-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="7" cy="7" r="3"/>
+                  <circle cx="17" cy="17" r="3"/>
+                  <path d="M9.2 9.2 14.8 14.8M14 5h5v5M10 19H5v-5"/>
+                </svg>
+              </span>
+            </div>
+            <div class="loop-step-copy">
+              <h3 data-zh="交叉验证" data-en="Cross-check evidence">交叉验证</h3>
+              <p data-zh="训练、回测与真实账单" data-en="Practice, backtest and live records">训练、回测与真实账单</p>
+            </div>
+          </li>
+          <li data-step="04" data-reveal>
+            <div class="loop-step-head">
+              <span class="loop-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M20 8a8 8 0 0 0-13.5-2L4 8.5"/>
+                  <path d="M4 4v4.5h4.5M4 16a8 8 0 0 0 13.5 2l2.5-2.5"/>
+                  <path d="M20 20v-4.5h-4.5"/>
+                </svg>
+              </span>
+            </div>
+            <div class="loop-step-copy">
+              <h3 data-zh="持续修正" data-en="Improve continuously">持续修正</h3>
+              <p data-zh="分清系统问题与执行偏差" data-en="Separate system flaws from execution gaps">分清系统问题与执行偏差</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="modes section" id="modes" aria-labelledby="modes-title">
+      <div class="shell">
+        <header class="section-heading" data-reveal>
+          <p class="section-kicker" data-zh="同一套规则，三种运行方式" data-en="ONE SYSTEM, THREE MODES">同一套规则，三种运行方式</p>
+          <h2 id="modes-title" data-zh="从主观训练，到自动验证" data-en="From discretionary practice to automatic proof">从主观训练，到自动验证</h2>
+          <p data-zh="根据规则的客观程度选择运行方式，系统本身不必重写。"
+            data-en="Choose the mode that fits how objective your rules are. The system itself stays the same.">
+            根据规则的客观程度选择运行方式，系统本身不必重写。
+          </p>
+        </header>
+
+        <div class="mode-tabs" role="tablist" aria-label="系统运行模式" data-aria-zh="系统运行模式" data-aria-en="System run modes" data-reveal>
+          <button class="is-active" id="mode-tab-check" type="button" role="tab" aria-selected="true" aria-controls="mode-panel-check" data-mode-tab="check">
+            <span>01</span>
+            <b data-zh="清单核对" data-en="Manual check">清单核对</b>
+            <small data-zh="你做判断，系统守纪律" data-en="You decide; the system keeps discipline">你做判断，系统守纪律</small>
+          </button>
+          <button id="mode-tab-signal" type="button" role="tab" aria-selected="false" aria-controls="mode-panel-signal" data-mode-tab="signal">
+            <span>02</span>
+            <b data-zh="信号导航" data-en="Signal navigation">信号导航</b>
+            <small data-zh="自动找信号，再由你确认" data-en="Find setups automatically; you confirm">自动找信号，再由你确认</small>
+          </button>
+          <button id="mode-tab-backtest" type="button" role="tab" aria-selected="false" aria-controls="mode-panel-backtest" data-mode-tab="backtest">
+            <span>03</span>
+            <b data-zh="自动回测" data-en="Automatic backtest">自动回测</b>
+            <small data-zh="把完整系统跑遍历史" data-en="Run the full system through history">把完整系统跑遍历史</small>
+          </button>
         </div>
-        <div class="demo">
-          <div class="chart"><svg id="cv" viewBox="0 0 720 372" preserveAspectRatio="none" aria-label="训练图表：拖动设置止盈止损"></svg></div>
-          <div class="panel">
-            <div class="pquote"><span class="sym">EURUSD</span><span class="px num">1.17190</span></div>
-            <div class="row"><span>手数</span><span class="field num">1.00</span></div>
-            <div class="row"><span>SL 价格</span><span class="field sl num" id="slField">1.17000</span></div>
-            <div class="row"><span>TP 价格</span><span class="field tp num">1.17440</span></div>
-            <div class="row" style="margin-top:12px"><span>风险回报</span><span style="color:var(--t1);font-weight:600" class="num" id="rrField">R:R 1.10</span></div>
-            <div class="pbtns"><div class="pb sell">卖出</div><div class="pb buy">买入</div></div>
-            <div class="closeall">全部平仓 ▾</div>
+
+        <div class="mode-stage" data-reveal>
+          <article class="mode-panel is-active" id="mode-panel-check" role="tabpanel" aria-labelledby="mode-tab-check" data-mode-panel="check">
+            <div class="mode-copy">
+              <p class="panel-index">01 / 03</p>
+              <h3 data-zh="每次下单前，把规则逐项过一遍" data-en="Check every rule before the order">每次下单前，把规则逐项过一遍</h3>
+              <p data-zh="客观条件自动核对，主观条件保留给你判断。每次确认都会进入交易记录，复盘时能看见当时是否真正遵守系统。"
+                data-en="Objective conditions are checked automatically while subjective judgment remains yours. Every confirmation is saved with the trade.">
+                客观条件自动核对，主观条件保留给你判断。每次确认都会进入交易记录，复盘时能看见当时是否真正遵守系统。
+              </p>
+              <ul>
+                <li data-zh="结构化、公式化与主观条件共存" data-en="Structured, formula and subjective conditions">结构化、公式化与主观条件共存</li>
+                <li data-zh="必守规则与参考规则分开" data-en="Separate required rules from references">必守规则与参考规则分开</li>
+                <li data-zh="每笔交易保存系统版本" data-en="Save the system version with every trade">每笔交易保存系统版本</li>
+              </ul>
+            </div>
+            <figure class="mode-visual mode-video-demo mode-video-checklist"
+              data-mode-video-demo="check"
+              data-trigger-time="5.76"
+              aria-label="清单核对模式：真实 K 线持续播放，出现入场条件时标出信号与核对清单"
+              data-aria-zh="清单核对模式：真实 K 线持续播放，出现入场条件时标出信号与核对清单"
+              data-aria-en="Manual checking mode: the real chart keeps replaying while the signal and checklist are annotated">
+              <div class="mode-video-shell">
+                <video data-mode-video
+                  controls
+                  controlslist="nodownload nofullscreen noremoteplayback"
+                  disablepictureinpicture
+                  disableremoteplayback
+                  playsinline
+                  preload="metadata"
+                  poster="assets/mode-checklist-poster.jpg"
+                  aria-label="清单核对模式演示"
+                  data-aria-zh="清单核对模式演示"
+                  data-aria-en="Manual checking mode demo">
+                  <source src="assets/mode-checklist.mp4" type="video/mp4">
+                </video>
+
+                <div class="mode-video-annotation" aria-hidden="true">
+                  <span class="mode-video-signal"></span>
+                  <span class="mode-video-source-box"></span>
+
+                  <div class="mode-video-callout">
+                    <span data-zh="清单核对" data-en="MANUAL CHECKING">清单核对</span>
+                    <strong data-zh="客观条件自动核对，主观判断由你确认"
+                      data-en="Objective rules are checked automatically. You confirm the subjective ones.">
+                      客观条件自动核对，主观判断由你确认
+                    </strong>
+                  </div>
+
+                  <span class="mode-video-leader"></span>
+                </div>
+              </div>
+            </figure>
+
+            <figure class="mode-visual mode-simulator mode-simulator-check mode-simulator-legacy"
+              hidden
+              role="img"
+              aria-label="清单核对模式：K 线逐根播放，系统规则逐项变为绿色通过状态"
+              data-aria-zh="清单核对模式：K 线逐根播放，系统规则逐项变为绿色通过状态"
+              data-aria-en="Manual checking mode: candles replay one by one while checklist rules turn green as they are met">
+              <div class="mode-chart-app" aria-hidden="true">
+                <svg class="mode-kline" viewBox="0 0 720 480" preserveAspectRatio="none">
+                  <defs>
+                    <pattern id="mode-grid-check" width="52" height="42" patternUnits="userSpaceOnUse">
+                      <path d="M52 0H0V42" fill="none" stroke="#344052" stroke-opacity=".42" stroke-width="1" stroke-dasharray="2 5"/>
+                    </pattern>
+                    <clipPath id="mode-plot-check"><rect x="24" y="80" width="646" height="367" rx="3"/></clipPath>
+                    <clipPath id="mode-ma-check"><rect class="mode-ma-reveal" x="24" y="80" width="646" height="367"/></clipPath>
+                  </defs>
+                  <rect width="720" height="480" fill="#0b111a"/>
+                  <rect width="720" height="48" fill="#171d29"/>
+                  <rect y="48" width="24" height="432" fill="#1d2431"/>
+                  <path d="M0 48H720M0 78H720M24 48V480M670 48V480M0 447H720" stroke="#313a4b" stroke-width="1"/>
+                  <g class="mode-tool-rail">
+                    <rect x="4" y="66" width="16" height="28" rx="5" fill="#353d4c"/>
+                    <path d="m8 72 8 4-5 2-2 6Z" fill="none" stroke="#d3dae4" stroke-width="1.2"/>
+                    <path d="M8 112h8M8 128l8-8M8 145h8M8 162h8M8 179h8M8 196h8M8 213h8M8 230h8M8 247h8M8 264h8M8 281h8M8 298h8M8 315h8" stroke="#929cac" stroke-width="1.2" stroke-linecap="round"/>
+                  </g>
+                  <g class="mode-toolbar">
+                    <rect x="37" y="10" width="78" height="28" rx="6" fill="#242c3b"/>
+                    <circle cx="51" cy="24" r="5" fill="none" stroke="#7d8ba1"/>
+                    <path d="m55 28 5 5" stroke="#7d8ba1" stroke-width="1.5"/>
+                    <text x="65" y="28">EURUSD</text>
+                    <text x="125" y="28" class="is-dim">H1</text>
+                    <rect x="150" y="10" width="27" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m168 17-8 7 8 7" fill="none" stroke="#aeb8c8" stroke-width="1.5"/>
+                    <rect x="181" y="10" width="34" height="28" rx="5" fill="#242c3b"/>
+                    <path d="M194 17v14M202 17v14" stroke="#c6d0de" stroke-width="2"/>
+                    <rect x="219" y="10" width="27" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m228 17 8 7-8 7" fill="none" stroke="#aeb8c8" stroke-width="1.5"/>
+                    <path d="M267 24h76" stroke="#485365" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M267 24h34" stroke="#4b918d" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="301" cy="24" r="6" fill="#55a09c"/>
+                    <text x="354" y="28" class="is-dim">1.5 b/s</text>
+                    <text x="628" y="28" class="is-dim">22:00:00</text>
+                  </g>
+                  <rect x="24" y="80" width="646" height="367" fill="url(#mode-grid-check)"/>
+                  <text x="36" y="99" class="mode-ohlc">O 1.18117  H 1.18598  L 1.18468  C 1.18558  +0.03%</text>
+                  <text x="36" y="119" class="mode-indicator-label">●  EXPMA</text>
+                  <text x="294" y="274" class="mode-chart-watermark">EURUSD · H1</text>
+                  <g class="mode-price-axis">
+                    <text x="680" y="102">1.2080</text><text x="680" y="150">1.2020</text><text x="680" y="198">1.1960</text>
+                    <text x="680" y="246">1.1900</text><text x="680" y="294">1.1840</text><text x="680" y="342">1.1780</text>
+                    <text x="680" y="390">1.1720</text><text x="680" y="438">1.1660</text>
+                  </g>
+                  <g clip-path="url(#mode-plot-check)">
+                    <g data-mode-candles="check"></g>
+                    <g clip-path="url(#mode-ma-check)">
+                      <path data-mode-ma-slow="check" class="mode-ma mode-ma-slow" d=""/>
+                      <path data-mode-ma-fast="check" class="mode-ma mode-ma-fast" d=""/>
+                    </g>
+                    <line class="mode-live-price" data-mode-price="check" x1="24" x2="670" y1="338" y2="338"/>
+                    <line class="mode-playhead" x1="32" x2="32" y1="80" y2="447"/>
+                  </g>
+                  <g class="mode-time-axis">
+                    <text x="66" y="466">08:00</text><text x="174" y="466">08:00</text><text x="282" y="466">06:00</text>
+                    <text x="390" y="466">08:00</text><text x="498" y="466">08:00</text><text x="606" y="466">08:00</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-control-panel mode-control-check" aria-hidden="true">
+                <div class="mode-order-summary">
+                  <div><b>EURUSD</b><em>1.18558</em><small>FOREX</small><small>USD</small></div>
+                  <dl><div><dt>BAL</dt><dd>$100,000</dd></div><div><dt>EQ</dt><dd>$100,000</dd></div><div><dt>FLOAT</dt><dd>+$0</dd></div></dl>
+                </div>
+                <div class="mode-ticket">
+                  <div class="mode-ticket-field"><span>Lots</span><b>1</b></div>
+                  <div class="mode-ticket-field"><span>SL price</span><b>abs</b></div>
+                  <div class="mode-ticket-field"><span>TP price</span><b>abs</b></div>
+                  <div class="mode-ticket-system"><span>☷</span><b>≋ &nbsp;cross</b><em>⌄</em></div>
+                  <div class="mode-ticket-actions"><button>SELL</button><span>− &nbsp; 1 &nbsp; +</span><button>BUY</button></div>
+                  <div class="mode-close-all">Close all <span>⌄</span></div>
+                </div>
+                <div class="mode-control-head">
+                  <span class="mode-swap-icon">⇄</span><i></i>
+                  <b>System checklist</b><small>· cross</small>
+                  <em class="mode-chip">Manual checking</em>
+                </div>
+                <div class="mode-control-section mode-control-section-head">
+                  <span class="mode-chevron">⌄</span><span class="mode-list-icon">☷</span>
+                  <b>Entry conditions</b>
+                  <span class="mode-check-counter"><small class="mode-counter-base">Checked 1/2</small><small class="mode-counter-pending">Checked 0/2</small><small class="mode-counter-done">Checked 2/2</small></span>
+                  <small>Entry quality 0</small>
+                </div>
+                <div class="mode-check-rule">
+                  <span class="mode-rule-index">1</span>
+                  <span><b>Buy: [Current chart] CROSS(EMA...</b><small>H1 · CROSS(EMA(C,30),EMA(C,55))</small></span>
+                  <span class="mode-check-evaluation">
+                    <em class="mode-eval-base">⊗ Not met</em><em class="mode-eval-pending">○ Awaiting evaluation</em><em class="mode-eval-passed">✓ Met</em>
+                  </span>
+                </div>
+                <div class="mode-control-section mode-plan-title">
+                  <span class="mode-shield-icon">♢</span><b>Execution plan</b><small>Applied to order ticket</small>
+                </div>
+                <div class="mode-plan-row">
+                  <span class="mode-rule-index">2</span>
+                  <span><b>Fixed position size 1 lots</b><small>Current data cannot evaluate this condition</small></span>
+                  <span class="mode-plan-evaluation"><em>○ Awaiting evaluation</em><em>✓ Applied</em></span>
+                </div>
+                <p class="mode-panel-note">Rules do not need to all pass before you place the order; the check results will be recorded with the trade.</p>
+              </div>
+            </figure>
+          </article>
+
+          <article class="mode-panel" id="mode-panel-signal" role="tabpanel" aria-labelledby="mode-tab-signal" data-mode-panel="signal" hidden>
+            <div class="mode-copy">
+              <p class="panel-index">02 / 03</p>
+              <h3 data-zh="让 K 线继续播放，命中信号时自动暂停" data-en="Keep replaying until a setup is found">让 K 线继续播放，命中信号时自动暂停</h3>
+              <p data-zh="软件逐根扫描客观条件，找到信号后高亮位置、暂停播放，并把剩余主观判断清单交给你。"
+                data-en="TradeReplay scans objective conditions bar by bar, pauses at a match, highlights the setup and hands the remaining judgment back to you.">
+                软件逐根扫描客观条件，找到信号后高亮位置、暂停播放，并把剩余主观判断清单交给你。
+              </p>
+              <ul>
+                <li data-zh="逐根扫描，不跳过过程" data-en="Scan bar by bar without skipping context">逐根扫描，不跳过过程</li>
+                <li data-zh="命中位置自动暂停并高亮" data-en="Pause and highlight every match">命中位置自动暂停并高亮</li>
+                <li data-zh="自动条件与人工确认清晰分工" data-en="Clear handoff between automation and judgment">自动条件与人工确认清晰分工</li>
+              </ul>
+            </div>
+            <figure class="mode-visual mode-video-demo mode-video-signal-navigation"
+              data-mode-video-demo="signal"
+              data-trigger-time="5.78"
+              data-signal-x="62.1"
+              data-signal-y="66.7"
+              aria-label="信号导航模式：K 线自动扫描，命中规则后暂停并等待主观判断"
+              data-aria-zh="信号导航模式：K 线自动扫描，命中规则后暂停并等待主观判断"
+              data-aria-en="Signal navigation mode: the chart scans automatically, pauses at a match and waits for your judgment">
+              <div class="mode-video-shell">
+                <video data-mode-video
+                  controls
+                  controlslist="nodownload nofullscreen noremoteplayback"
+                  disablepictureinpicture
+                  disableremoteplayback
+                  playsinline
+                  preload="metadata"
+                  poster="assets/mode-signal-poster.jpg?v=2"
+                  aria-label="信号导航模式演示"
+                  data-aria-zh="信号导航模式演示"
+                  data-aria-en="Signal navigation mode demo">
+                  <source src="assets/mode-signal.mp4?v=2" type="video/mp4">
+                </video>
+
+                <div class="mode-video-annotation" aria-hidden="true">
+                  <span class="mode-video-signal"></span>
+                  <span class="mode-video-source-box"></span>
+
+                  <div class="mode-video-callout">
+                    <span data-zh="信号导航" data-en="SIGNAL NAVIGATION">信号导航</span>
+                    <strong data-zh="规则命中后自动暂停，等待你的主观判断"
+                      data-en="Pauses at a match and waits for your judgment.">
+                      规则命中后自动暂停，等待你的主观判断
+                    </strong>
+                  </div>
+
+                  <span class="mode-video-leader"></span>
+                </div>
+              </div>
+            </figure>
+
+            <figure class="mode-visual mode-simulator mode-simulator-signal mode-simulator-legacy"
+              hidden
+              role="img"
+              aria-label="信号导航模式：K 线逐根播放，找到信号后暂停并显示规则满足"
+              data-aria-zh="信号导航模式：K 线逐根播放，找到信号后暂停并显示规则满足"
+              data-aria-en="Signal navigation mode: candles replay until a matching signal pauses playback and marks the rule as met">
+              <div class="mode-chart-app" aria-hidden="true">
+                <svg class="mode-kline" viewBox="0 0 720 480" preserveAspectRatio="none">
+                  <defs>
+                    <pattern id="mode-grid-signal" width="52" height="42" patternUnits="userSpaceOnUse">
+                      <path d="M52 0H0V42" fill="none" stroke="#344052" stroke-opacity=".42" stroke-width="1" stroke-dasharray="2 5"/>
+                    </pattern>
+                    <clipPath id="mode-plot-signal"><rect x="24" y="80" width="646" height="305" rx="3"/></clipPath>
+                    <clipPath id="mode-ma-signal"><rect class="mode-ma-reveal" x="24" y="80" width="646" height="305"/></clipPath>
+                  </defs>
+                  <rect width="720" height="480" fill="#0b111a"/>
+                  <rect width="720" height="48" fill="#171d29"/>
+                  <path d="M0 48H720M0 78H720M670 48V480M0 392H720" stroke="#313a4b" stroke-width="1"/>
+                  <g class="mode-toolbar">
+                    <rect x="17" y="10" width="78" height="28" rx="6" fill="#242c3b"/>
+                    <circle cx="31" cy="24" r="5" fill="none" stroke="#7d8ba1"/>
+                    <path d="m35 28 5 5" stroke="#7d8ba1" stroke-width="1.5"/>
+                    <text x="45" y="28">EURUSD</text>
+                    <text x="105" y="28" class="is-dim">M30</text>
+                    <rect x="150" y="10" width="27" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m168 17-8 7 8 7" fill="none" stroke="#aeb8c8" stroke-width="1.5"/>
+                    <rect x="181" y="10" width="34" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m194 17 10 7-10 7Z" fill="#c6d0de"/>
+                    <rect x="219" y="10" width="27" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m228 17 8 7-8 7" fill="none" stroke="#aeb8c8" stroke-width="1.5"/>
+                    <path d="M267 24h76" stroke="#485365" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M267 24h50" stroke="#c79562" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="317" cy="24" r="6" fill="#d9aa72"/>
+                    <text x="354" y="28" class="is-dim">21 b/s</text>
+                    <text x="628" y="28" class="is-dim">22:00:00</text>
+                  </g>
+                  <rect x="24" y="80" width="646" height="305" fill="url(#mode-grid-signal)"/>
+                  <text x="36" y="99" class="mode-ohlc">O 1.15696  H 1.15831  L 1.15503  C 1.15606  −0.08%</text>
+                  <g class="mode-price-axis">
+                    <text x="680" y="102">1.1600</text><text x="680" y="145">1.1560</text><text x="680" y="188">1.1520</text>
+                    <text x="680" y="231">1.1480</text><text x="680" y="274">1.1440</text><text x="680" y="317">1.1400</text>
+                    <text x="680" y="360">1.1360</text>
+                  </g>
+                  <g clip-path="url(#mode-plot-signal)">
+                    <g data-mode-candles="signal"></g>
+                    <g clip-path="url(#mode-ma-signal)">
+                      <path data-mode-ma-slow="signal" class="mode-ma mode-ma-slow" d=""/>
+                      <path data-mode-ma-fast="signal" class="mode-ma mode-ma-fast" d=""/>
+                    </g>
+                    <line class="mode-live-price" data-mode-price="signal" x1="24" x2="670" y1="338" y2="338"/>
+                    <line class="mode-playhead" x1="32" x2="32" y1="80" y2="385"/>
+                    <g class="mode-signal-marker">
+                      <path d="M505 169 470 144H386" fill="none" stroke="#ff625e" stroke-width="1.8"/>
+                      <circle cx="505" cy="169" r="15" fill="#ff625e" fill-opacity=".12" stroke="#ff625e" stroke-opacity=".5"/>
+                      <circle cx="505" cy="169" r="5.5" fill="#ff625e" stroke="#fff" stroke-width="2.5"/>
+                    </g>
+                    <g class="mode-signal-callout">
+                      <rect x="290" y="111" width="183" height="68" rx="9" fill="#101722" stroke="#9f3f45"/>
+                      <text x="306" y="132" class="is-signal">SIGNAL</text>
+                      <text x="306" y="151" class="is-title">Golden cross detected</text>
+                      <text x="306" y="166" class="is-note">EMA 30 crossed above EMA 55</text>
+                    </g>
+                  </g>
+                  <rect x="24" y="399" width="646" height="65" fill="#0a1018"/>
+                  <text x="36" y="414" class="mode-indicator-label">●  MACD</text>
+                  <path class="mode-macd-hist" d="M30 438h8v-9h5v9h8v-15h5v15h8v-11h5v11h8v7h5v-7h8v12h5v-12h8v-16h5v16h8v9h5v-9h8v5h5v-5h8v-8h5v8h8v-12h5v12h8v16h5v-16h8v-9h5v9h8"/>
+                  <path class="mode-macd-line is-blue" d="M30 448C96 448 112 421 178 429S259 456 321 442 420 422 488 430 568 420 659 405"/>
+                  <path class="mode-macd-line is-orange" d="M30 451C95 451 121 430 180 433S255 449 321 445 414 428 490 433 577 425 659 414"/>
+                </svg>
+              </div>
+              <div class="mode-control-panel mode-control-signal" aria-hidden="true">
+                <div class="mode-control-head">
+                  <span class="mode-swap-icon">⇄</span><i></i>
+                  <b>System checklist</b><small>· cross</small>
+                  <em class="mode-chip">Signal navigation</em>
+                </div>
+                <div class="mode-control-section mode-control-section-head">
+                  <span class="mode-chevron">⌄</span><span class="mode-list-icon">⌁</span>
+                  <b>Signal navigation</b><small>Checked 1/1</small><small>Entry quality 0</small>
+                </div>
+                <div class="mode-navigation-banner">
+                  <span class="mode-list-icon">⌁</span><b>1 automatic condition · 0 confirm after trigger</b>
+                  <span class="mode-status-swap">
+                    <em class="mode-state-before">Waiting to start</em><em class="mode-state-after">Signal found · Paused</em>
+                  </span>
+                </div>
+                <div class="mode-check-rule">
+                  <span class="mode-rule-index">1</span>
+                  <span><b>Buy: [Current chart] CROSS(EMA...</b><small>M30 · CROSS(EMA(C,30),EMA(C,55))</small></span>
+                  <span class="mode-state-swap" style="--state-delay: 3100ms">
+                    <em class="mode-state-before">⊗ Not met</em><em class="mode-state-after">✓ Met</em>
+                  </span>
+                </div>
+                <div class="mode-control-section mode-plan-title">
+                  <span class="mode-shield-icon">♢</span><b>Execution plan</b><small>Generated after signal</small>
+                </div>
+                <div class="mode-plan-row">
+                  <span class="mode-rule-index">2</span>
+                  <span><b>Fixed position size 1 lots</b><small>Planned size: 1</small></span>
+                  <span class="mode-state-swap" style="--state-delay: 3350ms">
+                    <em class="mode-state-before is-neutral">○ Pending</em><em class="mode-state-after">✓ Applied</em>
+                  </span>
+                </div>
+                <p class="mode-panel-note">Playback will pause after automatic conditions match and ask for the remaining confirmations.</p>
+              </div>
+            </figure>
+          </article>
+
+          <article class="mode-panel" id="mode-panel-backtest" role="tabpanel" aria-labelledby="mode-tab-backtest" data-mode-panel="backtest" hidden>
+            <div class="mode-copy">
+              <p class="panel-index">03 / 03</p>
+              <h3 data-zh="用完全客观的规则，自动完成历史测试" data-en="Run fully objective rules through history">用完全客观的规则，自动完成历史测试</h3>
+              <p data-zh="当入场、仓位、风险和出场都能执行时，让软件跑完整段历史，再回到每一笔成交检查结果。"
+                data-en="When entry, sizing, risk and exit are executable, run the full history automatically and inspect every resulting trade.">
+                当入场、仓位、风险和出场都能执行时，让软件跑完整段历史，再回到每一笔成交检查结果。
+              </p>
+              <ul>
+                <li data-zh="同一套系统直接进入回测" data-en="Backtest the same system directly">同一套系统直接进入回测</li>
+                <li data-zh="扫描胜率、盈亏与回撤" data-en="Measure win rate, P&L and drawdown">扫描胜率、盈亏与回撤</li>
+                <li data-zh="逐笔回放验证成交逻辑" data-en="Replay trades one by one to verify execution">逐笔回放验证成交逻辑</li>
+              </ul>
+            </div>
+            <figure class="mode-visual mode-video-demo mode-video-backtest"
+              data-mode-video-demo="backtest"
+              data-trigger-time="6.00"
+              aria-label="自动回测模式：规则满足后自动下单，并持续扫描退出条件"
+              data-aria-zh="自动回测模式：规则满足后自动下单，并持续扫描退出条件"
+              data-aria-en="Automatic backtest mode: place orders when rules match and keep scanning for exit conditions">
+              <div class="mode-video-shell">
+                <video data-mode-video
+                  controls
+                  controlslist="nodownload nofullscreen noremoteplayback"
+                  disablepictureinpicture
+                  disableremoteplayback
+                  playsinline
+                  preload="metadata"
+                  poster="assets/mode-backtest-poster.jpg"
+                  aria-label="自动回测模式演示"
+                  data-aria-zh="自动回测模式演示"
+                  data-aria-en="Automatic backtest mode demo">
+                  <source src="assets/mode-backtest.mp4" type="video/mp4">
+                </video>
+
+                <div class="mode-video-annotation" aria-hidden="true">
+                  <span class="mode-video-source-box"></span>
+
+                  <div class="mode-video-callout">
+                    <span data-zh="自动执行" data-en="AUTOMATIC EXECUTION">自动执行</span>
+                    <strong data-zh="规则满足后自动下单，并持续扫描退出条件"
+                      data-en="Places the order when rules match, then keeps scanning for the exit.">
+                      规则满足后自动下单，并持续扫描退出条件
+                    </strong>
+                  </div>
+
+                  <span class="mode-video-leader"></span>
+                </div>
+              </div>
+            </figure>
+
+            <figure class="mode-visual mode-simulator mode-simulator-auto mode-simulator-legacy"
+              hidden
+              role="img"
+              aria-label="自动回测模式：K 线逐根播放，系统自动下单并在图表上显示订单标志"
+              data-aria-zh="自动回测模式：K 线逐根播放，系统自动下单并在图表上显示订单标志"
+              data-aria-en="Automatic execution mode: candles replay while the system places trades and shows order markers on the chart">
+              <div class="mode-chart-app" aria-hidden="true">
+                <svg class="mode-kline" viewBox="0 0 720 480" preserveAspectRatio="none">
+                  <defs>
+                    <pattern id="mode-grid-auto" width="52" height="42" patternUnits="userSpaceOnUse">
+                      <path d="M52 0H0V42" fill="none" stroke="#344052" stroke-opacity=".42" stroke-width="1" stroke-dasharray="2 5"/>
+                    </pattern>
+                    <clipPath id="mode-plot-auto"><rect x="24" y="80" width="646" height="305" rx="3"/></clipPath>
+                    <clipPath id="mode-ma-auto"><rect class="mode-ma-reveal" x="24" y="80" width="646" height="305"/></clipPath>
+                  </defs>
+                  <rect width="720" height="480" fill="#0b111a"/>
+                  <rect width="720" height="48" fill="#171d29"/>
+                  <path d="M0 48H720M0 78H720M670 48V480M0 392H720" stroke="#313a4b" stroke-width="1"/>
+                  <g class="mode-toolbar">
+                    <rect x="17" y="10" width="78" height="28" rx="6" fill="#242c3b"/>
+                    <circle cx="31" cy="24" r="5" fill="none" stroke="#7d8ba1"/>
+                    <path d="m35 28 5 5" stroke="#7d8ba1" stroke-width="1.5"/>
+                    <text x="45" y="28">EURUSD</text>
+                    <text x="105" y="28" class="is-dim">M30</text>
+                    <rect x="150" y="10" width="27" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m168 17-8 7 8 7" fill="none" stroke="#aeb8c8" stroke-width="1.5"/>
+                    <rect x="181" y="10" width="34" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m194 17 10 7-10 7Z" fill="#c6d0de"/>
+                    <rect x="219" y="10" width="27" height="28" rx="5" fill="#242c3b"/>
+                    <path d="m228 17 8 7-8 7" fill="none" stroke="#aeb8c8" stroke-width="1.5"/>
+                    <path d="M267 24h76" stroke="#485365" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M267 24h50" stroke="#c79562" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="317" cy="24" r="6" fill="#d9aa72"/>
+                    <text x="354" y="28" class="is-dim">21 b/s</text>
+                    <text x="628" y="28" class="is-dim">22:00:00</text>
+                  </g>
+                  <rect x="24" y="80" width="646" height="305" fill="url(#mode-grid-auto)"/>
+                  <text x="36" y="99" class="mode-ohlc">O 1.15696  H 1.15831  L 1.15503  C 1.15606  −0.08%</text>
+                  <g class="mode-price-axis">
+                    <text x="680" y="102">1.1600</text><text x="680" y="145">1.1560</text><text x="680" y="188">1.1520</text>
+                    <text x="680" y="231">1.1480</text><text x="680" y="274">1.1440</text><text x="680" y="317">1.1400</text>
+                    <text x="680" y="360">1.1360</text>
+                  </g>
+                  <g clip-path="url(#mode-plot-auto)">
+                    <g data-mode-candles="auto"></g>
+                    <g clip-path="url(#mode-ma-auto)">
+                      <path data-mode-ma-slow="auto" class="mode-ma mode-ma-slow" d=""/>
+                      <path data-mode-ma-fast="auto" class="mode-ma mode-ma-fast" d=""/>
+                    </g>
+                    <line class="mode-live-price" data-mode-price="auto" x1="24" x2="670" y1="338" y2="338"/>
+                    <line class="mode-playhead" x1="32" x2="32" y1="80" y2="385"/>
+                    <g class="mode-order-marker mode-order-one mode-order-buy" transform="translate(208 265)">
+                      <circle r="13"/><path d="m0-5-5 7h10Z"/><text x="0" y="26">BUY</text>
+                    </g>
+                    <g class="mode-order-marker mode-order-two mode-order-sell" transform="translate(324 224)">
+                      <circle r="13"/><path d="m0 5-5-7h10Z"/><text x="0" y="-20">SELL</text>
+                    </g>
+                    <path class="mode-order-link mode-order-link-one" d="M208 265 324 224"/>
+                    <g class="mode-order-marker mode-order-three mode-order-buy" transform="translate(426 243)">
+                      <circle r="13"/><path d="m0-5-5 7h10Z"/><text x="0" y="26">BUY</text>
+                    </g>
+                    <g class="mode-order-marker mode-order-four mode-order-sell" transform="translate(552 154)">
+                      <circle r="13"/><path d="m0 5-5-7h10Z"/><text x="0" y="-20">SELL</text>
+                    </g>
+                    <path class="mode-order-link mode-order-link-two" d="M426 243 552 154"/>
+                  </g>
+                  <rect x="24" y="399" width="646" height="65" fill="#0a1018"/>
+                  <text x="36" y="414" class="mode-indicator-label">●  MACD</text>
+                  <path class="mode-macd-hist" d="M30 438h8v-9h5v9h8v-15h5v15h8v-11h5v11h8v7h5v-7h8v12h5v-12h8v-16h5v16h8v9h5v-9h8v5h5v-5h8v-8h5v8h8v-12h5v12h8v16h5v-16h8v-9h5v9h8"/>
+                  <path class="mode-macd-line is-blue" d="M30 448C96 448 112 421 178 429S259 456 321 442 420 422 488 430 568 420 659 405"/>
+                  <path class="mode-macd-line is-orange" d="M30 451C95 451 121 430 180 433S255 449 321 445 414 428 490 433 577 425 659 414"/>
+                </svg>
+              </div>
+              <div class="mode-control-panel mode-control-auto" aria-hidden="true">
+                <div class="mode-control-head">
+                  <span class="mode-swap-icon">⇄</span><i></i>
+                  <b>System checklist</b><small>· cross</small>
+                  <em class="mode-chip">Automatic execution</em>
+                </div>
+                <div class="mode-auto-status">
+                  <span class="mode-flask-icon">♧</span><b>Automatic execution</b>
+                  <span class="mode-status-swap">
+                    <em class="mode-state-before">◉ Waiting for playback</em><em class="mode-state-after">● Executing automatically</em>
+                  </span>
+                </div>
+                <dl class="mode-auto-table">
+                  <div><dt>Entry rules</dt><dd>1</dd></div>
+                  <div><dt>Exit rules</dt><dd>2</dd></div>
+                  <div><dt>User-confirmed conditions</dt><dd>0</dd></div>
+                  <div><dt>Stop-loss plan</dt><dd>Not required for fixed position size</dd></div>
+                  <div><dt>Position sizing</dt><dd>Fixed position size 1 lots</dd></div>
+                  <div><dt>Take-profit plan</dt><dd>No automatic target</dd></div>
+                </dl>
+                <p class="mode-panel-note">Click Play to start automatic signal scanning and order execution.</p>
+              </div>
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities section" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="shell">
+        <header class="section-heading section-heading-split" data-reveal>
+          <div>
+            <p class="section-kicker" data-zh="六个栏目，一个闭环" data-en="SIX CAPABILITIES, ONE LOOP">六个栏目，一个闭环</p>
+            <h2 id="capabilities-title" data-zh="从定义系统，到看清自己" data-en="From defining the system to understanding yourself">从定义系统，到看清自己</h2>
+          </div>
+          <p data-zh="每个栏目只解决一个清晰问题，合在一起形成从规则到改进的完整工作流。"
+            data-en="Each capability solves one clear problem. Together they create a complete workflow from rules to improvement.">
+            每个栏目只解决一个清晰问题，合在一起形成从规则到改进的完整工作流。
+          </p>
+        </header>
+
+        <div class="capability-layout" data-reveal>
+          <div class="capability-tabs" role="tablist" aria-label="核心能力" data-aria-zh="核心能力" data-aria-en="Core capabilities">
+            <button class="is-active" id="cap-tab-system" type="button" role="tab" aria-selected="true" aria-controls="cap-panel-system" data-cap-tab="system"><span>01</span><b data-zh="定制系统" data-en="Custom systems">定制系统</b></button>
+            <button id="cap-tab-backtest" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-backtest" data-cap-tab="backtest"><span>02</span><b data-zh="系统回测" data-en="System backtests">系统回测</b></button>
+            <button id="cap-tab-evidence" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-evidence" data-cap-tab="evidence"><span>03</span><b data-zh="多维验证" data-en="Cross-validation">多维验证</b></button>
+            <button id="cap-tab-stats" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-stats" data-cap-tab="stats"><span>04</span><b data-zh="统计诊断" data-en="Diagnostics">统计诊断</b></button>
+            <button id="cap-tab-journal" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-journal" data-cap-tab="journal"><span>05</span><b data-zh="交易日志" data-en="Trading journal">交易日志</b></button>
+            <button id="cap-tab-mentor" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-mentor" data-cap-tab="mentor"><span>06</span><b>Mentor AI</b></button>
+          </div>
+
+          <div class="capability-stage">
+            <article class="capability-panel is-active" id="cap-panel-system" role="tabpanel" aria-labelledby="cap-tab-system" data-cap-panel="system">
+              <div class="capability-copy">
+                <p class="panel-index">01 / 06</p>
+                <h3 data-zh="把方法写成真正能运行的系统" data-en="Turn your method into a system that can run">把方法写成真正能运行的系统</h3>
+                <ul>
+                  <li data-zh="入场、风险、出场与禁做四类规则" data-en="Entry, risk, exit and no-trade rules">入场、风险、出场与禁做四类规则</li>
+                  <li data-zh="结构化、公式化与主观表达" data-en="Structured, formula-based and subjective rules">结构化、公式化与主观表达</li>
+                  <li data-zh="按品种、周期与方向设定适用范围" data-en="Scope rules by instrument, timeframe and direction">按品种、周期与方向设定适用范围</li>
+                </ul>
+              </div>
+              <figure><img src="assets/app-current-system-workspace-dark.png" alt="定制交易系统界面" data-alt-zh="定制交易系统界面" data-alt-en="Custom trading system workspace"></figure>
+            </article>
+
+            <article class="capability-panel" id="cap-panel-backtest" role="tabpanel" aria-labelledby="cap-tab-backtest" data-cap-panel="backtest" hidden>
+              <div class="capability-copy">
+                <p class="panel-index">02 / 06</p>
+                <h3 data-zh="让每条客观规则接受历史检验" data-en="Put every objective rule through historical evidence">让每条客观规则接受历史检验</h3>
+                <ul>
+                  <li data-zh="扫描完整历史并生成成交记录" data-en="Scan full history and generate trades">扫描完整历史并生成成交记录</li>
+                  <li data-zh="查看胜率、盈亏、回撤与逐笔结果" data-en="Review win rate, P&L, drawdown and every trade">查看胜率、盈亏、回撤与逐笔结果</li>
+                  <li data-zh="从回测成交直接进入图表复核" data-en="Open any backtest trade directly on the chart">从回测成交直接进入图表复核</li>
+                </ul>
+              </div>
+              <figure><img src="assets/backtest-real.png" alt="系统回测界面" data-alt-zh="系统回测界面" data-alt-en="System backtest workspace"></figure>
+            </article>
+
+            <article class="capability-panel" id="cap-panel-evidence" role="tabpanel" aria-labelledby="cap-tab-evidence" data-cap-panel="evidence" hidden>
+              <div class="capability-copy">
+                <p class="panel-index">03 / 06</p>
+                <h3 data-zh="用三类账户交叉验证结果" data-en="Cross-check results across three account types">用三类账户交叉验证结果</h3>
+                <ul>
+                  <li data-zh="训练账户：检验判断与执行" data-en="Practice accounts: test judgment and execution">训练账户：检验判断与执行</li>
+                  <li data-zh="回测账户：检验完全客观的规则" data-en="Backtest accounts: test fully objective rules">回测账户：检验完全客观的规则</li>
+                  <li data-zh="真实账单：检验系统是否经得住实盘" data-en="Live statements: test whether the edge survives reality">真实账单：检验系统是否经得住实盘</li>
+                </ul>
+              </div>
+              <figure><img src="assets/evidence-real.png" alt="真实账单与月历界面" data-alt-zh="真实账单与月历界面" data-alt-en="Live statement and calendar workspace"></figure>
+            </article>
+
+            <article class="capability-panel" id="cap-panel-stats" role="tabpanel" aria-labelledby="cap-tab-stats" data-cap-panel="stats" hidden>
+              <div class="capability-copy">
+                <p class="panel-index">04 / 06</p>
+                <h3 data-zh="分清系统问题，还是执行问题" data-en="Separate system flaws from execution gaps">分清系统问题，还是执行问题</h3>
+                <ul>
+                  <li data-zh="概览、行为与分布三层诊断" data-en="Overview, behavior and distribution diagnostics">概览、行为与分布三层诊断</li>
+                  <li data-zh="按品种、时段、方向拆解表现" data-en="Break down results by instrument, time and direction">按品种、时段、方向拆解表现</li>
+                  <li data-zh="追踪交易成本、回撤与规则遵守度" data-en="Track costs, drawdown and rule adherence">追踪交易成本、回撤与规则遵守度</li>
+                </ul>
+              </div>
+              <figure><img src="assets/app-current-stats-dark.png" alt="统计诊断界面" data-alt-zh="统计诊断界面" data-alt-en="Statistics and diagnosis workspace"></figure>
+            </article>
+
+            <article class="capability-panel" id="cap-panel-journal" role="tabpanel" aria-labelledby="cap-tab-journal" data-cap-panel="journal" hidden>
+              <div class="capability-copy">
+                <p class="panel-index">05 / 06</p>
+                <h3 data-zh="让每笔交易都有上下文" data-en="Keep the context behind every trade">让每笔交易都有上下文</h3>
+                <ul>
+                  <li data-zh="记录策略、入场理由与执行偏差" data-en="Record system, entry rationale and execution gaps">记录策略、入场理由与执行偏差</li>
+                  <li data-zh="训练与实盘分开归档" data-en="Archive practice and live trades separately">训练与实盘分开归档</li>
+                  <li data-zh="按日历复盘并回看当时 K 线" data-en="Review by calendar and replay the original chart">按日历复盘并回看当时 K 线</li>
+                </ul>
+              </div>
+              <figure><img src="assets/journal-real.png" alt="交易日志界面" data-alt-zh="交易日志界面" data-alt-en="Trading journal workspace"></figure>
+            </article>
+
+            <article class="capability-panel" id="cap-panel-mentor" role="tabpanel" aria-labelledby="cap-tab-mentor" data-cap-panel="mentor" hidden>
+              <div class="capability-copy">
+                <p class="panel-index">06 / 06</p>
+                <h3 data-zh="让 AI 先读懂数据，再给结论" data-en="Let AI understand the evidence before giving advice">让 AI 先读懂数据，再给结论</h3>
+                <ul>
+                  <li data-zh="结合确定性统计与系统证据" data-en="Ground analysis in statistics and system evidence">结合确定性统计与系统证据</li>
+                  <li data-zh="解释规则遵守、盈亏与交易成本" data-en="Explain adherence, P&L and trading costs">解释规则遵守、盈亏与交易成本</li>
+                  <li data-zh="生成阶段短评与交易体检报告" data-en="Generate period reviews and trading health reports">生成阶段短评与交易体检报告</li>
+                </ul>
+              </div>
+              <figure class="portrait-figure"><img src="assets/mentor-real.png" alt="Mentor AI 交易诊断界面" data-alt-zh="Mentor AI 交易诊断界面" data-alt-en="Mentor AI trading diagnosis workspace"></figure>
+            </article>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="caption rise d5">
-      <span>训练 · 直接在图表上<span class="k"> 拖动 </span>设置止盈止损，点数 / 盈亏 / 风险回报实时联动</span>
-    </div>
-  </div>
-</section>
+    <section class="purchase section" id="pricing" aria-labelledby="purchase-title">
+      <div class="shell">
+        <header class="section-heading section-heading-split" data-reveal>
+          <div>
+            <p class="section-kicker" data-zh="购买与下载" data-en="BUY & DOWNLOAD">购买与下载</p>
+            <h2 id="purchase-title" data-zh="先下载，再决定是否升级" data-en="Download first. Upgrade when it fits.">先下载，再决定是否升级</h2>
+          </div>
+          <p data-zh="免费版无需注册账户。专业版为桌面端一次买断许可，国内通过淘宝购买，国际版将在 Whop 上线。"
+            data-en="The free edition needs no account. China Pro is a one-time licence; a 1-year international licence is coming to Whop.">
+            免费版无需注册账户。专业版为桌面端一次买断许可，国内通过淘宝购买，国际版将在 Whop 上线。
+          </p>
+        </header>
 
-<style>
-  .section{padding:78px 0;border-top:1px solid var(--line)}
-  .feat{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
-  .feat.rev .copy{order:2}
-  .eyebrow2{font-size:12.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase}
-  .copy h2{font-size:34px;line-height:1.22;font-weight:800;letter-spacing:.4px;margin:14px 0 0}
-  .copy p{margin:16px 0 0;font-size:15.5px;line-height:1.8;color:var(--t2)}
-  .bullets{list-style:none;margin:22px 0 0;display:grid;gap:11px}
-  .bullets li{display:flex;gap:10px;font-size:14px;color:var(--t1)}
-  .bullets .bk{color:var(--teal);font-weight:700}
-  .mock{border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#0e131b,#0b0f16);box-shadow:0 34px 90px -44px rgba(0,0,0,.78)}
-  .mock .titlebar{height:34px}
+        <div class="commerce-grid">
+          <article class="commerce-card commerce-card-primary" data-reveal>
+            <p class="commerce-label" data-zh="中国区 · 已开放" data-en="CHINA · AVAILABLE">中国区 · 已开放</p>
+            <h3 data-zh="淘宝购买专业版" data-en="Buy Pro on Taobao">淘宝购买专业版</h3>
+            <p class="commerce-price"><strong data-zh="一次买断" data-en="One-time">一次买断</strong><span data-zh="最多 2 台设备" data-en="Up to 2 devices">最多 2 台设备</span></p>
+            <ul>
+              <li data-zh="完整历史、全品种与中国期货" data-en="Complete history, all instruments and Chinese futures">完整历史、全品种与中国期货</li>
+              <li data-zh="交易系统、信号导航与自动回测" data-en="Trading systems, signal navigation and backtests">交易系统、信号导航与自动回测</li>
+              <li data-zh="高级统计诊断与 Mentor AI" data-en="Advanced diagnostics and Mentor AI">高级统计诊断与 Mentor AI</li>
+            </ul>
+            <a class="button button-block" href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671" target="_blank" rel="noopener" data-zh="前往淘宝购买" data-en="Open Taobao">前往淘宝购买</a>
+          </article>
 
-  .jr{display:grid;grid-template-columns:152px 1fr;min-height:272px}
-  .jr-list{border-right:1px solid var(--line);padding:8px 0;background:#0b1017;font-size:11px}
-  .jr-mh{padding:6px 12px;color:var(--t3);font-size:10px;letter-spacing:.5px}
-  .jr-row{display:flex;justify-content:space-between;padding:6px 12px;color:var(--t2)}
-  .jr-row.sel{background:#14202e;color:var(--t1);box-shadow:inset 2px 0 0 var(--blue)}
-  .jr-detail{padding:15px 16px}
-  .jr-h{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:13px}
-  .sstrat{display:inline-flex;align-items:center;gap:8px;background:#0e141d;border:1px solid var(--line2);border-radius:7px;padding:6px 11px;font-size:12px;color:var(--t1)}
-  .jr-lab{font-size:10.5px;color:var(--t3);margin:15px 0 6px;letter-spacing:.4px}
-  .jr-reason{font-size:13px;color:var(--t1);line-height:1.6;min-height:20px}
-  .jr-note{margin-top:12px;background:#0c1119;border:1px solid var(--line2);border-radius:8px;padding:11px 12px;font-size:12.5px;color:var(--t2);line-height:1.65;min-height:66px}
-  .cursor{display:inline-block;width:6px;height:14px;background:var(--teal);vertical-align:-2px;margin-left:1px;animation:blink 1.05s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
+          <article class="commerce-card" id="whop" data-reveal>
+            <p class="commerce-label" data-zh="国际版 · 准备中" data-en="INTERNATIONAL · COMING SOON">国际版 · 准备中</p>
+            <h3 data-zh="Whop 英文购买页" data-en="English checkout on Whop">Whop 英文购买页</h3>
+            <p class="commerce-price"><strong data-zh="待上线" data-en="Coming soon">待上线</strong><span data-zh="1 年授权 · 2 台设备" data-en="1 year · 2 devices">1 年授权 · 2 台设备</span></p>
+            <ul>
+              <li data-zh="完整英文官网与英文教程" data-en="Complete English website and guides">完整英文官网与英文教程</li>
+              <li data-zh="与国内专业版相同的核心能力" data-en="The same core capabilities as China Pro">与国内专业版相同的核心能力</li>
+              <li data-zh="价格与购买链接上线后公布" data-en="Price and checkout link will be published at launch">价格与购买链接上线后公布</li>
+            </ul>
+            <span class="button button-block button-disabled" aria-disabled="true" data-zh="Whop 即将上线" data-en="Whop coming soon">Whop 即将上线</span>
+          </article>
+        </div>
 
-  .rp{padding:12px 12px 13px}
-  .rp-h{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--t3);margin-bottom:6px}
-  .rp-h b{color:var(--t1);font-weight:600;font-size:13px}
-  .rp-h .pl{margin-left:auto;font-weight:700;font-size:14px}
-  .rp-foot{display:flex;align-items:center;gap:11px;margin-top:6px;font-size:11px;color:var(--t3)}
-  .rp-play{display:inline-flex;align-items:center;gap:6px;background:#0f5132;color:#bbf7d0;border-radius:6px;padding:4px 11px;font-weight:600}
-
-  .ai{padding:16px;min-height:300px;display:flex;flex-direction:column;gap:13px}
-  .ai-head{display:flex;align-items:center;gap:7px;font-size:13px}
-  .ai-spark{color:#838aff;font-size:15px}
-  .ai-bar{display:flex;align-items:center;gap:8px}
-  .ai-pill{font-size:11px;color:var(--t2);background:#0e141d;border:1px solid var(--line);border-radius:7px;padding:5px 10px}
-  .ai-pill.on{color:#fff;background:#3730a3;border-color:#4f46e5}
-  .ai-gen{margin-left:auto;background:linear-gradient(180deg,#6d6ff5,#4f46e5);color:#fff;border-radius:9px;padding:7px 13px;font-size:12px;font-weight:600}
-  .ai-msg{background:#0c1119;border:1px solid var(--line2);border-radius:11px;padding:14px 15px;font-size:13.5px;line-height:1.8;color:var(--t1);flex:1}
-  .ai-cursor{display:inline-block;width:6px;height:14px;background:#838aff;vertical-align:-2px;animation:blink 1.05s steps(1) infinite}
-
-  .secthead{text-align:center;max-width:600px;margin:0 auto}
-  .secthead h2{font-size:32px;font-weight:800;letter-spacing:.4px}
-  .secthead p{color:var(--t2);margin-top:13px;font-size:15.5px;line-height:1.7}
-  .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
-  .fcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;transition:border-color .15s,transform .15s}
-  .fcard:hover{border-color:var(--line2);transform:translateY(-2px)}
-  .fic{width:40px;height:40px;border-radius:11px;background:#0f1923;border:1px solid var(--line2);display:grid;place-items:center;color:var(--teal);margin-bottom:15px}
-  .fcard h3{font-size:15.5px;font-weight:600;margin:0}
-  .fcard p{font-size:13px;color:var(--t2);line-height:1.65;margin:7px 0 0}
-
-  footer{border-top:1px solid var(--line);padding:64px 0 56px;margin-top:8px;text-align:center}
-  footer h2{font-size:32px;font-weight:800;letter-spacing:.4px}
-  .foot-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:13px}
-  .foot-links a{color:var(--t2)} .foot-links a:hover{color:var(--t1)}
-  .copyright{color:var(--t3);font-size:12px;margin-top:22px}
-  @media(max-width:760px){.feat{grid-template-columns:1fr;gap:28px}.feat.rev .copy{order:0}.grid6{grid-template-columns:1fr}.copy h2{font-size:27px}}
-</style>
-
-<section class="section"><div class="wrap"><div class="feat">
-  <div class="copy">
-    <span class="eyebrow2" style="color:var(--blue)">复盘日志</span>
-    <h2>每一笔，都问自己为什么</h2>
-    <p>下单时记下策略和入场理由，平仓后按天复盘。胜率、盈亏、回撤自动算好——日记不再是负担，而是你 edge 的来源。</p>
-    <ul class="bullets">
-      <li><span class="bk">✓</span>下单面板直接选策略、写入场理由</li>
-      <li><span class="bk">✓</span>训练 / 实盘分开记录，按日历归档</li>
-      <li><span class="bk">✓</span>每天的胜率、净盈亏、回撤自动统计</li>
-    </ul>
-  </div>
-  <div class="mock">
-    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>日志</b><span>每日复盘</span></div></div>
-    <div class="jr">
-      <div class="jr-list">
-        <div class="jr-mh">2026 · 6 月</div>
-        <div class="jr-row sel"><span>周五 5</span><b style="color:var(--red)">−$6,325</b></div>
-        <div class="jr-row"><span>周四 4</span><b style="color:var(--teal)">+$1,714</b></div>
-        <div class="jr-row"><span>周三 3</span><b style="color:var(--teal)">+$262</b></div>
-        <div class="jr-row"><span>周二 2</span><b style="color:var(--red)">−$83</b></div>
-        <div class="jr-mh" style="margin-top:6px">2026 · 5 月</div>
-        <div class="jr-row"><span>周五 30</span><b style="color:var(--teal)">+$1,287</b></div>
-        <div class="jr-row"><span>周四 29</span><b style="color:var(--red)">−$228</b></div>
+        <div class="download-strip" id="download" data-reveal>
+          <div>
+            <p class="section-kicker">v1.52.0 · 2026-07-27</p>
+            <h3 data-zh="免费下载桌面版" data-en="Download the desktop app for free">免费下载桌面版</h3>
+            <p data-zh="核心数据库保存在你的电脑上。" data-en="Your core database stays on your computer.">核心数据库保存在你的电脑上。</p>
+          </div>
+          <div class="download-actions">
+            <a class="button" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-Setup.exe" data-zh="下载 Windows 版" data-en="Download for Windows">下载 Windows 版</a>
+            <a class="button button-secondary" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-arm64.dmg" data-zh="下载 Mac 版" data-en="Download for Mac">下载 Mac 版</a>
+          </div>
+        </div>
       </div>
-      <div class="jr-detail">
-        <div class="jr-h"><span>6 月 5 日 · 周五</span><span style="color:var(--red)">−$6,325</span></div>
-        <div style="display:flex;gap:9px;align-items:center"><span style="font-size:10.5px;color:var(--t3)">策略</span><span class="sstrat">回调 ▾</span></div>
-        <div class="jr-lab">入场理由</div>
-        <div class="jr-reason" id="jrReason"></div>
-        <div class="jr-note" id="jrNote"></div>
+    </section>
+
+    <section class="guides section" id="guides" aria-labelledby="guides-title">
+      <div class="shell">
+        <header class="section-heading" data-reveal>
+          <p class="section-kicker" data-zh="教程与售后" data-en="GUIDES & SUPPORT">教程与售后</p>
+          <h2 id="guides-title" data-zh="遇到问题，有清晰入口" data-en="Clear help when you need it">遇到问题，有清晰入口</h2>
+          <p data-zh="从下载安装到定制系统、回测与 Mentor AI，按步骤上手；购买后可加入售后群。"
+            data-en="Follow step-by-step guides from installation to systems, backtests and Mentor AI. After purchase, join the support community.">
+            从下载安装到定制系统、回测与 Mentor AI，按步骤上手；购买后可加入售后群。
+          </p>
+        </header>
+
+        <div class="support-grid">
+          <a class="support-card" href="guide.html" data-reveal>
+            <span class="support-index">01</span>
+            <h3 data-zh="详细软件教程" data-en="Detailed software guide">详细软件教程</h3>
+            <p data-zh="安装、激活、行情、训练、账单导入、统计、回测与 AI。"
+              data-en="Installation, activation, data, practice, imports, diagnostics, backtests and AI.">
+              安装、激活、行情、训练、账单导入、统计、回测与 AI。
+            </p>
+            <b data-zh="打开使用说明" data-en="Open the guide">打开使用说明</b>
+          </a>
+
+          <a class="support-card" href="https://qm.qq.com/q/xxGMPN3N2E" target="_blank" rel="noopener" data-reveal>
+            <span class="support-index">02</span>
+            <h3 data-zh="QQ 售后群" data-en="QQ support group">QQ 售后群</h3>
+            <p data-zh="群号 559076777，适合安装、激活与使用问题交流。"
+              data-en="Group 559076777 for installation, activation and product questions.">
+              群号 559076777，适合安装、激活与使用问题交流。
+            </p>
+            <b data-zh="加入 QQ 群" data-en="Join the QQ group">加入 QQ 群</b>
+          </a>
+
+          <a class="support-card" href="support.html" data-reveal>
+            <span class="support-index">03</span>
+            <h3 data-zh="企业微信售后群" data-en="WeCom support group">企业微信售后群</h3>
+            <p data-zh="购买后通过企业微信群获得持续答疑与版本通知。"
+              data-en="Customers can join the WeCom group for ongoing support and release updates.">
+              购买后通过企业微信群获得持续答疑与版本通知。
+            </p>
+            <b data-zh="查看入群方式" data-en="See how to join">查看入群方式</b>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="final-title">
+      <div class="shell final-cta-inner" data-reveal>
+        <p class="section-kicker" data-zh="无他，唯手熟尔" data-en="PRACTICE MAKES THE DECISION">无他，唯手熟尔</p>
+        <h2 id="final-title" data-zh="从定义第一套交易系统开始" data-en="Start with your first trading system">从定义第一套交易系统开始</h2>
+        <p data-zh="把规则写清楚，把决定放进 K 线，再让证据说话。"
+          data-en="Make the rules explicit. Put decisions on the chart. Let evidence speak.">
+          把规则写清楚，把决定放进 K 线，再让证据说话。
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#download" data-zh="免费下载" data-en="Download free">免费下载</a>
+          <a class="button button-secondary" href="guide.html" data-zh="查看教程" data-en="View guide">查看教程</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <img src="logo-dark.svg" width="34" height="34" alt="">
+          <span>TradeReplay</span>
+        </a>
+        <p data-zh="定制自己的交易系统，并在 K 线中完成验证。"
+          data-en="Build your own trading system and prove it inside the chart.">
+          定制自己的交易系统，并在 K 线中完成验证。
+        </p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h2 data-zh="产品" data-en="Product">产品</h2>
+          <a href="#modes" data-zh="三种模式" data-en="Three modes">三种模式</a>
+          <a href="#capabilities" data-zh="核心能力" data-en="Capabilities">核心能力</a>
+          <a href="#pricing" data-zh="购买与下载" data-en="Buy & download">购买与下载</a>
+        </div>
+        <div>
+          <h2 data-zh="资源" data-en="Resources">资源</h2>
+          <a href="guide.html" data-zh="使用说明" data-en="Guide">使用说明</a>
+          <a href="screenshots.html" data-zh="产品截图" data-en="Product screens">产品截图</a>
+          <a href="changelog.html" data-zh="更新日志" data-en="Release notes">更新日志</a>
+          <a href="support.html" data-zh="支持" data-en="Support">支持</a>
+        </div>
+        <div>
+          <h2 data-zh="条款" data-en="Legal">条款</h2>
+          <a href="privacy.html" data-zh="隐私政策" data-en="Privacy">隐私政策</a>
+          <a href="terms.html" data-zh="服务条款" data-en="Terms">服务条款</a>
+        </div>
       </div>
     </div>
-  </div>
-</div></div></section>
-
-<section class="section"><div class="wrap"><div class="feat rev">
-  <div class="copy">
-    <span class="eyebrow2" style="color:var(--teal)">动态回放</span>
-    <h2>把每一笔交易，重新走一遍</h2>
-    <p>选中任意一笔历史成交，在原始 K 线上逐根回放进出场。看清当时该不该进、该不该走——错在哪，一目了然。</p>
-    <ul class="bullets">
-      <li><span class="bk">✓</span>进场、出场点标在真实 K 线上</li>
-      <li><span class="bk">✓</span>逐根重播，盈亏随行情实时滚动</li>
-      <li><span class="bk">✓</span>训练成交、导入实盘成交都能回放</li>
-    </ul>
-  </div>
-  <div class="mock">
-    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>历史</b><span>动态回放</span></div></div>
-    <div class="rp">
-      <div class="rp-h"><b>BTCUSD</b><span>多 · 0.30 手</span><span class="pl" id="rpPL">+$0</span></div>
-      <svg id="rpsvg" viewBox="0 0 460 232" style="width:100%;height:auto;display:block"></svg>
-      <div class="rp-foot"><span class="rp-play">▶ 回放</span><span class="num" id="rpClock">00:00</span><span style="margin-left:auto">逐根重走进出场</span></div>
+    <div class="shell footer-bottom">
+      <p>© <span data-year>2026</span> <span data-zh="格物工坊" data-en="GeWu Studio">格物工坊</span> · TradeReplay</p>
+      <p data-zh="Windows / Mac · 本地优先" data-en="Windows / Mac · Local-first">Windows / Mac · 本地优先</p>
     </div>
-  </div>
-</div></div></section>
-
-<section class="section"><div class="wrap"><div class="feat">
-  <div class="copy">
-    <span class="eyebrow2" style="color:#838aff">AI 辅助</span>
-    <h2>一个读过你所有交易的教练</h2>
-    <p>Mentor 读遍你导入的真实账单和模拟训练，60 秒生成一份能读懂的复盘——找出你的优势时段、亏损模式和该改的习惯。</p>
-    <ul class="bullets">
-      <li><span class="bk">✓</span>跨训练 + 实盘，统一分析你的 edge</li>
-      <li><span class="bk">✓</span>复盘 / 单笔深度 / 模式发现 / 策略四个视角</li>
-      <li><span class="bk">✓</span>大白话给结论，不堆术语</li>
-    </ul>
-  </div>
-  <div class="mock">
-    <div class="titlebar"><div class="lights"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div><div class="tb-tabs"><b>Mentor AI</b></div></div>
-    <div class="ai">
-      <div class="ai-head"><span class="ai-spark">✦</span><b style="font-weight:600">Mentor</b><span style="color:var(--t3);font-size:11px">· DeepSeek</span></div>
-      <div class="ai-bar"><span class="ai-pill on">最近 30 天</span><span class="ai-pill">全部</span><span class="ai-gen">✦ 生成复盘</span></div>
-      <div class="ai-msg" id="aiMsg"></div>
-    </div>
-  </div>
-</div></div></section>
-
-<section class="section"><div class="wrap">
-  <div class="secthead">
-    <h2>一个工具，覆盖复盘训练全流程</h2>
-    <p>从练盘到记录、从统计到量化——这些也都在里面。</p>
-  </div>
-  <div class="grid6">
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>概览驾驶舱</h3><p>账户全貌、战力雷达、净值曲线，一屏看尽当前状态。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="21" x2="5" y2="13"/><line x1="12" y1="21" x2="12" y2="5"/><line x1="19" y1="21" x2="19" y2="9"/></svg></div><h3>找出优势与劣势</h3><p>按品种、时段、方向拆解胜率与盈亏，看清钱从哪来、往哪漏。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/></svg></div><h3>真实账单 · 月历</h3><p>导入券商对账单，按日历回看每天的真实表现。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l4-4 3 3 5-6 4 4"/></svg></div><h3>自定义通达信指标</h3><p>用熟悉的通达信公式，写你自己的指标挂上图表。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/></svg></div><h3>策略回测</h3><p>把想法跑在历史行情上，一键扫出胜率与盈亏。</p></div>
-    <div class="fcard"><div class="fic"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 16.5l8 4 8-4"/></svg></div><h3>同策略归集</h3><p>相同策略的交易自动归并，统计它真实的期望与胜率。</p></div>
-  </div>
-  <div style="text-align:center;margin-top:34px"><a class="btn" href="/screenshots"><span>查看全部 10 个界面截图 →</span></a></div>
-</div></section>
-
-<footer><div class="wrap">
-  <h2>把判断，练成肌肉记忆</h2>
-  <div class="cta" style="margin-top:24px">
-    <a class="btn btn-primary" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-Setup.exe"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M3 3h8.4v8.4H3zM12.6 3H21v8.4h-8.4zM3 12.6h8.4V21H3zM12.6 12.6H21V21h-8.4z"/></svg></span><span>下载 Windows 版<small>v1.52.0 · Win 10/11 · 64 位</small></span></a>
-    <a class="btn" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-arm64.dmg"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.47 7.82 1.3 10.38.86 1.25 1.89 2.66 3.24 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.28-1.28 3.14-2.54.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.72-1.05-2.75-4.16zM14.5 4.5c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-.99 3.18 1.15.09 2.32-.59 2.94-1.46z"/></svg></span><span>下载 Mac 版<small>v1.52.0 · Apple 芯片</small></span></a>
-  </div>
-  <div class="foot-links"><a href="/screenshots">界面截图</a><a href="/guide">使用说明</a><a href="/changelog">更新日志</a><a href="/privacy">隐私政策</a><a href="/terms">条款</a><a href="/support">支持</a><a href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671">购买激活码</a><a href="https://qm.qq.com/q/xxGMPN3N2E">QQ 群 559076777</a></div>
-  <div class="copyright">© 2026 格物工坊 · TradeReplay</div>
-</div></footer>
-
-<script>
-(function(){
-  var svg=document.getElementById('cv');
-  var W=720,H=372,padR=70,padT=14,padB=24;
-  var NS='http://www.w3.org/2000/svg';
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
-  function pw(s){var w=0;for(var i=0;i<s.length;i++)w+=s.charCodeAt(i)>255?13:6.6;return w+14;}
-
-  // price domain
-  var hi=1.17560, lo=1.16840;
-  function y(p){return padT+(hi-p)/(hi-lo)*(H-padT-padB);}
-  var entry=1.17182, tp=1.17440;
-  var slLo=1.16930, slHi=1.17085;   // SL drags between these
-  var pointVal=1.0;                  // $ per point per lot
-  function pts(a,b){return Math.round(Math.abs(a-b)/0.00001);}
-
-  // gridlines
-  for(var g=0;g<6;g++){var gy=padT+g*(H-padT-padB)/5;
-    svg.appendChild(el('line',{x1:0,y1:gy,x2:W-padR,y2:gy,stroke:'#121925','stroke-width':1}));
-    var lp=(hi-(g*(hi-lo)/5)).toFixed(4);
-    var tx=el('text',{x:W-padR+8,y:gy+3,fill:'#566173','font-size':10,'font-family':'ui-monospace,monospace'});tx.textContent=lp;svg.appendChild(tx);
-  }
-
-  // candles — textbook breakout-pullback (long): base chop → thrust up
-  // through resistance → controlled pullback that retests the broken level
-  // (= the entry line). Last bars hold at the retest, poised to continue.
-  var n=46, step=(W-padR-12)/n, w=Math.max(4,step*0.62), x0=10;
-  var seed=7; function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
-  function lerp(a,b,t){return a+(b-a)*t;}
-  var closes=[];
-  for(var i=0;i<n;i++){
-    var c;
-    if(i<=17)      c=1.17120+Math.sin(i*0.85)*0.00046+(rnd()-0.5)*0.00026;   // base
-    else if(i<=25) c=lerp(1.17150,1.17392,(i-17)/8)+(rnd()-0.5)*0.00030;      // breakout thrust
-    else if(i<=39){var tt=(i-25)/14; c=lerp(1.17392,1.17186,tt*0.55+tt*tt*0.45)+(rnd()-0.5)*0.00026;} // pullback retest
-    else           c=1.17190+(rnd()-0.5)*0.00034;                            // hold at retest
-    closes.push(c);
-  }
-  var series=[];
-  for(var i=0;i<n;i++){
-    var o=i?closes[i-1]:1.17112, c=closes[i], wick=0.00010+rnd()*0.00024;
-    series.push({o:o,c:c,h:Math.max(o,c)+wick,l:Math.min(o,c)-wick});
-  }
-  for(var i=0;i<n;i++){var s=series[i],cx=x0+i*step+step/2,up=s.c>=s.o;
-    var col=up?'#2aa898':'#e2554d';
-    svg.appendChild(el('line',{x1:cx,y1:y(s.h),x2:cx,y2:y(s.l),stroke:col,'stroke-width':1}));
-    var yt=y(Math.max(s.o,s.c)),yb=y(Math.min(s.o,s.c));
-    svg.appendChild(el('rect',{x:cx-w/2,y:yt,width:w,height:Math.max(1,yb-yt),fill:col,rx:1}));
-  }
-
-  // zones (drawn first, under lines)
-  var xRight=W-padR;
-  var zoneTP=el('rect',{x:0,y:y(tp),width:xRight,height:y(entry)-y(tp),fill:'rgba(45,212,191,.09)'});
-  var zoneSL=el('rect',{x:0,y:y(entry),width:xRight,height:y(slLo)-y(entry),fill:'rgba(240,84,76,.10)'});
-  svg.appendChild(zoneTP);svg.appendChild(zoneSL);
-
-  function hline(p,col,dash){return el('line',{x1:0,y1:y(p),x2:xRight,y2:y(p),stroke:col,'stroke-width':1.4,'stroke-dasharray':dash||'5 4'});}
-  var lTP=hline(tp,'#2dd4bf'); var lEN=el('line',{x1:0,y1:y(entry),x2:xRight,y2:y(entry),stroke:'#4d8df0','stroke-width':1.4}); var lSL=hline(slLo,'#f0544c');
-  svg.appendChild(lTP);svg.appendChild(lEN);svg.appendChild(lSL);
-
-  // pill labels (left)
-  function pill(p,txt,bg,fg){
-    var g=el('g',{});
-    var r=el('rect',{x:8,y:y(p)-9,rx:5,height:18,fill:bg});
-    var t=el('text',{x:14,y:y(p)+4,fill:fg,'font-size':11,'font-weight':600,'font-family':'ui-monospace,monospace'});
-    t.textContent=txt; g.appendChild(r);g.appendChild(t);svg.appendChild(g);
-    r.setAttribute('width',pw(txt));
-    return {g:g,r:r,t:t,p:p};
-  }
-  pill(tp,'TP  +'+pts(tp,entry)+'p · +$'+pts(tp,entry),'#0c3b34','#5be0c8');
-  var enPill=pill(entry,'1.00 · R:R --','#13314f','#9cc4f7');
-  var slPill=pill(slLo,'','#3f1512','#f2938c');
-
-  // SL handle + faux cursor
-  var handle=el('circle',{cx:xRight,cy:y(slLo),r:5,fill:'#0a0e15',stroke:'#f0544c','stroke-width':2});
-  svg.appendChild(handle);
-  var cur=el('path',{d:'M0 0 L0 15 L4 11 L7 17 L9 16 L6 10 L11 10 Z',fill:'#fff',stroke:'#0a0e15','stroke-width':1,opacity:.92});
-  svg.appendChild(cur);
-
-  var slField=document.getElementById('slField'), rrField=document.getElementById('rrField');
-
-  function setSL(p){
-    var yy=y(p);
-    lSL.setAttribute('y1',yy);lSL.setAttribute('y2',yy);
-    handle.setAttribute('cy',yy);
-    cur.setAttribute('transform','translate('+(xRight-150)+','+(yy-4)+')');
-    zoneSL.setAttribute('height',Math.max(0,yy-y(entry)));
-    var pp=pts(p,entry), dol=Math.round(pp*pointVal);
-    slPill.g.querySelector('rect').setAttribute('y',yy-9);
-    slPill.t.setAttribute('y',yy+4);
-    slPill.t.textContent='SL  −'+pp+'p · −$'+dol;
-    slPill.r.setAttribute('width',pw(slPill.t.textContent));
-    slField.textContent=p.toFixed(5);
-    var rr=(pts(tp,entry)/pp);
-    rrField.textContent='R:R '+rr.toFixed(2);
-    enPill.t.textContent='1.00 · R:R '+rr.toFixed(2);
-    enPill.r.setAttribute('width',pw(enPill.t.textContent));
-    slField.style.color=getComputedStyle(document.documentElement).getPropertyValue('--red');
-  }
-  setSL(slLo);
-
-  // animation loop: drag down, hold, drag up, hold
-  var T=0, DUR=320; // frames per full cycle quarter
-  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
-  function frame(){
-    T=(T+1)% (DUR*2.4);
-    var u;
-    var a=DUR, hold=DUR*0.2;
-    if(T<a){u=ease(T/a);}                         // down
-    else if(T<a+hold){u=1;}                        // hold low
-    else if(T<a*2+hold){u=1-ease((T-a-hold)/a);}   // up
-    else {u=0;}                                    // hold high
-    var p=slHi-(slHi-slLo)*u;
-    setSL(p);
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-</script>
-
-<script>
-/* 每日复盘 — 入场理由 + 当天笔记逐字打出 */
-(function(){
-  var reason=document.getElementById('jrReason'), note=document.getElementById('jrNote');
-  if(!reason)return;
-  var rTxt='突破前高，回踩不破支撑，顺势做多。';
-  var nTxt='方向对，但离场偏早——回踩确认后本可拿到 1:2。下次挂移动止损，让利润奔跑。';
-  function type(elm,txt,cb){
-    elm.innerHTML='';
-    var cur=document.createElement('span');cur.className='cursor';elm.appendChild(cur);
-    var i=0,id=setInterval(function(){
-      if(i>=txt.length){clearInterval(id);setTimeout(cb,1300);return;}
-      cur.insertAdjacentText('beforebegin',txt[i++]);
-    },52);
-  }
-  function loop(){type(reason,rTxt,function(){type(note,nTxt,function(){setTimeout(loop,2000);});});}
-  loop();
-})();
-
-/* Mentor AI — 复盘小结流式生成 */
-(function(){
-  var box=document.getElementById('aiMsg');if(!box)return;
-  var full='你最近 30 天 BTCUSD 多单胜率 71%，是你的主要 edge；ETHUSD 空单却贡献了 64% 的亏损——多发生在亚盘低波动时段。两条建议：① 给 ETH 空单加一道波动率过滤；② 止盈从固定点数改成跟随结构。';
-  function run(){
-    box.innerHTML='';
-    var cur=document.createElement('span');cur.className='ai-cursor';box.appendChild(cur);
-    var i=0,id=setInterval(function(){
-      if(i>=full.length){clearInterval(id);setTimeout(run,2800);return;}
-      cur.insertAdjacentText('beforebegin',full[i++]);
-    },32);
-  }
-  run();
-})();
-
-/* 动态回放 — 逐根揭示 K 线 + 进出场标记 + 盈亏滚动 */
-(function(){
-  var svg=document.getElementById('rpsvg');if(!svg)return;
-  var NS='http://www.w3.org/2000/svg';
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
-  var W=460,H=232,pT=14,pB=18,pL=10,pR=10;
-  var seed=11;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
-  var n=34,entryI=8,exitI=28,cl=[];
-  for(var i=0;i<n;i++){
-    var c;
-    if(i<6)            c=100+Math.sin(i*1.3)*1.0+(rnd()-0.5)*1.3;
-    else if(i<entryI)  c=99-(entryI-i)*0.85+(rnd()-0.5)*0.9;
-    else               c=98.6+(i-entryI)*1.28+Math.sin(i*0.6)*1.5+(rnd()-0.5)*1.5;
-    cl.push(c);
-  }
-  var mn=Math.min.apply(null,cl)-2.4,mx=Math.max.apply(null,cl)+2.4;
-  function y(v){return pT+(mx-v)/(mx-mn)*(H-pT-pB);}
-  var step=(W-pL-pR)/n,w=Math.max(3,step*0.6),cd=[];
-  for(var i=0;i<n;i++){
-    var o=i?cl[i-1]:99.6,c=cl[i],up=c>=o,col=up?'#2aa898':'#e2554d',cx=pL+i*step+step/2,wk=0.5+rnd()*1.4;
-    var g=el('g',{opacity:0.06});
-    g.appendChild(el('line',{x1:cx,y1:y(Math.max(o,c)+wk),x2:cx,y2:y(Math.min(o,c)-wk),stroke:col,'stroke-width':1}));
-    var yt=y(Math.max(o,c)),yb=y(Math.min(o,c));
-    g.appendChild(el('rect',{x:cx-w/2,y:yt,width:w,height:Math.max(1,yb-yt),fill:col,rx:1}));
-    svg.appendChild(g);cd.push({g:g,cx:cx});
-  }
-  var enX=cd[entryI].cx,exX=cd[exitI].cx;
-  var enM=el('path',{d:'M'+enX+' '+(y(cl[entryI])+13)+' l-5 9 l10 0 z',fill:'#2dd4bf',opacity:0});
-  var exM=el('circle',{cx:exX,cy:y(cl[exitI])-12,r:4,fill:'#4d8df0','stroke':'#0a0e15','stroke-width':1.5,opacity:0});
-  svg.appendChild(enM);svg.appendChild(exM);
-  var plEl=document.getElementById('rpPL'),clk=document.getElementById('rpClock');
-  var unit=120;
-  var head=0,hold=0;
-  function tick(){
-    head+=0.45;var h=Math.floor(head);
-    for(var i=0;i<n;i++)cd[i].g.setAttribute('opacity',i<=h?1:0.06);
-    enM.setAttribute('opacity',h>=entryI?1:0);
-    exM.setAttribute('opacity',h>=exitI?1:0);
-    var cur=h<=entryI?0:Math.round((cl[Math.min(h,exitI)]-cl[entryI])*unit);
-    plEl.textContent=(cur>=0?'+$':'−$')+Math.abs(cur);
-    plEl.style.color=cur>=0?'var(--teal)':'var(--red)';
-    var s=Math.min(36,Math.round(head));clk.textContent='00:'+(s<10?'0':'')+s;
-    if(h>=n-1){hold++;if(hold>70){head=0;hold=0;}}
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
-</script>
+  </footer>
 </body>
 </html>

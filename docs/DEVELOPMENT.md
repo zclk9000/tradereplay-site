@@ -1,0 +1,112 @@
+# TradeReplay website development
+
+Last updated: 2026-07-29
+
+## Source of truth
+
+The production website lives in the independent repository:
+
+`/Users/charlie/ClaudeCode/tradereplay-site`
+
+Do not place website source in the TradeReplay application repository. Prototype
+folders, audit output, raw recordings and temporary screenshots are not
+production assets.
+
+## Homepage architecture
+
+The homepage is deliberately dependency-free:
+
+- semantic HTML in `index.html`;
+- CSS tokens, responsive layout and motion in `home-v10.css`;
+- progressive enhancement in `home-v9.js`;
+- static screenshots and compressed MP4 demonstrations in `assets/`.
+
+The page remains readable if JavaScript is unavailable. JavaScript adds
+language selection, tab behaviour, reveal transitions and time-synchronised
+video annotations.
+
+## Page structure
+
+1. Hero — positioning, download CTA and a real TradeReplay desktop screenshot.
+2. Trading-system workflow — define rules, run them in the chart, validate and refine.
+3. Three run modes — checklist, signal navigation and automatic backtest.
+4. Six capabilities — systems, backtests, evidence, diagnosis, journal and Mentor AI.
+5. Purchase, download, guides and support.
+
+The homepage should keep one idea per section and use real product evidence
+instead of decorative trading graphics.
+
+## Three-mode demonstrations
+
+Each mode uses a native `<video>` element with the browser play, timeline and
+volume controls. Fullscreen, remote playback, picture-in-picture and downloads
+are disabled because the annotations are HTML overlays and would not appear in
+the browser's fullscreen video surface.
+
+| Mode | Video | Annotation starts | Behaviour |
+|---|---|---:|---|
+| Checklist | `assets/mode-checklist.mp4` | 5.76 s | A tracked signal point follows the chart; the strategy panel and explanatory label are connected with a dashed leader. |
+| Signal navigation | `assets/mode-signal.mp4` | 5.78 s | The matched signal and strategy panel are highlighted when navigation finds the rule. |
+| Automatic backtest | `assets/mode-backtest.mp4` | 6.00 s | The automatic-execution strategy panel is highlighted and connected to the lower-right explanation; no extra signal point is drawn. |
+
+Timing is configured with `data-trigger-time` on each
+`[data-mode-video-demo]` element. Checklist signal tracking coordinates are in
+`setupModeVideo()` in `home-v9.js`. Overlay geometry is defined by the
+corresponding `.mode-video-*` selectors in `home-v10.css`.
+
+When replacing a recording:
+
+1. Keep its content aspect ratio unchanged.
+2. Compress it for the web while preserving its audio track.
+3. Export a poster from the same recording.
+4. Recheck the trigger time and all overlay coordinates at desktop and mobile widths.
+5. Confirm that switching tabs pauses the previous video.
+
+## Language and regional entry
+
+Chinese is the default for `tradereplay.dev`. The current static implementation
+supports an English preview with `?lang=en` and stores no visible language
+switcher in the header.
+
+The intended public English entry is `/en` for Whop traffic. IP-based routing
+may later select a default, but `/en` must remain a deterministic override.
+Chinese copy may mention mainland-China sales and support channels. English copy
+must be written for overseas Whop customers and must not advertise unavailable
+channels.
+
+## Product and sales constraints
+
+- Desktop platforms: Windows and direct-sale Mac DMG.
+- Mac App Store is retired and must not be shown as an active channel.
+- Chinese purchase CTA points to Taobao.
+- Whop is planned for the English version; do not publish a placeholder checkout.
+- Avoid profit promises, investment advice, artificial urgency and unsupported
+  market coverage claims.
+
+## Accessibility and motion
+
+- Tabs use `role="tablist"`, `role="tab"` and `role="tabpanel"`.
+- All meaningful images have bilingual alternative text.
+- Keyboard focus remains visible.
+- `prefers-reduced-motion` disables nonessential animation.
+- Body copy and controls must maintain readable contrast on the blue-black surface.
+
+## Validation checklist
+
+Before committing:
+
+1. Serve the repository over HTTP; do not validate with `file://`.
+2. Check Chinese and English content.
+3. Check widths near 1440, 1024, 768 and 390 px.
+4. Play all three videos with audio and seek across each annotation trigger.
+5. Verify Windows and Mac download URLs.
+6. Verify guide, screenshots, changelog, privacy, terms and support links.
+7. Confirm there are no missing local assets or console errors.
+8. Stage only production files—never raw recordings, temporary screenshots,
+   audit folders or prototype directories.
+
+## Deployment boundary
+
+Git commit and push do not deploy the website. Production deployment uses the
+Cloudflare configuration in `wrangler.toml` and requires separate explicit
+authorization.
