@@ -1,10 +1,10 @@
 .wrangler/
 .DS_Store
 node_modules/
+_local/
 
-# Local homepage source material. Production-ready derivatives live in assets/.
+# Local homepage source material. Production-ready derivatives live in public/assets/.
 iShot_*.png
-new pic/
 清单核对.mp4
 信号导航.mp4
 自动复盘.mp4

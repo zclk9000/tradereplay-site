@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
+const publicRoot = path.join(root, "public");
 const contentRoot = path.join(root, "content", "guide");
 const catalogPath = path.join(contentRoot, "catalog.json");
 const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
@@ -58,7 +59,7 @@ for (const article of articles) {
       report(media.file, `${article.id}/${section.id} 已标记素材就绪但没有文件`);
       if (media.file) {
         const relativeFile = media.file.replace(/^\/+/, "");
-        report(fs.existsSync(path.join(root, relativeFile)), `${article.id}/${section.id} 素材文件不存在：${media.file}`);
+        report(fs.existsSync(path.join(publicRoot, relativeFile)), `${article.id}/${section.id} 素材文件不存在：${media.file}`);
       }
     }
   }

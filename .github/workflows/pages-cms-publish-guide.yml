@@ -35,6 +35,9 @@ jobs:
       - name: Build browser content
         run: node scripts/build-guide-content.mjs
 
+      - name: Validate publication boundary and local links
+        run: node scripts/validate-public-site.mjs
+
       - name: Deploy current website to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:

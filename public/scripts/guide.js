@@ -328,7 +328,6 @@
       "TradeReplay 官方教程",
       "按任务查找 TradeReplay 使用教程、功能说明、设置与故障排查。"
     );
-    const featured = publicArticles.filter((article) => article.featured);
     view.innerHTML = `
       <section class="hc-home-hero" aria-labelledby="help-title">
         <div class="hc-shell hc-home-hero-inner">
@@ -352,60 +351,11 @@
           </div>
         </div>
       </section>
-
-      <section class="hc-home-section" aria-labelledby="quick-task-title">
+      <section class="hc-home-category-section" aria-labelledby="category-title">
         <div class="hc-shell">
-          <div class="hc-section-head">
-            <div>
-              <p class="hc-kicker">从一个任务开始</p>
-              <h2 id="quick-task-title">三条最常用路径</h2>
-            </div>
-            <p>不用先读完整本说明书。选择你现在要完成的事情，做完后再沿着文章结尾进入下一步。</p>
-          </div>
-          <div class="hc-quick-routes">
-            ${quickRoute("01", "开始第一次训练", "下载 EURUSD、建立存档、推进 K 线并完成第一笔模拟交易。", articlesById.get("qs-04"))}
-            ${quickRoute("02", "导入一份真实账单", "从 MT4/MT5 或 CFMMC 导入历史成交，并匹配复盘行情。", articlesById.get("ac-02"))}
-            ${quickRoute("03", "恢复或迁移我的数据", "移动完整资料库，或从自己的 S3 快照恢复。", articlesById.get("se-06"))}
-          </div>
-        </div>
-      </section>
-
-      <section class="hc-home-section" aria-labelledby="category-title">
-        <div class="hc-shell">
-          <div class="hc-section-head">
-            <div>
-              <p class="hc-kicker">教程分类</p>
-              <h2 id="category-title">按功能查找教程</h2>
-            </div>
-            <p>教程按用户任务组织，同时覆盖功能说明、操作步骤和故障排查。选择分类即可查看已经发布的内容。</p>
-          </div>
-          <div class="hc-category-grid">
-            ${publicCategories.map(categoryCard).join("")}
-          </div>
-        </div>
-      </section>
-
-      <section class="hc-home-section" aria-labelledby="featured-title">
-        <div class="hc-shell">
-          <div class="hc-section-head">
-            <div>
-              <p class="hc-kicker">推荐阅读</p>
-              <h2 id="featured-title">详细教程</h2>
-            </div>
-            <p>每篇教程都围绕一个具体任务编写，按顺序操作即可完成对应设置或检查。</p>
-          </div>
-          <div class="hc-featured-list">
-            ${featured.map(featuredArticle).join("")}
-          </div>
-          <div class="hc-version-note">
-            <div>
-              <strong>教程基线：TradeReplay v${escapeHTML(guide.version)}</strong>
-              <p>适用于 TradeReplay macOS 与 Windows 桌面版。</p>
-            </div>
-            <a class="hc-button hc-button-secondary" href="changelog.html">
-              查看更新日志
-              ${icon("arrow")}
-            </a>
+          <h2 class="hc-visually-hidden" id="category-title">教程分类</h2>
+          <div class="hc-home-category-grid">
+            ${publicCategories.map(homeCategoryTile).join("")}
           </div>
         </div>
       </section>`;
@@ -422,45 +372,15 @@
     });
   }
 
-  function quickRoute(number, title, summary, article) {
+  function homeCategoryTile(category) {
     return `
-      <a class="hc-quick-route" href="${articleHref(article)}">
-        <div class="hc-quick-route-top">
-          <span>PATH ${number}</span>
-          ${icon("arrow")}
-        </div>
-        <h3>${escapeHTML(title)}</h3>
-        <p>${escapeHTML(summary)}</p>
-        <b>打开分步教程</b>
-      </a>`;
-  }
-
-  function categoryCard(category) {
-    return `
-      <a class="hc-category-card" href="${categoryHref(category)}" data-tone="${category.tone}">
-        ${categoryIcon(category)}
-        <span class="hc-category-card-copy">
-          <h3>${escapeHTML(category.title)}</h3>
-          <p>${escapeHTML(category.description)}</p>
+      <a class="hc-home-category-tile" href="${categoryHref(category)}" data-tone="${category.tone}">
+        <span class="hc-home-category-visual">
+          ${categoryIcon(category)}
         </span>
-        <span class="hc-category-card-foot">
-          <span class="hc-category-card-count">${category.count} 篇</span>
-          <span class="hc-category-card-arrow" aria-hidden="true">
-            ${icon("arrow")}
-          </span>
+        <span class="hc-home-category-label">
+          <strong>${escapeHTML(category.title)}</strong>
         </span>
-      </a>`;
-  }
-
-  function featuredArticle(article) {
-    return `
-      <a class="hc-featured-article" href="${articleHref(article)}">
-        <span class="hc-featured-code">${article.code}</span>
-        <span>
-          <h3>${escapeHTML(article.title)}</h3>
-          <p>${escapeHTML(article.summary)}</p>
-        </span>
-        ${icon("arrow")}
       </a>`;
   }
 
@@ -475,38 +395,29 @@
             ${sideRail(category.id)}
             <section class="hc-category-main" aria-labelledby="category-page-title">
               <header class="hc-category-header">
-                <div class="hc-category-header-top">
-                  ${categoryIcon(category)}
-                  <span class="hc-pill">${category.number} · ${articles.length} 篇教程</span>
-                </div>
                 <h1 id="category-page-title">${escapeHTML(category.title)}</h1>
                 <p class="hc-category-lede">${escapeHTML(category.description)}</p>
               </header>
-              <div class="hc-category-articles">
-                <div class="hc-category-articles-head">
-                  <h2>本分类文章</h2>
-                  <span>${articles.length} 篇教程</span>
-                </div>
-                ${articles.map(articleRow).join("")}
-              </div>
+              <section class="hc-category-articles" aria-labelledby="category-articles-title">
+                <h2 id="category-articles-title">本分类文章</h2>
+                <ul class="hc-article-title-list">
+                  ${articles.map(articleTitleItem).join("")}
+                </ul>
+              </section>
             </section>
           </div>
         </div>
       </div>`;
   }
 
-  function articleRow(article) {
-    const meta = `
-      <span class="hc-article-row-code">${article.code}</span>
-      <span>
-        <h3>${escapeHTML(article.title)}</h3>
-        <p>${escapeHTML(article.summary)}</p>
-      </span>
-      <span class="hc-article-row-meta">
-        <span class="hc-pill hc-pill-ready">${escapeHTML(article.time)}</span>
-        ${icon("arrow")}
-      </span>`;
-    return `<a class="hc-article-row" href="${articleHref(article)}">${meta}</a>`;
+  function articleTitleItem(article) {
+    return `
+      <li>
+        <a href="${articleHref(article)}">
+          <span>${escapeHTML(article.title)}</span>
+          ${icon("chevron")}
+        </a>
+      </li>`;
   }
 
   function renderArticle(article) {
@@ -515,10 +426,7 @@
     const related = (article.related || [])
       .map((id) => articlesById.get(id))
       .filter((item) => item?.status === "ready");
-    const categoryArticles = publicArticles
-      .filter((item) => item.category === article.category && item.id !== article.id)
-      .slice(0, 5);
-    const tocItems = articleToc(article);
+    const categoryArticles = publicArticles.filter((item) => item.category === article.category);
 
     view.innerHTML = `
       <div class="hc-page">
@@ -531,58 +439,33 @@
             ${sideRail(category.id)}
             <article class="hc-article" data-article>
               <header class="hc-article-head">
-                <p class="hc-article-code">${article.code}</p>
                 <h1>${escapeHTML(article.title)}</h1>
                 <p class="hc-article-summary">${escapeHTML(article.summary)}</p>
-                <div class="hc-article-meta">
-                  <span class="hc-pill">${escapeHTML(article.level)}</span>
-                  <span class="hc-pill ${article.tier === "Pro" ? "hc-pill-pro" : ""}">${escapeHTML(article.tier)}</span>
-                  <span class="hc-pill">${escapeHTML(article.platform)}</span>
-                  <span class="hc-pill">${escapeHTML(article.time)}</span>
-                </div>
                 <p class="hc-article-verified">
                   ${icon("check")}
-                  <span>最后核对：TradeReplay v${escapeHTML(guide.version)} · ${escapeHTML(guide.verifiedDate)}</span>
+                  <span>${article.code} · ${escapeHTML(article.level)} · ${escapeHTML(article.platform)} · 约 ${escapeHTML(article.time)}</span>
                 </p>
               </header>
               ${renderArticleBody(article, related)}
             </article>
-            <aside class="hc-article-aside" aria-label="文章导航">
-              ${
-                tocItems.length
-                  ? `<p class="hc-aside-title">本页内容</p>
-                     <nav class="hc-toc" data-article-toc>
-                       ${tocItems
-                         .map((item) => `<a href="#${escapeHTML(item.id)}">${escapeHTML(item.title)}</a>`)
-                         .join("")}
-                     </nav>`
-                  : ""
-              }
-              ${
-                categoryArticles.length
-                  ? `<div class="hc-aside-related">
-                       <p class="hc-aside-title">本分类文章</p>
-                       ${categoryArticles
-                         .map((item) => `<a href="${articleHref(item)}">${escapeHTML(item.title)}</a>`)
-                         .join("")}
-                     </div>`
-                  : ""
-              }
+            <aside class="hc-article-aside" aria-label="本分类文章">
+              <p class="hc-aside-title">本分类文章</p>
+              <nav class="hc-section-article-list">
+                ${categoryArticles
+                  .map(
+                    (item) =>
+                      `<a href="${articleHref(item)}"${
+                        item.id === article.id ? ' aria-current="page"' : ""
+                      }>${escapeHTML(item.title)}</a>`
+                  )
+                  .join("")}
+              </nav>
             </aside>
           </div>
         </div>
       </div>`;
 
     attachArticleBehaviors();
-  }
-
-  function articleToc(article) {
-    const result = [];
-    if (article.before && article.before.length) result.push({ id: "before-you-start", title: "开始之前" });
-    (article.sections || []).forEach((section) => result.push({ id: section.id, title: section.title }));
-    if (article.success && article.success.length) result.push({ id: "success-state", title: "成功后你会看到" });
-    if (article.faq && article.faq.length) result.push({ id: "common-questions", title: "常见问题" });
-    return result;
   }
 
   function renderArticleBody(article, related) {
@@ -629,13 +512,10 @@
             : ""
         }
         <div class="hc-article-end">
-          <div class="hc-article-end-head">
-            <h2>下一步</h2>
-            <span>沿着当前任务继续</span>
-          </div>
-          <div class="hc-related-grid">
-            ${related.map(relatedCard).join("")}
-          </div>
+          <h2>相关文章</h2>
+          <ul class="hc-related-links">
+            ${related.map(relatedLink).join("")}
+          </ul>
           <div class="hc-feedback" data-feedback>
             <p>这篇文章解决了你的问题吗？</p>
             <div class="hc-feedback-actions">
@@ -717,14 +597,11 @@
       </figure>`;
   }
 
-  function relatedCard(article) {
-    const category = getCategory(article);
+  function relatedLink(article) {
     return `
-      <a class="hc-related-card" href="${articleHref(article)}">
-        <span>${article.code} · ${escapeHTML(category.short)}</span>
-        <h3>${escapeHTML(article.title)}</h3>
-        <p>${escapeHTML(article.summary)}</p>
-      </a>`;
+      <li>
+        <a href="${articleHref(article)}">${escapeHTML(article.title)}</a>
+      </li>`;
   }
 
   function renderNotFound() {

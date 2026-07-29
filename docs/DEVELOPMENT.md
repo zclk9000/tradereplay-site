@@ -16,10 +16,10 @@ production assets.
 
 The homepage is deliberately dependency-free:
 
-- semantic HTML in `index.html`;
-- CSS tokens, responsive layout and motion in `home-v10.css`;
-- progressive enhancement in `home-v9.js`;
-- static screenshots and compressed MP4 demonstrations in `assets/`.
+- semantic HTML in `public/index.html`;
+- CSS tokens, responsive layout and motion in `public/styles/home-v10.css`;
+- progressive enhancement in `public/scripts/home-v9.js`;
+- static screenshots and compressed MP4 demonstrations in `public/assets/`.
 
 The page remains readable if JavaScript is unavailable. JavaScript adds
 language selection, tab behaviour, reveal transitions and time-synchronised
@@ -45,14 +45,15 @@ the browser's fullscreen video surface.
 
 | Mode | Video | Annotation starts | Behaviour |
 |---|---|---:|---|
-| Checklist | `assets/mode-checklist.mp4` | 5.76 s | A tracked signal point follows the chart; the strategy panel and explanatory label are connected with a dashed leader. |
-| Signal navigation | `assets/mode-signal.mp4` | 5.78 s | The matched signal and strategy panel are highlighted when navigation finds the rule. |
-| Automatic backtest | `assets/mode-backtest.mp4` | 6.00 s | The automatic-execution strategy panel is highlighted and connected to the lower-right explanation; no extra signal point is drawn. |
+| Checklist | `public/assets/modes/mode-checklist.mp4` | 5.76 s | A tracked signal point follows the chart; the strategy panel and explanatory label are connected with a dashed leader. |
+| Signal navigation | `public/assets/modes/mode-signal.mp4` | 5.78 s | The matched signal and strategy panel are highlighted when navigation finds the rule. |
+| Automatic backtest | `public/assets/modes/mode-backtest.mp4` | 6.00 s | The automatic-execution strategy panel is highlighted and connected to the lower-right explanation; no extra signal point is drawn. |
 
 Timing is configured with `data-trigger-time` on each
 `[data-mode-video-demo]` element. Checklist signal tracking coordinates are in
-`setupModeVideo()` in `home-v9.js`. Overlay geometry is defined by the
-corresponding `.mode-video-*` selectors in `home-v10.css`.
+`setupModeVideo()` in `public/scripts/home-v9.js`. Overlay geometry is defined
+by the corresponding `.mode-video-*` selectors in
+`public/styles/home-v10.css`.
 
 When replacing a recording:
 
@@ -95,18 +96,20 @@ channels.
 
 Before committing:
 
-1. Serve the repository over HTTP; do not validate with `file://`.
+1. Serve `public/` over HTTP; do not validate with `file://`.
 2. Check Chinese and English content.
 3. Check widths near 1440, 1024, 768 and 390 px.
 4. Play all three videos with audio and seek across each annotation trigger.
 5. Verify Windows and Mac download URLs.
 6. Verify guide, screenshots, changelog, privacy, terms and support links.
 7. Confirm there are no missing local assets or console errors.
-8. Stage only production files—never raw recordings, temporary screenshots,
-   audit folders or prototype directories.
+8. Run `node scripts/validate-public-site.mjs`.
+9. Stage only production files—never `_local/`, raw recordings, temporary
+   screenshots, audit folders or prototype directories.
 
 ## Deployment boundary
 
 Git commit and push do not deploy the website. Production deployment uses the
 Cloudflare configuration in `wrangler.toml` and requires separate explicit
-authorization.
+authorization. Its asset directory is `public/`; repository source, docs and
+local material are outside the publication boundary.

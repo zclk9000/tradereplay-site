@@ -32,7 +32,7 @@
         "en": "guide.html?lang=en"
       }
     },
-    "image": "assets/hero-laptop-static.png",
+    "image": "assets/product/hero-laptop-static.png",
     "imageAlt": {
       "zh": "笔记本电脑中的 TradeReplay 多图表复盘界面",
       "en": "TradeReplay multi-chart replay workspace displayed in a laptop"
@@ -74,7 +74,7 @@
           "en": "Use the same system for practice, backtests and trade-by-trade review"
         }
       ],
-      "image": "assets/showcase-system-workspace-en.png",
+      "image": "assets/showcase/showcase-system-workspace-en.png",
       "imageAlt": {
         "zh": "英文版定制交易系统界面",
         "en": "Custom trading system workspace in English"
@@ -103,7 +103,7 @@
           "en": "Every simulated trade flows into your records and statistics"
         }
       ],
-      "image": "assets/mode-checklist-poster.jpg",
+      "image": "assets/modes/mode-checklist-poster.jpg",
       "imageAlt": {
         "zh": "历史行情模拟交易界面",
         "en": "Historical market simulation workspace"
@@ -132,7 +132,7 @@
           "en": "Save scan results for statistics or chart review"
         }
       ],
-      "image": "assets/showcase-strategy-scan-en.png",
+      "image": "assets/showcase/showcase-strategy-scan-en.png",
       "imageAlt": {
         "zh": "英文版策略扫描与回测配置界面",
         "en": "Strategy scan and backtest configuration workspace in English"
@@ -161,7 +161,7 @@
           "en": "Compare live trading with simulated trades and scan results"
         }
       ],
-      "image": "assets/showcase-statement-analysis-en.png",
+      "image": "assets/showcase/showcase-statement-analysis-en.png",
       "imageAlt": {
         "zh": "英文版真实账单分析界面",
         "en": "Live statement analysis workspace in English"
@@ -190,7 +190,7 @@
           "en": "Connect AI to find problems and improvement opportunities in the data"
         }
       ],
-      "image": "assets/showcase-statistics-ai-en.png",
+      "image": "assets/showcase/showcase-statistics-ai-en.png",
       "imageAlt": {
         "zh": "英文版交易统计与 AI 分析界面",
         "en": "Trading statistics and AI analysis workspace in English"
@@ -219,7 +219,7 @@
           "en": "Back up and sync data through S3"
         }
       ],
-      "image": "assets/showcase-journal-sync-en.png",
+      "image": "assets/showcase/showcase-journal-sync-en.png",
       "imageAlt": {
         "zh": "英文版每日复盘日志与数据同步界面",
         "en": "Daily review journal and data sync workspace in English"

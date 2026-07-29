@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
+const publicRoot = path.join(root, "public");
 const pages = [
   "index.html",
   "download.html",
@@ -33,11 +34,11 @@ function get(valuePath) {
 }
 
 for (const page of pages) {
-  const html = fs.readFileSync(path.join(root, page), "utf8");
+  const html = fs.readFileSync(path.join(publicRoot, page), "utf8");
   const hasBindings = html.includes("data-content-");
   if (hasBindings) {
-    const generatedIndex = html.indexOf('src="site-content.generated.js"');
-    const runtimeIndex = html.indexOf('src="site-content-runtime.js"');
+    const generatedIndex = html.indexOf('src="scripts/site-content.generated.js"');
+    const runtimeIndex = html.indexOf('src="scripts/site-content-runtime.js"');
     if (generatedIndex < 0 || runtimeIndex < 0 || generatedIndex > runtimeIndex) {
       errors.push(`${page} 缺少官网内容脚本，或脚本顺序不正确`);
     }

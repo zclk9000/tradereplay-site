@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
+const publicRoot = path.join(root, "public");
 const contentRoot = path.join(root, "content", "guide");
 const catalog = JSON.parse(
   fs.readFileSync(path.join(contentRoot, "catalog.json"), "utf8")
@@ -48,9 +49,9 @@ const output = {
   categories,
   articles
 };
-const outputPath = path.join(root, "guide-content.json");
+const outputPath = path.join(publicRoot, "data", "guide-content.json");
 const serializedOutput = `${JSON.stringify(output)}\n`;
-const publicSource = `${fs.readFileSync(path.join(root, "guide.js"), "utf8")}\n${serializedOutput}`;
+const publicSource = `${fs.readFileSync(path.join(publicRoot, "scripts", "guide.js"), "utf8")}\n${serializedOutput}`;
 const forbiddenPublicPhrases = [
   "Mac App Store",
   "iOS",

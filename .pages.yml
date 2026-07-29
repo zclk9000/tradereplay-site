@@ -1,7 +1,7 @@
 media:
   - name: site_media
     label: 官网图片
-    input: assets/cms
+    input: public/assets/cms
     output: /assets/cms
     categories: [image]
     rename: safe
@@ -14,7 +14,7 @@ media:
 
   - name: guide_media
     label: 教程图片与视频
-    input: guide-assets
+    input: public/guide-assets
     output: /guide-assets
     categories: [image, video]
     rename: safe

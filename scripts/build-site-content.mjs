@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
+const publicRoot = path.join(root, "public");
 const sourceRoot = path.join(root, "content", "site");
 const files = ["home", "release", "support", "legal"];
 const data = Object.fromEntries(
@@ -37,7 +38,7 @@ function requireLink(value, label) {
 function requireLocalImage(value, label) {
   requireText(value, label);
   const localPath = value?.replace(/^\/+/, "");
-  if (localPath && !fs.existsSync(path.join(root, localPath))) {
+  if (localPath && !fs.existsSync(path.join(publicRoot, localPath))) {
     errors.push(`${label} 文件不存在：${value}`);
   }
 }
@@ -149,7 +150,7 @@ if (errors.length) {
 
 const payload = JSON.stringify(data).replaceAll("<", "\\u003c");
 const output = `window.TRADE_REPLAY_SITE_CONTENT = ${payload};\n`;
-fs.writeFileSync(path.join(root, "site-content.generated.js"), output);
+fs.writeFileSync(path.join(publicRoot, "scripts", "site-content.generated.js"), output);
 console.log(
   `已生成官网内容：6 个功能展示，${data.release.highlights.length} 条最新版本说明。`
 );

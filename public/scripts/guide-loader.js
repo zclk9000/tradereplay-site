@@ -10,7 +10,7 @@
   }
 
   window.TRADE_REPLAY_GUIDE_READY = (async function loadGuideContent() {
-    const guide = await fetchJSON("guide-content.json");
+    const guide = await fetchJSON("data/guide-content.json");
     window.TRADE_REPLAY_GUIDE = guide;
     return guide;
   })();

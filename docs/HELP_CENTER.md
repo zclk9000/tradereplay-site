@@ -1,19 +1,19 @@
 # TradeReplay 帮助中心
 
 帮助中心是官网中的独立模块。官网首页已经从页头、教程区域、底部行动按钮和页脚接入
-`guide.html`，因此维护教程时不需要修改首页文件。
+`public/guide.html`，因此维护教程时不需要修改首页文件。
 
 ## Files
 
 - `.pages.yml` — Pages CMS 中文编辑表单、媒体库和发布按钮配置。
 - `content/guide/catalog.json` — 教程版本、分类和文章数据文件目录。
 - `content/guide/articles/*.json` — 每篇教程一个独立内容文件。
-- `guide-content.json` — 发布时自动生成、供浏览器快速读取的合并内容。
-- `guide-assets/` — Pages CMS 上传的教程图片与视频。
-- `guide-loader.js` — 在浏览器中读取分类和文章内容。
-- `guide.html` — 帮助中心的页头、页脚和搜索框。
-- `guide.css` — 帮助中心版面、文章排版和响应式样式。
-- `guide.js` — 首页、分类、文章、搜索和目录的显示逻辑。
+- `public/data/guide-content.json` — 发布时自动生成、供浏览器快速读取的合并内容。
+- `public/guide-assets/` — Pages CMS 上传的教程图片与视频。
+- `public/scripts/guide-loader.js` — 在浏览器中读取分类和文章内容。
+- `public/guide.html` — 帮助中心的页头、页脚和搜索框。
+- `public/styles/guide.css` — 帮助中心版面、文章排版和响应式样式。
+- `public/scripts/guide.js` — 首页、分类、文章、搜索和目录的显示逻辑。
 
 ## Routes
 
@@ -71,7 +71,8 @@ guide.html?article=qs-04
 
 - 素材类型选择“图片 / 截图”或“视频”；
 - “素材标题”会显示在素材下方；
-- “上传或选择素材”会把文件保存到 `guide-assets/`；
+- “上传或选择素材”会把文件保存到 `public/guide-assets/`，公开网址仍为
+  `/guide-assets/...`；
 - 视频可以另外上传封面；
 - 上传后打开“在网站显示真实素材”；
 - 如果还没拍摄，保持开关关闭并填写“拍摄或补充说明”，网站会显示设计好的占位框。
@@ -108,7 +109,7 @@ Pages CMS 的“发布教程到官网”按钮会启动 GitHub Actions：
 教程现在从 JSON 内容文件读取，不能直接依赖 `file://` 打开。请通过本地 HTTP 预览：
 
 ```bash
-python3 -m http.server 8801 --bind 127.0.0.1
+python3 -m http.server 8801 --bind 127.0.0.1 --directory public
 ```
 
 至少检查：
@@ -127,4 +128,5 @@ python3 -m http.server 8801 --bind 127.0.0.1
 ```bash
 node scripts/validate-guide-content.mjs
 node scripts/build-guide-content.mjs
+node scripts/validate-public-site.mjs
 ```
