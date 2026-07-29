@@ -376,12 +376,12 @@ settings:
       rename: "docs(cms): 重命名 {oldPath} 为 {newPath}"
 
 actions:
-  - name: preview-guide
-    label: 生成教程预览（不更新官网）
+  - name: publish-site
+    label: 发布当前官网（含教程）
     workflow: pages-cms-publish-guide.yml
     ref: current
     cancelable: true
     confirm:
-      title: 生成教程预览？
-      message: 这只会更新独立的教程预览地址，不会更新 tradereplay.dev，也不会切换正式流量。通常需要约 1–2 分钟。
-      button: 确认生成预览
+      title: 发布到正式官网吗？
+      message: 系统会先检查全部教程内容，再把 GitHub main 中的当前官网和教程统一发布到 tradereplay.dev。通常需要约 1–2 分钟。
+      button: 确认发布官网

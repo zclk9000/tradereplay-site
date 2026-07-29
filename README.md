@@ -21,7 +21,8 @@ Open:
 - `home-v10.css` — homepage layout, visual tokens and responsive styling.
 - `home-v9.js` — language selection, tabs, reveal effects and video annotations.
 - `assets/` — homepage screenshots, posters and compressed demonstration videos.
-- `guide.html`, `screenshots.html`, `changelog.html` — product documentation and release history.
+- `guide.html`, `download.html`, `changelog.html` — tutorials, downloads and release history.
+- `support.html`, `privacy.html`, `terms.html`, `refund.html` — support and legal pages.
 - `docs/DEVELOPMENT.md` — implementation and maintenance notes.
 - `docs/DESIGN.md` — adopted design system.
 
@@ -34,5 +35,15 @@ and Mac DMG; the retired Mac App Store channel must not be restored.
 
 ## Deployment
 
-Cloudflare Workers static assets are configured by `wrangler.toml`. Deployment
-is a separate production action and is not implied by a Git push.
+Cloudflare Workers static assets are configured by `wrangler.toml`.
+
+The only normal production publishing route is the Pages CMS action
+`发布当前官网（含教程）`. It runs
+`.github/workflows/pages-cms-publish-guide.yml`, validates and rebuilds the
+guide, then deploys the complete current `main` branch to `tradereplay.dev`.
+
+- Save or commit every intended website change to `main` before publishing.
+- A Git push alone does not deploy production.
+- Do not run a separate manual production deployment from another task.
+- Pages CMS tutorial edits are committed first; publishing remains an explicit
+  second action so unfinished edits are not made public accidentally.
