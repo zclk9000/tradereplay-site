@@ -439,12 +439,16 @@
     return `
       <a class="hc-category-card" href="${categoryHref(category)}" data-tone="${category.tone}">
         ${categoryIcon(category)}
-        <h3>${escapeHTML(category.title)}</h3>
-        <p>${escapeHTML(category.description)}</p>
-        <div class="hc-category-card-foot">
-          <span>${category.count} 篇教程</span>
-          ${icon("arrow")}
-        </div>
+        <span class="hc-category-card-copy">
+          <h3>${escapeHTML(category.title)}</h3>
+          <p>${escapeHTML(category.description)}</p>
+        </span>
+        <span class="hc-category-card-foot">
+          <span class="hc-category-card-count">${category.count} 篇</span>
+          <span class="hc-category-card-arrow" aria-hidden="true">
+            ${icon("arrow")}
+          </span>
+        </span>
       </a>`;
   }
 
