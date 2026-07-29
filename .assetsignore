@@ -5,6 +5,7 @@ wrangler.toml
 README.md
 docs
 .DS_Store
+node_modules
 new pic
 iShot_*.png
 清单核对.mp4
