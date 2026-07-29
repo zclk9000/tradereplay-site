@@ -1,4 +1,4 @@
-name: Publish guide from Pages CMS
+name: Preview guide from Pages CMS
 
 on:
   workflow_dispatch:
@@ -12,12 +12,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages-cms-production
-  cancel-in-progress: false
+  group: pages-cms-preview
+  cancel-in-progress: true
 
 jobs:
-  validate-and-deploy:
-    name: Validate and deploy website
+  validate-and-preview:
+    name: Validate and create preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -30,9 +30,11 @@ jobs:
       - name: Build browser content
         run: node scripts/build-guide-content.mjs
 
-      - name: Deploy to Cloudflare Workers
+      - name: Upload preview version to Cloudflare Workers
+        id: preview
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.115.0"
+          command: versions upload --preview-alias guide-preview --message "Pages CMS tutorial preview"

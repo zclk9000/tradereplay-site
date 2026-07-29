@@ -1,5 +1,6 @@
 name = "tradereplay-site"
 compatibility_date = "2025-01-01"
+preview_urls = true
 
 [assets]
 directory = "./"
