@@ -35,7 +35,7 @@
         "file": "/guide-assets/qs-01-download.webp",
         "note": "截图时保留平台按钮和版本信息，不显示浏览器个人书签。"
       },
-      "body": "<p>在官网首页的下载区域选择 Windows 或 macOS。不要从第三方下载站获取安装包。</p>\n<p>Mac App Store 产品线已经退役。当前 Mac 桌面版从官网下载 DMG 安装。</p>"
+      "body": "<p>在官网首页的下载区域选择 Windows 或 macOS。不要从第三方下载站获取安装包。</p>\n<p>macOS 版使用官网提供的 DMG 安装包。</p>"
     },
     {
       "id": "install",

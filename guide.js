@@ -27,8 +27,11 @@
     return;
   }
 
-  const categoriesById = new Map(guide.categories.map((item) => [item.id, item]));
-  const articlesById = new Map(guide.articles.map((item) => [item.id, item]));
+  const publicArticles = guide.articles.filter((item) => item.status === "ready");
+  const publicCategoryIds = new Set(publicArticles.map((item) => item.category));
+  const publicCategories = guide.categories.filter((item) => publicCategoryIds.has(item.id));
+  const categoriesById = new Map(publicCategories.map((item) => [item.id, item]));
+  const articlesById = new Map(publicArticles.map((item) => [item.id, item]));
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -233,7 +236,7 @@
       <aside class="hc-side-rail" aria-label="教程分类">
         <p class="hc-side-rail-label">教程分类</p>
         <nav class="hc-side-nav">
-          ${guide.categories
+          ${publicCategories
             .map(
               (category) => `
                 <a href="${categoryHref(category)}"${
@@ -262,7 +265,7 @@
       return;
     }
 
-    const matches = guide.articles
+    const matches = publicArticles
       .map((article) => {
         const category = getCategory(article);
         const haystack = [
@@ -283,7 +286,7 @@
         return { article, category, score };
       })
       .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || Number(b.article.status === "ready") - Number(a.article.status === "ready"))
+      .sort((a, b) => b.score - a.score)
       .slice(0, 9);
 
     if (!matches.length) {
@@ -302,10 +305,8 @@
             <strong>${escapeHTML(article.title)}</strong>
             <small>${escapeHTML(category.title)} · ${escapeHTML(article.summary)}</small>
           </span>
-          <span class="hc-search-result-code">${article.status === "ready" ? article.code : "建设中"}</span>`;
-        return article.status === "ready"
-          ? `<a class="hc-search-result" href="${articleHref(article)}">${content}</a>`
-          : `<div class="hc-search-result" aria-disabled="true">${content}</div>`;
+          <span class="hc-search-result-code">${article.code}</span>`;
+        return `<a class="hc-search-result" href="${articleHref(article)}">${content}</a>`;
       })
       .join("");
   }
@@ -327,7 +328,7 @@
       "TradeReplay 官方教程",
       "按任务查找 TradeReplay 使用教程、功能说明、设置与故障排查。"
     );
-    const featured = guide.articles.filter((article) => article.featured && article.status === "ready");
+    const featured = publicArticles.filter((article) => article.featured);
     view.innerHTML = `
       <section class="hc-home-hero" aria-labelledby="help-title">
         <div class="hc-shell hc-home-hero-inner">
@@ -373,13 +374,13 @@
         <div class="hc-shell">
           <div class="hc-section-head">
             <div>
-              <p class="hc-kicker">完整功能目录</p>
+              <p class="hc-kicker">教程分类</p>
               <h2 id="category-title">按功能查找教程</h2>
             </div>
-            <p>教程按用户任务组织，同时覆盖功能手册、概念解释和故障排查。当前规划共 149 篇，分阶段逐步上线。</p>
+            <p>教程按用户任务组织，同时覆盖功能说明、操作步骤和故障排查。选择分类即可查看已经发布的内容。</p>
           </div>
           <div class="hc-category-grid">
-            ${guide.categories.map(categoryCard).join("")}
+            ${publicCategories.map(categoryCard).join("")}
           </div>
         </div>
       </section>
@@ -388,10 +389,10 @@
         <div class="hc-shell">
           <div class="hc-section-head">
             <div>
-              <p class="hc-kicker">已经可以阅读</p>
-              <h2 id="featured-title">首批详细文章</h2>
+              <p class="hc-kicker">推荐阅读</p>
+              <h2 id="featured-title">详细教程</h2>
             </div>
-            <p>截图和视频位置已经固定，后续只需按标注替换真实素材，不会改变文章布局和阅读节奏。</p>
+            <p>每篇教程都围绕一个具体任务编写，按顺序操作即可完成对应设置或检查。</p>
           </div>
           <div class="hc-featured-list">
             ${featured.map(featuredArticle).join("")}
@@ -399,7 +400,7 @@
           <div class="hc-version-note">
             <div>
               <strong>教程基线：TradeReplay v${escapeHTML(guide.version)}</strong>
-              <p>适用于官网直售的 macOS 与 Windows 桌面版。Mac App Store 已退役；iOS 教程不混入桌面版。</p>
+              <p>适用于 TradeReplay macOS 与 Windows 桌面版。</p>
             </div>
             <a class="hc-button hc-button-secondary" href="changelog.html">
               查看更新日志
@@ -441,7 +442,7 @@
         <h3>${escapeHTML(category.title)}</h3>
         <p>${escapeHTML(category.description)}</p>
         <div class="hc-category-card-foot">
-          <span>${category.count} 篇规划文章</span>
+          <span>${category.count} 篇教程</span>
           ${icon("arrow")}
         </div>
       </a>`;
@@ -461,9 +462,7 @@
 
   function renderCategory(category) {
     setDocumentMeta(category.title, category.description);
-    const articles = guide.articles.filter((article) => article.category === category.id);
-    const readyCount = articles.filter((article) => article.status === "ready").length;
-    const percentage = Math.round((readyCount / category.count) * 100);
+    const articles = publicArticles.filter((article) => article.category === category.id);
     view.innerHTML = `
       <div class="hc-page">
         <div class="hc-shell-wide">
@@ -474,28 +473,17 @@
               <header class="hc-category-header">
                 <div class="hc-category-header-top">
                   ${categoryIcon(category)}
-                  <span class="hc-pill">${category.number} · ${category.count} 篇规划文章</span>
+                  <span class="hc-pill">${category.number} · ${articles.length} 篇教程</span>
                 </div>
                 <h1 id="category-page-title">${escapeHTML(category.title)}</h1>
                 <p class="hc-category-lede">${escapeHTML(category.description)}</p>
-                <div class="hc-category-progress" aria-label="文章建设进度">
-                  <span class="hc-category-progress-track"><span style="width:${percentage}%"></span></span>
-                  <span>${readyCount} 篇可阅读 · 其余内容持续补充</span>
-                </div>
               </header>
               <div class="hc-category-articles">
                 <div class="hc-category-articles-head">
                   <h2>本分类文章</h2>
-                  <span>可阅读文章优先显示</span>
+                  <span>${articles.length} 篇教程</span>
                 </div>
-                ${articles
-                  .sort((a, b) => Number(b.status === "ready") - Number(a.status === "ready"))
-                  .map(articleRow)
-                  .join("")}
-                <div class="hc-category-coming">
-                  <strong>完整目录已经规划</strong>
-                  <p>本分类共规划 ${category.count} 篇文章。目前页面先展示首批高优先级内容，后续会继续补齐进阶功能、概念解释和故障排查。</p>
-                </div>
+                ${articles.map(articleRow).join("")}
               </div>
             </section>
           </div>
@@ -511,14 +499,10 @@
         <p>${escapeHTML(article.summary)}</p>
       </span>
       <span class="hc-article-row-meta">
-        <span class="hc-pill ${article.status === "ready" ? "hc-pill-ready" : "hc-pill-planned"}">${
-          article.status === "ready" ? article.time : "内容建设中"
-        }</span>
-        ${article.status === "ready" ? icon("arrow") : ""}
+        <span class="hc-pill hc-pill-ready">${escapeHTML(article.time)}</span>
+        ${icon("arrow")}
       </span>`;
-    return article.status === "ready"
-      ? `<a class="hc-article-row" href="${articleHref(article)}">${meta}</a>`
-      : `<div class="hc-article-row is-planned" aria-disabled="true">${meta}</div>`;
+    return `<a class="hc-article-row" href="${articleHref(article)}">${meta}</a>`;
   }
 
   function renderArticle(article) {
@@ -526,11 +510,11 @@
     setDocumentMeta(article.title, article.summary);
     const related = (article.related || [])
       .map((id) => articlesById.get(id))
-      .filter(Boolean);
-    const categoryArticles = guide.articles
-      .filter((item) => item.category === article.category && item.id !== article.id && item.status === "ready")
+      .filter((item) => item?.status === "ready");
+    const categoryArticles = publicArticles
+      .filter((item) => item.category === article.category && item.id !== article.id)
       .slice(0, 5);
-    const tocItems = article.status === "ready" ? articleToc(article) : [];
+    const tocItems = articleToc(article);
 
     view.innerHTML = `
       <div class="hc-page">
@@ -550,18 +534,14 @@
                   <span class="hc-pill">${escapeHTML(article.level)}</span>
                   <span class="hc-pill ${article.tier === "Pro" ? "hc-pill-pro" : ""}">${escapeHTML(article.tier)}</span>
                   <span class="hc-pill">${escapeHTML(article.platform)}</span>
-                  <span class="hc-pill">${article.status === "ready" ? escapeHTML(article.time) : "内容建设中"}</span>
+                  <span class="hc-pill">${escapeHTML(article.time)}</span>
                 </div>
                 <p class="hc-article-verified">
                   ${icon("check")}
                   <span>最后核对：TradeReplay v${escapeHTML(guide.version)} · ${escapeHTML(guide.verifiedDate)}</span>
                 </p>
               </header>
-              ${
-                article.status === "ready"
-                  ? renderArticleBody(article, related)
-                  : renderOutlineState(category)
-              }
+              ${renderArticleBody(article, related)}
             </article>
             <aside class="hc-article-aside" aria-label="文章导航">
               ${
@@ -716,60 +696,31 @@
 
   function renderMedia(media) {
     const isVideo = media.type === "video";
-    if (media.ready) {
-      return `
-        <figure class="hc-media-frame" data-type="${isVideo ? "video" : "image"}">
-          ${
-            isVideo
-              ? `<video controls preload="metadata" playsinline controlslist="nodownload" disablepictureinpicture${
-                  media.poster ? ` poster="${escapeHTML(media.poster)}"` : ""
-                }>
-                   <source src="${escapeHTML(media.file)}" type="video/mp4">
-                   你的浏览器暂时无法播放这个视频。
-                 </video>`
-              : `<img src="${escapeHTML(media.file)}" alt="${escapeHTML(media.alt || media.label)}" loading="lazy" decoding="async">`
-          }
-          <figcaption>${escapeHTML(media.label)}</figcaption>
-        </figure>`;
-    }
+    if (!media.ready) return "";
     return `
-      <figure class="hc-media-placeholder" data-type="${isVideo ? "video" : "image"}">
-        <span class="hc-media-badge">${isVideo ? "视频占位" : "截图占位"}</span>
-        <div class="hc-media-placeholder-inner">
-          <span class="hc-media-icon">${icon(isVideo ? "play" : "camera")}</span>
-          <strong>${escapeHTML(media.label)}</strong>
-          <p>${escapeHTML(media.note)}</p>
-          <span class="hc-media-file">${escapeHTML(media.file)}</span>
-        </div>
+      <figure class="hc-media-frame" data-type="${isVideo ? "video" : "image"}">
+        ${
+          isVideo
+            ? `<video controls preload="metadata" playsinline controlslist="nodownload" disablepictureinpicture${
+                media.poster ? ` poster="${escapeHTML(media.poster)}"` : ""
+              }>
+                 <source src="${escapeHTML(media.file)}" type="video/mp4">
+                 你的浏览器暂时无法播放这个视频。
+               </video>`
+            : `<img src="${escapeHTML(media.file)}" alt="${escapeHTML(media.alt || media.label)}" loading="lazy" decoding="async">`
+        }
+        <figcaption>${escapeHTML(media.label)}</figcaption>
       </figure>`;
   }
 
   function relatedCard(article) {
     const category = getCategory(article);
-    if (article.status !== "ready") {
-      return `
-        <div class="hc-related-card" aria-disabled="true">
-          <span>${article.code} · 建设中</span>
-          <h3>${escapeHTML(article.title)}</h3>
-          <p>${escapeHTML(category.title)}</p>
-        </div>`;
-    }
     return `
       <a class="hc-related-card" href="${articleHref(article)}">
         <span>${article.code} · ${escapeHTML(category.short)}</span>
         <h3>${escapeHTML(article.title)}</h3>
         <p>${escapeHTML(article.summary)}</p>
       </a>`;
-  }
-
-  function renderOutlineState(category) {
-    return `
-      <div class="hc-outline-state">
-        ${icon("file")}
-        <h2>文章骨架已经建立</h2>
-        <p>这篇文章属于首批内容计划，正文、截图和视频会按实际软件版本逐项验证后补入。你可以先返回“${escapeHTML(category.title)}”查看已经完成的文章。</p>
-        <a class="hc-button hc-button-secondary" href="${categoryHref(category)}">返回本分类</a>
-      </div>`;
   }
 
   function renderNotFound() {
@@ -781,7 +732,7 @@
           <div class="hc-outline-state">
             ${icon("search")}
             <h1>没有找到这篇教程</h1>
-            <p>链接可能已经调整，或者文章还没有进入首批内容。请返回帮助中心搜索功能名称或错误提示。</p>
+            <p>链接可能已经调整，或者内容暂未公开。请返回帮助中心搜索功能名称或错误提示。</p>
             <a class="hc-button" href="guide.html">返回帮助中心</a>
           </div>
         </div>

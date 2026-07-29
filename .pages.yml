@@ -123,7 +123,7 @@ components:
             label: 在网站显示真实素材
             type: boolean
             default: false
-            description: 上传并检查完成后打开；关闭时网站继续显示设计好的占位框。
+            description: 上传并检查完成后打开；关闭时正式网站不会显示这项素材。
           - name: alt
             label: 图片无障碍说明
             type: string
@@ -131,7 +131,7 @@ components:
           - name: note
             label: 拍摄或补充说明
             type: text
-            description: 素材还没准备好时，这段文字会显示在占位框里。
+            description: 仅供内部制作参考，不会显示在正式网站。
 
   article_faq:
     type: object
@@ -234,7 +234,7 @@ content:
             options:
               values:
                 - name: planned
-                  label: 计划中（只显示标题）
+                  label: 计划中（不在官网显示）
                 - name: ready
                   label: 已完成（可以阅读）
           - name: featured
@@ -348,7 +348,7 @@ content:
                 type: text
                 required: true
               - name: count
-                label: 规划文章数
+                label: 内部规划文章数
                 type: number
                 required: true
               - name: tone
@@ -377,11 +377,11 @@ settings:
 
 actions:
   - name: publish-guide
-    label: 发布教程到官网
+    label: 发布教程并更新正式官网
     workflow: pages-cms-publish-guide.yml
     ref: current
     cancelable: false
     confirm:
-      title: 发布教程到官网？
-      message: 将当前已保存的教程内容发布到正式网站。通常需要约 1–2 分钟。
-      button: 确认发布
+      title: 更新整个正式官网？
+      message: 这会重新部署 GitHub main 分支中的整个正式官网，不只是教程。请先确认其他官网修改也可以同时上线。通常需要约 1–2 分钟。
+      button: 确认更新正式官网
