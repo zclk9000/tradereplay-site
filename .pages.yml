@@ -1,4 +1,17 @@
 media:
+  - name: site_media
+    label: 官网图片
+    input: assets/cms
+    output: /assets/cms
+    categories: [image]
+    rename: safe
+    commit:
+      templates:
+        create: "content(site): 添加图片 {filename}"
+        update: "content(site): 更新图片 {filename}"
+        delete: "content(site): 删除图片 {filename}"
+        rename: "content(site): 重命名图片 {oldFilename} 为 {newFilename}"
+
   - name: guide_media
     label: 教程图片与视频
     input: guide-assets
@@ -13,6 +26,101 @@ media:
         rename: "docs(media): 重命名 {oldFilename} 为 {newFilename}"
 
 components:
+  localized_short:
+    type: object
+    fields:
+      - name: zh
+        label: 中文
+        type: string
+        required: true
+      - name: en
+        label: English
+        type: string
+        required: true
+
+  localized_text:
+    type: object
+    fields:
+      - name: zh
+        label: 中文
+        type: text
+        required: true
+      - name: en
+        label: English
+        type: text
+        required: true
+
+  site_button:
+    type: object
+    fields:
+      - name: label
+        label: 按钮文字
+        component: localized_short
+      - name: href
+        label: 按钮链接
+        component: localized_short
+
+  showcase_item:
+    type: object
+    fields:
+      - name: tab
+        label: 标签名称
+        component: localized_short
+      - name: title
+        label: 标题
+        component: localized_short
+      - name: bullets
+        label: 功能要点
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{zh}"
+        fields:
+          - name: zh
+            label: 中文
+            type: text
+            required: true
+          - name: en
+            label: English
+            type: text
+            required: true
+      - name: image
+        label: 展示图片
+        type: image
+        required: true
+        options:
+          media: site_media
+          extensions: [png, jpg, jpeg, webp]
+          rename: safe
+      - name: imageAlt
+        label: 图片说明
+        component: localized_text
+
+  release_platform:
+    type: object
+    fields:
+      - name: url
+        label: 下载链接
+        type: string
+        required: true
+        description: 必须使用 https:// 完整链接。
+      - name: fileName
+        label: 安装包文件名
+        type: string
+        required: true
+      - name: installerLabel
+        label: 安装包标签
+        type: string
+        required: true
+        description: 例如“.exe · v1.53.0”。
+      - name: summary
+        label: 平台说明
+        component: localized_text
+      - name: button
+        label: 下载按钮
+        component: localized_short
+
   rich_text:
     type: rich-text
     options:
@@ -151,6 +259,300 @@ components:
         required: true
 
 content:
+  - name: website_content
+    label: 官网内容
+    type: group
+    items:
+      - name: home_content
+        label: 首页文字与图片
+        type: file
+        path: content/site/home.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: hero
+            label: 首屏
+            type: object
+            fields:
+              - name: eyebrow
+                label: 顶部短句
+                component: localized_short
+              - name: title
+                label: 主标题
+                component: localized_short
+              - name: subtitle
+                label: 副标题
+                component: localized_text
+              - name: primaryButton
+                label: 主按钮
+                component: site_button
+              - name: secondaryButton
+                label: 次按钮
+                component: site_button
+              - name: image
+                label: 首屏图片
+                type: image
+                required: true
+                options:
+                  media: site_media
+                  extensions: [png, jpg, jpeg, webp]
+                  rename: safe
+              - name: imageAlt
+                label: 首屏图片说明
+                component: localized_text
+          - name: showcase
+            label: 六个核心能力
+            type: object
+            fields:
+              - name: kicker
+                label: 栏目短标题
+                component: localized_short
+              - name: title
+                label: 栏目标题
+                component: localized_short
+              - name: intro
+                label: 栏目介绍
+                component: localized_text
+              - name: system
+                label: 01 定制系统
+                component: showcase_item
+              - name: simulation
+                label: 02 模拟交易
+                component: showcase_item
+              - name: scan
+                label: 03 策略扫描
+                component: showcase_item
+              - name: statements
+                label: 04 账单分析
+                component: showcase_item
+              - name: statistics
+                label: 05 统计与 AI
+                component: showcase_item
+              - name: journal
+                label: 06 日志与同步
+                component: showcase_item
+          - name: pricing
+            label: 版本与购买
+            type: object
+            fields:
+              - name: kicker
+                label: 栏目短标题
+                component: localized_short
+              - name: title
+                label: 栏目标题
+                component: localized_short
+              - name: proLicense
+                label: Pro 授权说明
+                component: localized_short
+              - name: purchaseLabel
+                label: 购买按钮文字
+                component: localized_short
+              - name: taobaoUrl
+                label: 中文购买链接（淘宝）
+                type: string
+                required: true
+              - name: whopUrl
+                label: 英文购买链接（Whop）
+                type: string
+                required: true
+          - name: finalCta
+            label: 页面底部行动区
+            type: object
+            fields:
+              - name: kicker
+                label: 顶部短句
+                component: localized_short
+              - name: title
+                label: 标题
+                component: localized_short
+              - name: description
+                label: 说明
+                component: localized_text
+
+      - name: release_content
+        label: 下载与更新日志
+        type: file
+        path: content/site/release.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: version
+            label: 版本号
+            type: string
+            required: true
+            description: 不含 v，例如“1.53.0”。
+          - name: displayVersion
+            label: 显示版本号
+            type: string
+            required: true
+            description: 例如“v1.53.0”。
+          - name: date
+            label: 发布日期
+            type: string
+            required: true
+            pattern:
+              regex: "^\\d{4}-\\d{2}-\\d{2}$"
+              message: "请使用 YYYY-MM-DD 格式"
+          - name: downloadIntro
+            label: 下载页说明
+            component: localized_text
+          - name: windows
+            label: Windows 安装包
+            component: release_platform
+          - name: mac
+            label: macOS 安装包
+            component: release_platform
+          - name: highlights
+            label: 本次更新内容
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{type} · {zh}"
+            fields:
+              - name: type
+                label: 类型
+                type: select
+                required: true
+                options:
+                  values:
+                    - name: new
+                      label: 新增
+                    - name: improved
+                      label: 优化
+                    - name: fixed
+                      label: 修复
+              - name: zh
+                label: 中文说明
+                type: text
+                required: true
+              - name: en
+                label: English
+                type: text
+                required: true
+
+      - name: support_content
+        label: 教程入口与支持渠道
+        type: file
+        path: content/site/support.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: heading
+            label: 支持页标题
+            component: localized_short
+          - name: guide
+            label: 教程入口
+            type: object
+            fields:
+              - name: title
+                label: 标题
+                component: localized_short
+              - name: description
+                label: 说明
+                component: localized_text
+              - name: link
+                label: 教程链接
+                component: localized_short
+              - name: button
+                label: 按钮文字
+                component: localized_short
+          - name: qq
+            label: QQ 售后群
+            type: object
+            fields:
+              - name: title
+                label: 标题
+                component: localized_short
+              - name: number
+                label: 群号
+                type: string
+                required: true
+              - name: joinUrl
+                label: 加群链接
+                type: string
+                required: true
+              - name: button
+                label: 按钮文字
+                component: localized_short
+              - name: qrImage
+                label: 群二维码
+                type: image
+                required: true
+                options:
+                  media: site_media
+                  extensions: [png, jpg, jpeg, webp]
+                  rename: safe
+              - name: iconImage
+                label: QQ 图标
+                type: image
+                required: true
+                options:
+                  media: site_media
+                  extensions: [png, jpg, jpeg, webp]
+                  rename: safe
+          - name: wecom
+            label: 企业微信售后群
+            type: object
+            fields:
+              - name: title
+                label: 标题
+                component: localized_short
+              - name: description
+                label: 显示说明
+                component: localized_short
+              - name: button
+                label: 按钮文字
+                component: localized_short
+              - name: qrImage
+                label: 群二维码
+                type: image
+                required: true
+                options:
+                  media: site_media
+                  extensions: [png, jpg, jpeg, webp]
+                  rename: safe
+              - name: iconImage
+                label: 企业微信图标
+                type: image
+                required: true
+                options:
+                  media: site_media
+                  extensions: [png, jpg, jpeg, webp]
+                  rename: safe
+          - name: email
+            label: 支持邮箱
+            type: string
+            required: true
+
+      - name: legal_content
+        label: 政策页设置
+        type: file
+        path: content/site/legal.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: updated
+            label: 更新日期文案
+            component: localized_short
+          - name: supportEmail
+            label: 政策联系邮箱
+            type: string
+            required: true
+          - name: privacyDescription
+            label: 隐私政策页面说明
+            component: localized_text
+          - name: termsDescription
+            label: 服务条款页面说明
+            component: localized_text
+          - name: refundDescription
+            label: 退款政策页面说明
+            component: localized_text
+
   - name: guide_center
     label: 教程中心
     type: group
@@ -383,5 +785,5 @@ actions:
     cancelable: true
     confirm:
       title: 发布到正式官网吗？
-      message: 系统会先检查全部教程内容，再把 GitHub main 中的当前官网和教程统一发布到 tradereplay.dev。通常需要约 1–2 分钟。
+      message: 系统会先检查官网内容与全部教程，再把 GitHub main 中的当前官网和教程统一发布到 tradereplay.dev。通常需要约 1–2 分钟。
       button: 确认发布官网

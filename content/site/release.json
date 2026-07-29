@@ -1,0 +1,62 @@
+{
+  "version": "1.53.0",
+  "displayVersion": "v1.53.0",
+  "date": "2026-07-29",
+  "downloadIntro": {
+    "zh": "当前版本 v1.53.0。选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.53.0. Choose the installer that matches your computer."
+  },
+  "windows": {
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.53.0-Setup.exe",
+    "fileName": "TradeReplay-1.53.0-Setup.exe",
+    "installerLabel": ".exe · v1.53.0",
+    "summary": {
+      "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
+      "en": "For common Intel and AMD PCs, delivered as a standard installer."
+    },
+    "button": {
+      "zh": "下载 Windows 版",
+      "en": "Download for Windows"
+    }
+  },
+  "mac": {
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.53.0-arm64.dmg",
+    "fileName": "TradeReplay-1.53.0-arm64.dmg",
+    "installerLabel": ".dmg · v1.53.0",
+    "summary": {
+      "zh": "适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。",
+      "en": "For Apple silicon Macs, delivered as a DMG disk image."
+    },
+    "button": {
+      "zh": "下载 Mac 版",
+      "en": "Download for macOS"
+    }
+  },
+  "highlights": [
+    {
+      "type": "new",
+      "zh": "新增内盘 / 外盘颜色模式，一键切换全局 K 线、盈亏、交易线及买卖颜色。",
+      "en": "Added one-click CN / global market colour conventions across candles, P&L, trade lines, and buy / sell colours."
+    },
+    {
+      "type": "new",
+      "zh": "图表周期栏支持自定义，并新增三点式斐波那契趋势扩展工具。",
+      "en": "Added a customisable timeframe toolbar and a three-point Fibonacci trend extension tool."
+    },
+    {
+      "type": "new",
+      "zh": "选中单笔持仓后，可按指定手数或百分比进行部分平仓。",
+      "en": "Select an individual position to close an exact lot size or a chosen percentage."
+    },
+    {
+      "type": "improved",
+      "zh": "优化 Tick 回放、图表视野恢复、交易信号对齐与净风险仓位计算。",
+      "en": "Improved Tick replay, chart-view restoration, trading-signal alignment, and net-risk position sizing."
+    },
+    {
+      "type": "fixed",
+      "zh": "修复指标空值与点状绘制、前导零手数输入及订单方向标签等问题。",
+      "en": "Fixed indicator gaps and dot rendering, leading-zero lot entry, and order-side labels."
+    }
+  ]
+}

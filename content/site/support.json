@@ -1,0 +1,55 @@
+{
+  "heading": {
+    "zh": "教程与支持",
+    "en": "Guides & Support"
+  },
+  "guide": {
+    "title": {
+      "zh": "使用教程",
+      "en": "User Guide"
+    },
+    "description": {
+      "zh": "安装、激活、行情、训练、账单、统计、回测与 AI。",
+      "en": "Installation, activation, market data, practice, statements, statistics, backtesting, and AI."
+    },
+    "link": {
+      "zh": "guide.html?lang=zh",
+      "en": "guide.html?lang=en"
+    },
+    "button": {
+      "zh": "查看教程",
+      "en": "View guide"
+    }
+  },
+  "qq": {
+    "title": {
+      "zh": "QQ 售后群",
+      "en": "QQ Support Group"
+    },
+    "number": "559076777",
+    "joinUrl": "https://qm.qq.com/q/xxGMPN3N2E",
+    "button": {
+      "zh": "加入 Q 群",
+      "en": "Join QQ group"
+    },
+    "qrImage": "assets/support/qq-group-qr.jpg",
+    "iconImage": "assets/support/qq-official.png"
+  },
+  "wecom": {
+    "title": {
+      "zh": "企业微信售后群",
+      "en": "WeCom Support Group"
+    },
+    "description": {
+      "zh": "使用企业微信扫码加入。",
+      "en": "Scan with WeCom to join."
+    },
+    "button": {
+      "zh": "扫码加入",
+      "en": "Scan to join"
+    },
+    "qrImage": "assets/support/wecom-group-qr.jpg",
+    "iconImage": "assets/support/wecom-official.png"
+  },
+  "email": "zclk9000@me.com"
+}

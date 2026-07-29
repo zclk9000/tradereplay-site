@@ -8,6 +8,8 @@
   <meta name="theme-color" content="#080b12">
   <link rel="icon" href="logo-dark.svg">
   <link rel="stylesheet" href="home-v10.css?v=20260729-download1">
+  <script src="site-content.generated.js" defer></script>
+  <script src="site-content-runtime.js" defer></script>
   <script src="home-v9.js?v=20260729-download1" defer></script>
 </head>
 <body
@@ -48,7 +50,7 @@
         <header class="download-page-hero" data-reveal>
           <p class="section-kicker" data-zh="桌面版下载" data-en="DESKTOP DOWNLOAD">桌面版下载</p>
           <h1 id="download-page-title" data-zh="选择你的系统" data-en="Choose your platform">选择你的系统</h1>
-          <p data-zh="当前版本 v1.53.0。选择与你的电脑匹配的安装包。"
+          <p data-content-text="release.downloadIntro" data-zh="当前版本 v1.53.0。选择与你的电脑匹配的安装包。"
             data-en="The current release is v1.53.0. Choose the installer that matches your computer.">
             当前版本 v1.53.0。选择与你的电脑匹配的安装包。
           </p>
@@ -68,7 +70,7 @@
               </div>
             </div>
 
-            <p class="download-platform-summary"
+            <p class="download-platform-summary" data-content-text="release.windows.summary"
               data-zh="适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。"
               data-en="For common Intel and AMD PCs, delivered as a standard installer.">
               适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。
@@ -85,15 +87,16 @@
               </div>
               <div>
                 <dt data-zh="安装文件" data-en="Installer">安装文件</dt>
-                <dd>.exe · v1.53.0</dd>
+                <dd data-content-text="release.windows.installerLabel">.exe · v1.53.0</dd>
               </div>
             </dl>
 
-            <a class="button button-block download-platform-button"
+            <a class="button button-block download-platform-button" data-content-href="release.windows.url"
               href="https://dl.tradereplay.dev/TradeReplay-1.53.0-Setup.exe"
+              data-content-text="release.windows.button"
               data-zh="下载 Windows 版"
               data-en="Download for Windows">下载 Windows 版</a>
-            <p class="download-file-name">TradeReplay-1.53.0-Setup.exe</p>
+            <p class="download-file-name" data-content-text="release.windows.fileName">TradeReplay-1.53.0-Setup.exe</p>
           </article>
 
           <article class="download-platform-card download-platform-mac" data-reveal>
@@ -109,7 +112,7 @@
               </div>
             </div>
 
-            <p class="download-platform-summary"
+            <p class="download-platform-summary" data-content-text="release.mac.summary"
               data-zh="适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。"
               data-en="For Apple silicon Macs, delivered as a DMG disk image.">
               适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。
@@ -126,23 +129,24 @@
               </div>
               <div>
                 <dt data-zh="安装文件" data-en="Installer">安装文件</dt>
-                <dd>.dmg · v1.53.0</dd>
+                <dd data-content-text="release.mac.installerLabel">.dmg · v1.53.0</dd>
               </div>
             </dl>
 
-            <a class="button button-secondary button-block download-platform-button"
+            <a class="button button-secondary button-block download-platform-button" data-content-href="release.mac.url"
               href="https://dl.tradereplay.dev/TradeReplay-1.53.0-arm64.dmg"
+              data-content-text="release.mac.button"
               data-zh="下载 Mac 版"
               data-en="Download for macOS">下载 Mac 版</a>
-            <p class="download-file-name">TradeReplay-1.53.0-arm64.dmg</p>
+            <p class="download-file-name" data-content-text="release.mac.fileName">TradeReplay-1.53.0-arm64.dmg</p>
           </article>
         </div>
 
         <section class="download-release" aria-labelledby="download-release-title" data-reveal>
           <header class="download-release-head">
             <div class="download-release-title" id="download-release-title">
-              <span class="download-release-version">v1.53.0</span>
-              <span class="download-release-date">2026-07-29</span>
+              <span class="download-release-version" data-content-text="release.displayVersion">v1.53.0</span>
+              <span class="download-release-date" data-content-text="release.date">2026-07-29</span>
               <span class="download-release-latest" data-zh="最新" data-en="Latest">最新</span>
             </div>
             <a class="download-release-link"
@@ -153,7 +157,7 @@
               data-en="View all releases">查看全部版本</a>
           </header>
 
-          <ul class="download-release-list">
+          <ul class="download-release-list" data-content-release-list="download">
             <li>
               <span class="download-release-tag is-new" data-zh="新增" data-en="NEW">新增</span>
               <span data-zh="新增内盘 / 外盘颜色模式，一键切换全局 K 线、盈亏、交易线及买卖颜色。"

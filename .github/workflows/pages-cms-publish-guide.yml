@@ -24,6 +24,11 @@ jobs:
       - name: Check out selected branch
         uses: actions/checkout@v6
 
+      - name: Validate and build website content
+        run: |
+          node scripts/build-site-content.mjs
+          node scripts/validate-site-content-bindings.mjs
+
       - name: Validate guide content
         run: node scripts/validate-guide-content.mjs
 
