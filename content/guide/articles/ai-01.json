@@ -8,12 +8,69 @@
   "level": "入门",
   "tier": "免费版 / Pro",
   "platform": "macOS / Windows",
-  "status": "planned",
+  "status": "ready",
   "keywords": [
     "DeepSeek",
     "OpenAI",
     "API Key",
     "模型",
     "测试连接"
+  ],
+  "outcome": "完成后，你能使用自己的 DeepSeek 或 OpenAI API Key 配置 Mentor，选择模型并完成连接测试。",
+  "before": [
+    "在对应 AI 服务商处创建 API Key，并确认账户可用。",
+    "了解 API 调用费用由服务商直接收取。",
+    "不要在截图、聊天或客服消息中暴露完整 Key。"
+  ],
+  "sections": [
+    {
+      "id": "open-settings",
+      "title": "1. 打开 Mentor AI 设置",
+      "body": "<p>进入“设置 → Mentor AI”，选择 DeepSeek 或 OpenAI。不同服务商的 Key 不能混用。</p>"
+    },
+    {
+      "id": "save-key",
+      "title": "2. 保存 API Key",
+      "body": "<p>粘贴完整 Key，注意不要带前后空格。Key 会保存在操作系统安全凭据存储中，不会保存到教程内容或发送给 TradeReplay 服务器。</p>"
+    },
+    {
+      "id": "model",
+      "title": "3. 选择模型",
+      "body": "<p>从当前可用模型中选择一个。速度、推理能力、上下文和价格由服务商决定；第一次可先选择成本较低的通用模型测试。</p>"
+    },
+    {
+      "id": "test",
+      "title": "4. 测试连接",
+      "body": "<p>点击测试连接。成功后保存设置，再打开 Mentor 发送一个简短问题。若失败，检查 Key、余额、模型权限、网络和服务商状态。</p>",
+      "callout": {
+        "tone": "security",
+        "title": "立即撤销意外泄露的 Key",
+        "body": "<p>如果完整 Key 出现在截图或公开位置，请到服务商后台撤销并创建新 Key。</p>"
+      }
+    }
+  ],
+  "success": [
+    "连接测试显示成功。",
+    "Mentor 能返回简短回答。",
+    "截图和笔记中没有完整 API Key。"
+  ],
+  "faq": [
+    {
+      "q": "TradeReplay 会收取 API 调用费吗？",
+      "a": "<p>自备 Key 的调用费用由你选择的 AI 服务商按其规则收取。</p>"
+    },
+    {
+      "q": "为什么 Key 正确但测试失败？",
+      "a": "<p>检查服务商余额、模型访问权限、地区或网络限制，以及 Key 是否带空格。</p>"
+    },
+    {
+      "q": "更换电脑后为什么要重新配置？",
+      "a": "<p>Key 保存在当前设备的安全凭据存储中，不会随普通资料库复制到另一台电脑。</p>"
+    }
+  ],
+  "related": [
+    "ai-02",
+    "se-12",
+    "ts-06"
   ]
 }
