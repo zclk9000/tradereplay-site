@@ -1,0 +1,19 @@
+{
+  "id": "qs-03",
+  "code": "QS-03",
+  "category": "quick-start",
+  "title": "认识新版界面：概览、复盘和策略",
+  "summary": "了解三个一级入口、二级页面和右上角全局工具。",
+  "time": "6 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "导航",
+    "概览",
+    "复盘",
+    "策略",
+    "界面"
+  ]
+}

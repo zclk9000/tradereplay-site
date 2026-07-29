@@ -1,0 +1,18 @@
+{
+  "id": "ts-01",
+  "code": "TS-01",
+  "category": "troubleshooting",
+  "title": "行情下载失败或一直没有进度",
+  "summary": "按网络、授权、区间、磁盘和数据源顺序排查。",
+  "time": "8 分钟",
+  "level": "排错",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "下载失败",
+    "没有进度",
+    "网络",
+    "行情"
+  ]
+}

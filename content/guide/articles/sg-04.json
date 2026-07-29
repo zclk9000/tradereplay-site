@@ -1,0 +1,18 @@
+{
+  "id": "sg-04",
+  "code": "SG-04",
+  "category": "strategy-backtest",
+  "title": "新建一套交易系统",
+  "summary": "建立名称、说明、标签、入场清单、风险和退出规则。",
+  "time": "12 分钟",
+  "level": "进阶",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "交易系统",
+    "新建系统",
+    "清单",
+    "规则"
+  ]
+}

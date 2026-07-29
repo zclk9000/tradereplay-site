@@ -1,0 +1,18 @@
+{
+  "id": "ts-07",
+  "code": "TS-07",
+  "category": "troubleshooting",
+  "title": "资料库无法打开、迁移或恢复",
+  "summary": "处理不完整、版本过新、同步盘和完整性检查失败。",
+  "time": "10 分钟",
+  "level": "排错",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "资料库无法打开",
+    "迁移失败",
+    "恢复失败",
+    "完整性"
+  ]
+}

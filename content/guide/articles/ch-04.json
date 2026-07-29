@@ -1,0 +1,18 @@
+{
+  "id": "ch-04",
+  "code": "CH-04",
+  "category": "chart-replay",
+  "title": "使用多图布局和同步查看",
+  "summary": "在六种布局中同时查看多个周期，并控制活动图表。",
+  "time": "8 分钟",
+  "level": "进阶",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "多图",
+    "布局",
+    "同步",
+    "最大化"
+  ]
+}

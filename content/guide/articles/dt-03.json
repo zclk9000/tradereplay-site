@@ -1,0 +1,18 @@
+{
+  "id": "dt-03",
+  "code": "DT-03",
+  "category": "data-sessions",
+  "title": "新建训练存档",
+  "summary": "选择数据、回放起点、余额、币种和存档名称。",
+  "time": "8 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "新建存档",
+    "余额",
+    "起点",
+    "随机"
+  ]
+}

@@ -1,0 +1,387 @@
+media:
+  - name: guide_media
+    label: 教程图片与视频
+    input: guide-assets
+    output: /guide-assets
+    categories: [image, video]
+    rename: safe
+    commit:
+      templates:
+        create: "docs(media): 添加 {filename}"
+        update: "docs(media): 更新 {filename}"
+        delete: "docs(media): 删除 {filename}"
+        rename: "docs(media): 重命名 {oldFilename} 为 {newFilename}"
+
+components:
+  rich_text:
+    type: rich-text
+    options:
+      format: html
+      switcher: true
+      media: guide_media
+      extensions: [png, jpg, jpeg, webp, gif]
+      rename: safe
+
+  article_sections:
+    type: object
+    label: 正文章节
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{title}"
+    fields:
+      - name: id
+        label: 章节锚点
+        type: string
+        required: true
+        pattern:
+          regex: "^[a-z0-9-]+$"
+          message: "只能使用小写字母、数字和短横线"
+        description: 已发布后不要修改，否则旧的章节链接会失效。
+      - name: title
+        label: 章节标题
+        type: string
+        required: true
+      - name: body
+        label: 正文
+        component: rich_text
+        description: 可直接排版文字、加粗、添加链接，也可以在正文中插入图片。
+      - name: steps
+        label: 操作步骤
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {title}"
+        fields:
+          - name: title
+            label: 步骤标题
+            type: string
+            required: true
+          - name: body
+            label: 步骤说明
+            component: rich_text
+      - name: bullets
+        label: 要点列表
+        type: text
+        list: true
+      - name: callout
+        label: 提示框
+        type: object
+        fields:
+          - name: tone
+            label: 提示类型
+            type: select
+            options:
+              values:
+                - name: note
+                  label: 普通说明
+                - name: tip
+                  label: 操作技巧
+                - name: warning
+                  label: 注意事项
+                - name: security
+                  label: 安全提醒
+          - name: title
+            label: 提示标题
+            type: string
+          - name: body
+            label: 提示内容
+            component: rich_text
+      - name: media
+        label: 章节截图或视频
+        type: object
+        fields:
+          - name: type
+            label: 素材类型
+            type: select
+            options:
+              values:
+                - name: image
+                  label: 图片 / 截图
+                - name: video
+                  label: 视频
+          - name: label
+            label: 素材标题
+            type: string
+            description: 显示在图片或视频下方。
+          - name: file
+            label: 上传或选择素材
+            type: file
+            options:
+              media: guide_media
+              categories: [image, video]
+              rename: safe
+          - name: poster
+            label: 视频封面（可选）
+            type: image
+            options:
+              media: guide_media
+              extensions: [png, jpg, jpeg, webp]
+              rename: safe
+          - name: ready
+            label: 在网站显示真实素材
+            type: boolean
+            default: false
+            description: 上传并检查完成后打开；关闭时网站继续显示设计好的占位框。
+          - name: alt
+            label: 图片无障碍说明
+            type: string
+            description: 简短描述图片内容，不要写“图片”或“截图”。
+          - name: note
+            label: 拍摄或补充说明
+            type: text
+            description: 素材还没准备好时，这段文字会显示在占位框里。
+
+  article_faq:
+    type: object
+    label: 常见问题
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{q}"
+    fields:
+      - name: q
+        label: 问题
+        type: string
+        required: true
+      - name: a
+        label: 答案
+        component: rich_text
+        required: true
+
+content:
+  - name: guide_center
+    label: 教程中心
+    type: group
+    items:
+      - name: guide_articles
+        label: 教程文章
+        type: collection
+        path: content/guide/articles
+        format: json
+        filename:
+          template: "{id}.json"
+          field: false
+        operations:
+          create: false
+          rename: false
+          delete: false
+        view:
+          fields: [code, title, status, category]
+          primary: title
+          search: [code, title, summary, keywords]
+          sort: [code, title, status, category]
+          default:
+            sort: code
+            order: asc
+        fields:
+          - name: id
+            label: 文章 ID
+            type: string
+            required: true
+            readonly: true
+            description: 网站链接使用的永久编号。
+          - name: code
+            label: 教程编号
+            type: string
+            required: true
+            readonly: true
+          - name: category
+            label: 所属分类
+            type: select
+            required: true
+            options:
+              values:
+                - name: quick-start
+                  label: 01 快速开始
+                - name: data-sessions
+                  label: 02 行情数据与训练存档
+                - name: chart-replay
+                  label: 03 图表回放与复盘地图
+                - name: trading-risk
+                  label: 04 下单、持仓与风险管理
+                - name: review-journal
+                  label: 05 交易历史、笔记与日志
+                - name: account-import
+                  label: 06 真实账户与账单导入
+                - name: statistics
+                  label: 07 统计分析与交易诊断
+                - name: strategy-backtest
+                  label: 08 指标、策略系统与回测
+                - name: mentor-achievements
+                  label: 09 Mentor AI 与成就
+                - name: settings-security
+                  label: 10 设置、授权与数据安全
+                - name: troubleshooting
+                  label: 11 故障排查与概念词典
+          - name: title
+            label: 文章标题
+            type: string
+            required: true
+            options:
+              maxlength: 90
+          - name: summary
+            label: 列表摘要
+            type: text
+            required: true
+            options:
+              maxlength: 180
+          - name: status
+            label: 发布状态
+            type: select
+            required: true
+            options:
+              values:
+                - name: planned
+                  label: 计划中（只显示标题）
+                - name: ready
+                  label: 已完成（可以阅读）
+          - name: featured
+            label: 在首页重点推荐
+            type: boolean
+            default: false
+          - name: time
+            label: 预计阅读时间
+            type: string
+            required: true
+            description: 例如“5 分钟”。
+          - name: level
+            label: 难度
+            type: select
+            required: true
+            options:
+              values: [入门, 进阶, 高级, 排错]
+          - name: tier
+            label: 适用版本
+            type: string
+            required: true
+            description: 例如“免费版可用”或“Pro”。
+          - name: platform
+            label: 适用平台
+            type: string
+            required: true
+            description: 例如“macOS / Windows”。
+          - name: keywords
+            label: 搜索关键词
+            type: string
+            list: true
+            description: 添加用户可能会搜索的功能名、提示语或错误词。
+          - name: outcome
+            label: 完成后
+            type: text
+            description: 用一句话告诉读者完成教程后会得到什么。
+          - name: before
+            label: 开始之前
+            type: text
+            list: true
+          - name: sections
+            component: article_sections
+          - name: success
+            label: 成功后你会看到
+            type: text
+            list: true
+          - name: faq
+            component: article_faq
+          - name: related
+            label: 相关文章
+            type: reference
+            options:
+              collection: guide_articles
+              multiple: true
+              search: "code,title,keywords"
+              value: "{fields.id}"
+              label: "{fields.code} · {fields.title}"
+
+      - name: guide_catalog
+        label: 分类与版本设置
+        type: file
+        path: content/guide/catalog.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: version
+            label: 已核对的软件版本
+            type: string
+            required: true
+            description: 教程内容最后按哪个 TradeReplay 版本核对。
+          - name: verifiedDate
+            label: 最后核对日期
+            type: string
+            required: true
+            pattern:
+              regex: "^\\d{4}-\\d{2}-\\d{2}$"
+              message: "请使用 YYYY-MM-DD 格式"
+          - name: articleFiles
+            label: 文章数据文件
+            type: string
+            list: true
+            hidden: true
+          - name: categories
+            label: 教程分类
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{number} · {title}"
+            fields:
+              - name: id
+                label: 分类 ID
+                type: string
+                required: true
+                readonly: true
+              - name: number
+                label: 分类编号
+                type: string
+                required: true
+              - name: title
+                label: 完整名称
+                type: string
+                required: true
+              - name: short
+                label: 导航短名称
+                type: string
+                required: true
+              - name: description
+                label: 分类说明
+                type: text
+                required: true
+              - name: count
+                label: 规划文章数
+                type: number
+                required: true
+              - name: tone
+                label: 配色
+                type: select
+                required: true
+                options:
+                  values: [blue, cyan, indigo, amber, teal]
+              - name: icon
+                label: 图标
+                type: select
+                required: true
+                options:
+                  values: [compass, database, chart, shield, notebook, receipt, activity, workflow, spark, sliders, lifebuoy]
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "docs(cms): 新建 {path}"
+      update: "docs(cms): 更新 {path}"
+      delete: "docs(cms): 删除 {path}"
+      rename: "docs(cms): 重命名 {oldPath} 为 {newPath}"
+
+actions:
+  - name: publish-guide
+    label: 发布教程到官网
+    workflow: pages-cms-publish-guide.yml
+    ref: current
+    cancelable: false
+    confirm:
+      title: 发布教程到官网？
+      message: 将当前已保存的教程内容发布到正式网站。通常需要约 1–2 分钟。
+      button: 确认发布

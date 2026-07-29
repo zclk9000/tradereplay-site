@@ -1,0 +1,18 @@
+{
+  "id": "tr-12",
+  "code": "TR-12",
+  "category": "trading-risk",
+  "title": "读懂保证金、可用资金和最大手数",
+  "summary": "理解权益、保证金占用、使用率和最大可下手数。",
+  "time": "10 分钟",
+  "level": "期货",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "保证金",
+    "可用资金",
+    "最大手数",
+    "权益"
+  ]
+}

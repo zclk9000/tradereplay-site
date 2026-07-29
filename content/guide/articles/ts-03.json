@@ -1,0 +1,18 @@
+{
+  "id": "ts-03",
+  "code": "TS-03",
+  "category": "troubleshooting",
+  "title": "图表时间与账单时间相差几小时",
+  "summary": "区分券商时间、显示时区、夏令时和底层 UTC 数据。",
+  "time": "9 分钟",
+  "level": "排错",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "时区",
+    "账单时间",
+    "UTC",
+    "夏令时"
+  ]
+}

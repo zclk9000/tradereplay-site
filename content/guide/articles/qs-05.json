@@ -1,0 +1,19 @@
+{
+  "id": "qs-05",
+  "code": "QS-05",
+  "category": "quick-start",
+  "title": "第一次训练后应该看什么",
+  "summary": "用历史、统计、日志和存档详情完成第一次复盘闭环。",
+  "time": "7 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "训练后",
+    "历史",
+    "统计",
+    "日志",
+    "复盘"
+  ]
+}

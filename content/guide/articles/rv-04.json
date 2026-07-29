@@ -1,0 +1,18 @@
+{
+  "id": "rv-04",
+  "code": "RV-04",
+  "category": "review-journal",
+  "title": "查看一笔交易的 K 线预览",
+  "summary": "打开账单原始行情或系统行情，逐笔切换并进入复盘。",
+  "time": "7 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "K线预览",
+    "逐笔",
+    "真实交易",
+    "复盘"
+  ]
+}

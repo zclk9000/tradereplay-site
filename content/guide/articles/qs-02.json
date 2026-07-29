@@ -1,0 +1,18 @@
+{
+  "id": "qs-02",
+  "code": "QS-02",
+  "category": "quick-start",
+  "title": "完成初始设置：语言和资料库位置",
+  "summary": "选择中文或英文界面，并决定交易记录和行情保存在哪里。",
+  "time": "4 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "语言",
+    "资料库",
+    "第一次启动",
+    "路径"
+  ]
+}

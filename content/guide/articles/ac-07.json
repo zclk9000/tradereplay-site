@@ -1,0 +1,18 @@
+{
+  "id": "ac-07",
+  "code": "AC-07",
+  "category": "account-import",
+  "title": "自动匹配账单品种的 K 线",
+  "summary": "区分未匹配、缺少 K 线和来源不可用，并完成自动或手动匹配。",
+  "time": "10 分钟",
+  "level": "进阶",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "自动匹配",
+    "缺少K线",
+    "未匹配",
+    "品种"
+  ]
+}

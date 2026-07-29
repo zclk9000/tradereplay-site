@@ -1,0 +1,18 @@
+{
+  "id": "rv-01",
+  "code": "RV-01",
+  "category": "review-journal",
+  "title": "在历史页查找一笔交易",
+  "summary": "按来源、日期、品种、方向、盈亏和标签筛选交易。",
+  "time": "6 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "历史",
+    "筛选",
+    "交易",
+    "标签"
+  ]
+}

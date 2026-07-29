@@ -1,0 +1,18 @@
+{
+  "id": "ac-05",
+  "code": "AC-05",
+  "category": "account-import",
+  "title": "导入前如何检查预览结果",
+  "summary": "核对账户、币种、交易、流水、日期和品种，避免把数据导错账户。",
+  "time": "8 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "导入预览",
+    "账户",
+    "币种",
+    "交易数量"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "qs-06",
+  "code": "QS-06",
+  "category": "quick-start",
+  "title": "免费版和 Pro 有什么区别",
+  "summary": "了解账户、训练存档、行情、回测、AI 与云备份的权益边界。",
+  "time": "7 分钟",
+  "level": "入门",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "ready",
+  "featured": true,
+  "keywords": [
+    "免费版",
+    "Pro",
+    "限制",
+    "到期",
+    "品种",
+    "回测",
+    "AI"
+  ],
+  "outcome": "你会知道哪些能力可以免费使用、什么时候需要 Pro，以及 Pro 到期后已有数据如何处理。",
+  "before": [
+    "本页描述官网直售桌面版，不适用于已退役的 Mac App Store 产品线。",
+    "权益可能随版本调整，软件内实际门控和官网购买页是最终准则。"
+  ],
+  "sections": [
+    {
+      "id": "free",
+      "title": "免费版适合完成什么",
+      "bullets": [
+        "创建 1 个真实账户；每次启动最多创建 2 个临时训练存档。",
+        "下载 EURUSD、GBPUSD、USDJPY、XAUUSD、BTCUSD 最近 1 年数据。",
+        "使用画图、内置指标、标签、日历、客观统计和 MAE/MFE。",
+        "为首个账户导入 CSV、MT4、MT5 或 CFMMC 账单。",
+        "使用自己的 API Key 与 Mentor 自由对话。"
+      ]
+    },
+    {
+      "id": "pro",
+      "title": "Pro 解锁什么",
+      "bullets": [
+        "不限真实账户、持久训练存档和自定义交易系统。",
+        "全部可用行情、完整历史和中国期货数据。",
+        "回测、自定义指标创建/复制和 S3 云备份。",
+        "概览教练、统计 AI 短评/诊断、Mentor 洞察和策略生成。"
+      ],
+      "media": {
+        "type": "image",
+        "label": "软件内免费版与 Pro 权益提示",
+        "file": "/guide-assets/qs-06-pro-gate.webp",
+        "note": "截图应同时展示功能名称和解锁说明，不只截锁图标。"
+      }
+    },
+    {
+      "id": "expiry",
+      "title": "Pro 到期后会发生什么",
+      "callout": {
+        "tone": "note",
+        "title": "数据属于你",
+        "body": "<p>授权变化不会把已有用户数据自动删除。重要资料仍建议通过资料库迁移或 S3 备份建立独立副本。</p>"
+      },
+      "body": "<p>已经下载的行情、已有账户、策略和持久训练存档不会被删除。</p>\n<p>到期后的新建、下载和运行操作按免费版限制执行。开始长期训练前，建议确认授权状态。</p>"
+    }
+  ],
+  "success": [
+    "你能判断当前任务是否需要 Pro。",
+    "你知道免费存档的生命周期。",
+    "你知道到期不会自动删除已有数据。"
+  ],
+  "faq": [
+    {
+      "q": "免费版能导入真实账单吗？",
+      "a": "<p>可以，为首个真实账户导入 CSV、MT4、MT5 或 CFMMC 账单。</p>"
+    },
+    {
+      "q": "Mentor 自由对话为什么还要 API Key？",
+      "a": "<p>TradeReplay 不代售 AI 用量。你需要使用自己的 DeepSeek 或 OpenAI API Key，并向对应服务商支付可能产生的用量费用。</p>"
+    }
+  ],
+  "related": [
+    "se-12",
+    "ai-01",
+    "bt-01"
+  ]
+}

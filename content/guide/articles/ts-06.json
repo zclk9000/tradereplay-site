@@ -1,0 +1,18 @@
+{
+  "id": "ts-06",
+  "code": "TS-06",
+  "category": "troubleshooting",
+  "title": "激活码无效、过期或设备数已满",
+  "summary": "检查邮箱、空格、联网、有效期和旧设备名额。",
+  "time": "6 分钟",
+  "level": "排错",
+  "tier": "授权",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "激活码无效",
+    "过期",
+    "设备数已满",
+    "授权"
+  ]
+}

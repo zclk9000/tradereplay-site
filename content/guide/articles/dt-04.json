@@ -1,0 +1,18 @@
+{
+  "id": "dt-04",
+  "code": "DT-04",
+  "category": "data-sessions",
+  "title": "管理训练存档",
+  "summary": "继续、排序、重命名、删除存档并恢复缺失行情。",
+  "time": "7 分钟",
+  "level": "入门",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "存档",
+    "重命名",
+    "删除",
+    "恢复行情"
+  ]
+}

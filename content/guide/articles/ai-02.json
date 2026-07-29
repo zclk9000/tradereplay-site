@@ -1,0 +1,18 @@
+{
+  "id": "ai-02",
+  "code": "AI-02",
+  "category": "mentor-achievements",
+  "title": "使用 Mentor 自由对话",
+  "summary": "向 Mentor 提问，并控制发送给 AI 服务商的数据范围。",
+  "time": "7 分钟",
+  "level": "入门",
+  "tier": "自备 API Key",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "Mentor",
+    "自由对话",
+    "AI",
+    "隐私"
+  ]
+}

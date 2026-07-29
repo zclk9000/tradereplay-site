@@ -1,0 +1,91 @@
+{
+  "id": "qs-01",
+  "code": "QS-01",
+  "category": "quick-start",
+  "title": "安装并第一次打开 TradeReplay",
+  "summary": "在 macOS 或 Windows 安装桌面版，并完成第一次启动前的准备。",
+  "time": "5 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "ready",
+  "featured": true,
+  "keywords": [
+    "安装",
+    "下载",
+    "dmg",
+    "exe",
+    "第一次打开",
+    "Windows",
+    "Mac"
+  ],
+  "outcome": "完成后，你会把 TradeReplay 安装到电脑，并进入语言与资料库设置页面。",
+  "before": [
+    "从 TradeReplay 官网下载与你的电脑对应的安装包。",
+    "Windows 使用 .exe 安装包；Mac 使用 .dmg 安装包。",
+    "如果你已经有一份旧资料库，先确认它的完整文件夹位置。"
+  ],
+  "sections": [
+    {
+      "id": "download",
+      "title": "1. 下载正确版本",
+      "media": {
+        "type": "image",
+        "label": "官网 Windows 与 macOS 下载区域",
+        "file": "/guide-assets/qs-01-download.webp",
+        "note": "截图时保留平台按钮和版本信息，不显示浏览器个人书签。"
+      },
+      "body": "<p>在官网首页的下载区域选择 Windows 或 macOS。不要从第三方下载站获取安装包。</p>\n<p>Mac App Store 产品线已经退役。当前 Mac 桌面版从官网下载 DMG 安装。</p>"
+    },
+    {
+      "id": "install",
+      "title": "2. 安装软件",
+      "steps": [
+        {
+          "title": "Windows",
+          "body": "<p>双击下载的 .exe 文件，按安装向导完成安装，然后从开始菜单打开 TradeReplay。</p>"
+        },
+        {
+          "title": "macOS",
+          "body": "<p>打开 .dmg，把 TradeReplay 拖到“应用程序”，再从“应用程序”打开。</p>"
+        }
+      ]
+    },
+    {
+      "id": "first-launch",
+      "title": "3. 完成第一次启动",
+      "media": {
+        "type": "image",
+        "label": "第一次启动：语言与资料库位置",
+        "file": "/guide-assets/qs-01-first-run.webp",
+        "note": "截图使用演示路径，不能出现真实用户名。"
+      },
+      "callout": {
+        "tone": "warning",
+        "title": "已有资料库？",
+        "body": "<p>选择“打开已有资料库”，不要把新资料库直接覆盖到旧文件夹里。</p>"
+      },
+      "body": "<p>第一次打开时，先选择界面语言，再确认资料库位置。资料库会保存交易记录、行情数据、复盘笔记和本地备份。</p>\n<p>建议使用本地磁盘或外接硬盘。不要把实时资料库放进第三方同步盘。</p>"
+    }
+  ],
+  "success": [
+    "软件进入主界面，没有再次出现初始设置。",
+    "顶部可以看到“概览、复盘、策略”。",
+    "右上角可以打开行情数据、Mentor AI、成就和设置。"
+  ],
+  "faq": [
+    {
+      "q": "第一次打开被系统拦截怎么办？",
+      "a": "<p>确认安装包来自 tradereplay.dev，再按照系统安全提示允许打开。不要关闭系统的整体安全保护。</p>"
+    },
+    {
+      "q": "资料库以后还能移动吗？",
+      "a": "<p>可以。在“设置 → 数据”里可以移动完整资料库，数据库、行情和本地备份会一起处理。</p>"
+    }
+  ],
+  "related": [
+    "qs-04",
+    "se-06",
+    "se-12"
+  ]
+}

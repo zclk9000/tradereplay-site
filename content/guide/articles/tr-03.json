@@ -1,0 +1,18 @@
+{
+  "id": "tr-03",
+  "code": "TR-03",
+  "category": "trading-risk",
+  "title": "设置和修改止损、止盈",
+  "summary": "用点数或价格设置保护，并在持仓后修改。",
+  "time": "8 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "止损",
+    "止盈",
+    "点数",
+    "价格"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "bt-01",
+  "code": "BT-01",
+  "category": "strategy-backtest",
+  "title": "完成第一次策略回测",
+  "summary": "选择策略、数据、周期、日期和资金，运行并查看结果。",
+  "time": "14 分钟",
+  "level": "进阶",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "回测",
+    "策略",
+    "TDX",
+    "资金曲线"
+  ]
+}

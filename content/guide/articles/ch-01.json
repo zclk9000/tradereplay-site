@@ -1,0 +1,19 @@
+{
+  "id": "ch-01",
+  "code": "CH-01",
+  "category": "chart-replay",
+  "title": "使用播放、暂停、前进和后退",
+  "summary": "控制回放速度，按 Tick、子步骤或完整 K 线推进历史行情。",
+  "time": "8 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "播放",
+    "暂停",
+    "前进",
+    "后退",
+    "速度"
+  ]
+}

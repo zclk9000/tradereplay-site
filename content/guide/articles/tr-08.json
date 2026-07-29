@@ -1,0 +1,18 @@
+{
+  "id": "tr-08",
+  "code": "TR-08",
+  "category": "trading-risk",
+  "title": "用下单纪律规则阻止冲动交易",
+  "summary": "要求止损、交易系统和入场理由齐全后才能下单。",
+  "time": "8 分钟",
+  "level": "进阶",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "纪律",
+    "阻止下单",
+    "止损",
+    "入场理由"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ac-01",
+  "code": "AC-01",
+  "category": "account-import",
+  "title": "创建和管理真实账户",
+  "summary": "设置账户名、券商、币种和自定义编号。",
+  "time": "6 分钟",
+  "level": "入门",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "真实账户",
+    "券商",
+    "币种",
+    "账户名"
+  ]
+}

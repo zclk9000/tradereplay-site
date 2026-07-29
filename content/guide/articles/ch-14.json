@@ -1,0 +1,18 @@
+{
+  "id": "ch-14",
+  "code": "CH-14",
+  "category": "chart-replay",
+  "title": "使用复盘地图查看完整交易过程",
+  "summary": "在只读全览里查看全部 K 线、交易连线并定位任意一笔交易。",
+  "time": "9 分钟",
+  "level": "进阶",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "复盘地图",
+    "交易连线",
+    "定位",
+    "只读"
+  ]
+}

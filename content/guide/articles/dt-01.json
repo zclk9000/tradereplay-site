@@ -1,0 +1,18 @@
+{
+  "id": "dt-01",
+  "code": "DT-01",
+  "category": "data-sessions",
+  "title": "下载第一份系统 K 线数据",
+  "summary": "选择品种和历史区间，把官方行情下载到本地资料库。",
+  "time": "6 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "行情",
+    "K线",
+    "下载",
+    "品种"
+  ]
+}

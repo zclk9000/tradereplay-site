@@ -1,0 +1,18 @@
+{
+  "id": "sg-01",
+  "code": "SG-01",
+  "category": "strategy-backtest",
+  "title": "浏览、搜索和理解指标库",
+  "summary": "查找内置和自定义指标，查看用途、默认参数、公式调用和来源。",
+  "time": "8 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "指标",
+    "内置指标",
+    "自定义指标",
+    "搜索"
+  ]
+}

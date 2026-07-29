@@ -1,0 +1,18 @@
+{
+  "id": "ch-02",
+  "code": "CH-02",
+  "category": "chart-replay",
+  "title": "选择正确的回放模式",
+  "summary": "比较控制点、开盘价和真实 Tick 回放的差异。",
+  "time": "9 分钟",
+  "level": "进阶",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "回放模式",
+    "控制点",
+    "开盘价",
+    "真实 Tick"
+  ]
+}

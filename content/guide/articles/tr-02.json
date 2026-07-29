@@ -1,0 +1,18 @@
+{
+  "id": "tr-02",
+  "code": "TR-02",
+  "category": "trading-risk",
+  "title": "用固定手数、风险金额或风险百分比计算仓位",
+  "summary": "比较三种仓位模式，理解可执行净风险如何影响手数。",
+  "time": "10 分钟",
+  "level": "进阶",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "仓位",
+    "风险金额",
+    "风险百分比",
+    "手数"
+  ]
+}

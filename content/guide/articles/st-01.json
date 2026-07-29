@@ -1,0 +1,20 @@
+{
+  "id": "st-01",
+  "code": "ST-01",
+  "category": "statistics",
+  "title": "读懂统计概览和结论仪表盘",
+  "summary": "理解净盈亏、胜率、盈亏比、Profit Factor、期望和最大回撤。",
+  "time": "12 分钟",
+  "level": "进阶",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "统计",
+    "胜率",
+    "盈亏比",
+    "PF",
+    "最大回撤",
+    "期望"
+  ]
+}

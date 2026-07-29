@@ -1,0 +1,19 @@
+{
+  "id": "ai-01",
+  "code": "AI-01",
+  "category": "mentor-achievements",
+  "title": "配置 DeepSeek 或 OpenAI",
+  "summary": "保存 API Key、选择模型并测试连接。",
+  "time": "8 分钟",
+  "level": "入门",
+  "tier": "免费版 / Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "DeepSeek",
+    "OpenAI",
+    "API Key",
+    "模型",
+    "测试连接"
+  ]
+}

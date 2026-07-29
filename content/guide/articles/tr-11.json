@@ -1,0 +1,19 @@
+{
+  "id": "tr-11",
+  "code": "TR-11",
+  "category": "trading-risk",
+  "title": "读懂期货开仓、平昨和平今手续费",
+  "summary": "正确填写三笔手续费，理解完整往返成本。",
+  "time": "11 分钟",
+  "level": "期货",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "期货",
+    "开仓",
+    "平昨",
+    "平今",
+    "手续费"
+  ]
+}

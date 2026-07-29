@@ -1,0 +1,19 @@
+{
+  "id": "ch-03",
+  "code": "CH-03",
+  "category": "chart-replay",
+  "title": "切换时间周期和自定义周期工具栏",
+  "summary": "使用分钟、小时、日线、秒线和 Tick 周期，并保留常用周期。",
+  "time": "7 分钟",
+  "level": "入门",
+  "tier": "免费版可用",
+  "platform": "macOS / Windows",
+  "status": "planned",
+  "keywords": [
+    "时间周期",
+    "M1",
+    "H1",
+    "秒线",
+    "Tick 周期"
+  ]
+}
