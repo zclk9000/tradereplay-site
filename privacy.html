@@ -1,96 +1,198 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy — TradeReplay</title>
-  <style>
-    body { font-family: -apple-system, system-ui, sans-serif; max-width: 720px; margin: 60px auto; padding: 0 24px; line-height: 1.65; color: #1a1a1a; }
-    h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.02em; }
-    h2 { font-size: 18px; margin: 36px 0 12px; letter-spacing: -0.01em; }
-    .updated { color: #888; font-size: 14px; margin: 0 0 32px; }
-    a { color: #0066cc; }
-    ul { padding-left: 22px; }
-    li { margin-bottom: 6px; }
-    .back { margin-top: 48px; padding-top: 24px; border-top: 1px solid #e5e5e5; font-size: 14px; }
-  </style>
-<style>html,body{background:#0a0d13!important;color:#c3ccd8!important}h1,h2,h3,h4{color:#eef2f8!important}a{color:#7fb2f0!important}.contact-card,pre,code,blockquote,table,td,th,.card{background:#11151e!important;border-color:#232c3c!important}hr{border-color:#1b2230!important}</style>
+  <title>隐私政策 — TradeReplay</title>
+  <meta name="description" content="TradeReplay 隐私政策：本地数据、激活信息、行情下载、自有云备份与 Mentor AI。">
+  <meta name="theme-color" content="#070b13">
+  <link rel="icon" href="logo-dark.svg">
+  <link rel="stylesheet" href="legal-v10.css?v=20260729-1">
+  <script src="legal-v10.js?v=20260729-1" defer></script>
 </head>
-<body>
-  <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: July 29, 2026</p>
+<body
+  data-title-zh="隐私政策 — TradeReplay"
+  data-title-en="Privacy Policy — TradeReplay"
+  data-description-zh="TradeReplay 隐私政策：本地数据、激活信息、行情下载、自有云备份与 Mentor AI。"
+  data-description-en="TradeReplay privacy policy covering local data, license activation, market downloads, user-owned backups, and Mentor AI.">
+  <header class="legal-header">
+    <div class="legal-shell legal-header-inner">
+      <a class="legal-brand" href="index.html?lang=zh" data-href-zh="index.html?lang=zh" data-href-en="index.html?lang=en">
+        <img src="logo-dark.svg" width="32" height="32" alt="">
+        <span>TradeReplay</span>
+      </a>
+      <nav class="legal-nav" aria-label="页面导航" data-aria-zh="页面导航" data-aria-en="Page navigation">
+        <a href="index.html?lang=zh" data-href-zh="index.html?lang=zh" data-href-en="index.html?lang=en" data-zh="首页" data-en="Home">首页</a>
+        <a href="download.html?lang=zh" data-href-zh="download.html?lang=zh" data-href-en="download.html?lang=en" data-zh="下载" data-en="Download">下载</a>
+        <a href="guide.html?lang=zh" data-href-zh="guide.html?lang=zh" data-href-en="guide.html?lang=en" data-zh="教程" data-en="Guide">教程</a>
+        <button class="language-switch" type="button" data-language-switch>EN</button>
+      </nav>
+    </div>
+  </header>
 
-  <p>This Privacy Policy describes how TradeReplay ("we", "our", or "the app") handles information when you use the TradeReplay desktop application. We have designed TradeReplay as a local-first tool: your trading records remain on your computer unless you explicitly use an export, backup, AI, licensing, or other network feature described below.</p>
+  <main>
+    <section class="legal-hero">
+      <div class="legal-shell">
+        <p class="legal-kicker">PRIVACY / 01</p>
+        <h1 data-zh="隐私政策" data-en="Privacy Policy">隐私政策</h1>
+        <p class="legal-meta" data-zh="更新于 2026-07-29" data-en="Updated July 29, 2026">更新于 2026-07-29</p>
+      </div>
+    </section>
 
-  <h2>1. Information We Collect</h2>
-  <p>We do not collect or host your trading records, journal notes, strategy definitions, screenshots, or backtest results. The app does <strong>not</strong> include advertising identifiers or third-party tracking SDKs. We process limited purchase and license information only when needed to deliver and verify a license, as described in Sections 4.3 and 4.4.</p>
+    <div class="legal-shell legal-layout">
+      <aside class="legal-toc">
+        <p class="legal-toc-label" data-zh="目录" data-en="CONTENTS">目录</p>
+        <div data-lang-block="zh">
+          <a href="#local">本地数据</a>
+          <a href="#license">激活与购买</a>
+          <a href="#market">行情下载</a>
+          <a href="#backup">自有云备份</a>
+          <a href="#ai">Mentor AI</a>
+          <a href="#website">网站与支持</a>
+          <a href="#control">你的控制权</a>
+        </div>
+        <div data-lang-block="en" hidden>
+          <a href="#local">Local data</a>
+          <a href="#license">License & purchase</a>
+          <a href="#market">Market downloads</a>
+          <a href="#backup">User-owned backup</a>
+          <a href="#ai">Mentor AI</a>
+          <a href="#website">Website & support</a>
+          <a href="#control">Your controls</a>
+        </div>
+      </aside>
 
-  <h2>2. Information Stored On Your Device</h2>
-  <p>The app stores the following data locally on your device, in a private SQLite database that only TradeReplay can access:</p>
-  <ul>
-    <li>Trading sessions you create within the app, including positions, closed trades, notes, tags, and screenshots you attach.</li>
-    <li>Trade journal entries imported from broker statements (such as MT4, MT5, or CFMMC files) that you choose to import.</li>
-    <li>App preferences, layout choices, and indicator configurations.</li>
-    <li>Strategy definitions and backtest results you generate within the app.</li>
-  </ul>
-  <p>This data does not leave your device unless you explicitly export it or use a network feature described in this policy.</p>
+      <article class="legal-document">
+        <section class="legal-section" id="local">
+          <span class="legal-number">01</span>
+          <div class="legal-copy">
+            <div data-lang-block="zh">
+              <h2>本地数据</h2>
+              <p>TradeReplay 的核心数据库保存在你的电脑中。模拟训练、真实账单、交易系统、策略扫描结果、日志、截图、自定义指标和软件设置默认不会上传给我们。</p>
+              <p>删除记录、切换资料库或卸载软件时，数据由你在本机管理。请自行保留必要的本地或 S3 备份。</p>
+            </div>
+            <div data-lang-block="en" hidden>
+              <h2>Local data</h2>
+              <p>TradeReplay stores its core database on your computer. Practice sessions, imported statements, trading systems, scan results, journals, screenshots, custom indicators, and settings are not uploaded to us by default.</p>
+              <p>You control deletion, library changes, and uninstallation locally. Keep any local or S3 backups you need.</p>
+            </div>
+          </div>
+        </section>
 
-  <h2>3. API Keys (Optional, Bring-Your-Own-Key AI)</h2>
-  <p>If you choose to use an optional AI feature, you may enter your own API key from a third-party AI provider (such as DeepSeek or OpenAI). This key is stored using your operating system's secure credential storage and is never sent to our servers.</p>
-  <p>When you trigger an AI summary, the app sends a request <strong>directly</strong> from your device to the AI provider you selected, using your API key. The request contains a structured summary of your trading statistics (such as win rate, profit factor, and trade count) so the provider can generate analysis. We do not proxy, log, or have access to this request.</p>
-  <p>You may remove your API key at any time in the app's Settings, which immediately disables the AI feature and deletes the key from your keychain.</p>
+        <section class="legal-section" id="license">
+          <span class="legal-number">02</span>
+          <div class="legal-copy">
+            <div data-lang-block="zh">
+              <h2>激活与购买</h2>
+              <p>激活专业版时，软件会向 TradeReplay 授权服务发送激活码、邮箱、随机生成的设备标识和设备名称，用于验证授权、限制激活设备数量和处理设备解绑。</p>
+              <p>淘宝或 WHOP 负责处理付款。我们不会保存你的银行卡信息；为交付激活码和处理售后，可能接收订单号、购买邮箱、商品与付款状态。</p>
+            </div>
+            <div data-lang-block="en" hidden>
+              <h2>License activation and purchase</h2>
+              <p>When you activate Pro, the app sends the license code, email address, a randomly generated device identifier, and a device label to the TradeReplay license service. This verifies access, enforces the device limit, and supports device deactivation.</p>
+              <p>Taobao or Whop processes payment. We do not store card details, but may receive an order ID, purchase email, product, and payment status to deliver the license and provide support.</p>
+            </div>
+          </div>
+        </section>
 
-  <h2>4. Third-Party Services</h2>
-  <p>The app communicates with the following external services on your behalf. Each is described below.</p>
+        <section class="legal-section" id="market">
+          <span class="legal-number">03</span>
+          <div class="legal-copy">
+            <div data-lang-block="zh">
+              <h2>行情下载</h2>
+              <p>下载系统行情时，请求会发送到我们的内容分发服务。服务商可能处理你的 IP 地址、请求的文件和请求时间，用于传输、安全与故障排查。我们不使用这些记录建立交易画像。</p>
+            </div>
+            <div data-lang-block="en" hidden>
+              <h2>Market data downloads</h2>
+              <p>System market data is delivered through our content infrastructure. The provider may process your IP address, requested file, and request time for delivery, security, and troubleshooting. We do not use these records to build a trading profile.</p>
+            </div>
+          </div>
+        </section>
 
-  <h2>4.1 Historical Market Data</h2>
-  <p>To populate sample charts and let you replay historical price data, the app downloads market data files from our content delivery network. These requests transmit only the standard information any web browser sends: your IP address, the requested file path, and the time of the request. We do not associate this information with any user identity, and the data files do not contain any user-specific content.</p>
+        <section class="legal-section" id="backup">
+          <span class="legal-number">04</span>
+          <div class="legal-copy">
+            <div data-lang-block="zh">
+              <h2>自有云备份</h2>
+              <p>只有在你主动配置 S3、COS、R2、MinIO 或其他 S3 兼容存储后，TradeReplay 才会把备份发送到你选择的服务商。连接信息保存在本机设备设置中，密钥优先使用系统安全存储加密。</p>
+              <p>备份内容、保存期限和云端访问权限由你及所选服务商控制。</p>
+            </div>
+            <div data-lang-block="en" hidden>
+              <h2>User-owned cloud backup</h2>
+              <p>TradeReplay uploads backups only after you configure S3, R2, MinIO, or another S3-compatible service. Connection settings stay in local device settings, and secret keys use operating-system secure storage where available.</p>
+              <p>You and your selected provider control the backup content, retention, and cloud access.</p>
+            </div>
+          </div>
+        </section>
 
-  <h2>4.2 AI Provider (Only If You Enable AI)</h2>
-  <p>If you enter an AI provider API key as described in Section 3, requests are sent directly from your device to that provider's API endpoint. The data transmitted consists of the trading statistics summary text plus your API key (used only for authentication with the provider).</p>
-  <p>The privacy practices of these providers are governed by their own policies:</p>
-  <ul>
-    <li>DeepSeek: <a href="https://platform.deepseek.com/privacy">https://platform.deepseek.com/privacy</a></li>
-    <li>OpenAI: <a href="https://openai.com/policies/privacy-policy">https://openai.com/policies/privacy-policy</a></li>
-  </ul>
+        <section class="legal-section" id="ai">
+          <span class="legal-number">05</span>
+          <div class="legal-copy">
+            <div data-lang-block="zh">
+              <h2>Mentor AI</h2>
+              <p>Mentor AI 使用你提供的 API Key。启用后，你的问题以及软件为分析准备的交易统计或交易上下文会直接发送给你选择的 AI 服务商，不经过 TradeReplay 服务器。</p>
+              <p>API Key 保存在系统安全存储中。AI 服务商如何处理数据，适用其自己的隐私政策；你可以随时删除 Key 或停用 AI。</p>
+            </div>
+            <div data-lang-block="en" hidden>
+              <h2>Mentor AI</h2>
+              <p>Mentor AI uses an API key you provide. When enabled, your question and the trading statistics or trade context prepared for analysis go directly to your selected AI provider, not through a TradeReplay server.</p>
+              <p>The API key is kept in operating-system secure storage. Your provider's privacy policy applies to its processing, and you can delete the key or stop using AI at any time.</p>
+            </div>
+          </div>
+        </section>
 
-  <h2>4.3 License Activation</h2>
-  <p>When you activate TradeReplay Pro, the app sends the purchase email, activation code, a randomly generated device identifier, the computer name and operating system used as a device label, and activation or last-seen timestamps to our license service. We use this information only to verify the license, enforce the device limit, release device slots, prevent abuse, and provide activation support. Trading records are not included.</p>
-  <p>The license service is hosted using Cloudflare Workers and D1. Cloudflare's privacy policy is available at <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>.</p>
+        <section class="legal-section" id="website">
+          <span class="legal-number">06</span>
+          <div class="legal-copy">
+            <div data-lang-block="zh">
+              <h2>网站与支持</h2>
+              <p>官网不要求注册账户，也不放置广告或行为分析脚本。托管与安全服务可能按其基础设施规则处理访问日志。</p>
+              <p>当你通过邮件、QQ、企业微信、淘宝或 WHOP 联系我们时，我们会处理你主动提供的联系方式、订单信息和问题内容，用于售后与问题解决。</p>
+            </div>
+            <div data-lang-block="en" hidden>
+              <h2>Website and support</h2>
+              <p>The website does not require an account and does not use advertising or behavioural analytics scripts. Hosting and security providers may process access logs under their infrastructure policies.</p>
+              <p>If you contact us by email, QQ, WeCom, Taobao, or Whop, we process the contact details, order information, and issue content you provide to deliver support.</p>
+            </div>
+          </div>
+        </section>
 
-  <h2>4.4 Purchase and Fulfilment Services</h2>
-  <p>Purchases may be processed by the third-party sales channel shown on the official TradeReplay website. That channel processes payment information under its own terms and privacy policy. To deliver a license and handle support, refunds, disputes, or fraud prevention, we may receive and retain limited order information such as:</p>
-  <ul>
-    <li>Your purchase email and the order or payment identifier.</li>
-    <li>The product, amount, currency, order status, and purchase time supplied by the sales channel.</li>
-    <li>Refund or dispute status when applicable.</li>
-  </ul>
-  <p>We do not receive your full card or bank account details from the sales channel.</p>
+        <section class="legal-section" id="control">
+          <span class="legal-number">07</span>
+          <div class="legal-copy">
+            <div data-lang-block="zh">
+              <h2>你的控制权</h2>
+              <ul>
+                <li>在软件中删除或导出本地数据。</li>
+                <li>删除 AI Key、S3 凭据或停用相应功能。</li>
+                <li>通过设备解绑释放专业版激活名额。</li>
+                <li>联系 <a href="mailto:zclk9000@me.com">zclk9000@me.com</a> 查询或删除我们持有的支持与授权联系信息；法律要求保留的交易记录除外。</li>
+              </ul>
+            </div>
+            <div data-lang-block="en" hidden>
+              <h2>Your controls</h2>
+              <ul>
+                <li>Delete or export local data in the app.</li>
+                <li>Remove AI keys or S3 credentials, or stop using those features.</li>
+                <li>Deactivate a device to release a Pro activation seat.</li>
+                <li>Contact <a href="mailto:zclk9000@me.com">zclk9000@me.com</a> to request access to or deletion of support and license contact information we hold, except records we must retain by law.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
 
-  <h2>5. Data Retention and Portability</h2>
-  <p>Your trading data is stored locally and persists for as long as the library remains on your computer. You can remove individual sessions and trades within the app, or remove the complete library yourself.</p>
-  <p>For portability, the app provides an export tool at <strong>Settings → Data → Backup → Export</strong> that produces a single portable SQLite file containing every row of your local database (sessions, imported trades, journal notes, settings, and indicators). You can keep this file as a backup or move it to another device. The backup file is yours; we do not receive a copy.</p>
-  <p>License and order records are retained for as long as reasonably necessary to deliver the purchased license, enforce device limits, provide support, prevent abuse, resolve payment disputes, and meet applicable accounting or legal obligations.</p>
-
-  <h2>6. Children's Privacy</h2>
-  <p>TradeReplay is not directed at children under the age of 13. We do not knowingly collect any information from children. If you believe a child has used the app, please contact us so we can confirm that the relevant data lives entirely on the child's device and can be deleted by uninstalling the app.</p>
-
-  <h2>7. Your Rights</h2>
-  <p>Because we do not collect personal data on our servers, the access, deletion, and portability rights granted under regulations such as the GDPR (European Union) and the CCPA (California) apply primarily to data you keep on your device, which you control directly through the app. Specifically, you may at any time:</p>
-  <ul>
-    <li>Delete individual sessions, trades, notes, screenshots, or imported journals from within the app.</li>
-    <li>Remove your stored AI API key from Settings, instantly disabling all third-party AI calls.</li>
-    <li>Export the entire local database via Settings → Data → Backup → Export.</li>
-    <li>Remove the TradeReplay library from your computer after making any backup you wish to keep.</li>
-    <li>Contact us to ask about correction or deletion of purchase and license information, subject to applicable legal, accounting, fraud-prevention, and license-delivery requirements.</li>
-  </ul>
-
-  <h2>8. Changes To This Policy</h2>
-  <p>We may update this Privacy Policy from time to time to reflect changes in the app's features. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically. Significant changes may also be communicated through an in-app notice on first launch after the update.</p>
-
-  <h2>9. Contact</h2>
-  <p>If you have questions or concerns about this Privacy Policy or about how the app handles your data, please contact us at <a href="mailto:zclk9000@me.com">zclk9000@me.com</a>. For purchase or billing concerns, include the sales channel and order identifier, but never send passwords, payment-card details, or complete private API keys.</p>
-
-  <p class="back"><a href="/">← Back to TradeReplay</a></p>
+  <footer class="legal-footer">
+    <div class="legal-shell legal-footer-inner">
+      <span>© 2026 <span data-zh="格物工坊" data-en="GeWu Studio">格物工坊</span> · TradeReplay</span>
+      <nav class="legal-footer-links">
+        <a href="support.html?lang=zh" data-href-zh="support.html?lang=zh" data-href-en="support.html?lang=en" data-zh="支持" data-en="Support">支持</a>
+        <a href="terms.html?lang=zh" data-href-zh="terms.html?lang=zh" data-href-en="terms.html?lang=en" data-zh="服务条款" data-en="Terms">服务条款</a>
+        <a href="refund.html?lang=zh" data-href-zh="refund.html?lang=zh" data-href-en="refund.html?lang=en" data-zh="退款政策" data-en="Refunds">退款政策</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

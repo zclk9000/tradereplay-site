@@ -9,15 +9,26 @@ const pageCopy = {
   }
 }
 
+function getPageCopy(language) {
+  const languageKey = language === 'zh' ? 'Zh' : 'En'
+  return {
+    title: document.body?.dataset[`title${languageKey}`] || pageCopy[language].title,
+    description: document.body?.dataset[`description${languageKey}`] || pageCopy[language].description
+  }
+}
+
 const menuButton = document.querySelector('[data-menu-toggle]')
 const menu = document.querySelector('[data-menu]')
 const header = document.querySelector('[data-header]')
 const progressBar = document.querySelector('[data-page-progress]')
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const heroDemo = document.querySelector('[data-hero-demo]')
-const heroDemoButton = document.querySelector('.hero-video-button')
 const heroCandleLayer = document.querySelector('[data-hero-candles]')
 const heroPriceLine = document.querySelector('[data-hero-price-line]')
+const heroStory = document.querySelector('[data-hero-story]')
+const heroStoryStage = document.querySelector('[data-hero-story-stage]')
+const heroStoryCallouts = Array.from(document.querySelectorAll('[data-hero-story-callout]'))
+const heroStoryMedia = window.matchMedia('(min-width: 1180px)')
 
 const heroReplayCandles = [
   [944,1132,1235,1201,1134,1], [958,1166,1228,1195,1200,0], [972,1166,1202,1168,1195,0], [986,1128,1167,1148,1167,0],
@@ -299,9 +310,10 @@ function setLanguage(language) {
     }
   })
 
-  document.title = pageCopy[currentLanguage].title
+  const localizedPageCopy = getPageCopy(currentLanguage)
+  document.title = localizedPageCopy.title
   const description = document.querySelector('meta[name="description"]')
-  if (description) description.content = pageCopy[currentLanguage].description
+  if (description) description.content = localizedPageCopy.description
 
   try {
     window.localStorage.setItem('tradereplay-language', currentLanguage)
@@ -399,18 +411,6 @@ if (heroDemo) {
     heroDemoObserver.observe(heroDemo)
     window.addEventListener('scroll', updateHeroDemoScrollGate, { passive: true })
   }
-}
-
-if (heroDemoButton && heroDemo) {
-  heroDemoButton.addEventListener('click', (event) => {
-    event.preventDefault()
-    heroDemoScrollArmed = true
-    heroDemo.scrollIntoView({
-      behavior: reduceMotion ? 'auto' : 'smooth',
-      block: 'center'
-    })
-    window.setTimeout(() => playHeroDemo(true), reduceMotion ? 0 : 520)
-  })
 }
 
 function setupModeVideo(figure) {
@@ -674,11 +674,46 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 }
 
 let scrollTicking = false
+function updateHeroStory() {
+  if (!heroStory || !heroStoryStage) return
+
+  const storyIsInteractive = heroStoryMedia.matches && !reduceMotion
+  if (!storyIsInteractive) {
+    heroStory.dataset.storyStep = '3'
+    heroStory.style.removeProperty('--hero-story-progress')
+    heroStoryCallouts.forEach((callout) => {
+      callout.classList.remove('is-visible', 'is-active')
+    })
+    return
+  }
+
+  const storyBounds = heroStory.getBoundingClientRect()
+  const stageHeight = heroStoryStage.getBoundingClientRect().height
+  const stickyTop = 76
+  const storyStart = window.scrollY + storyBounds.top - stickyTop
+  const storyDistance = Math.max(1, heroStory.offsetHeight - stageHeight)
+  const progress = Math.min(1, Math.max(0, (window.scrollY - storyStart) / storyDistance))
+  const thresholds = [0.08, 0.36, 0.64]
+  let activeIndex = -1
+
+  thresholds.forEach((threshold, index) => {
+    if (progress >= threshold) activeIndex = index
+  })
+
+  heroStory.dataset.storyStep = String(activeIndex + 1)
+  heroStory.style.setProperty('--hero-story-progress', progress.toFixed(4))
+  heroStoryCallouts.forEach((callout, index) => {
+    callout.classList.toggle('is-visible', index <= activeIndex)
+    callout.classList.toggle('is-active', index === activeIndex)
+  })
+}
+
 function updateScrollState() {
   const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
   const progress = Math.min(1, Math.max(0, window.scrollY / scrollRange))
   document.body.style.setProperty('--page-progress', String(progress))
   if (header) header.classList.toggle('is-scrolled', window.scrollY > 18)
+  updateHeroStory()
   scrollTicking = false
 }
 
@@ -688,9 +723,14 @@ function requestScrollUpdate() {
   window.requestAnimationFrame(updateScrollState)
 }
 
-if (progressBar || header) {
+if (progressBar || header || heroStory) {
   updateScrollState()
   window.addEventListener('scroll', requestScrollUpdate, { passive: true })
+  window.addEventListener('resize', requestScrollUpdate, { passive: true })
+}
+
+if (heroStoryMedia.addEventListener) {
+  heroStoryMedia.addEventListener('change', requestScrollUpdate)
 }
 
 document.querySelectorAll('[data-year]').forEach((node) => {

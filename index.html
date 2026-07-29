@@ -11,8 +11,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tradereplay.dev/">
   <link rel="icon" href="logo-dark.svg">
-  <link rel="stylesheet" href="home-v10.css">
-  <script src="home-v9.js" defer></script>
+  <link rel="stylesheet" href="home-v10.css?v=20260729-taobao">
+  <script src="home-v9.js?v=20260729-story8" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main" data-zh="跳到正文" data-en="Skip to content">跳到正文</a>
@@ -32,17 +32,9 @@
         <a href="#modes" data-zh="三种模式" data-en="Three modes">三种模式</a>
         <a href="#capabilities" data-zh="核心能力" data-en="Capabilities">核心能力</a>
         <a href="#guides" data-zh="教程与支持" data-en="Guides & support">教程与支持</a>
+        <a href="#pricing" data-zh="版本对比" data-en="Free vs Pro">版本对比</a>
       </nav>
 
-      <div class="header-actions">
-        <a class="header-link" href="guide.html" data-zh="查看教程" data-en="View guide">查看教程</a>
-        <a class="button button-small" href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"
-          data-purchase-link
-          data-href-zh="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"
-          data-href-en="#whop"
-          data-zh="淘宝购买"
-          data-en="Get Pro">淘宝购买</a>
-      </div>
     </div>
   </header>
 
@@ -63,7 +55,9 @@
 
           <div class="hero-actions">
             <a class="button hero-download-button"
-              href="#download"
+              href="download.html?lang=zh"
+              data-href-zh="download.html?lang=zh"
+              data-href-en="download.html?lang=en"
               aria-label="免费下载 Windows 与 macOS 桌面版"
               data-aria-zh="免费下载 Windows 与 macOS 桌面版"
               data-aria-en="Download for Windows and macOS">
@@ -78,22 +72,23 @@
               <span data-zh="免费下载" data-en="Download">免费下载</span>
             </a>
             <a class="button button-secondary hero-video-button"
-              href="#hero-demo"
-              aria-label="观看 TradeReplay 演示"
-              data-aria-zh="观看 TradeReplay 演示"
-              data-aria-en="Watch the TradeReplay demo">
+              href="guide.html"
+              aria-label="查看 TradeReplay 教程"
+              data-aria-zh="查看 TradeReplay 教程"
+              data-aria-en="View the TradeReplay guide">
               <span class="button-play-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="9.25"/>
-                  <path d="m10 8.6 5.25 3.4L10 15.4V8.6Z"/>
+                  <path d="M4.2 5.35c2.65-.58 5.22-.16 7.8 1.27v12.03c-2.58-1.43-5.15-1.85-7.8-1.27V5.35Z"/>
+                  <path d="M19.8 5.35c-2.65-.58-5.22-.16-7.8 1.27v12.03c2.58-1.43 5.15-1.85 7.8-1.27V5.35Z"/>
                 </svg>
               </span>
-              <span data-zh="观看演示" data-en="Watch demo">观看演示</span>
+              <span data-zh="查看教程" data-en="View guide">查看教程</span>
             </a>
           </div>
         </div>
 
-        <figure class="hero-product" id="hero-demo">
+        <div class="hero-story" data-hero-story data-story-step="0">
+        <figure class="hero-product" id="hero-demo" data-hero-story-stage>
           <div class="hero-product-glow" aria-hidden="true"></div>
           <div class="hero-laptop">
             <img class="hero-laptop-frame"
@@ -233,8 +228,56 @@
                 </div>
               </div>
             </div>
+
+            <ol class="hero-story-annotations"
+              aria-label="TradeReplay 界面功能"
+              data-aria-zh="TradeReplay 界面功能"
+              data-aria-en="TradeReplay interface capabilities">
+              <li class="hero-story-callout hero-story-callout-charts" data-hero-story-callout>
+                <div class="hero-story-label">
+                  <span data-zh="多图表回放" data-en="MULTI-CHART REPLAY">多图表回放</span>
+                  <strong data-zh="多个周期，在同一时刻看清走势" data-en="See multiple timeframes at the same moment">多个周期，在同一时刻看清走势</strong>
+                </div>
+                <svg class="hero-story-leader" viewBox="0 0 1000 614" preserveAspectRatio="none" aria-hidden="true">
+                  <path class="hero-story-leader-track" pathLength="1" d="M240 209L132 105H91"/>
+                  <path class="hero-story-leader-pulse" pathLength="1" d="M240 209L132 105H91"/>
+                </svg>
+                <i class="hero-story-target" aria-hidden="true"></i>
+              </li>
+
+              <li class="hero-story-callout hero-story-callout-plan" data-hero-story-callout>
+                <div class="hero-story-label">
+                  <span data-zh="交易计划" data-en="TRADE PLAN">交易计划</span>
+                  <strong data-zh="拖动设置止损止盈，支持追踪止损与分批退出"
+                    data-en="Drag to set stops and targets, with trailing stops and partial exits">拖动设置止损止盈，支持追踪止损与分批退出</strong>
+                </div>
+                <svg class="hero-story-leader" viewBox="0 0 1000 614" preserveAspectRatio="none" aria-hidden="true">
+                  <path class="hero-story-leader-track" pathLength="1" d="M740 276L858 115H909"/>
+                  <path class="hero-story-leader-pulse" pathLength="1" d="M740 276L858 115H909"/>
+                </svg>
+                <i class="hero-story-target" aria-hidden="true"></i>
+              </li>
+
+              <li class="hero-story-callout hero-story-callout-rules" data-hero-story-callout>
+                <div class="hero-story-label">
+                  <span data-zh="系统清单" data-en="SYSTEM CHECKLIST">系统清单</span>
+                  <strong data-zh="下单前，先核对规则" data-en="Check your rules before the order">下单前，先核对规则</strong>
+                </div>
+                <svg class="hero-story-leader" viewBox="0 0 1000 614" preserveAspectRatio="none" aria-hidden="true">
+                  <path class="hero-story-leader-track" pathLength="1" d="M880 421L900 330H909"/>
+                  <path class="hero-story-leader-pulse" pathLength="1" d="M880 421L900 330H909"/>
+                </svg>
+                <i class="hero-story-target" aria-hidden="true"></i>
+              </li>
+            </ol>
+
+            <p class="hero-story-hint" aria-hidden="true">
+              <span></span>
+              <b data-zh="继续滚动，查看界面" data-en="Scroll to explore the workspace">继续滚动，查看界面</b>
+            </p>
           </div>
         </figure>
+        </div>
       </div>
     </section>
 
@@ -316,45 +359,45 @@
     <section class="modes section" id="modes" aria-labelledby="modes-title">
       <div class="shell">
         <header class="section-heading" data-reveal>
-          <p class="section-kicker" data-zh="同一套规则，三种运行方式" data-en="ONE SYSTEM, THREE MODES">同一套规则，三种运行方式</p>
-          <h2 id="modes-title" data-zh="从主观训练，到自动验证" data-en="From discretionary practice to automatic proof">从主观训练，到自动验证</h2>
-          <p data-zh="根据规则的客观程度选择运行方式，系统本身不必重写。"
-            data-en="Choose the mode that fits how objective your rules are. The system itself stays the same.">
-            根据规则的客观程度选择运行方式，系统本身不必重写。
+          <p class="section-kicker" data-zh="同一套交易系统，三种运行方式" data-en="ONE TRADING SYSTEM, THREE MODES">同一套交易系统，三种运行方式</p>
+          <h2 id="modes-title" data-zh="根据你的规则，选择运行方式" data-en="Choose the mode that fits your rules">根据你的规则，选择运行方式</h2>
+          <p class="mode-intro" data-zh="自己判断，用清单核对；软件找信号，用信号导航；规则完整，直接自动回测。"
+            data-en="You decide with Manual check, let Signal navigation find setups, or run complete rules with Automatic backtest.">
+            自己判断，用清单核对；软件找信号，用信号导航；规则完整，直接自动回测。
           </p>
         </header>
 
         <div class="mode-tabs" role="tablist" aria-label="系统运行模式" data-aria-zh="系统运行模式" data-aria-en="System run modes" data-reveal>
           <button class="is-active" id="mode-tab-check" type="button" role="tab" aria-selected="true" aria-controls="mode-panel-check" data-mode-tab="check">
-            <span>01</span>
+            <span data-zh="模式一" data-en="MODE 1">模式一</span>
             <b data-zh="清单核对" data-en="Manual check">清单核对</b>
-            <small data-zh="你做判断，系统守纪律" data-en="You decide; the system keeps discipline">你做判断，系统守纪律</small>
+            <small data-zh="你判断，软件帮你核对" data-en="You decide; the software checks">你判断，软件帮你核对</small>
           </button>
           <button id="mode-tab-signal" type="button" role="tab" aria-selected="false" aria-controls="mode-panel-signal" data-mode-tab="signal">
-            <span>02</span>
+            <span data-zh="模式二" data-en="MODE 2">模式二</span>
             <b data-zh="信号导航" data-en="Signal navigation">信号导航</b>
-            <small data-zh="自动找信号，再由你确认" data-en="Find setups automatically; you confirm">自动找信号，再由你确认</small>
+            <small data-zh="软件找信号，你来确认" data-en="The software finds it; you confirm">软件找信号，你来确认</small>
           </button>
           <button id="mode-tab-backtest" type="button" role="tab" aria-selected="false" aria-controls="mode-panel-backtest" data-mode-tab="backtest">
-            <span>03</span>
+            <span data-zh="模式三" data-en="MODE 3">模式三</span>
             <b data-zh="自动回测" data-en="Automatic backtest">自动回测</b>
-            <small data-zh="把完整系统跑遍历史" data-en="Run the full system through history">把完整系统跑遍历史</small>
+            <small data-zh="按完整规则自动跑历史" data-en="Run complete rules through history">按完整规则自动跑历史</small>
           </button>
         </div>
 
         <div class="mode-stage" data-reveal>
           <article class="mode-panel is-active" id="mode-panel-check" role="tabpanel" aria-labelledby="mode-tab-check" data-mode-panel="check">
             <div class="mode-copy">
-              <p class="panel-index">01 / 03</p>
-              <h3 data-zh="每次下单前，把规则逐项过一遍" data-en="Check every rule before the order">每次下单前，把规则逐项过一遍</h3>
-              <p data-zh="客观条件自动核对，主观条件保留给你判断。每次确认都会进入交易记录，复盘时能看见当时是否真正遵守系统。"
-                data-en="Objective conditions are checked automatically while subjective judgment remains yours. Every confirmation is saved with the trade.">
-                客观条件自动核对，主观条件保留给你判断。每次确认都会进入交易记录，复盘时能看见当时是否真正遵守系统。
+              <p class="panel-index" data-zh="模式一" data-en="MODE 1">模式一</p>
+              <h3 data-zh="下单前，先核对规则" data-en="Check your rules before the order">下单前，先核对规则</h3>
+              <p data-zh="适合还要结合形态、位置或盘感做决定的策略。软件核对客观条件，你只需确认主观判断。"
+                data-en="For strategies that still rely on chart context or trading judgment. The software checks objective conditions; you confirm the rest.">
+                适合还要结合形态、位置或盘感做决定的策略。软件核对客观条件，你只需确认主观判断。
               </p>
               <ul>
-                <li data-zh="结构化、公式化与主观条件共存" data-en="Structured, formula and subjective conditions">结构化、公式化与主观条件共存</li>
-                <li data-zh="必守规则与参考规则分开" data-en="Separate required rules from references">必守规则与参考规则分开</li>
-                <li data-zh="每笔交易保存系统版本" data-en="Save the system version with every trade">每笔交易保存系统版本</li>
+                <li data-zh="价格、指标自动核对" data-en="Price and indicators checked automatically">价格、指标自动核对</li>
+                <li data-zh="形态、位置由你判断" data-en="Chart context stays in your hands">形态、位置由你判断</li>
+                <li data-zh="减少漏项和冲动下单" data-en="Reduce missed checks and impulsive orders">减少漏项和冲动下单</li>
               </ul>
             </div>
             <figure class="mode-visual mode-video-demo mode-video-checklist"
@@ -507,16 +550,16 @@
 
           <article class="mode-panel" id="mode-panel-signal" role="tabpanel" aria-labelledby="mode-tab-signal" data-mode-panel="signal" hidden>
             <div class="mode-copy">
-              <p class="panel-index">02 / 03</p>
-              <h3 data-zh="让 K 线继续播放，命中信号时自动暂停" data-en="Keep replaying until a setup is found">让 K 线继续播放，命中信号时自动暂停</h3>
-              <p data-zh="软件逐根扫描客观条件，找到信号后高亮位置、暂停播放，并把剩余主观判断清单交给你。"
-                data-en="TradeReplay scans objective conditions bar by bar, pauses at a match, highlights the setup and hands the remaining judgment back to you.">
-                软件逐根扫描客观条件，找到信号后高亮位置、暂停播放，并把剩余主观判断清单交给你。
+              <p class="panel-index" data-zh="模式二" data-en="MODE 2">模式二</p>
+              <h3 data-zh="让软件找信号，你来决定做不做" data-en="Let the software find setups. You decide whether to trade.">让软件找信号，你来决定做不做</h3>
+              <p data-zh="适合大部分入场条件已经明确，但最后仍想自己把关的策略。软件会逐根扫描 K 线，信号出现时自动暂停并标出位置，你只需要判断这一笔要不要做。"
+                data-en="Best for strategies with clear entry conditions that still need your final judgment. TradeReplay scans bar by bar, pauses when a setup appears and marks its location for you to review.">
+                适合大部分入场条件已经明确，但最后仍想自己把关的策略。软件会逐根扫描 K 线，信号出现时自动暂停并标出位置，你只需要判断这一笔要不要做。
               </p>
               <ul>
-                <li data-zh="逐根扫描，不跳过过程" data-en="Scan bar by bar without skipping context">逐根扫描，不跳过过程</li>
-                <li data-zh="命中位置自动暂停并高亮" data-en="Pause and highlight every match">命中位置自动暂停并高亮</li>
-                <li data-zh="自动条件与人工确认清晰分工" data-en="Clear handoff between automation and judgment">自动条件与人工确认清晰分工</li>
+                <li data-zh="逐根扫描 K 线，不用一直盯着等待" data-en="Scan bar by bar so you do not have to keep watching">逐根扫描 K 线，不用一直盯着等待</li>
+                <li data-zh="找到信号后自动暂停并标出位置" data-en="Pause and mark the chart when a setup appears">找到信号后自动暂停并标出位置</li>
+                <li data-zh="最后的主观判断仍然由你完成" data-en="Keep the final trading decision in your hands">最后的主观判断仍然由你完成</li>
               </ul>
             </div>
             <figure class="mode-visual mode-video-demo mode-video-signal-navigation"
@@ -669,16 +712,16 @@
 
           <article class="mode-panel" id="mode-panel-backtest" role="tabpanel" aria-labelledby="mode-tab-backtest" data-mode-panel="backtest" hidden>
             <div class="mode-copy">
-              <p class="panel-index">03 / 03</p>
-              <h3 data-zh="用完全客观的规则，自动完成历史测试" data-en="Run fully objective rules through history">用完全客观的规则，自动完成历史测试</h3>
-              <p data-zh="当入场、仓位、风险和出场都能执行时，让软件跑完整段历史，再回到每一笔成交检查结果。"
-                data-en="When entry, sizing, risk and exit are executable, run the full history automatically and inspect every resulting trade.">
-                当入场、仓位、风险和出场都能执行时，让软件跑完整段历史，再回到每一笔成交检查结果。
+              <p class="panel-index" data-zh="模式三" data-en="MODE 3">模式三</p>
+              <h3 data-zh="把整套规则放进历史行情里跑一遍" data-en="Run your full rule set through historical markets">把整套规则放进历史行情里跑一遍</h3>
+              <p data-zh="适合入场、仓位和退出都已经写清楚的策略。软件会按规则自动完成一段历史行情里的交易，再把胜率、盈亏和回撤整理出来供你检查。"
+                data-en="Best for strategies with clear entry, position sizing and exit rules. TradeReplay runs them through historical markets and summarizes the win rate, P&amp;L and drawdown for review.">
+                适合入场、仓位和退出都已经写清楚的策略。软件会按规则自动完成一段历史行情里的交易，再把胜率、盈亏和回撤整理出来供你检查。
               </p>
               <ul>
-                <li data-zh="同一套系统直接进入回测" data-en="Backtest the same system directly">同一套系统直接进入回测</li>
-                <li data-zh="扫描胜率、盈亏与回撤" data-en="Measure win rate, P&L and drawdown">扫描胜率、盈亏与回撤</li>
-                <li data-zh="逐笔回放验证成交逻辑" data-en="Replay trades one by one to verify execution">逐笔回放验证成交逻辑</li>
+                <li data-zh="按规则自动完成开仓、持仓和退出" data-en="Handle entry, position management and exit automatically">按规则自动完成开仓、持仓和退出</li>
+                <li data-zh="快速查看胜率、盈亏与回撤" data-en="Review win rate, P&amp;L and drawdown">快速查看胜率、盈亏与回撤</li>
+                <li data-zh="回到任意一笔交易检查执行过程" data-en="Open any trade to inspect how it was executed">回到任意一笔交易检查执行过程</li>
               </ul>
             </div>
             <figure class="mode-visual mode-video-demo mode-video-backtest"
@@ -823,104 +866,679 @@
       <div class="shell">
         <header class="section-heading section-heading-split" data-reveal>
           <div>
-            <p class="section-kicker" data-zh="六个栏目，一个闭环" data-en="SIX CAPABILITIES, ONE LOOP">六个栏目，一个闭环</p>
-            <h2 id="capabilities-title" data-zh="从定义系统，到看清自己" data-en="From defining the system to understanding yourself">从定义系统，到看清自己</h2>
+            <p class="section-kicker" data-zh="六个核心能力" data-en="SIX CORE CAPABILITIES">六个核心能力</p>
+            <h2 id="capabilities-title" data-zh="从建立方法，到看清交易表现" data-en="From building your method to understanding performance">从建立方法，到看清交易表现</h2>
           </div>
-          <p data-zh="每个栏目只解决一个清晰问题，合在一起形成从规则到改进的完整工作流。"
-            data-en="Each capability solves one clear problem. Together they create a complete workflow from rules to improvement.">
-            每个栏目只解决一个清晰问题，合在一起形成从规则到改进的完整工作流。
+          <p data-zh="交易系统、代码扫描和真实账单是三条不同的使用路径。无论数据从哪里来，都可以继续做统计、写复盘日志，并交给 AI 分析。"
+            data-en="Trading systems, code-based scans and live statements are three distinct workflows. Whatever the source, the results can move into statistics, review logs and AI analysis.">
+            交易系统、代码扫描和真实账单是三条不同的使用路径。无论数据从哪里来，都可以继续做统计、写复盘日志，并交给 AI 分析。
           </p>
         </header>
 
         <div class="capability-layout" data-reveal>
           <div class="capability-tabs" role="tablist" aria-label="核心能力" data-aria-zh="核心能力" data-aria-en="Core capabilities">
             <button class="is-active" id="cap-tab-system" type="button" role="tab" aria-selected="true" aria-controls="cap-panel-system" data-cap-tab="system"><span>01</span><b data-zh="定制系统" data-en="Custom systems">定制系统</b></button>
-            <button id="cap-tab-backtest" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-backtest" data-cap-tab="backtest"><span>02</span><b data-zh="系统回测" data-en="System backtests">系统回测</b></button>
-            <button id="cap-tab-evidence" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-evidence" data-cap-tab="evidence"><span>03</span><b data-zh="多维验证" data-en="Cross-validation">多维验证</b></button>
-            <button id="cap-tab-stats" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-stats" data-cap-tab="stats"><span>04</span><b data-zh="统计诊断" data-en="Diagnostics">统计诊断</b></button>
-            <button id="cap-tab-journal" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-journal" data-cap-tab="journal"><span>05</span><b data-zh="交易日志" data-en="Trading journal">交易日志</b></button>
-            <button id="cap-tab-mentor" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-mentor" data-cap-tab="mentor"><span>06</span><b>Mentor AI</b></button>
+            <button id="cap-tab-backtest" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-backtest" data-cap-tab="backtest"><span>02</span><b data-zh="模拟交易" data-en="Simulated trading">模拟交易</b></button>
+            <button id="cap-tab-evidence" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-evidence" data-cap-tab="evidence"><span>03</span><b data-zh="策略扫描" data-en="Strategy scans">策略扫描</b></button>
+            <button id="cap-tab-stats" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-stats" data-cap-tab="stats"><span>04</span><b data-zh="账单分析" data-en="Statement analysis">账单分析</b></button>
+            <button id="cap-tab-journal" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-journal" data-cap-tab="journal"><span>05</span><b data-zh="统计与 AI" data-en="Statistics &amp; AI">统计与 AI</b></button>
+            <button id="cap-tab-mentor" type="button" role="tab" aria-selected="false" aria-controls="cap-panel-mentor" data-cap-tab="mentor"><span>06</span><b data-zh="日志与同步" data-en="Journal &amp; sync">日志与同步</b></button>
           </div>
 
           <div class="capability-stage">
             <article class="capability-panel is-active" id="cap-panel-system" role="tabpanel" aria-labelledby="cap-tab-system" data-cap-panel="system">
               <div class="capability-copy">
                 <p class="panel-index">01 / 06</p>
-                <h3 data-zh="把方法写成真正能运行的系统" data-en="Turn your method into a system that can run">把方法写成真正能运行的系统</h3>
+                <h3 data-zh="把交易方法，整理成可执行的系统" data-en="Turn your method into a system you can follow">把交易方法，整理成可执行的系统</h3>
                 <ul>
-                  <li data-zh="入场、风险、出场与禁做四类规则" data-en="Entry, risk, exit and no-trade rules">入场、风险、出场与禁做四类规则</li>
-                  <li data-zh="结构化、公式化与主观表达" data-en="Structured, formula-based and subjective rules">结构化、公式化与主观表达</li>
-                  <li data-zh="按品种、周期与方向设定适用范围" data-en="Scope rules by instrument, timeframe and direction">按品种、周期与方向设定适用范围</li>
+                  <li data-zh="设置入场、仓位、止损止盈和退出规则" data-en="Set entry, sizing, stop, target and exit rules">设置入场、仓位、止损止盈和退出规则</li>
+                  <li data-zh="客观条件由软件核对，主观条件由你确认" data-en="Let the software check objective conditions while you confirm subjective ones">客观条件由软件核对，主观条件由你确认</li>
+                  <li data-zh="一套系统可用于训练、回测和逐笔复盘" data-en="Use the same system for practice, backtests and trade-by-trade review">一套系统可用于训练、回测和逐笔复盘</li>
                 </ul>
               </div>
-              <figure><img src="assets/app-current-system-workspace-dark.png" alt="定制交易系统界面" data-alt-zh="定制交易系统界面" data-alt-en="Custom trading system workspace"></figure>
+              <figure><img src="assets/showcase-system-workspace-en.png" alt="英文版定制交易系统界面" data-alt-zh="英文版定制交易系统界面" data-alt-en="Custom trading system workspace in English"></figure>
             </article>
 
             <article class="capability-panel" id="cap-panel-backtest" role="tabpanel" aria-labelledby="cap-tab-backtest" data-cap-panel="backtest" hidden>
               <div class="capability-copy">
                 <p class="panel-index">02 / 06</p>
-                <h3 data-zh="让每条客观规则接受历史检验" data-en="Put every objective rule through historical evidence">让每条客观规则接受历史检验</h3>
+                <h3 data-zh="在历史行情里，按系统模拟交易" data-en="Practise your system in historical markets">在历史行情里，按系统模拟交易</h3>
                 <ul>
-                  <li data-zh="扫描完整历史并生成成交记录" data-en="Scan full history and generate trades">扫描完整历史并生成成交记录</li>
-                  <li data-zh="查看胜率、盈亏、回撤与逐笔结果" data-en="Review win rate, P&L, drawdown and every trade">查看胜率、盈亏、回撤与逐笔结果</li>
-                  <li data-zh="从回测成交直接进入图表复核" data-en="Open any backtest trade directly on the chart">从回测成交直接进入图表复核</li>
+                  <li data-zh="回放 K 线，练习入场、持仓和退出" data-en="Replay charts and practise entries, position management and exits">回放 K 线，练习入场、持仓和退出</li>
+                  <li data-zh="使用清单核对、信号导航或自动回测" data-en="Use Manual check, Signal navigation or Automatic backtest">使用清单核对、信号导航或自动回测</li>
+                  <li data-zh="每笔模拟交易自动进入记录和统计" data-en="Every simulated trade flows into your records and statistics">每笔模拟交易自动进入记录和统计</li>
                 </ul>
               </div>
-              <figure><img src="assets/backtest-real.png" alt="系统回测界面" data-alt-zh="系统回测界面" data-alt-en="System backtest workspace"></figure>
+              <figure><img src="assets/mode-checklist-poster.jpg" alt="历史行情模拟交易界面" data-alt-zh="历史行情模拟交易界面" data-alt-en="Historical market simulation workspace"></figure>
             </article>
 
             <article class="capability-panel" id="cap-panel-evidence" role="tabpanel" aria-labelledby="cap-tab-evidence" data-cap-panel="evidence" hidden>
               <div class="capability-copy">
                 <p class="panel-index">03 / 06</p>
-                <h3 data-zh="用三类账户交叉验证结果" data-en="Cross-check results across three account types">用三类账户交叉验证结果</h3>
+                <h3 data-zh="用代码扫描策略，批量寻找机会" data-en="Scan markets with your own code">用代码扫描策略，批量寻找机会</h3>
                 <ul>
-                  <li data-zh="训练账户：检验判断与执行" data-en="Practice accounts: test judgment and execution">训练账户：检验判断与执行</li>
-                  <li data-zh="回测账户：检验完全客观的规则" data-en="Backtest accounts: test fully objective rules">回测账户：检验完全客观的规则</li>
-                  <li data-zh="真实账单：检验系统是否经得住实盘" data-en="Live statements: test whether the edge survives reality">真实账单：检验系统是否经得住实盘</li>
+                  <li data-zh="用代码编写筛选逻辑和交易条件" data-en="Write screening logic and trading conditions in code">用代码编写筛选逻辑和交易条件</li>
+                  <li data-zh="创建自定义指标，辅助计算和图表判断" data-en="Create custom indicators for calculations and chart decisions">创建自定义指标，辅助计算和图表判断</li>
+                  <li data-zh="保存扫描结果，继续查看统计或回到图表复核" data-en="Save scan results for statistics or chart review">保存扫描结果，继续查看统计或回到图表复核</li>
                 </ul>
               </div>
-              <figure><img src="assets/evidence-real.png" alt="真实账单与月历界面" data-alt-zh="真实账单与月历界面" data-alt-en="Live statement and calendar workspace"></figure>
+              <figure><img src="assets/showcase-strategy-scan-en.png" alt="英文版策略扫描与回测配置界面" data-alt-zh="英文版策略扫描与回测配置界面" data-alt-en="Strategy scan and backtest configuration workspace in English"></figure>
             </article>
 
             <article class="capability-panel" id="cap-panel-stats" role="tabpanel" aria-labelledby="cap-tab-stats" data-cap-panel="stats" hidden>
               <div class="capability-copy">
                 <p class="panel-index">04 / 06</p>
-                <h3 data-zh="分清系统问题，还是执行问题" data-en="Separate system flaws from execution gaps">分清系统问题，还是执行问题</h3>
+                <h3 data-zh="导入真实账单，检查实盘质量" data-en="Import live statements and inspect trading quality">导入真实账单，检查实盘质量</h3>
                 <ul>
-                  <li data-zh="概览、行为与分布三层诊断" data-en="Overview, behavior and distribution diagnostics">概览、行为与分布三层诊断</li>
-                  <li data-zh="按品种、时段、方向拆解表现" data-en="Break down results by instrument, time and direction">按品种、时段、方向拆解表现</li>
-                  <li data-zh="追踪交易成本、回撤与规则遵守度" data-en="Track costs, drawdown and rule adherence">追踪交易成本、回撤与规则遵守度</li>
+                  <li data-zh="导入券商或交易平台的交易账单" data-en="Import statements from your broker or trading platform">导入券商或交易平台的交易账单</li>
+                  <li data-zh="查看盈亏、持仓时间、交易成本和执行表现" data-en="Review P&amp;L, holding time, trading costs and execution">查看盈亏、持仓时间、交易成本和执行表现</li>
+                  <li data-zh="将真实交易与模拟交易、扫描结果进行对照" data-en="Compare live trading with simulated trades and scan results">将真实交易与模拟交易、扫描结果进行对照</li>
                 </ul>
               </div>
-              <figure><img src="assets/app-current-stats-dark.png" alt="统计诊断界面" data-alt-zh="统计诊断界面" data-alt-en="Statistics and diagnosis workspace"></figure>
+              <figure><img src="assets/showcase-statement-analysis-en.png" alt="英文版真实账单分析界面" data-alt-zh="英文版真实账单分析界面" data-alt-en="Live statement analysis workspace in English"></figure>
             </article>
 
             <article class="capability-panel" id="cap-panel-journal" role="tabpanel" aria-labelledby="cap-tab-journal" data-cap-panel="journal" hidden>
               <div class="capability-copy">
                 <p class="panel-index">05 / 06</p>
-                <h3 data-zh="让每笔交易都有上下文" data-en="Keep the context behind every trade">让每笔交易都有上下文</h3>
+                <h3 data-zh="汇总三类结果，找出交易问题" data-en="Bring every result together and find the problem">汇总三类结果，找出交易问题</h3>
                 <ul>
-                  <li data-zh="记录策略、入场理由与执行偏差" data-en="Record system, entry rationale and execution gaps">记录策略、入场理由与执行偏差</li>
-                  <li data-zh="训练与实盘分开归档" data-en="Archive practice and live trades separately">训练与实盘分开归档</li>
-                  <li data-zh="按日历复盘并回看当时 K 线" data-en="Review by calendar and replay the original chart">按日历复盘并回看当时 K 线</li>
+                  <li data-zh="按品种、方向、时段和策略拆解表现" data-en="Break down performance by instrument, direction, session and strategy">按品种、方向、时段和策略拆解表现</li>
+                  <li data-zh="查看胜率、盈亏、回撤和交易质量" data-en="Review win rate, P&amp;L, drawdown and trading quality">查看胜率、盈亏、回撤和交易质量</li>
+                  <li data-zh="接入 AI，结合统计数据分析问题和改进方向" data-en="Connect AI to find problems and improvement opportunities in the data">接入 AI，结合统计数据分析问题和改进方向</li>
                 </ul>
               </div>
-              <figure><img src="assets/journal-real.png" alt="交易日志界面" data-alt-zh="交易日志界面" data-alt-en="Trading journal workspace"></figure>
+              <figure><img src="assets/showcase-statistics-ai-en.png" alt="英文版交易统计与 AI 分析界面" data-alt-zh="英文版交易统计与 AI 分析界面" data-alt-en="Trading statistics and AI analysis workspace in English"></figure>
             </article>
 
             <article class="capability-panel" id="cap-panel-mentor" role="tabpanel" aria-labelledby="cap-tab-mentor" data-cap-panel="mentor" hidden>
               <div class="capability-copy">
                 <p class="panel-index">06 / 06</p>
-                <h3 data-zh="让 AI 先读懂数据，再给结论" data-en="Let AI understand the evidence before giving advice">让 AI 先读懂数据，再给结论</h3>
+                <h3 data-zh="写每日复盘，备份重要数据" data-en="Write the daily review and back up your data">写每日复盘，备份重要数据</h3>
                 <ul>
-                  <li data-zh="结合确定性统计与系统证据" data-en="Ground analysis in statistics and system evidence">结合确定性统计与系统证据</li>
-                  <li data-zh="解释规则遵守、盈亏与交易成本" data-en="Explain adherence, P&L and trading costs">解释规则遵守、盈亏与交易成本</li>
-                  <li data-zh="生成阶段短评与交易体检报告" data-en="Generate period reviews and trading health reports">生成阶段短评与交易体检报告</li>
+                  <li data-zh="记录当天状态、执行问题和下一步计划" data-en="Record your state, execution issues and next plan">记录当天状态、执行问题和下一步计划</li>
+                  <li data-zh="按日历回看复盘日志和交易记录" data-en="Review journal entries and trades by calendar">按日历回看复盘日志和交易记录</li>
+                  <li data-zh="通过 S3 备份与同步数据" data-en="Back up and sync data through S3">通过 S3 备份与同步数据</li>
                 </ul>
               </div>
-              <figure class="portrait-figure"><img src="assets/mentor-real.png" alt="Mentor AI 交易诊断界面" data-alt-zh="Mentor AI 交易诊断界面" data-alt-en="Mentor AI trading diagnosis workspace"></figure>
+              <figure><img src="assets/showcase-journal-sync-en.png" alt="英文版每日复盘日志与数据同步界面" data-alt-zh="英文版每日复盘日志与数据同步界面" data-alt-en="Daily review journal and data sync workspace in English"></figure>
             </article>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-matrix section" id="more-features" aria-labelledby="more-features-title">
+      <div class="shell">
+        <header class="section-heading section-heading-split" data-reveal>
+          <div>
+            <p class="section-kicker" data-zh="功能全景" data-en="MORE TO WORK WITH">功能全景</p>
+            <h2 id="more-features-title" data-zh="不止回放，从训练到复盘都在一套系统里" data-en="Beyond replay, the whole training workflow lives in one system.">不止回放，从训练到复盘都在一套系统里</h2>
+          </div>
+          <p data-zh="行情、指标、数据导入、统计分析与备份相互衔接，让每次训练都能继续沉淀和复盘。"
+            data-en="Markets, indicators, imports, analysis, and backup stay connected so every session can feed the next review.">
+            行情、指标、数据导入、统计分析与备份相互衔接，让每次训练都能继续沉淀和复盘。
+          </p>
+        </header>
+
+        <div class="feature-grid" aria-label="更多产品功能" data-aria-zh="更多产品功能" data-aria-en="More product features">
+          <article class="feature-card feature-card-markets" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">MARKETS / 01</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="覆盖常用交易市场" data-en="The markets most traders actually use">覆盖常用交易市场</h3>
+              <p data-zh="覆盖 45 个外汇、贵金属、股指、商品与加密品种，以及 82 个国内期货品种。"
+                data-en="Forex, metals, indices, commodities and crypto in one curated catalog.">
+                覆盖 45 个外汇、贵金属、股指、商品与加密品种，以及 82 个国内期货品种。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-markets" viewBox="126 20 406 270" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="market-panel-glow" x1="177" y1="41" x2="500" y2="263" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#14233A"/>
+                  <stop offset="1" stop-color="#09111D"/>
+                </linearGradient>
+                <linearGradient id="market-chart-fill" x1="0" y1="0" x2="0" y2="1">
+                  <stop stop-color="#32BED0" stop-opacity=".22"/>
+                  <stop offset="1" stop-color="#32BED0" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <rect class="feature-ui-panel" x="142" y="33" width="374" height="238" rx="15" fill="url(#market-panel-glow)"/>
+              <path class="feature-ui-divider" d="M142 66H516M262 66V271"/>
+              <circle class="feature-ui-led is-red" cx="160" cy="50" r="3"/>
+              <circle class="feature-ui-led is-amber" cx="171" cy="50" r="3"/>
+              <circle class="feature-ui-led is-green" cx="182" cy="50" r="3"/>
+              <text class="feature-ui-label" x="199" y="54">MARKET CATALOG</text>
+              <rect class="feature-ui-chip" x="444" y="43" width="54" height="15" rx="7.5"/>
+              <text class="feature-ui-chip-text" x="455" y="53.5">ONLINE</text>
+
+              <g class="feature-ui-list">
+                <rect x="154" y="78" width="96" height="31" rx="7"/>
+                <circle class="feature-ui-dot is-blue" cx="167" cy="93.5" r="3"/>
+                <text class="feature-ui-text" x="178" y="91">FOREX</text>
+                <text class="feature-ui-number" x="226" y="98">24</text>
+                <rect x="154" y="115" width="96" height="31" rx="7"/>
+                <circle class="feature-ui-dot is-cyan" cx="167" cy="130.5" r="3"/>
+                <text class="feature-ui-text" x="178" y="128">METALS</text>
+                <text class="feature-ui-number" x="226" y="135">04</text>
+                <rect x="154" y="152" width="96" height="31" rx="7"/>
+                <circle class="feature-ui-dot is-violet" cx="167" cy="167.5" r="3"/>
+                <text class="feature-ui-text" x="178" y="165">INDICES</text>
+                <text class="feature-ui-number" x="226" y="172">11</text>
+                <rect x="154" y="189" width="96" height="31" rx="7"/>
+                <circle class="feature-ui-dot is-amber" cx="167" cy="204.5" r="3"/>
+                <text class="feature-ui-text" x="178" y="202">CRYPTO</text>
+                <text class="feature-ui-number" x="226" y="209">02</text>
+                <rect class="is-active" x="154" y="226" width="96" height="31" rx="7"/>
+                <circle class="feature-ui-dot is-green" cx="167" cy="241.5" r="3"/>
+                <text class="feature-ui-text is-bright" x="178" y="239" data-zh="CN FUTURES" data-en="COMMODITY">CN FUTURES</text>
+                <text class="feature-ui-number is-green" x="226" y="246" data-zh="82" data-en="04">82</text>
+              </g>
+
+              <text class="feature-ui-kicker" x="278" y="86">LIVE WATCHLIST</text>
+              <text class="feature-ui-number feature-ui-market-total" x="468" y="87" data-zh="127" data-en="45">127</text>
+              <path class="feature-ui-grid" d="M278 103H499M278 130H499M278 157H499M278 184H499M278 211H499M322 99V217M366 99V217M410 99V217M454 99V217"/>
+              <path class="feature-ui-area" d="M278 192L302 183L324 187L348 161L370 168L394 137L416 147L441 113L462 124L499 91V217H278Z" fill="url(#market-chart-fill)"/>
+              <path class="feature-draw feature-ui-chart" style="--draw-delay:180ms" d="M278 192L302 183L324 187L348 161L370 168L394 137L416 147L441 113L462 124L499 91" pathLength="1"/>
+              <g class="feature-ui-symbol-row">
+                <rect x="278" y="229" width="49" height="24" rx="6"/>
+                <text class="feature-ui-symbol" x="286" y="239">EURUSD</text>
+                <text class="feature-ui-positive" x="286" y="248">+0.42%</text>
+                <rect x="334" y="229" width="49" height="24" rx="6"/>
+                <text class="feature-ui-symbol" x="342" y="239">XAUUSD</text>
+                <text class="feature-ui-positive" x="342" y="248">+1.08%</text>
+                <rect x="390" y="229" width="49" height="24" rx="6"/>
+                <text class="feature-ui-symbol" x="398" y="239">BTCUSD</text>
+                <text class="feature-ui-negative" x="398" y="248">−0.31%</text>
+                <rect x="446" y="229" width="53" height="24" rx="6"/>
+                <text class="feature-ui-symbol" x="454" y="239" data-zh="RB9999" data-en="USOIL">RB9999</text>
+                <text class="feature-ui-positive" x="454" y="248">+0.76%</text>
+              </g>
+              <circle class="feature-ui-scan-dot" cx="441" cy="113" r="4"/>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-indicators" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">FORMULA / 02</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="按你的习惯写指标" data-en="Build indicators in a familiar language">按你的习惯写指标</h3>
+              <p data-zh="支持通达信、同花顺常用公式写法；可查看内置指标源码，也可以复制后继续修改。"
+                data-en="Create TradingView-style formula indicators, or fork a built-in study and make it your own.">
+                支持通达信、同花顺常用公式写法；可查看内置指标源码，也可以复制后继续修改。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-indicators" viewBox="156 12 340 198" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="166" y="22" width="320" height="178" rx="13"/>
+              <path class="feature-ui-divider" d="M166 52H486M302 52V200"/>
+              <circle class="feature-ui-led is-red" cx="182" cy="37" r="2.7"/>
+              <circle class="feature-ui-led is-amber" cx="192" cy="37" r="2.7"/>
+              <circle class="feature-ui-led is-green" cx="202" cy="37" r="2.7"/>
+              <text class="feature-ui-label" x="217" y="41">CUSTOM INDICATOR</text>
+              <rect class="feature-ui-chip" x="423" y="30" width="47" height="14" rx="7"/>
+              <text class="feature-ui-chip-text" x="432" y="40">COMPILED</text>
+              <g class="feature-ui-code">
+                <rect x="177" y="63" width="113" height="19" rx="4"/>
+                <text class="feature-ui-line-no" x="183" y="76">01</text>
+                <text class="feature-ui-code-blue" x="201" y="76">FAST</text>
+                <text class="feature-ui-code-text" x="227" y="76">:=EMA(C,12);</text>
+                <rect x="177" y="86" width="113" height="19" rx="4"/>
+                <text class="feature-ui-line-no" x="183" y="99">02</text>
+                <text class="feature-ui-code-cyan" x="201" y="99">SLOW</text>
+                <text class="feature-ui-code-text" x="227" y="99">:=EMA(C,26);</text>
+                <rect class="is-active" x="177" y="109" width="113" height="25" rx="4"/>
+                <text class="feature-ui-line-no" x="183" y="125">03</text>
+                <text class="feature-ui-code-green" x="201" y="125">SIGNAL</text>
+                <text class="feature-ui-code-text" x="238" y="125">:CROSS(...)</text>
+                <rect x="177" y="140" width="113" height="44" rx="5"/>
+                <text class="feature-ui-muted-text" x="185" y="154">OUTPUT</text>
+                <circle class="feature-ui-dot is-green" cx="187" cy="169" r="2.5"/>
+                <text class="feature-ui-code-green" x="195" y="172">NO ERRORS</text>
+              </g>
+              <path class="feature-ui-grid" d="M316 72H474M316 104H474M316 136H474M316 168H474M348 60V188M380 60V188M412 60V188M444 60V188"/>
+              <g class="feature-ui-candles">
+                <path class="is-down" d="M329 104V151M324 118H334V139H324Z"/>
+                <path class="is-up" d="M346 98V137M341 111H351V126H341Z"/>
+                <path class="is-down" d="M363 90V132M358 103H368V120H358Z"/>
+                <path class="is-up" d="M380 82V121M375 96H385V110H375Z"/>
+                <path class="is-up" d="M397 74V112M392 89H402V101H392Z"/>
+                <path class="is-down" d="M414 84V125M409 95H419V113H409Z"/>
+                <path class="is-up" d="M431 66V109M426 82H436V96H426Z"/>
+                <path class="is-up" d="M448 57V96M443 69H453V83H443Z"/>
+              </g>
+              <path class="feature-draw feature-ui-chart is-blue" style="--draw-delay:200ms" d="M316 146C340 142 353 130 375 132C399 134 411 111 430 113C448 115 458 93 474 89" pathLength="1"/>
+              <path class="feature-draw feature-ui-chart" style="--draw-delay:360ms" d="M316 161C343 157 358 148 380 149C403 150 420 138 440 137C455 136 465 126 474 120" pathLength="1"/>
+              <g class="feature-ui-tooltip">
+                <rect x="399" y="49" width="60" height="22" rx="5"/>
+                <circle class="feature-ui-dot is-green" cx="408" cy="60" r="2.5"/>
+                <text class="feature-ui-symbol" x="416" y="63">CROSS</text>
+              </g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-small feature-card-statements" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">IMPORT / 03</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="导入真实账单" data-en="Import broker statements">导入真实账单</h3>
+              <p data-zh="识别 MT4、MT5 与 CFMMC 期货账单，导入后直接进入统计和逐笔复盘。"
+                data-en="Bring MT4 and MT5 statements into statistics and trade-by-trade review.">
+                识别 MT4、MT5 与 CFMMC 期货账单，导入后直接进入统计和逐笔复盘。
+              </p>
+              <span class="feature-card-footnote" data-zh="MT4 · MT5 · CFMMC" data-en="MT4 · MT5">MT4 · MT5 · CFMMC</span>
+            </div>
+            <svg class="feature-art feature-art-statements" viewBox="0 0 260 180" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="61" y="22" width="185" height="137" rx="11"/>
+              <path class="feature-ui-divider" d="M61 50H246M112 50V159"/>
+              <text class="feature-ui-label" x="75" y="40">STATEMENT PARSER</text>
+              <circle class="feature-ui-led is-green" cx="230" cy="36" r="3"/>
+              <g class="feature-ui-source-list">
+                <rect class="is-active" x="69" y="62" width="35" height="24" rx="5"/>
+                <text class="feature-ui-symbol" x="77" y="77">MT4</text>
+                <rect x="69" y="92" width="35" height="24" rx="5"/>
+                <text class="feature-ui-symbol" x="77" y="107">MT5</text>
+                <rect x="69" y="122" width="35" height="24" rx="5"/>
+                <text class="feature-ui-symbol" x="74" y="137" data-zh="CFMMC" data-en="CSV">CFMMC</text>
+              </g>
+              <text class="feature-ui-kicker" x="125" y="67">IMPORTING</text>
+              <rect class="feature-ui-progress-track" x="125" y="75" width="105" height="6" rx="3"/>
+              <rect class="feature-ui-progress-value" x="125" y="75" width="82" height="6" rx="3"/>
+              <g class="feature-ui-import-row">
+                <rect x="125" y="92" width="105" height="18" rx="4"/>
+                <text class="feature-ui-muted-text" x="132" y="104">TRADES</text>
+                <text class="feature-ui-number is-green" x="207" y="104">354</text>
+                <rect x="125" y="115" width="105" height="18" rx="4"/>
+                <text class="feature-ui-muted-text" x="132" y="127">DUPLICATES</text>
+                <text class="feature-ui-number" x="211" y="127">02</text>
+                <rect x="125" y="138" width="105" height="12" rx="4"/>
+                <circle class="feature-ui-dot is-green" cx="133" cy="144" r="2.5"/>
+                <text class="feature-ui-positive" x="141" y="147">READY FOR REVIEW</text>
+              </g>
+              <path class="feature-draw feature-ui-flow" style="--draw-delay:220ms" d="M18 104H51M44 97L52 104L44 111" pathLength="1"/>
+              <g class="feature-node" style="--node-delay:520ms"><circle cx="26" cy="104" r="8"/><circle cx="26" cy="104" r="2.5"/></g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-small feature-card-own-data" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">DATA / 04</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="带上自己的行情" data-en="Bring your own market data">带上自己的行情</h3>
+              <p data-zh="导入 OHLC K 线或逐笔 Tick CSV，用自己的数据创建训练和回测。"
+                data-en="Import OHLC candles or tick CSV files and replay the market data you trust.">
+                导入 OHLC K 线或逐笔 Tick CSV，用自己的数据创建训练和回测。
+              </p>
+              <span class="feature-card-footnote">OHLC CSV · TICK CSV</span>
+            </div>
+            <svg class="feature-art feature-art-own-data" viewBox="0 0 260 180" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="49" y="23" width="197" height="135" rx="11"/>
+              <path class="feature-ui-divider" d="M49 51H246M49 78H246"/>
+              <text class="feature-ui-label" x="63" y="41">CSV DATASET</text>
+              <rect class="feature-ui-chip" x="193" y="31" width="39" height="13" rx="6.5"/>
+              <text class="feature-ui-chip-text" x="202" y="40">LOCAL</text>
+              <text class="feature-ui-kicker" x="62" y="68">TIME</text>
+              <text class="feature-ui-kicker" x="113" y="68">OPEN</text>
+              <text class="feature-ui-kicker" x="151" y="68">HIGH</text>
+              <text class="feature-ui-kicker" x="188" y="68">CLOSE</text>
+              <g class="feature-ui-data-table">
+                <rect x="58" y="87" width="178" height="18" rx="4"/>
+                <text x="63" y="99">09:31</text><text x="112" y="99">1.1582</text><text x="151" y="99">1.1588</text><text x="190" y="99">1.1586</text>
+                <rect class="is-active" x="58" y="109" width="178" height="18" rx="4"/>
+                <text x="63" y="121">09:32</text><text x="112" y="121">1.1586</text><text x="151" y="121">1.1594</text><text x="190" y="121">1.1591</text>
+                <rect x="58" y="131" width="178" height="18" rx="4"/>
+                <text x="63" y="143">09:33</text><text x="112" y="143">1.1591</text><text x="151" y="143">1.1592</text><text x="190" y="143">1.1589</text>
+              </g>
+              <path class="feature-draw feature-ui-flow" style="--draw-delay:220ms" d="M12 105H40M33 98L41 105L33 112" pathLength="1"/>
+              <rect class="feature-ui-file" x="8" y="64" width="28" height="27" rx="5"/>
+              <text class="feature-ui-symbol" x="13" y="80">CSV</text>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-achievements" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">PROGRESS / 05</span>
+              <span class="feature-card-tag is-green">138</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="让训练有进度感" data-en="Make practice feel measurable">让训练有进度感</h3>
+              <p data-zh="138 个交易成就在训练中自动解锁，记录坚持、纪律和能力成长。"
+                data-en="138 trading achievements unlock as you build consistency, discipline and skill.">
+                138 个交易成就在训练中自动解锁，记录坚持、纪律和能力成长。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-achievements" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="124" y="22" width="218" height="146" rx="12"/>
+              <path class="feature-ui-divider" d="M124 53H342"/>
+              <text class="feature-ui-label" x="138" y="42">ACHIEVEMENT TRACKER</text>
+              <text class="feature-ui-number is-green" x="312" y="42">86%</text>
+              <circle class="feature-ui-ring-track" cx="178" cy="104" r="36"/>
+              <path class="feature-ui-ring-value" d="M178 68A36 36 0 1 1 147 122"/>
+              <text class="feature-ui-market-total" x="160" y="107">119</text>
+              <text class="feature-ui-kicker" x="158" y="120">UNLOCKED</text>
+              <g class="feature-ui-badge-grid">
+                <rect class="is-earned" x="232" y="67" width="40" height="37" rx="7"/>
+                <path d="M252 75L256 84L266 85L259 92L261 101L252 96L243 101L245 92L238 85L248 84Z"/>
+                <rect class="is-earned" x="280" y="67" width="40" height="37" rx="7"/>
+                <path d="M300 75L304 84L314 85L307 92L309 101L300 96L291 101L293 92L286 85L296 84Z"/>
+                <rect x="232" y="112" width="40" height="37" rx="7"/>
+                <path d="M252 120L256 129L266 130L259 137L261 146L252 141L243 146L245 137L238 130L248 129Z"/>
+                <rect x="280" y="112" width="40" height="37" rx="7"/>
+                <path d="M300 120L304 129L314 130L307 137L309 146L300 141L291 146L293 137L286 130L296 129Z"/>
+              </g>
+              <g class="feature-ui-toast">
+                <rect x="33" y="54" width="110" height="54" rx="9"/>
+                <circle cx="51" cy="73" r="8"/>
+                <path d="M47 73L50 76L56 69"/>
+                <text class="feature-ui-kicker" x="66" y="70">NEW BADGE</text>
+                <text class="feature-ui-text is-bright" x="66" y="84">DISCIPLINE III</text>
+                <text class="feature-ui-positive" x="66" y="96">+ 1 UNLOCKED</text>
+              </g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-multichart" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">CHART / 06</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="多个周期一起看" data-en="See several timeframes together">多个周期一起看</h3>
+              <p data-zh="多图表同步回放，在同一时间点查看大周期方向和小周期细节。"
+                data-en="Replay synchronized charts and keep higher-timeframe context beside the detail.">
+                多图表同步回放，在同一时间点查看大周期方向和小周期细节。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-multichart" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="103" y="20" width="239" height="150" rx="12"/>
+              <path class="feature-ui-divider" d="M103 46H342M222.5 46V170M103 108H342"/>
+              <text class="feature-ui-label" x="116" y="37">SYNCED CHARTS</text>
+              <circle class="feature-ui-led is-green" cx="327" cy="33" r="3"/>
+              <g class="feature-ui-chart-labels">
+                <text x="112" y="59">H1</text><text x="232" y="59">M15</text>
+                <text x="112" y="121">M5</text><text x="232" y="121">M1</text>
+              </g>
+              <g class="feature-ui-mini-candles">
+                <path class="is-down" d="M123 65V97M119 73H127V88H119Z"/><path class="is-up" d="M137 62V91M133 69H141V82H133Z"/><path class="is-up" d="M151 54V84M147 63H155V75H147Z"/><path class="is-down" d="M165 61V91M161 68H169V82H161Z"/><path class="is-up" d="M179 51V78M175 59H183V70H175Z"/>
+                <path class="is-up" d="M242 69V98M238 78H246V88H238Z"/><path class="is-down" d="M256 62V92M252 70H260V83H252Z"/><path class="is-up" d="M270 58V87M266 67H274V78H266Z"/><path class="is-up" d="M284 50V80M280 59H288V71H280Z"/><path class="is-down" d="M298 57V88M294 65H302V79H294Z"/>
+                <path class="is-down" d="M123 127V158M119 135H127V149H119Z"/><path class="is-up" d="M137 124V153M133 132H141V145H133Z"/><path class="is-up" d="M151 116V146M147 124H155V137H147Z"/><path class="is-down" d="M165 123V154M161 131H169V145H161Z"/><path class="is-up" d="M179 113V141M175 121H183V133H175Z"/>
+                <path class="is-up" d="M242 132V161M238 141H246V151H238Z"/><path class="is-down" d="M256 125V155M252 133H260V146H252Z"/><path class="is-up" d="M270 121V150M266 130H274V141H266Z"/><path class="is-up" d="M284 113V143M280 122H288V134H280Z"/><path class="is-down" d="M298 120V151M294 128H302V142H294Z"/>
+              </g>
+              <path class="feature-ui-crosshair" d="M312 46V170M103 94H342"/>
+              <circle class="feature-ui-scan-dot" cx="312" cy="94" r="4"/>
+              <g class="feature-ui-sync-control">
+                <rect x="33" y="68" width="84" height="50" rx="9"/>
+                <text class="feature-ui-kicker" x="45" y="84">PLAYBACK</text>
+                <path d="M48 98L48 108L57 103Z"/>
+                <rect x="65" y="99" width="37" height="7" rx="3.5"/>
+                <rect x="65" y="99" width="24" height="7" rx="3.5"/>
+              </g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-backup" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">LOCAL / 07</span>
+              <span class="feature-card-tag is-green" data-zh="本地优先" data-en="LOCAL-FIRST">本地优先</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="数据留在自己手里" data-en="Keep your data under your control">数据留在自己手里</h3>
+              <p data-zh="核心数据库保存在本机，也可以接入自己的 S3、COS、R2 或 MinIO 备份。"
+                data-en="Store the core database locally, with optional backup to your own S3, R2 or MinIO.">
+                核心数据库保存在本机，也可以接入自己的 S3、COS、R2 或 MinIO 备份。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-backup" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="39" y="24" width="303" height="142" rx="12"/>
+              <path class="feature-ui-divider" d="M39 52H342"/>
+              <text class="feature-ui-label" x="52" y="42">BACKUP PIPELINE</text>
+              <circle class="feature-ui-led is-green" cx="328" cy="38" r="3"/>
+              <g class="feature-ui-backup-source">
+                <rect x="53" y="69" width="71" height="74" rx="9"/>
+                <ellipse cx="88.5" cy="84" rx="23" ry="8"/>
+                <path d="M65.5 84V119C65.5 124 75.8 128 88.5 128C101.2 128 111.5 124 111.5 119V84M65.5 101C65.5 106 75.8 110 88.5 110C101.2 110 111.5 106 111.5 101"/>
+                <text class="feature-ui-kicker" x="72" y="138">LOCAL DB</text>
+              </g>
+              <g class="feature-ui-encryption">
+                <rect x="146" y="76" width="61" height="60" rx="9"/>
+                <path d="M167 101V94C167 82 186 82 186 94V101M162 101H191V124H162Z"/>
+                <circle cx="176.5" cy="112" r="3"/>
+                <path d="M176.5 115V120"/>
+                <text class="feature-ui-kicker" x="154" y="146">ENCRYPT</text>
+              </g>
+              <g class="feature-ui-backup-target">
+                <rect x="229" y="65" width="99" height="82" rx="9"/>
+                <path d="M272 82C259 82 250 90 248 101C238 102 232 109 232 118C232 128 240 135 251 135H305C316 135 324 127 324 117C324 107 316 100 306 100C302 89 291 82 272 82Z"/>
+                <g>
+                  <rect x="239" y="119" width="20" height="11" rx="4"/><text x="245" y="127">S3</text>
+                  <rect x="263" y="119" width="20" height="11" rx="4"/><text x="269" y="127">R2</text>
+                  <rect x="287" y="119" width="27" height="11" rx="4"/><text x="292" y="127">COS</text>
+                </g>
+              </g>
+              <path class="feature-draw feature-ui-flow" style="--draw-delay:220ms" d="M124 106H146M207 106H229" pathLength="1"/>
+              <circle class="feature-ui-flow-packet" cx="135" cy="106" r="3"/>
+              <circle class="feature-ui-flow-packet is-late" cx="218" cy="106" r="3"/>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-costs" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">SIMULATION / 08</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="把交易成本算清楚" data-en="Model the costs that change results">把交易成本算清楚</h3>
+              <p data-zh="设置点差、手续费、隔夜费和杠杆；国内期货支持开仓、平昨与平今费率。"
+                data-en="Configure spread, commission, swaps and leverage for more realistic simulation.">
+                设置点差、手续费、隔夜费和杠杆；国内期货支持开仓、平昨与平今费率。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-costs" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="93" y="22" width="249" height="146" rx="12"/>
+              <path class="feature-ui-divider" d="M93 51H342M240 51V168"/>
+              <text class="feature-ui-label" x="106" y="41">EXECUTION MODEL</text>
+              <rect class="feature-ui-chip" x="291" y="30" width="38" height="14" rx="7"/>
+              <text class="feature-ui-chip-text" x="300" y="40">LIVE</text>
+              <g class="feature-ui-cost-table">
+                <rect x="106" y="64" width="120" height="22" rx="5"/>
+                <text class="feature-ui-muted-text" x="114" y="78">SPREAD</text><text class="feature-ui-number" x="194" y="78">1.2</text>
+                <rect x="106" y="91" width="120" height="22" rx="5"/>
+                <text class="feature-ui-muted-text" x="114" y="105">COMMISSION</text><text class="feature-ui-number" x="190" y="105">$7</text>
+                <rect x="106" y="118" width="120" height="22" rx="5"/>
+                <text class="feature-ui-muted-text" x="114" y="132">SWAP / DAY</text><text class="feature-ui-negative" x="188" y="132">−$2.4</text>
+                <rect class="is-active" x="106" y="145" width="120" height="13" rx="5"/>
+                <text class="feature-ui-positive" x="114" y="154">REALISTIC FILL ON</text>
+              </g>
+              <path class="feature-ui-grid" d="M251 70H330M251 96H330M251 122H330M270 58V148M289 58V148M308 58V148"/>
+              <path class="feature-cost-target" d="M251 71H330"/>
+              <path class="feature-cost-stop" d="M251 137H330"/>
+              <path class="feature-draw feature-ui-chart" style="--draw-delay:180ms" d="M251 124L262 118L272 120L282 101L292 106L302 84L313 89L330 65" pathLength="1"/>
+              <circle class="feature-ui-scan-dot" cx="302" cy="84" r="4"/>
+              <g class="feature-ui-order-tag">
+                <rect x="279" y="92" width="47" height="16" rx="4"/>
+                <text class="feature-ui-symbol" x="288" y="103">BUY 1.0</text>
+              </g>
+              <g class="feature-ui-cost-dial">
+                <circle cx="53" cy="104" r="34"/>
+                <path d="M53 76V104L71 92"/>
+                <text class="feature-ui-kicker" x="32" y="151">SIMULATED</text>
+              </g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-calendar" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">EVENTS / 09</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="把经济事件放回图上" data-en="Put economic events back on the chart">把经济事件放回图上</h3>
+              <p data-zh="在复盘时查看重要数据发布时间，理解波动发生前后市场做了什么。"
+                data-en="Review important releases beside price action and understand what moved the market.">
+                在复盘时查看重要数据发布时间，理解波动发生前后市场做了什么。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-calendar" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="72" y="23" width="270" height="144" rx="12"/>
+              <path class="feature-ui-divider" d="M72 52H342M211 52V167"/>
+              <text class="feature-ui-label" x="86" y="42">ECONOMIC EVENTS</text>
+              <rect class="feature-ui-chip" x="295" y="30" width="34" height="14" rx="7"/>
+              <text class="feature-ui-chip-text" x="304" y="40">UTC</text>
+              <g class="feature-ui-event-list">
+                <rect class="is-hot" x="84" y="64" width="115" height="27" rx="6"/>
+                <text class="feature-ui-number" x="92" y="80">20:30</text>
+                <circle class="feature-ui-dot is-red" cx="129" cy="77.5" r="3"/>
+                <text class="feature-ui-text is-bright" x="139" y="80">US NFP</text>
+                <rect x="84" y="97" width="115" height="27" rx="6"/>
+                <text class="feature-ui-number" x="92" y="113">21:45</text>
+                <circle class="feature-ui-dot is-amber" cx="129" cy="110.5" r="3"/>
+                <text class="feature-ui-text" x="139" y="113">PMI</text>
+                <rect x="84" y="130" width="115" height="27" rx="6"/>
+                <text class="feature-ui-number" x="92" y="146">22:00</text>
+                <circle class="feature-ui-dot is-blue" cx="129" cy="143.5" r="3"/>
+                <text class="feature-ui-text" x="139" y="146">ISM</text>
+              </g>
+              <path class="feature-ui-grid" d="M224 76H328M224 103H328M224 130H328M250 62V151M276 62V151M302 62V151"/>
+              <path class="feature-draw feature-ui-chart" style="--draw-delay:220ms" d="M224 128L241 123L252 126L263 94L273 117L283 72L293 111L305 87L316 92L328 65" pathLength="1"/>
+              <path class="feature-event-line" d="M283 61V151"/>
+              <circle class="feature-event-pulse" cx="283" cy="72" r="5"/>
+              <g class="feature-ui-tooltip">
+                <rect x="241" y="54" width="83" height="19" rx="5"/>
+                <text class="feature-ui-symbol" x="250" y="67">VOLATILITY +42%</text>
+              </g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-platforms" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">DESKTOP / 10</span>
+              <span class="feature-platform-icons"
+                aria-label="Windows 与 macOS"
+                data-aria-zh="Windows 与 macOS"
+                data-aria-en="Windows and macOS">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M2.5 4.5 10.8 3.35v8.05H2.5V4.5Zm9.45-1.3L21.5 1.9v9.5h-9.55V3.2ZM2.5 12.6h8.3v8.05L2.5 19.5v-6.9Zm9.45 0h9.55v9.5l-9.55-1.3v-8.2Z"/>
+                </svg>
+                <i aria-hidden="true"></i>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15.8 5.2c1-1.15 1.65-2.7 1.48-4.2-1.43.06-3.16.96-4.2 2.12-.94 1.02-1.75 2.6-1.54 4.03 1.6.12 3.24-.8 4.26-1.95Zm3.58 7.28c-.03-3.08 2.51-4.57 2.63-4.64-1.44-2.1-3.68-2.39-4.47-2.42-1.9-.19-3.72 1.13-4.68 1.13-.96 0-2.45-1.1-4.02-1.07-2.07.03-3.97 1.2-5.03 3.05-2.15 3.72-.55 9.23 1.54 12.25 1.02 1.48 2.24 3.14 3.84 3.08 1.54-.06 2.12-.99 3.98-.99 1.86 0 2.38.99 4.01.96 1.66-.03 2.71-1.5 3.72-2.98 1.17-1.71 1.65-3.36 1.68-3.45-.04-.02-3.2-1.23-3.2-4.92Z" transform="scale(.82) translate(2.15 1.1)"/>
+                </svg>
+              </span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="在桌面上专心训练" data-en="A focused desktop workspace">在桌面上专心训练</h3>
+              <p data-zh="支持 Windows 与 macOS，本地运行，核心数据保存在你的电脑上。"
+                data-en="Available on Windows and macOS, with core data stored locally on your computer.">
+                支持 Windows 与 macOS，本地运行，核心数据保存在你的电脑上。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-platforms" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="75" y="26" width="267" height="139" rx="12"/>
+              <path class="feature-ui-divider" d="M75 53H342"/>
+              <text class="feature-ui-label" x="89" y="43">DESKTOP WORKSPACE</text>
+              <circle class="feature-ui-led is-green" cx="327" cy="39" r="3"/>
+              <g class="feature-ui-desktop-window is-back">
+                <rect x="95" y="69" width="109" height="73" rx="7"/>
+                <path d="M95 87H204M109 69V142"/>
+                <circle cx="103" cy="78" r="2"/><circle cx="110" cy="78" r="2"/>
+                <path d="M120 127L133 118L145 121L158 102L171 109L193 94"/>
+              </g>
+              <g class="feature-ui-desktop-window is-front">
+                <rect x="187" y="61" width="134" height="90" rx="8"/>
+                <path d="M187 80H321M205 80V151"/>
+                <circle cx="196" cy="70" r="2"/><circle cx="203" cy="70" r="2"/><circle cx="210" cy="70" r="2"/>
+                <path d="M216 134L229 126L241 129L255 106L267 113L280 91L294 98L311 82"/>
+                <path d="M216 91H310M216 111H310"/>
+              </g>
+              <g class="feature-ui-platform-pills">
+                <rect x="94" y="151" width="55" height="15" rx="7.5"/>
+                <path d="M103 155H108V159.5H103V155ZM109 154.8L115 154V159.5H109V154.8ZM103 160.5H108V165L103 164.3V160.5ZM109 160.5H115V166L109 165.2V160.5Z"/>
+                <rect x="155" y="151" width="43" height="15" rx="7.5"/>
+                <path d="M15.8 5.2c1-1.15 1.65-2.7 1.48-4.2-1.43.06-3.16.96-4.2 2.12-.94 1.02-1.75 2.6-1.54 4.03 1.6.12 3.24-.8 4.26-1.95Zm3.58 7.28c-.03-3.08 2.51-4.57 2.63-4.64-1.44-2.1-3.68-2.39-4.47-2.42-1.9-.19-3.72 1.13-4.68 1.13-.96 0-2.45-1.1-4.02-1.07-2.07.03-3.97 1.2-5.03 3.05-2.15 3.72-.55 9.23 1.54 12.25 1.02 1.48 2.24 3.14 3.84 3.08 1.54-.06 2.12-.99 3.98-.99 1.86 0 2.38.99 4.01.96 1.66-.03 2.71-1.5 3.72-2.98 1.17-1.71 1.65-3.36 1.68-3.45-.04-.02-3.2-1.23-3.2-4.92Z" transform="translate(166 151.5) scale(.58)"/>
+              </g>
+              <path class="feature-draw feature-ui-flow" style="--draw-delay:250ms" d="M28 104H69M62 97L70 104L62 111" pathLength="1"/>
+              <g class="feature-ui-local-badge">
+                <rect x="22" y="73" width="41" height="22" rx="6"/>
+                <circle class="feature-ui-dot is-green" cx="31" cy="84" r="2.5"/>
+                <text x="38" y="87">LOCAL</text>
+              </g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-journal" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">JOURNAL / 11</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="每天留下一次复盘" data-en="Build a daily review habit">每天留下一次复盘</h3>
+              <p data-zh="记录计划、执行、情绪和改进，并把当天的想法与交易记录放在一起。"
+                data-en="Keep plans, execution notes, emotions and improvements beside the day’s trades.">
+                记录计划、执行、情绪和改进，并把当天的想法与交易记录放在一起。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-journal" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="60" y="22" width="282" height="146" rx="12"/>
+              <path class="feature-ui-divider" d="M60 52H342M157 52V168"/>
+              <text class="feature-ui-label" x="74" y="42">DAILY REVIEW</text>
+              <rect class="feature-ui-chip" x="292" y="30" width="36" height="14" rx="7"/>
+              <text class="feature-ui-chip-text" x="301" y="40">DONE</text>
+              <rect class="feature-ui-file" x="75" y="66" width="67" height="82" rx="9"/>
+              <text class="feature-ui-kicker" x="91" y="84">JULY</text>
+              <text class="feature-ui-market-total" x="93" y="116">29</text>
+              <text class="feature-ui-muted-text" x="88" y="133">TUESDAY</text>
+              <circle class="feature-ui-dot is-green" cx="108.5" cy="143" r="3"/>
+              <g class="feature-ui-list">
+                <rect class="is-active" x="171" y="65" width="155" height="22" rx="5"/>
+                <circle class="feature-ui-dot is-green" cx="181" cy="76" r="2.5"/>
+                <text class="feature-ui-text is-bright" x="190" y="79">PLAN FOLLOWED</text>
+                <rect x="171" y="93" width="155" height="22" rx="5"/>
+                <circle class="feature-ui-dot is-blue" cx="181" cy="104" r="2.5"/>
+                <text class="feature-ui-text" x="190" y="107">EXECUTION  8 / 10</text>
+                <rect x="171" y="121" width="155" height="30" rx="5"/>
+                <text class="feature-ui-kicker" x="180" y="134">NEXT SESSION</text>
+                <path class="feature-ui-divider" d="M180 142H310"/>
+              </g>
+            </svg>
+          </article>
+
+          <article class="feature-card feature-card-third feature-card-mentor" data-reveal>
+            <div class="feature-card-top">
+              <span class="feature-card-code">MENTOR / 12</span>
+              <span class="feature-card-tag is-green">AI</span>
+            </div>
+            <div class="feature-card-content">
+              <h3 data-zh="让 AI 帮你找问题" data-en="Let AI surface the problems">让 AI 帮你找问题</h3>
+              <p data-zh="分析模拟交易、策略扫描和真实账单，找出执行偏差与值得继续验证的问题。"
+                data-en="Analyze simulations, strategy scans and live statements to surface execution gaps and new questions.">
+                分析模拟交易、策略扫描和真实账单，找出执行偏差与值得继续验证的问题。
+              </p>
+            </div>
+            <svg class="feature-art feature-art-mentor" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+              <rect class="feature-ui-panel" x="57" y="22" width="285" height="146" rx="12"/>
+              <path class="feature-ui-divider" d="M57 52H342M206 52V168"/>
+              <text class="feature-ui-label" x="71" y="42">MENTOR ANALYSIS</text>
+              <circle class="feature-ui-led is-green" cx="327" cy="38" r="3"/>
+              <rect class="feature-ui-file" x="72" y="66" width="119" height="84" rx="9"/>
+              <text class="feature-ui-kicker" x="84" y="82">REVIEW SCORE</text>
+              <circle class="feature-ui-ring-track" cx="111" cy="113" r="22"/>
+              <path class="feature-ui-ring-value" d="M111 91A22 22 0 1 1 93 126"/>
+              <text class="feature-ui-market-total" x="103" y="117">82</text>
+              <text class="feature-ui-positive" x="140" y="105">+ DISCIPLINE</text>
+              <text class="feature-ui-negative" x="140" y="122">− LATE EXIT</text>
+              <text class="feature-ui-muted-text" x="140" y="139">12 TRADES</text>
+              <g class="feature-ui-list">
+                <rect class="is-active" x="220" y="65" width="106" height="23" rx="5"/>
+                <circle class="feature-ui-dot is-green" cx="230" cy="76.5" r="2.5"/>
+                <text class="feature-ui-text is-bright" x="239" y="79">RISK CONSISTENT</text>
+                <rect x="220" y="94" width="106" height="23" rx="5"/>
+                <circle class="feature-ui-dot is-amber" cx="230" cy="105.5" r="2.5"/>
+                <text class="feature-ui-text" x="239" y="108">3 EXIT DEVIATIONS</text>
+                <rect x="220" y="123" width="106" height="28" rx="5"/>
+                <text class="feature-ui-kicker" x="230" y="136">NEXT TEST</text>
+                <text class="feature-ui-code-blue" x="230" y="146">M15 FILTER</text>
+              </g>
+            </svg>
+          </article>
         </div>
       </div>
     </section>
@@ -929,51 +1547,124 @@
       <div class="shell">
         <header class="section-heading section-heading-split" data-reveal>
           <div>
-            <p class="section-kicker" data-zh="购买与下载" data-en="BUY & DOWNLOAD">购买与下载</p>
-            <h2 id="purchase-title" data-zh="先下载，再决定是否升级" data-en="Download first. Upgrade when it fits.">先下载，再决定是否升级</h2>
+            <p class="section-kicker" data-zh="版本对比" data-en="FREE VS PRO">版本对比</p>
+            <h2 id="purchase-title" data-zh="免费开始，需要时再升级" data-en="Start free. Upgrade when you need more.">免费开始，需要时再升级</h2>
           </div>
-          <p data-zh="免费版无需注册账户。专业版为桌面端一次买断许可，国内通过淘宝购买，国际版将在 Whop 上线。"
-            data-en="The free edition needs no account. China Pro is a one-time licence; a 1-year international licence is coming to Whop.">
-            免费版无需注册账户。专业版为桌面端一次买断许可，国内通过淘宝购买，国际版将在 Whop 上线。
-          </p>
         </header>
 
-        <div class="commerce-grid">
-          <article class="commerce-card commerce-card-primary" data-reveal>
-            <p class="commerce-label" data-zh="中国区 · 已开放" data-en="CHINA · AVAILABLE">中国区 · 已开放</p>
-            <h3 data-zh="淘宝购买专业版" data-en="Buy Pro on Taobao">淘宝购买专业版</h3>
-            <p class="commerce-price"><strong data-zh="一次买断" data-en="One-time">一次买断</strong><span data-zh="最多 2 台设备" data-en="Up to 2 devices">最多 2 台设备</span></p>
-            <ul>
-              <li data-zh="完整历史、全品种与中国期货" data-en="Complete history, all instruments and Chinese futures">完整历史、全品种与中国期货</li>
-              <li data-zh="交易系统、信号导航与自动回测" data-en="Trading systems, signal navigation and backtests">交易系统、信号导航与自动回测</li>
-              <li data-zh="高级统计诊断与 Mentor AI" data-en="Advanced diagnostics and Mentor AI">高级统计诊断与 Mentor AI</li>
-            </ul>
-            <a class="button button-block" href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671" target="_blank" rel="noopener" data-zh="前往淘宝购买" data-en="Open Taobao">前往淘宝购买</a>
-          </article>
-
-          <article class="commerce-card" id="whop" data-reveal>
-            <p class="commerce-label" data-zh="国际版 · 准备中" data-en="INTERNATIONAL · COMING SOON">国际版 · 准备中</p>
-            <h3 data-zh="Whop 英文购买页" data-en="English checkout on Whop">Whop 英文购买页</h3>
-            <p class="commerce-price"><strong data-zh="待上线" data-en="Coming soon">待上线</strong><span data-zh="1 年授权 · 2 台设备" data-en="1 year · 2 devices">1 年授权 · 2 台设备</span></p>
-            <ul>
-              <li data-zh="完整英文官网与英文教程" data-en="Complete English website and guides">完整英文官网与英文教程</li>
-              <li data-zh="与国内专业版相同的核心能力" data-en="The same core capabilities as China Pro">与国内专业版相同的核心能力</li>
-              <li data-zh="价格与购买链接上线后公布" data-en="Price and checkout link will be published at launch">价格与购买链接上线后公布</li>
-            </ul>
-            <span class="button button-block button-disabled" aria-disabled="true" data-zh="Whop 即将上线" data-en="Whop coming soon">Whop 即将上线</span>
-          </article>
-        </div>
-
-        <div class="download-strip" id="download" data-reveal>
-          <div>
-            <p class="section-kicker">v1.52.0 · 2026-07-27</p>
-            <h3 data-zh="免费下载桌面版" data-en="Download the desktop app for free">免费下载桌面版</h3>
-            <p data-zh="核心数据库保存在你的电脑上。" data-en="Your core database stays on your computer.">核心数据库保存在你的电脑上。</p>
-          </div>
-          <div class="download-actions">
-            <a class="button" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-Setup.exe" data-zh="下载 Windows 版" data-en="Download for Windows">下载 Windows 版</a>
-            <a class="button button-secondary" href="https://dl.tradereplay.dev/TradeReplay-1.52.0-arm64.dmg" data-zh="下载 Mac 版" data-en="Download for Mac">下载 Mac 版</a>
-          </div>
+        <div class="comparison-table-wrap" data-reveal>
+          <table class="comparison-table">
+            <caption data-zh="TradeReplay 免费版与专业版功能比较" data-en="TradeReplay Free and Pro feature comparison">TradeReplay 免费版与专业版功能比较</caption>
+            <colgroup>
+              <col class="comparison-col-feature">
+              <col class="comparison-col-plan">
+              <col class="comparison-col-plan">
+            </colgroup>
+            <thead>
+              <tr>
+                <th class="comparison-feature-head" scope="col">
+                  <span class="commerce-label" data-zh="功能比较" data-en="FEATURES">功能比较</span>
+                  <strong data-zh="选择适合你的版本" data-en="Choose your edition">选择适合你的版本</strong>
+                </th>
+                <th class="comparison-plan-head comparison-plan-free" scope="col">
+                  <span class="commerce-plan-badge">FREE</span>
+                  <h3 data-zh="免费版" data-en="Free">免费版</h3>
+                </th>
+                <th class="comparison-plan-head comparison-plan-pro" id="whop" scope="col">
+                  <span class="commerce-plan-badge commerce-plan-badge-pro">PRO</span>
+                  <h3 data-zh="专业版" data-en="Pro">专业版</h3>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-zh="授权方式" data-en="License">授权方式</th>
+                <td><span class="comparison-value" data-zh="永久免费" data-en="Free forever">永久免费</span></td>
+                <td><span class="comparison-value is-pro" data-zh="一次买断" data-en="1-year license">一次买断</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="设备数量" data-en="Devices">设备数量</th>
+                <td><span class="comparison-value" data-zh="不限" data-en="Unlimited">不限</span></td>
+                <td><span class="comparison-value is-pro" data-zh="2 台" data-en="2 devices">2 台</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="模拟训练、账单导入与基础复盘" data-en="Practice, statement import and core review">模拟训练、账单导入与基础复盘</th>
+                <td><span class="comparison-status is-yes" role="img" aria-label="支持" data-aria-zh="支持" data-aria-en="Included"></span></td>
+                <td><span class="comparison-status is-yes" role="img" aria-label="支持" data-aria-zh="支持" data-aria-en="Included"></span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="交易系统数量" data-en="Trading systems">交易系统数量</th>
+                <td><span class="comparison-value">1</span></td>
+                <td><span class="comparison-value is-pro" data-zh="不限" data-en="Unlimited">不限</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="训练会话" data-en="Practice sessions">训练会话</th>
+                <td><span class="comparison-value" data-zh="2 个临时会话" data-en="2 temporary sessions">2 个临时会话</span></td>
+                <td><span class="comparison-value is-pro" data-zh="不限数量" data-en="Unlimited">不限数量</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="关闭软件后保存训练记录" data-en="Keep practice records after closing the app">关闭软件后保存训练记录</th>
+                <td><span class="comparison-status is-no" role="img" aria-label="不支持" data-aria-zh="不支持" data-aria-en="Not included"></span></td>
+                <td><span class="comparison-status is-yes" role="img" aria-label="支持" data-aria-zh="支持" data-aria-en="Included"></span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="行情品种与历史数据" data-en="Markets and historical data">行情品种与历史数据</th>
+                <td><span class="comparison-value" data-zh="5 个海外品种 + RB / AG · 近 1 年" data-en="5 core markets · 1-year history">5 个海外品种 + RB / AG · 近 1 年</span></td>
+                <td><span class="comparison-value is-pro" data-zh="全部品种 + 82 个国内期货 · 完整历史" data-en="All supported markets · Full history">全部品种 + 82 个国内期货 · 完整历史</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="真实账户" data-en="Live accounts">真实账户</th>
+                <td><span class="comparison-value">1</span></td>
+                <td><span class="comparison-value is-pro" data-zh="不限" data-en="Unlimited">不限</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="策略扫描与批量回测" data-en="Strategy scans and batch backtests">策略扫描与批量回测</th>
+                <td><span class="comparison-status is-no" role="img" aria-label="不支持" data-aria-zh="不支持" data-aria-en="Not included"></span></td>
+                <td><span class="comparison-status is-yes" role="img" aria-label="支持" data-aria-zh="支持" data-aria-en="Included"></span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="自定义指标" data-en="Custom indicators">自定义指标</th>
+                <td><span class="comparison-status is-no" role="img" aria-label="不支持" data-aria-zh="不支持" data-aria-en="Not included"></span></td>
+                <td><span class="comparison-status is-yes" role="img" aria-label="支持" data-aria-zh="支持" data-aria-en="Included"></span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-zh="完整统计诊断与 Mentor AI" data-en="Full diagnostics and Mentor AI">完整统计诊断与 Mentor AI</th>
+                <td><span class="comparison-status is-no" role="img" aria-label="不支持" data-aria-zh="不支持" data-aria-en="Not included"></span></td>
+                <td><span class="comparison-status is-yes" role="img" aria-label="支持" data-aria-zh="支持" data-aria-en="Included"></span></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="comparison-actions-row">
+                <th scope="row" data-zh="选择版本" data-en="Choose an edition">选择版本</th>
+                <td>
+                  <div class="comparison-action-wrap">
+                    <a class="button button-secondary button-block"
+                      href="download.html?lang=zh"
+                      data-href-zh="download.html?lang=zh"
+                      data-href-en="download.html?lang=en"
+                      data-zh="下载免费版"
+                      data-en="Download Free">下载免费版</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="comparison-action-wrap">
+                    <a class="button button-block" href="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"
+                      data-purchase-link
+                      data-href-zh="https://item.taobao.com/item.htm?ft=t&amp;id=1057429929671"
+                      data-href-en="https://whop.com/checkout/plan_olbLjPDDkUzDf">
+                      <img class="comparison-purchase-icon"
+                        src="assets/taobao-logo.png"
+                        width="20"
+                        height="20"
+                        alt=""
+                        aria-hidden="true">
+                      <span data-zh="购买专业版" data-en="Buy Pro on Whop">购买专业版</span>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
     </section>
@@ -981,17 +1672,21 @@
     <section class="guides section" id="guides" aria-labelledby="guides-title">
       <div class="shell">
         <header class="section-heading" data-reveal>
-          <p class="section-kicker" data-zh="教程与售后" data-en="GUIDES & SUPPORT">教程与售后</p>
-          <h2 id="guides-title" data-zh="遇到问题，有清晰入口" data-en="Clear help when you need it">遇到问题，有清晰入口</h2>
-          <p data-zh="从下载安装到定制系统、回测与 Mentor AI，按步骤上手；购买后可加入售后群。"
-            data-en="Follow step-by-step guides from installation to systems, backtests and Mentor AI. After purchase, join the support community.">
-            从下载安装到定制系统、回测与 Mentor AI，按步骤上手；购买后可加入售后群。
-          </p>
+          <h2 id="guides-title" data-zh="教程与售后" data-en="Guides & Support">教程与售后</h2>
         </header>
 
         <div class="support-grid">
           <a class="support-card" href="guide.html" data-reveal>
             <span class="support-index">01</span>
+            <span class="support-brand-icon support-brand-guide" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 7v14M3 18a1 1 0 0 1-1-1V5a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v15a3 3 0 0 0-3-3H3Zm18 0a1 1 0 0 0 1-1V5a2 2 0 0 0-2-2h-5a3 3 0 0 0-3 3v15a3 3 0 0 1 3-3h6Z"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+              </svg>
+            </span>
             <h3 data-zh="详细软件教程" data-en="Detailed software guide">详细软件教程</h3>
             <p data-zh="安装、激活、行情、训练、账单导入、统计、回测与 AI。"
               data-en="Installation, activation, data, practice, imports, diagnostics, backtests and AI.">
@@ -1000,24 +1695,40 @@
             <b data-zh="打开使用说明" data-en="Open the guide">打开使用说明</b>
           </a>
 
-          <a class="support-card" href="https://qm.qq.com/q/xxGMPN3N2E" target="_blank" rel="noopener" data-reveal>
+          <a class="support-card support-card-social" href="https://qm.qq.com/q/xxGMPN3N2E" target="_blank" rel="noopener" data-reveal>
             <span class="support-index">02</span>
+            <span class="support-brand-icon support-brand-qq" aria-hidden="true">
+              <img src="assets/support/qq-official.png" width="256" height="256" alt="">
+            </span>
             <h3 data-zh="QQ 售后群" data-en="QQ support group">QQ 售后群</h3>
-            <p data-zh="群号 559076777，适合安装、激活与使用问题交流。"
-              data-en="Group 559076777 for installation, activation and product questions.">
-              群号 559076777，适合安装、激活与使用问题交流。
+            <p data-zh="群号 559076777"
+              data-en="Group 559076777">
+              群号 559076777
             </p>
-            <b data-zh="加入 QQ 群" data-en="Join the QQ group">加入 QQ 群</b>
+            <img class="support-qr support-qr-qq"
+              src="assets/support/qq-group-qr.jpg"
+              width="980"
+              height="980"
+              alt="QQ 售后群二维码">
+            <b data-zh="加入Q群" data-en="Join QQ group">加入Q群</b>
           </a>
 
-          <a class="support-card" href="support.html" data-reveal>
+          <a class="support-card support-card-social" href="support.html" data-reveal>
             <span class="support-index">03</span>
+            <span class="support-brand-icon support-brand-wecom" aria-hidden="true">
+              <img src="assets/support/wecom-official.png" width="256" height="256" alt="">
+            </span>
             <h3 data-zh="企业微信售后群" data-en="WeCom support group">企业微信售后群</h3>
-            <p data-zh="购买后通过企业微信群获得持续答疑与版本通知。"
-              data-en="Customers can join the WeCom group for ongoing support and release updates.">
-              购买后通过企业微信群获得持续答疑与版本通知。
+            <p data-zh="企业微信扫码加入"
+              data-en="Scan with WeCom to join">
+              企业微信扫码加入
             </p>
-            <b data-zh="查看入群方式" data-en="See how to join">查看入群方式</b>
+            <img class="support-qr support-qr-wecom"
+              src="assets/support/wecom-group-qr.jpg"
+              width="640"
+              height="640"
+              alt="企业微信售后群二维码">
+            <b data-zh="扫码加入" data-en="Scan to join">扫码加入</b>
           </a>
         </div>
       </div>
@@ -1032,7 +1743,12 @@
           把规则写清楚，把决定放进 K 线，再让证据说话。
         </p>
         <div class="hero-actions">
-          <a class="button" href="#download" data-zh="免费下载" data-en="Download free">免费下载</a>
+          <a class="button"
+            href="download.html?lang=zh"
+            data-href-zh="download.html?lang=zh"
+            data-href-en="download.html?lang=en"
+            data-zh="免费下载"
+            data-en="Download free">免费下载</a>
           <a class="button button-secondary" href="guide.html" data-zh="查看教程" data-en="View guide">查看教程</a>
         </div>
       </div>
@@ -1056,25 +1772,45 @@
           <h2 data-zh="产品" data-en="Product">产品</h2>
           <a href="#modes" data-zh="三种模式" data-en="Three modes">三种模式</a>
           <a href="#capabilities" data-zh="核心能力" data-en="Capabilities">核心能力</a>
-          <a href="#pricing" data-zh="购买与下载" data-en="Buy & download">购买与下载</a>
+          <a href="#pricing" data-zh="版本对比" data-en="Free vs Pro">版本对比</a>
+          <a href="download.html?lang=zh"
+            data-href-zh="download.html?lang=zh"
+            data-href-en="download.html?lang=en"
+            data-zh="下载软件"
+            data-en="Download">下载软件</a>
         </div>
         <div>
           <h2 data-zh="资源" data-en="Resources">资源</h2>
           <a href="guide.html" data-zh="使用说明" data-en="Guide">使用说明</a>
-          <a href="screenshots.html" data-zh="产品截图" data-en="Product screens">产品截图</a>
           <a href="changelog.html" data-zh="更新日志" data-en="Release notes">更新日志</a>
-          <a href="support.html" data-zh="支持" data-en="Support">支持</a>
+          <a href="support.html?lang=zh"
+            data-href-zh="support.html?lang=zh"
+            data-href-en="support.html?lang=en"
+            data-zh="支持"
+            data-en="Support">支持</a>
         </div>
         <div>
-          <h2 data-zh="条款" data-en="Legal">条款</h2>
-          <a href="privacy.html" data-zh="隐私政策" data-en="Privacy">隐私政策</a>
-          <a href="terms.html" data-zh="服务条款" data-en="Terms">服务条款</a>
+          <h2 data-zh="政策" data-en="Policies">政策</h2>
+          <a href="privacy.html?lang=zh"
+            data-href-zh="privacy.html?lang=zh"
+            data-href-en="privacy.html?lang=en"
+            data-zh="隐私政策"
+            data-en="Privacy">隐私政策</a>
+          <a href="terms.html?lang=zh"
+            data-href-zh="terms.html?lang=zh"
+            data-href-en="terms.html?lang=en"
+            data-zh="服务条款"
+            data-en="Terms">服务条款</a>
+          <a href="refund.html?lang=zh"
+            data-href-zh="refund.html?lang=zh"
+            data-href-en="refund.html?lang=en"
+            data-zh="退款政策"
+            data-en="Refunds">退款政策</a>
         </div>
       </div>
     </div>
     <div class="shell footer-bottom">
       <p>© <span data-year>2026</span> <span data-zh="格物工坊" data-en="GeWu Studio">格物工坊</span> · TradeReplay</p>
-      <p data-zh="Windows / Mac · 本地优先" data-en="Windows / Mac · Local-first">Windows / Mac · 本地优先</p>
     </div>
   </footer>
 </body>
