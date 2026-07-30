@@ -14,8 +14,8 @@
     },
     "primaryButton": {
       "label": {
-        "zh": "免费下载",
-        "en": "Download"
+        "zh": "客户端下载",
+        "en": "Download app"
       },
       "href": {
         "zh": "download.html?lang=zh",
@@ -240,8 +240,8 @@
       "en": "1-year license"
     },
     "purchaseLabel": {
-      "zh": "购买专业版",
-      "en": "Buy Pro on Whop"
+      "zh": "购买激活码",
+      "en": "Buy activation code"
     },
     "taobaoUrl": "https://item.taobao.com/item.htm?ft=t&id=1057429929671",
     "whopUrl": "https://whop.com/checkout/plan_olbLjPDDkUzDf"
