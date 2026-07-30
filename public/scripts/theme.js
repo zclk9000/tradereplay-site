@@ -67,7 +67,7 @@
     }
   }
 
-  const initialTheme = readQueryTheme() || readStoredTheme() || "light";
+  const initialTheme = readQueryTheme() || readStoredTheme() || "dark";
   applyTheme(initialTheme);
 
   function createThemeToggle() {
