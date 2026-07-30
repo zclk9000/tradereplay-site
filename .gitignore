@@ -3,9 +3,35 @@
 node_modules/
 _local/
 .playwright-mcp/
+.artifacts/
+.private/
+.worktrees/
+.cache/
+coverage/
+dist/
+test-results/
+playwright-report/
+*.log
+*.tmp
+*.swp
 
 # Local homepage source material. Production-ready derivatives live in public/assets/.
 iShot_*.png
 清单核对.mp4
 信号导航.mp4
 自动复盘.mp4
+
+# Root-level media and page dumps are always misplaced. Approved website
+# assets belong below public/assets/; raw source material belongs below _local/.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.gif
+/*.mp4
+/*.mov
+/*.html
+/tw-*
+/image-*
+/screenshot-*
+/audit/

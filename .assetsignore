@@ -1,9 +1,13 @@
 .git
 .github
 .wrangler
+.artifacts
+.private
+.worktrees
 .assetsignore
 .pages.yml
 wrangler.toml
+AGENTS.md
 README.md
 docs
 content

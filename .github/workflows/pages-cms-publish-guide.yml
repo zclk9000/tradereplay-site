@@ -24,6 +24,9 @@ jobs:
       - name: Check out selected branch
         uses: actions/checkout@v6
 
+      - name: Check repository hygiene
+        run: node scripts/check-repo-hygiene.mjs
+
       - name: Validate and build website content
         run: |
           node scripts/build-site-content.mjs
@@ -37,6 +40,9 @@ jobs:
 
       - name: Validate publication boundary and local links
         run: node scripts/validate-public-site.mjs
+
+      - name: Confirm generated files are committed
+        run: git diff --exit-code
 
       - name: Deploy current website to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3

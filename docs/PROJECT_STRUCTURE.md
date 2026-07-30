@@ -17,6 +17,8 @@
 | `scripts/` | 内容生成、数据检查和链接检查工具 | 否 |
 | `docs/` | 设计规范、开发说明、帮助中心说明和本索引 | 否 |
 | `_local/` | 原始截图、源视频和本地设计材料；Git 已忽略 | 否 |
+| `.artifacts/` | AI 截图、浏览器快照、审计和临时渲染；Git 已忽略 | 否 |
+| `.private/` | 账号截图、密钥和商业敏感资料的临时隔离区；Git 已忽略 | 否 |
 | `.github/workflows/` | Pages CMS 正式发布流程 | 否 |
 | `.pages.yml` | Pages CMS 字段、媒体库和发布按钮配置 | 否 |
 | `wrangler.toml` | Cloudflare Workers 配置；发布目录固定为 `public/` | 否 |
@@ -82,5 +84,11 @@
 2. 新样式和浏览器脚本分别放入 `public/styles/`、`public/scripts/`。
 3. 新图片先判断用途，再进入 `public/assets/` 对应分类；原始大文件留在 `_local/`。
 4. 教程上传媒体只放 `public/guide-assets/`，不要改变其公开 URL。
-5. 发布前依次运行 README 中的五项生成与校验命令。
-6. 不从其他任务单独提交或部署；正式发布统一走 Pages CMS 工作流。
+5. AI 截图、页面镜像、审计输出和渲染中间文件统一写入
+   `.artifacts/<日期>/<任务>/`，不得散落到根目录或 `public/`。
+6. 账号截图、密钥和敏感商业资料只临时放在 `.private/`，不得进入 Git。
+7. 新任务使用
+   `/Users/charlie/ClaudeCode/TradeReplay/.worktrees/<site-task>/` 下的独立
+   worktree，不在 `ClaudeCode/` 根部创建官网副本、预览副本或备份副本。
+8. 发布前依次运行 README 中的生成与校验命令，并确认生成文件无漂移。
+9. 不从其他任务单独提交或部署；正式发布统一走 Pages CMS 工作流。

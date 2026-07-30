@@ -12,6 +12,11 @@ Do not place website source in the TradeReplay application repository. Prototype
 folders, audit output, raw recordings and temporary screenshots are not
 production assets.
 
+Every AI or development task must read the repository-root `AGENTS.md` before
+changing files. New tasks use isolated Git worktrees below
+`/Users/charlie/ClaudeCode/TradeReplay/.worktrees/`; do not create peer copies
+of this repository beside the canonical checkout.
+
 ## Homepage architecture
 
 The homepage is deliberately dependency-free:
@@ -115,15 +120,18 @@ deployments update the existing Worker without requiring zone-route permissions.
 
 Before committing:
 
-1. Serve `public/` over HTTP; do not validate with `file://`.
-2. Check Chinese and English content.
-3. Check widths near 1440, 1024, 768 and 390 px.
-4. Play all three videos with audio and seek across each annotation trigger.
-5. Verify Windows and Mac download URLs.
-6. Verify guide, screenshots, changelog, privacy, terms and support links.
-7. Confirm there are no missing local assets or console errors.
-8. Run `node scripts/validate-public-site.mjs`.
-9. Stage only production files—never `_local/`, raw recordings, temporary
+1. Run `node scripts/check-repo-hygiene.mjs`.
+2. Serve `public/` over HTTP; do not validate with `file://`.
+3. Check Chinese and English content.
+4. Check widths near 1440, 1024, 768 and 390 px.
+5. Play all three videos with audio and seek across each annotation trigger.
+6. Verify Windows and Mac download URLs.
+7. Verify guide, screenshots, changelog, privacy, terms and support links.
+8. Confirm there are no missing local assets or console errors.
+9. Run the complete build and validation sequence from `README.md`.
+10. Confirm CI reports no generated-file drift; it rebuilds content and runs
+    `git diff --exit-code` against the committed output.
+11. Stage only production files—never `_local/`, raw recordings, temporary
    screenshots, audit folders or prototype directories.
 
 ## Deployment boundary

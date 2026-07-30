@@ -40,12 +40,18 @@ Mac App Store channel must not be restored.
 ## Validation
 
 ```bash
+node scripts/check-repo-hygiene.mjs
 node scripts/build-site-content.mjs
 node scripts/validate-site-content-bindings.mjs
 node scripts/validate-guide-content.mjs
 node scripts/build-guide-content.mjs
 node scripts/validate-public-site.mjs
 ```
+
+`check-repo-hygiene.mjs` rejects tracked caches, local/private folders,
+root-level page dumps and oversized files before they can reach a release.
+CI and the production publishing workflow rebuild generated content and require
+`git diff --exit-code`, so source and generated files must be committed together.
 
 ## Deployment
 
