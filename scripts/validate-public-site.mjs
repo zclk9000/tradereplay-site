@@ -6,6 +6,7 @@ const root = process.cwd();
 const publicRoot = path.join(root, "public");
 const errors = [];
 const checkedReferences = new Set();
+const dynamicRoutes = new Set(["/api/site-visits"]);
 const requiredPages = [
   "index.html",
   "download.html",
@@ -29,7 +30,10 @@ function report(condition, message) {
 }
 
 function isExternalOrDynamic(value) {
-  return /^(?:https?:|mailto:|tel:|data:|javascript:|\/\/|#|\?)/i.test(value);
+  return (
+    dynamicRoutes.has(value.split(/[?#]/, 1)[0]) ||
+    /^(?:https?:|mailto:|tel:|data:|javascript:|\/\/|#|\?)/i.test(value)
+  );
 }
 
 function checkReference(sourcePath, rawValue) {

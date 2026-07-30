@@ -97,8 +97,10 @@ channels.
 The public website uses the donation-supported GoatCounter service at
 `tradereplay.goatcounter.com`. `public/scripts/site-analytics.js` loads its
 cookie-free tracking script only on the production hostname. The homepage footer
-reads the public `TOTAL` counter and falls back to an em dash when the analytics
-service or a privacy extension blocks the request.
+reads `/api/site-visits`, a same-origin, read-only proxy implemented by
+`worker/index.mjs`, and falls back to an em dash when the analytics service is
+unavailable. Privacy extensions can still block the third-party tracking script
+without breaking the public aggregate count.
 
 The GoatCounter setting “Allow adding visitor counts on your website” must
 remain enabled for the public footer count. Localhost previews are never sent to

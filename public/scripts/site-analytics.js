@@ -26,9 +26,8 @@
 
   if (!counterValue) return;
 
-  fetch("https://tradereplay.goatcounter.com/counter/TOTAL.json", {
+  fetch("/api/site-visits", {
     cache: "no-store",
-    mode: "cors",
   })
     .then((response) => {
       if (response.status === 404) return { count: "0" };
