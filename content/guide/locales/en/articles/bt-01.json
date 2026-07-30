@@ -1,0 +1,39 @@
+{
+  "id": "bt-01",
+  "code": "BT-01",
+  "title": "Run your first strategy backtest",
+  "summary": "Select a strategy, market data, timeframe, dates, and capital, then run and review the result.",
+  "time": "14 min",
+  "level": "Advanced",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["backtest", "strategy", "TDX", "equity curve"],
+  "outcome": "You will choose a strategy, market data, timeframe, and cost assumptions, run a backtest, and open its read-only result for review.",
+  "before": [
+    "Prepare market data that covers the backtest period.",
+    "Save an executable backtest strategy expression.",
+    "Prepare initial capital and cost assumptions that match the target market."
+  ],
+  "sections": [
+    {"id": "strategy", "title": "1. Select and save the strategy", "body": "<p>Go to <strong>Strategy → Backtest</strong> and select a saved strategy. Resolve expression and compatibility errors before running it. Unsaved temporary changes should not be used as a formal comparison baseline.</p>"},
+    {"id": "data-range", "title": "2. Set the data, timeframe, and dates", "body": "<p>Select the instrument data and strategy timeframe. Confirm that the start and end dates fall within the available range. The result archive locks the timeframe and parameters used for this run.</p>"},
+    {"id": "capital-costs", "title": "3. Set capital and costs", "body": "<p>Enter the initial capital, sizing method, spread, commission, slippage, or applicable futures costs. Ignoring costs can severely distort a high-frequency strategy.</p>"},
+    {"id": "run", "title": "4. Run the test and check the summary", "body": "<p>Submit the backtest and wait for it to finish. Review the trade count, net P&amp;L, drawdown, and equity curve first, then check for no-trade results, insufficient data, or parameter errors.</p>"},
+    {
+      "id": "review",
+      "title": "5. Open the read-only review",
+      "body": "<p>A backtest creates a read-only result archive. You can review it through Accounts, History, Statistics, and the review map, but you cannot place manual orders in that result.</p>",
+      "callout": {"tone": "warning", "title": "A backtest helps reject weak ideas; it does not guarantee future returns", "body": "<p>Validate the result on out-of-sample data and review trade count, cost sensitivity, and maximum drawdown.</p>"}
+    }
+  ],
+  "success": [
+    "The backtest completes over the selected dates and timeframe.",
+    "The result shows trades, an equity curve, and core statistics.",
+    "A read-only backtest archive appears on the Accounts page."
+  ],
+  "faq": [
+    {"q": "Why did the backtest produce no trades?", "a": "<p>Check the strategy conditions, dates, timeframe, data completeness, and parameters. Use a deliberately looser test condition first to confirm the expression can trigger.</p>"},
+    {"q": "Why can’t I place more orders in a backtest result?", "a": "<p>Backtest archives are for read-only review. Create a practice session with the same market data for manual training.</p>"},
+    {"q": "Why does changing the timeframe change the result so much?", "a": "<p>The timeframe changes signals, intrabar paths, and sample size. Keep other parameters constant when comparing, and confirm that the strategy was designed for that timeframe.</p>"}
+  ]
+}

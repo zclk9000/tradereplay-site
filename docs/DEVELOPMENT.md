@@ -122,7 +122,9 @@ Before committing:
 
 1. Run `node scripts/check-repo-hygiene.mjs`.
 2. Serve `public/` over HTTP; do not validate with `file://`.
-3. Check Chinese and English content.
+3. Check Chinese and English content, including `guide.html?lang=zh` and
+   `guide.html?lang=en`; guide language switches must preserve the current
+   category or article.
 4. Check widths near 1440, 1024, 768 and 390 px.
 5. Play all three videos with audio and seek across each annotation trigger.
 6. Verify Windows and Mac download URLs.

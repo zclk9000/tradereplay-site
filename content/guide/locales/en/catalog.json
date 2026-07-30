@@ -1,0 +1,71 @@
+{
+  "language": "en",
+  "categories": [
+    {
+      "id": "quick-start",
+      "title": "Quick start",
+      "short": "Quick start",
+      "description": "Install TradeReplay, complete the initial setup, and run your first replay session."
+    },
+    {
+      "id": "data-sessions",
+      "title": "Market data and replay sessions",
+      "short": "Data & sessions",
+      "description": "Download bar and tick data, import CSV files, and create or manage replay sessions."
+    },
+    {
+      "id": "chart-replay",
+      "title": "Charts, replay, and review map",
+      "short": "Charts & replay",
+      "description": "Use timeframes, multi-chart layouts, replay modes, indicators, drawings, and the review map."
+    },
+    {
+      "id": "trading-risk",
+      "title": "Orders, positions, and risk",
+      "short": "Trading & risk",
+      "description": "Set position size, stops, targets, pending orders, fees, margin, and liquidation rules."
+    },
+    {
+      "id": "review-journal",
+      "title": "Trade history, notes, and journal",
+      "short": "Review & journal",
+      "description": "Find trades, add reasons and tags, save chart captures, and complete daily reviews."
+    },
+    {
+      "id": "account-import",
+      "title": "Live accounts and statement imports",
+      "short": "Statement imports",
+      "description": "Import MT4, MT5, and CFMMC statements, match market data, and manage live accounts."
+    },
+    {
+      "id": "statistics",
+      "title": "Statistics and trading diagnostics",
+      "short": "Statistics",
+      "description": "Understand net P&L, drawdown, MAE/MFE, behavior patterns, and AI-assisted diagnostics."
+    },
+    {
+      "id": "strategy-backtest",
+      "title": "Indicators, trading systems, and backtests",
+      "short": "Systems & backtests",
+      "description": "Use indicators, build trading systems, navigate signals, and validate rules with TDX backtests."
+    },
+    {
+      "id": "mentor-achievements",
+      "title": "Mentor AI and achievements",
+      "short": "Mentor AI",
+      "description": "Connect your own AI service and generate reviews, trading insights, and strategy drafts."
+    },
+    {
+      "id": "settings-security",
+      "title": "Settings, licensing, and data safety",
+      "short": "Settings & safety",
+      "description": "Manage display options, shortcuts, licensing, updates, the library, and S3 backups."
+    },
+    {
+      "id": "troubleshooting",
+      "title": "Troubleshooting and glossary",
+      "short": "Troubleshooting",
+      "description": "Find solutions by error message and understand trading, futures, and statistics terminology."
+    }
+  ]
+}

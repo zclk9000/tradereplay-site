@@ -1,0 +1,39 @@
+{
+  "id": "st-01",
+  "code": "ST-01",
+  "title": "Read the statistics overview and insights dashboard",
+  "summary": "Understand net profit and loss, win rate, payoff ratio, Profit Factor, expectancy, and maximum drawdown.",
+  "time": "12 min",
+  "level": "Advanced",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["statistics", "win rate", "payoff ratio", "Profit Factor", "maximum drawdown", "expectancy"],
+  "outcome": "You will interpret six core overview metrics correctly and avoid drawing strong conclusions from an inadequate sample.",
+  "before": [
+    "Select an account or replay session containing closed trades.",
+    "Confirm that trades, fees, and the account currency are correct.",
+    "Use the same filters when comparing results."
+  ],
+  "sections": [
+    {"id": "scope", "title": "1. Check the scope and insights first", "body": "<p>Go to <strong>Review → Statistics</strong> and confirm the account, dates, instruments, and systems in the filters. The insights dashboard summarizes strengths, risks, and behaviors in the current sample. Its conclusions apply only to the active filters.</p>"},
+    {"id": "return", "title": "2. Net P&L, win rate, and payoff ratio", "body": "<p><strong>Net P&amp;L</strong> is the result after fees, swaps, and other costs. <strong>Win rate</strong> is the share of closed trades that made money. The <strong>payoff ratio</strong> compares the absolute average win with the absolute average loss.</p><p>A high win rate does not guarantee profit. A lower-win-rate approach can still produce a positive result when its average win is sufficiently large.</p>"},
+    {"id": "edge", "title": "3. Profit Factor and expectancy", "body": "<p><strong>Profit Factor</strong> = gross profit ÷ absolute gross loss. It shows how well profits cover losses. <strong>Expectancy</strong> is the average net result per trade. Always read both together with the trade count and time range.</p>"},
+    {"id": "drawdown", "title": "4. Maximum drawdown", "body": "<p>Maximum drawdown is the largest decline in the equity curve from a previous peak to a later low. It represents the decline you might actually experience during a strategy, not the single largest losing trade.</p>"},
+    {
+      "id": "workflow",
+      "title": "5. Move from overview to diagnosis",
+      "body": "<p>Start with the net result and drawdown. Then check whether win rate, payoff ratio, Profit Factor, and expectancy support the same conclusion. Finally, use behavior and distribution pages to locate the source, such as an instrument, session, direction, or tag.</p>",
+      "callout": {"tone": "warning", "title": "Do not rank very small samples", "body": "<p>One or two trades can make a ratio extreme. Collect a useful sample under the same rules before comparing versions or strategies.</p>"}
+    }
+  ],
+  "success": [
+    "You can explain the question answered by each of the six metrics.",
+    "The statistical scope matches the account and dates you intend to analyze.",
+    "You can continue from the overview to instrument, session, or behavior distributions to investigate a cause."
+  ],
+  "faq": [
+    {"q": "Why is Profit Factor extremely large or unavailable?", "a": "<p>When gross loss is very small or zero, the denominator makes the ratio extreme or undefined. Read it together with the trade count and actual amounts.</p>"},
+    {"q": "Why is expectancy low when net P&L is positive?", "a": "<p>A small number of large trades may account for the total profit. Averaged across every trade, the result can still be modest. Check the distribution and outliers.</p>"},
+    {"q": "Why is maximum drawdown different from the largest losing trade?", "a": "<p>Drawdown measures the cumulative decline from an equity peak to a later low, which can be caused by several consecutive losses.</p>"}
+  ]
+}

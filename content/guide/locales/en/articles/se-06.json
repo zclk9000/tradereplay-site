@@ -1,0 +1,58 @@
+{
+  "id": "se-06",
+  "code": "SE-06",
+  "title": "Move the complete library to a new location",
+  "summary": "Safely migrate the database, market data, and local backups, then verify integrity.",
+  "time": "10 min",
+  "level": "Data safety",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["library", "move", "migration", "drive", "database", "backup"],
+  "outcome": "Your trade records, market data, review notes, and local backups will move together to another local drive or external drive.",
+  "before": [
+    "Stop active downloads, CSV imports, backtests, and cloud backups.",
+    "Choose an empty destination folder with enough free space.",
+    "Do not use an iCloud, OneDrive, Dropbox, or other third-party sync folder as a live library."
+  ],
+  "sections": [
+    {
+      "id": "check-size",
+      "title": "1. Check the current library",
+      "media": {"label": "Current library location and size under Settings → Data", "alt": "TradeReplay Data settings showing the current library path and the sizes of its database, market data, and backups"},
+      "body": "<p>Open <strong>Settings → Data</strong>. In Complete library, review the current path and the space used by the database, market data, and local backups.</p><p>The destination drive should have substantially more free space than the current total size.</p>"
+    },
+    {
+      "id": "choose-location",
+      "title": "2. Choose a new location",
+      "body": "<p>Select Change location and choose an empty folder. Migration copies the complete library, not only the database file.</p><p>If the destination already contains a TradeReplay library, use Open existing library instead of overwriting it with Change location.</p>",
+      "callout": {"tone": "warning", "title": "Do not move only tradereplay.db by hand", "body": "<p>Market data and local backups are part of the library too. Moving only the database can leave external references behind or make chart review lose its data.</p>"}
+    },
+    {
+      "id": "wait",
+      "title": "3. Wait for copying and verification",
+      "media": {"label": "Complete-library migration progress", "alt": "Video showing the stages of a complete TradeReplay library migration"},
+      "body": "<p>Migration checks the library, copies the database, market data, and local backups, then verifies the new location. A large Tick dataset can take considerable time.</p><p>Do not quit TradeReplay, disconnect an external drive, or let the computer sleep before the app reports completion.</p>"
+    },
+    {
+      "id": "verify",
+      "title": "4. Verify the new library",
+      "bullets": [
+        "Open Settings again and confirm that the current path is the new location.",
+        "Open a practice session and check its chart and trades.",
+        "Open a live account and check its trades, cash flows, and journal.",
+        "Handle any files left in the old location only after every check passes."
+      ],
+      "callout": {"tone": "tip", "title": "For external-drive users", "body": "<p>Connect the drive before launching TradeReplay. Never disconnect the drive that contains the library while the app is running.</p>"}
+    }
+  ],
+  "success": [
+    "Settings shows the new library path.",
+    "Practice sessions, live accounts, journals, and market data all open normally.",
+    "TradeReplay still uses the new location after a restart."
+  ],
+  "faq": [
+    {"q": "Why can’t I select a folder that already contains files?", "a": "<p>Migration requires an empty folder to avoid overwriting or mixing data. If that folder is an existing library, use Open existing library.</p>"},
+    {"q": "Can I store the library on a NAS or synced drive?", "a": "<p>It is not recommended. A live database needs a stable local file system. You can use an external drive; for remote protection, use TradeReplay’s S3 cloud backup.</p>"},
+    {"q": "What should I do if migration is interrupted?", "a": "<p>Do not combine the two locations manually. Reopen and verify the original library, then migrate again to a new empty folder.</p>"}
+  ]
+}

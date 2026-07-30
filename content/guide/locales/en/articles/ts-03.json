@@ -1,0 +1,38 @@
+{
+  "id": "ts-03",
+  "code": "TS-03",
+  "title": "Chart time differs from statement time by several hours",
+  "summary": "Distinguish broker time, the display time zone, daylight saving time, and underlying UTC data.",
+  "time": "9 min",
+  "level": "Troubleshooting",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["time zone", "statement time", "UTC", "daylight saving time"],
+  "outcome": "You will distinguish statement time, chart display time, and underlying UTC, then verify the offset with a known fill.",
+  "before": [
+    "Have an original fill with a clearly known time.",
+    "Record the time zone used by the broker server or report.",
+    "Do not hide an offset by manually editing fill times."
+  ],
+  "sections": [
+    {"id": "three-times", "title": "1. Distinguish the three time layers", "body": "<p>An original statement may use broker-server time. TradeReplay can store internal data in UTC, while charts display it in a selected time zone. The same instant can therefore show a different hour in each layer.</p>"},
+    {"id": "constant-or-seasonal", "title": "2. Identify a fixed or seasonal offset", "body": "<p>If the difference is the same throughout the year, the cause is usually the selected time zone. If it changes by one hour in only part of the year, daylight saving time is the likely cause.</p>"},
+    {"id": "configure", "title": "3. Adjust the display or import interpretation", "body": "<p>Choose the correct time-zone basis in data, import, or chart settings, then check again. Do not add or subtract hours in several places, because that applies the offset twice.</p>"},
+    {
+      "id": "verify",
+      "title": "4. Verify with a known event",
+      "body": "<p>Select a trade with a known entry time and check whether its entry marker appears on the correct bar. Then spot-check one trade on each side of a daylight-saving transition.</p>",
+      "callout": {"tone": "warning", "title": "Fix the time zone even when the price matches", "body": "<p>An incorrect time affects sessions, calendars, holding duration, and statistical grouping.</p>"}
+    }
+  ],
+  "success": [
+    "You can explain the source of statement time and display time.",
+    "A known trade marker appears near the correct bar.",
+    "Checks before and after a daylight-saving transition both pass."
+  ],
+  "faq": [
+    {"q": "Why is the difference always eight hours?", "a": "<p>A common cause is directly comparing UTC with China Standard Time. Confirm the report time zone and apply the conversion in only one place.</p>"},
+    {"q": "Why is the offset different in winter and summer?", "a": "<p>The broker server or exchange may observe daylight saving time. Use a regional time zone with daylight-saving rules rather than a fixed UTC offset.</p>"},
+    {"q": "Does the time zone change the fill price?", "a": "<p>It does not rewrite the original fill price, but it changes which chart bar the trade aligns with and how results are grouped by date or session.</p>"}
+  ]
+}

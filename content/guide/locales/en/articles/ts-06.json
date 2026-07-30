@@ -1,0 +1,39 @@
+{
+  "id": "ts-06",
+  "code": "TS-06",
+  "title": "Activation code is invalid, expired, or out of device slots",
+  "summary": "Check the email, whitespace, network, validity period, and old device slots.",
+  "time": "6 min",
+  "level": "Troubleshooting",
+  "tier": "License",
+  "platform": "macOS / Windows",
+  "keywords": ["invalid activation code", "expired", "device limit", "license"],
+  "outcome": "You will troubleshoot the email, activation code, network, validity period, and device allowance for each error type, then contact support safely if needed.",
+  "before": [
+    "Have the purchase email and complete activation code.",
+    "The computer is online and its system date and time are correct.",
+    "Never show the complete activation code in a public screenshot."
+  ],
+  "sections": [
+    {"id": "enter", "title": "1. Activate from Settings", "body": "<p>Go to <strong>Settings → License</strong> and enter the purchase email and activation code. Copying is recommended, but check for leading spaces, trailing spaces, line breaks, and easily confused characters after pasting.</p>"},
+    {"id": "invalid", "title": "2. Invalid code or email mismatch", "body": "<p>Confirm that the email matches the purchase, no code characters are missing, and you did not enter an order number as the activation code. If Invalid remains, keep the error text instead of trying repeatedly.</p>"},
+    {"id": "expired", "title": "3. Expired or revoked", "body": "<p>Check the license validity period and order status. After renewal or another purchase, use the corresponding new license details. A revoked code cannot be bypassed locally.</p>"},
+    {"id": "device-limit", "title": "4. All device slots are in use", "body": "<p>One license supports up to two devices. Deactivate or release an old device first, then activate the new computer. Contact support if the old device is unavailable.</p>"},
+    {
+      "id": "contact",
+      "title": "5. Contact support safely",
+      "body": "<p>Provide the purchase email, app version, operating system, and complete error message. Share only a masked fragment of the activation code when necessary. Never send a password or verification code.</p>",
+      "callout": {"tone": "security", "title": "Activation must reach the license service", "body": "<p>A proxy, firewall, incorrect system clock, or temporary network failure can prevent a valid license from being verified.</p>"}
+    }
+  ],
+  "success": [
+    "The License page shows the correct status and validity period.",
+    "You can identify whether the error is caused by input, validity, network, or the device allowance.",
+    "Any information shared externally has been masked."
+  ],
+  "faq": [
+    {"q": "Why are all device slots used after moving to a new computer?", "a": "<p>The old device still occupies a slot. Deactivate it first. If that is impossible, contact support to verify the purchase and release the old record.</p>"},
+    {"q": "Does reinstalling the operating system count as a new device?", "a": "<p>Device identification can change. If that triggers the limit, release the old record through device management.</p>"},
+    {"q": "Can I activate for the first time while offline?", "a": "<p>No. First activation and status verification require a connection to the license service.</p>"}
+  ]
+}

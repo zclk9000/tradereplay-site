@@ -1,0 +1,62 @@
+{
+  "id": "ch-04",
+  "code": "CH-04",
+  "title": "Use multi-chart layouts and synchronized viewing",
+  "summary": "View several timeframes in six layouts and control which chart is active.",
+  "time": "8 min",
+  "level": "Intermediate",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["multi-chart", "layout", "synchronize", "maximize"],
+  "outcome": "You will choose a multi-chart layout, assign timeframes to its charts, and review the same historical moment across them.",
+  "before": [
+    "Open a replay session or read-only review.",
+    "Choose a primary decision timeframe and supporting timeframes."
+  ],
+  "sections": [
+    {
+      "id": "layout",
+      "title": "1. Choose a layout",
+      "body": "<p>Select a single- or multi-chart arrangement from the layout menu. TradeReplay provides six common layouts. More charts leave less visible space for each chart.</p>"
+    },
+    {
+      "id": "configure",
+      "title": "2. Configure each chart",
+      "body": "<p>Select a chart to make it active, then set its timeframe, indicators, and drawings. Give every chart a clear role, such as higher-timeframe direction and lower-timeframe execution.</p>"
+    },
+    {
+      "id": "sync",
+      "title": "3. View charts in sync",
+      "body": "<p>With synchronized hover enabled, move the crosshair to align the same time across several timeframes. This helps you examine the context of a trade at different levels.</p><p>The replay session controls one historical time, so all charts update as the replay advances.</p>"
+    },
+    {
+      "id": "focus",
+      "title": "4. Maximize and restore",
+      "body": "<p>Temporarily maximize the active chart for detailed drawing or order entry. Restoring the layout does not discard the settings of the other charts.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Tools always apply to the active chart",
+        "body": "<p>Check the active border before changing a timeframe, adding an indicator, or drawing—especially when similar timeframes are side by side.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can switch between single- and multi-chart layouts.",
+    "Each chart has a clear timeframe role.",
+    "You can align the same moment with synchronized crosshairs."
+  ],
+  "faq": [
+    {
+      "q": "Why was an indicator added to the wrong chart?",
+      "a": "<p>Indicators are added to the active chart. Select the target chart before adding one.</p>"
+    },
+    {
+      "q": "Can multiple charts slow replay?",
+      "a": "<p>More charts and indicators require more computation. If replay becomes less responsive, reduce the chart count or temporarily remove unnecessary indicators.</p>"
+    },
+    {
+      "q": "Did maximizing remove the other charts?",
+      "a": "<p>No. They are temporarily hidden. Exit maximized view to restore the layout.</p>"
+    }
+  ]
+}

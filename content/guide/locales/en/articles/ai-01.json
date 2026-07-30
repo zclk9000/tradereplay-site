@@ -1,0 +1,38 @@
+{
+  "id": "ai-01",
+  "code": "AI-01",
+  "title": "Configure DeepSeek or OpenAI",
+  "summary": "Save an API key, choose a model, and test the connection.",
+  "time": "8 min",
+  "level": "Beginner",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["DeepSeek", "OpenAI", "API key", "model", "connection test"],
+  "outcome": "You will configure Mentor with your own DeepSeek or OpenAI API key, select a model, and complete a connection test.",
+  "before": [
+    "Create an API key with the chosen AI provider and confirm that the account is active.",
+    "API usage charges are billed directly by the provider.",
+    "Never expose a complete key in screenshots, chats, or support messages."
+  ],
+  "sections": [
+    {"id": "open-settings", "title": "1. Open Mentor AI settings", "body": "<p>Go to <strong>Settings → Mentor AI</strong> and choose DeepSeek or OpenAI. Keys from different providers are not interchangeable.</p>"},
+    {"id": "save-key", "title": "2. Save the API key", "body": "<p>Paste the complete key without leading or trailing spaces. It is saved in the operating system’s secure credential storage, not in tutorial content or on TradeReplay servers.</p>"},
+    {"id": "model", "title": "3. Choose a model", "body": "<p>Select one of the currently available models. Speed, reasoning ability, context, and price are determined by the provider. For the first test, you can choose a lower-cost general model.</p>"},
+    {
+      "id": "test",
+      "title": "4. Test the connection",
+      "body": "<p>Select Test connection. After it succeeds, save the settings and send a short question in Mentor. If it fails, check the key, provider balance, model access, network, and service status.</p>",
+      "callout": {"tone": "security", "title": "Revoke an accidentally exposed key immediately", "body": "<p>If a complete key appears in a screenshot or public location, revoke it in the provider console and create a new one.</p>"}
+    }
+  ],
+  "success": [
+    "The connection test succeeds.",
+    "Mentor returns a short answer.",
+    "No complete API key appears in screenshots or notes."
+  ],
+  "faq": [
+    {"q": "Does TradeReplay charge for API usage?", "a": "<p>When you bring your own key, the AI provider bills usage according to its own pricing and terms.</p>"},
+    {"q": "Why does the test fail even though the key is correct?", "a": "<p>Check provider balance, model access, regional or network restrictions, and whether whitespace was pasted with the key.</p>"},
+    {"q": "Why do I need to configure the key again on another computer?", "a": "<p>The key is stored in secure credentials on the current device. It is not copied to another computer with the ordinary library.</p>"}
+  ]
+}

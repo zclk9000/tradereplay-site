@@ -1,0 +1,62 @@
+{
+  "id": "ch-01",
+  "code": "CH-01",
+  "title": "Use play, pause, step forward, and rewind",
+  "summary": "Control replay speed and advance by tick, intrabar step, or complete bar.",
+  "time": "8 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["play", "pause", "step forward", "rewind", "speed"],
+  "outcome": "You will control automatic playback, step-by-step advancement, and rewind, and understand what one forward step means in each replay mode.",
+  "before": [
+    "Open a replay session.",
+    "Rewind is available only if it was allowed when the session was created."
+  ],
+  "sections": [
+    {
+      "id": "play-pause",
+      "title": "1. Play and pause",
+      "body": "<p>Select Play to advance continuously at the current speed. Select the same control again to pause. Pause before placing an order, changing protection, or writing notes so you do not miss the price.</p>"
+    },
+    {
+      "id": "speed",
+      "title": "2. Adjust replay speed",
+      "body": "<p>Use the slower and faster controls to change the interval between updates. Speed changes only the viewing pace, not the historical data.</p><p>Speed up while scanning structure, then slow down or step manually near a planned entry area.</p>"
+    },
+    {
+      "id": "step",
+      "title": "3. Understand forward-step granularity",
+      "body": "<p>Forward follows the current replay mode. Open prices usually reveals one complete display-timeframe bar. Control points advances through a synthesized intrabar path. Real ticks advances through recorded quotes.</p><p>Use the next-complete-bar control when you want to move directly to the next full chart bar.</p>"
+    },
+    {
+      "id": "rewind",
+      "title": "4. Rewind and practice discipline",
+      "body": "<p>If rewind was enabled for the session, you can return to the previous step or complete bar. Rewind is useful for instruction and checking an operation, but not for redoing a decision after seeing the future.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Disabling rewind is closer to live decision-making",
+        "body": "<p>When practicing discipline, create a session with rewind disabled. You will not be able to use future information to revise the result.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can play, pause, and change speed at any time.",
+    "You can advance step by step in the current mode.",
+    "You know when to advance a complete bar and whether rewind is available."
+  ],
+  "faq": [
+    {
+      "q": "Why did one forward step reveal a complete bar?",
+      "a": "<p>You may be using Open prices or the next-complete-bar control. Switch to Control points or Real ticks for finer intrabar movement.</p>"
+    },
+    {
+      "q": "Why is rewind unavailable?",
+      "a": "<p>Rewind may have been disabled when the session was created, or you may already be at the earliest rewindable point.</p>"
+    },
+    {
+      "q": "Can high speed miss fills?",
+      "a": "<p>Historical matching still follows the replay data, but you may not have time to act manually. Slow down or pause near important levels.</p>"
+    }
+  ]
+}

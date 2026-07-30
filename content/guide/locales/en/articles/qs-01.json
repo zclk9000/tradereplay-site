@@ -1,0 +1,71 @@
+{
+  "id": "qs-01",
+  "code": "QS-01",
+  "title": "Install and open TradeReplay for the first time",
+  "summary": "Install the desktop app on macOS or Windows and prepare for the first launch.",
+  "time": "5 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["install", "download", "dmg", "exe", "first launch", "Windows", "Mac"],
+  "outcome": "You will install TradeReplay on your computer and reach the language and library setup screen.",
+  "before": [
+    "Download the installer for your computer from the TradeReplay website.",
+    "Windows uses the .exe installer; macOS uses the .dmg installer.",
+    "If you already have a TradeReplay library, confirm the location of its complete folder first."
+  ],
+  "sections": [
+    {
+      "id": "download",
+      "title": "1. Download the correct version",
+      "body": "<p>Choose Windows or macOS in the download section of the TradeReplay website. Do not obtain the installer from a third-party download site.</p><p>The macOS version is distributed as a DMG from the official website.</p>",
+      "media": {
+        "label": "Windows and macOS downloads on the TradeReplay website",
+        "alt": "TradeReplay download section with Windows and macOS options"
+      }
+    },
+    {
+      "id": "install",
+      "title": "2. Install the app",
+      "steps": [
+        {
+          "title": "Windows",
+          "body": "<p>Double-click the downloaded .exe file, follow the installer, and then open TradeReplay from the Start menu.</p>"
+        },
+        {
+          "title": "macOS",
+          "body": "<p>Open the .dmg file, drag TradeReplay into Applications, and then open it from the Applications folder.</p>"
+        }
+      ]
+    },
+    {
+      "id": "first-launch",
+      "title": "3. Complete the first launch",
+      "body": "<p>On the first launch, choose the interface language and confirm the library location. The library stores your trades, market data, review notes, and local backups.</p><p>Use a local disk or a reliably connected external disk. Do not keep an active library in a third-party sync folder.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Already have a library?",
+        "body": "<p>Choose <strong>Open existing library</strong>. Do not create a new library directly over the old folder.</p>"
+      },
+      "media": {
+        "label": "Language and library location on first launch",
+        "alt": "TradeReplay first-launch screen for language and library location"
+      }
+    }
+  ],
+  "success": [
+    "TradeReplay opens the main workspace without showing the initial setup again.",
+    "The top navigation shows Overview, Review, and Strategy.",
+    "Market Data, Mentor AI, Achievements, and Settings are available from the global tools."
+  ],
+  "faq": [
+    {
+      "q": "What if the operating system blocks the app on first launch?",
+      "a": "<p>Confirm that the installer came from tradereplay.dev, then follow the operating system's security prompt to allow it. Do not disable system-wide security protection.</p>"
+    },
+    {
+      "q": "Can I move the library later?",
+      "a": "<p>Yes. Use <strong>Settings → Data</strong> to move the complete library so the database, market data, and local backups are handled together.</p>"
+    }
+  ]
+}

@@ -10,16 +10,20 @@
   <meta property="og:description" content="按任务查找 TradeReplay 使用教程、功能说明和故障排查。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tradereplay.dev/guide">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="alternate" hreflang="zh-CN" href="https://tradereplay.dev/guide?lang=zh">
+  <link rel="alternate" hreflang="en" href="https://tradereplay.dev/guide?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://tradereplay.dev/guide">
   <link rel="icon" href="assets/brand/logo-dark.svg">
-  <script src="scripts/theme.js?v=20260730-dark1"></script>
+  <script src="scripts/theme.js?v=20260730-bilingual1"></script>
   <script src="scripts/site-analytics.js?v=20260730-1" defer></script>
-  <link rel="stylesheet" href="styles/guide.css?v=20260730-helpcenter3">
-  <link rel="stylesheet" href="styles/theme.css?v=20260730-light1">
-  <script src="scripts/guide-loader.js?v=20260729-public1" defer></script>
-  <script src="scripts/guide.js?v=20260730-helpcenter2" defer></script>
+  <link rel="stylesheet" href="styles/guide.css?v=20260730-bilingual1">
+  <link rel="stylesheet" href="styles/theme.css?v=20260730-bilingual1">
+  <script src="scripts/guide-loader.js?v=20260730-bilingual1" defer></script>
+  <script src="scripts/guide.js?v=20260730-bilingual1" defer></script>
 </head>
 <body class="hc-help-center">
-  <a class="hc-skip-link" href="#guide-main">跳到正文</a>
+  <a class="hc-skip-link" href="#guide-main" data-zh="跳到正文" data-en="Skip to main content">跳到正文</a>
   <div class="hc-reading-progress" aria-hidden="true">
     <span data-reading-progress></span>
   </div>
@@ -27,29 +31,59 @@
   <header class="hc-header" data-guide-header>
     <div class="hc-shell hc-header-inner">
       <div class="hc-brand-group">
-        <a class="hc-brand" href="/" aria-label="返回 TradeReplay 官网">
+        <a class="hc-brand" href="/?lang=zh"
+          data-href-zh="/?lang=zh"
+          data-href-en="/?lang=en"
+          aria-label="返回 TradeReplay 官网"
+          data-aria-zh="返回 TradeReplay 官网"
+          data-aria-en="Return to the TradeReplay website">
           <img src="assets/brand/logo-dark.svg" width="32" height="32" alt="">
           <span>TradeReplay</span>
         </a>
         <span class="hc-brand-divider" aria-hidden="true"></span>
-        <a class="hc-help-name" href="guide.html">帮助中心</a>
+        <a class="hc-help-name" href="guide.html?lang=zh"
+          data-href-zh="guide.html?lang=zh"
+          data-href-en="guide.html?lang=en"
+          data-zh="帮助中心"
+          data-en="Help Center">帮助中心</a>
       </div>
 
       <button class="hc-menu-button" type="button" aria-expanded="false" aria-controls="guide-navigation" data-guide-menu>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"></path>
         </svg>
-        <span>菜单</span>
+        <span data-zh="菜单" data-en="Menu">菜单</span>
       </button>
 
-      <nav class="hc-header-nav" id="guide-navigation" aria-label="帮助中心导航" data-guide-nav>
-        <a href="guide.html?category=quick-start">快速开始</a>
-        <a href="guide.html?category=account-import">账单导入</a>
-        <a href="guide.html?category=settings-security">授权与数据</a>
+      <nav class="hc-header-nav" id="guide-navigation"
+        aria-label="帮助中心导航"
+        data-aria-zh="帮助中心导航"
+        data-aria-en="Help Center navigation"
+        data-guide-nav>
+        <a href="guide.html?category=quick-start&amp;lang=zh"
+          data-href-zh="guide.html?category=quick-start&amp;lang=zh"
+          data-href-en="guide.html?category=quick-start&amp;lang=en"
+          data-zh="快速开始"
+          data-en="Quick start">快速开始</a>
+        <a href="guide.html?category=account-import&amp;lang=zh"
+          data-href-zh="guide.html?category=account-import&amp;lang=zh"
+          data-href-en="guide.html?category=account-import&amp;lang=en"
+          data-zh="账单导入"
+          data-en="Statement imports">账单导入</a>
+        <a href="guide.html?category=settings-security&amp;lang=zh"
+          data-href-zh="guide.html?category=settings-security&amp;lang=zh"
+          data-href-en="guide.html?category=settings-security&amp;lang=en"
+          data-zh="授权与数据"
+          data-en="License &amp; data">授权与数据</a>
       </nav>
 
       <div class="hc-header-actions">
-        <a class="hc-support-link" href="support.html">联系支持</a>
+        <button class="hc-language-toggle" type="button" data-language-switch aria-label="Switch to English">EN</button>
+        <a class="hc-support-link" href="support.html?lang=zh"
+          data-href-zh="support.html?lang=zh"
+          data-href-en="support.html?lang=en"
+          data-zh="联系支持"
+          data-en="Support">联系支持</a>
       </div>
     </div>
   </header>
@@ -57,13 +91,13 @@
   <main id="guide-main" tabindex="-1">
     <div class="hc-loading" data-guide-loading>
       <span></span>
-      <p>正在整理教程目录…</p>
+      <p data-zh="正在整理教程目录…" data-en="Loading the guide catalog…">正在整理教程目录…</p>
     </div>
     <div data-guide-view></div>
     <noscript>
       <section class="hc-noscript">
-        <h1>需要启用 JavaScript</h1>
-        <p>帮助中心使用 JavaScript 切换分类、文章和搜索结果。请启用后重新打开页面，或前往<a href="support.html">支持页面</a>联系我们。</p>
+        <h1>需要启用 JavaScript / JavaScript is required</h1>
+        <p>帮助中心使用 JavaScript 切换语言、分类、文章和搜索结果。The Help Center uses JavaScript for language, navigation, articles, and search. 请启用后重新打开页面，或前往<a href="support.html">支持页面 / Support</a>。</p>
       </section>
     </noscript>
   </main>
@@ -71,36 +105,38 @@
   <footer class="hc-footer">
     <div class="hc-shell hc-footer-grid">
       <div>
-        <a class="hc-brand hc-footer-brand" href="/">
+        <a class="hc-brand hc-footer-brand" href="/?lang=zh"
+          data-href-zh="/?lang=zh"
+          data-href-en="/?lang=en">
           <img src="assets/brand/logo-dark.svg" width="30" height="30" alt="">
           <span>TradeReplay</span>
         </a>
-        <p>用复盘打磨系统，用纪律兑现优势。</p>
+        <p data-zh="用复盘打磨系统，用纪律兑现优势。" data-en="Refine your system through replay. Turn your edge into disciplined execution.">用复盘打磨系统，用纪律兑现优势。</p>
       </div>
       <div class="hc-footer-links">
         <div>
-          <h2>帮助中心</h2>
-          <a href="guide.html?category=quick-start">快速开始</a>
-          <a href="guide.html?category=account-import">真实账单导入</a>
-          <a href="guide.html?category=settings-security">授权与数据安全</a>
+          <h2 data-zh="帮助中心" data-en="Help Center">帮助中心</h2>
+          <a href="guide.html?category=quick-start&amp;lang=zh" data-href-zh="guide.html?category=quick-start&amp;lang=zh" data-href-en="guide.html?category=quick-start&amp;lang=en" data-zh="快速开始" data-en="Quick start">快速开始</a>
+          <a href="guide.html?category=account-import&amp;lang=zh" data-href-zh="guide.html?category=account-import&amp;lang=zh" data-href-en="guide.html?category=account-import&amp;lang=en" data-zh="真实账单导入" data-en="Live statement imports">真实账单导入</a>
+          <a href="guide.html?category=settings-security&amp;lang=zh" data-href-zh="guide.html?category=settings-security&amp;lang=zh" data-href-en="guide.html?category=settings-security&amp;lang=en" data-zh="授权与数据安全" data-en="Licensing &amp; data safety">授权与数据安全</a>
         </div>
         <div>
-          <h2>软件</h2>
-          <a href="download.html">下载桌面版</a>
-          <a href="changelog.html">更新日志</a>
-          <a href="refund.html">退款政策</a>
+          <h2 data-zh="软件" data-en="Software">软件</h2>
+          <a href="download.html?lang=zh" data-href-zh="download.html?lang=zh" data-href-en="download.html?lang=en" data-zh="下载桌面版" data-en="Download desktop app">下载桌面版</a>
+          <a href="changelog.html?lang=zh" data-href-zh="changelog.html?lang=zh" data-href-en="changelog.html?lang=en" data-zh="更新日志" data-en="Changelog">更新日志</a>
+          <a href="refund.html?lang=zh" data-href-zh="refund.html?lang=zh" data-href-en="refund.html?lang=en" data-zh="退款政策" data-en="Refund policy">退款政策</a>
         </div>
         <div>
-          <h2>支持</h2>
-          <a href="support.html">联系支持</a>
-          <a href="privacy.html">隐私政策</a>
-          <a href="terms.html">使用条款</a>
+          <h2 data-zh="支持" data-en="Support">支持</h2>
+          <a href="support.html?lang=zh" data-href-zh="support.html?lang=zh" data-href-en="support.html?lang=en" data-zh="联系支持" data-en="Contact support">联系支持</a>
+          <a href="privacy.html?lang=zh" data-href-zh="privacy.html?lang=zh" data-href-en="privacy.html?lang=en" data-zh="隐私政策" data-en="Privacy policy">隐私政策</a>
+          <a href="terms.html?lang=zh" data-href-zh="terms.html?lang=zh" data-href-en="terms.html?lang=en" data-zh="使用条款" data-en="Terms of use">使用条款</a>
         </div>
       </div>
     </div>
     <div class="hc-shell hc-footer-bottom">
       <span>© 2026 TradeReplay</span>
-      <span>适用于官网直售 macOS 与 Windows 桌面版</span>
+      <span data-zh="适用于官网直售 macOS 与 Windows 桌面版" data-en="For the macOS and Windows desktop editions sold on the official website">适用于官网直售 macOS 与 Windows 桌面版</span>
     </div>
   </footer>
 
@@ -108,11 +144,11 @@
     <div class="hc-search-modal">
       <div class="hc-search-modal-head">
         <div>
-          <p>帮助中心搜索</p>
-          <h2 id="search-dialog-title">输入功能、问题或错误提示</h2>
+          <p data-zh="帮助中心搜索" data-en="Search Help Center">帮助中心搜索</p>
+          <h2 id="search-dialog-title" data-zh="输入功能、问题或错误提示" data-en="Enter a feature, problem, or error">输入功能、问题或错误提示</h2>
         </div>
         <form method="dialog">
-          <button class="hc-icon-button" type="submit" aria-label="关闭搜索">
+          <button class="hc-icon-button" type="submit" aria-label="关闭搜索" data-aria-zh="关闭搜索" data-aria-en="Close search">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m6 6 12 12M18 6 6 18"></path>
             </svg>
@@ -124,8 +160,13 @@
           <circle cx="11" cy="11" r="6.5"></circle>
           <path d="m16 16 4 4"></path>
         </svg>
-        <span class="hc-visually-hidden">搜索帮助文章</span>
-        <input type="search" placeholder="例如：CFMMC、止损、资料库、激活失败" autocomplete="off" data-modal-search>
+        <span class="hc-visually-hidden" data-zh="搜索帮助文章" data-en="Search help articles">搜索帮助文章</span>
+        <input type="search"
+          placeholder="例如：CFMMC、止损、资料库、激活失败"
+          data-placeholder-zh="例如：CFMMC、止损、资料库、激活失败"
+          data-placeholder-en="For example: CFMMC, stop loss, library, activation failed"
+          autocomplete="off"
+          data-modal-search>
         <kbd>ESC</kbd>
       </label>
       <div class="hc-search-results hc-search-results-modal" data-modal-results aria-live="polite"></div>

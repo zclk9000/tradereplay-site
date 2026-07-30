@@ -1,0 +1,39 @@
+{
+  "id": "ts-07",
+  "code": "TS-07",
+  "title": "Library cannot be opened, moved, or restored",
+  "summary": "Handle incomplete folders, newer library versions, synced drives, and integrity-check failures.",
+  "time": "10 min",
+  "level": "Troubleshooting",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["library will not open", "migration failed", "restore failed", "integrity"],
+  "outcome": "You will address an incorrect library path, failed migration, newer library version, or integrity failure without overwriting the original data.",
+  "before": [
+    "Quit TradeReplay and retain a complete copy of the affected library.",
+    "Check whether tradereplay.db exists in the library root.",
+    "Do not repeatedly move or overwrite the only copy."
+  ],
+  "sections": [
+    {"id": "root", "title": "1. Select the library root", "body": "<p>When opening an existing library, select the root folder containing tradereplay.db. Do not select the database file itself or a market-data or backup subfolder.</p>"},
+    {"id": "complete", "title": "2. Check that the folder is complete", "body": "<p>A library should remain together as a whole. Copying only the database, omitting supporting folders, disconnecting an external drive, or leaving cloud placeholders can all prevent opening or migration.</p>"},
+    {"id": "version-integrity", "title": "3. Respond to version and integrity messages", "body": "<p><strong>Library version is newer</strong> means the current app cannot safely read a library created by a later version. Update TradeReplay instead of forcing it open. If an integrity check fails, stop writing, retain the original, and restore from a verified backup first.</p>"},
+    {"id": "migration", "title": "4. Migrate correctly", "body": "<p>Use the in-app library migration feature and select a new empty folder. TradeReplay copies and verifies the database, market data, and backups before switching. Do not quit, put the computer to sleep, or disconnect the drive during migration.</p>"},
+    {
+      "id": "restore",
+      "title": "5. Restore from backup",
+      "body": "<p>Restore into a new empty folder first; do not overwrite the affected original. Open the restored copy and spot-check accounts, trades, notes, and market data. Replace the everyday library only after every check passes.</p>",
+      "callout": {"tone": "warning", "title": "A synced drive is not a library backup strategy", "body": "<p>Synchronizing an active database can create conflicts or incomplete files. For remote protection, use a backup flow supported by TradeReplay.</p>"}
+    }
+  ],
+  "success": [
+    "A complete copy of the affected original library still exists.",
+    "The new location is empty and migration verification passes.",
+    "Accounts, trades, notes, and market data have been spot-checked after recovery."
+  ],
+  "faq": [
+    {"q": "Can I drag tradereplay.db onto a new computer?", "a": "<p>Copying only one file is not recommended. A library also contains market data, backups, and related content. Move the complete library or use the in-app process.</p>"},
+    {"q": "Why can I see files in a synced drive but not open them?", "a": "<p>They may be cloud placeholders, or the database and supporting files may be at different versions. Download everything and copy it into a new local folder before verifying.</p>"},
+    {"q": "Can I keep importing after an integrity failure?", "a": "<p>No. Do not write more data to the affected library. Keep a copy, restore from a reliable backup, or contact support for assessment.</p>"}
+  ]
+}

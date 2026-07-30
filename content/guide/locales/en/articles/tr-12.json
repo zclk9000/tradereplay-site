@@ -1,0 +1,54 @@
+{
+  "id": "tr-12",
+  "code": "TR-12",
+  "title": "Understand margin, available funds, and maximum size",
+  "summary": "Understand equity, used margin, margin usage, and the maximum executable position size.",
+  "time": "10 min",
+  "level": "Futures",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["margin", "available funds", "maximum size", "equity"],
+  "outcome": "You will understand the relationship between equity, used margin, available funds, margin usage, and maximum order size.",
+  "before": [
+    "Confirm the contract multiplier and margin rate.",
+    "Set the account balance and currency.",
+    "Understand that unrealized P&L changes equity."
+  ],
+  "sections": [
+    {
+      "id": "terms",
+      "title": "1. Four core values",
+      "body": "<p><strong>Equity</strong> is balance plus unrealized P&L. <strong>Used margin</strong> is occupied by current positions. <strong>Available funds</strong> are the remaining capacity for risk or new positions. <strong>Margin usage</strong> shows occupied margin relative to equity.</p>"
+    },
+    {
+      "id": "per-lot",
+      "title": "2. Margin per contract",
+      "body": "<p>For futures with a fixed margin rate, margin per contract is normally estimated from price, contract multiplier, and margin rate. Price changes, contract rules, and account parameters affect the result.</p>"
+    },
+    {
+      "id": "max-volume",
+      "title": "3. Maximum order size",
+      "body": "<p>TradeReplay estimates the maximum new size from current equity, margin per contract, occupied size, and instrument limits, then applies the size step. As unrealized losses grow, the maximum declines.</p>"
+    },
+    {
+      "id": "risk",
+      "title": "4. Margin is not a stop loss",
+      "body": "<p>Margin determines whether a position can be held, not whether its risk is reasonable. Even if the system permits a large size, use stop distance and per-trade risk to limit the position first.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Simulated values depend on your configured rules",
+        "body": "<p>TradeReplay calculations support practice and backtesting; they do not replace a broker’s real-time risk controls. Use the live account for current margin rates, price limits, and temporary adjustments.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can explain the difference between balance and equity.",
+    "You can see how positions consume margin.",
+    "You do not treat maximum order size as a recommended position."
+  ],
+  "faq": [
+    {"q": "Why can’t I place an order even though the account has a balance?", "a": "<p>Available funds may be insufficient, or the order may exceed the allowed margin usage. Check unrealized loss, margin rate, and size.</p>"},
+    {"q": "Why does price change margin?", "a": "<p>When margin is based on contract value, price changes margin per contract; unrealized P&L also changes equity.</p>"},
+    {"q": "Why isn’t maximum size a whole number?", "a": "<p>Markets use different minimum sizes and steps. The final value is converted to a quantity the instrument can submit.</p>"}
+  ]
+}

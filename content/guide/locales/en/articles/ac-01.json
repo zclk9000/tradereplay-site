@@ -1,0 +1,53 @@
+{
+  "id": "ac-01",
+  "code": "AC-01",
+  "title": "Create and manage a live account",
+  "summary": "Set the account name, broker, currency, and custom identifier.",
+  "time": "6 min",
+  "level": "Beginner",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["live account", "broker", "currency", "account name"],
+  "outcome": "You will create a live account for statement imports and safely update its name, broker, and custom identifier.",
+  "before": [
+    "Have the account currency, platform, and broker name ready.",
+    "If you plan to import a statement, confirm the account number and currency in the report first."
+  ],
+  "sections": [
+    {
+      "id": "create",
+      "title": "1. Create a live account",
+      "body": "<p>Go to <strong>Review → Accounts</strong> and choose New live account. Enter a clear account name, platform or broker, currency, and custom identifier.</p>"
+    },
+    {
+      "id": "identity",
+      "title": "2. Add details you can recognize",
+      "body": "<p>The account name helps with everyday identification. The broker and identifier distinguish similar accounts. The currency determines how balances and statistics are displayed. Do not rely on the same nickname for several accounts.</p>"
+    },
+    {
+      "id": "manage",
+      "title": "3. Manage the account",
+      "body": "<p>Use the account menu to edit display details and review history, cash flows, and imports. Renaming an account does not change existing trades.</p>"
+    },
+    {
+      "id": "import",
+      "title": "4. Select the correct account during import",
+      "body": "<p>The import preview shows the detected account number and currency. Append data only when both belong to the same live account. Otherwise, create a new account.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Do not merge different account numbers or currencies",
+        "body": "<p>An incorrect merge distorts balances, cash flows, and statistics. Check the original report before importing.</p>"
+      }
+    }
+  ],
+  "success": [
+    "The new live account appears on the Accounts page.",
+    "Its currency, broker, and identifier match the original account.",
+    "Future imports clearly offer the correct choice between creating and appending."
+  ],
+  "faq": [
+    {"q": "Does the account name have to match the broker?", "a": "<p>No. It is your own display name, but including the broker and purpose makes the account easier to identify.</p>"},
+    {"q": "Can I freely change the currency after choosing the wrong one?", "a": "<p>Currency affects balances and statistics. Once trades exist, do not change it merely for display convenience. Verify the original account and, when necessary, import again into the correct account.</p>"},
+    {"q": "Is the custom identifier uploaded?", "a": "<p>Account details stay in your local library. Whether they are included in a backup depends on the backup settings you configure.</p>"}
+  ]
+}

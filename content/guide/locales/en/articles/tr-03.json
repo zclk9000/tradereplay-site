@@ -1,0 +1,53 @@
+{
+  "id": "tr-03",
+  "code": "TR-03",
+  "title": "Set and modify stop loss and take profit",
+  "summary": "Enter protection by points or price and modify it after the position opens.",
+  "time": "8 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["stop loss", "take profit", "points", "price"],
+  "outcome": "You will set and modify stops and targets before or after entry and identify invalid protection prices.",
+  "before": [
+    "Open a replay chart.",
+    "Know the instrument’s quote precision and minimum price increment."
+  ],
+  "sections": [
+    {
+      "id": "points-price",
+      "title": "1. Enter points or a price",
+      "body": "<p>Enter a distance in points or an exact target price. With points, TradeReplay converts the distance according to direction. With price, make sure it is on the correct side of entry.</p>"
+    },
+    {
+      "id": "direction",
+      "title": "2. Check the directional relationship",
+      "body": "<p>A long stop is normally below entry and its target above; a short position is the reverse. TradeReplay blocks submission or asks for correction if the direction is invalid, the level is too close, or precision is wrong.</p>"
+    },
+    {
+      "id": "modify",
+      "title": "3. Modify an open position",
+      "body": "<p>Choose Modify from the position panel or a protection line, enter the new value, and confirm. Verify the new stop or target in both the position panel and on the chart.</p>"
+    },
+    {
+      "id": "trigger",
+      "title": "4. Understand triggering",
+      "body": "<p>During replay, protection triggers according to the replay mode, Bid/Ask, spread, and instrument rules. Real ticks and synthesized control points can produce a different intrabar order.</p>",
+      "callout": {
+        "tone": "tip",
+        "title": "A stop defines invalidation; it is not an arbitrary cash button",
+        "body": "<p>Choose the stop from market structure first, then control the amount at risk with position sizing.</p>"
+      }
+    }
+  ],
+  "success": [
+    "Chart protection lines match the entered values.",
+    "Protection prices are on the correct side for the position.",
+    "The position panel shows the new stop or target after modification."
+  ],
+  "faq": [
+    {"q": "Why can’t I save the stop price?", "a": "<p>Check its direction, minimum distance, quote precision, and the current price. A stop cannot be placed on an invalid side.</p>"},
+    {"q": "What if the same bar touches both stop and target?", "a": "<p>The result depends on the intrabar order provided by the replay mode. Use finer data when the order matters, and keep the mode consistent in comparisons.</p>"},
+    {"q": "Why did percentage risk change after moving the stop?", "a": "<p>The position size is already fixed, so changing stop distance changes the remaining risk directly.</p>"}
+  ]
+}

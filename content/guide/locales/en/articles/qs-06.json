@@ -1,0 +1,68 @@
+{
+  "id": "qs-06",
+  "code": "QS-06",
+  "title": "What is the difference between Free and Pro?",
+  "summary": "Understand the limits for accounts, replay sessions, market data, backtests, AI, and cloud backups.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["Free", "Pro", "limits", "expiry", "instruments", "backtest", "AI"],
+  "outcome": "You will know what is available for free, when Pro is required, and what happens to existing data when Pro expires.",
+  "before": [
+    "This page applies to the TradeReplay desktop app for macOS and Windows.",
+    "Entitlements may change by version. The current in-app gates and official purchase page are authoritative."
+  ],
+  "sections": [
+    {
+      "id": "free",
+      "title": "What you can do with Free",
+      "bullets": [
+        "Create one live account and up to two temporary replay sessions per app launch.",
+        "Download the most recent year of data for EURUSD, GBPUSD, USDJPY, XAUUSD, and BTCUSD.",
+        "Use drawing tools, built-in indicators, tags, the calendar, objective statistics, and MAE/MFE.",
+        "Import CSV, MT4, MT5, or CFMMC statements into the first account.",
+        "Use your own API key for open-ended conversations with Mentor."
+      ]
+    },
+    {
+      "id": "pro",
+      "title": "What Pro unlocks",
+      "bullets": [
+        "Unlimited live accounts, persistent replay sessions, and custom trading systems.",
+        "All available market data, full history, and China futures data.",
+        "Backtests, custom indicator creation or copying, and S3 cloud backups.",
+        "Overview coaching, short AI statistics reviews and diagnostics, Mentor insights, and strategy generation."
+      ],
+      "media": {
+        "label": "Free and Pro entitlement information in TradeReplay",
+        "alt": "TradeReplay feature gate explaining Free and Pro access"
+      }
+    },
+    {
+      "id": "expiry",
+      "title": "What happens when Pro expires",
+      "body": "<p>Previously downloaded market data, existing accounts, strategies, and persistent replay sessions are not deleted.</p><p>New creation, download, and execution actions follow the Free limits after expiry. Check your license status before starting a long-running practice plan.</p>",
+      "callout": {
+        "tone": "note",
+        "title": "Your data remains yours",
+        "body": "<p>A license change does not automatically delete existing user data. For important records, keep an independent copy through library migration or S3 backup.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can decide whether your current task requires Pro.",
+    "You understand the lifecycle of a Free replay session.",
+    "You know that expiry does not automatically delete existing data."
+  ],
+  "faq": [
+    {
+      "q": "Can Free import live-account statements?",
+      "a": "<p>Yes. You can import CSV, MT4, MT5, or CFMMC statements into the first live account.</p>"
+    },
+    {
+      "q": "Why does open-ended Mentor chat still require an API key?",
+      "a": "<p>TradeReplay does not resell AI usage. Use your own DeepSeek or OpenAI API key and pay any usage charges directly to that provider.</p>"
+    }
+  ]
+}

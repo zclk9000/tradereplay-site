@@ -1,0 +1,62 @@
+{
+  "id": "qs-05",
+  "code": "QS-05",
+  "title": "What to review after your first session",
+  "summary": "Use History, Statistics, Journal, and session details to close the first review loop.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["after practice", "history", "statistics", "journal", "review"],
+  "outcome": "You will turn a practice session into verifiable trade records, a measured observation, and one action for the next session.",
+  "before": [
+    "Complete and close at least one practice trade.",
+    "Remember the name of the replay session."
+  ],
+  "sections": [
+    {
+      "id": "history",
+      "title": "1. Verify the facts in History",
+      "body": "<p>Open <strong>Review → History</strong> and select the replay session. Check the instrument, direction, open and close times, fill prices, size, fees, and net P&L.</p><p>If the factual data is wrong, fix the account settings or market data before interpreting statistics.</p>"
+    },
+    {
+      "id": "annotate",
+      "title": "2. Add the decision context",
+      "body": "<p>Open the trade details and record the trading system, entry reason, tags, and notes. Describe what was visible at the time, why you entered, and whether you followed the planned exit.</p>",
+      "callout": {
+        "tone": "tip",
+        "title": "Record the decision, not a story written afterward",
+        "body": "<p>“Price went up later” is not an entry reason. Use information that was available at the time, such as a breakout, pullback, volatility condition, or risk level.</p>"
+      }
+    },
+    {
+      "id": "statistics",
+      "title": "3. Then check Statistics",
+      "body": "<p>Open <strong>Review → Statistics</strong> and confirm that the trade is included in net P&L, win rate, and the equity curve. A small sample does not support conclusions; focus on whether the record is complete.</p>"
+    },
+    {
+      "id": "next-action",
+      "title": "4. Write one action you can execute next time",
+      "body": "<p>Choose only one improvement for the next session, such as “Set a stop before every order” or “Stop the session after two impulsive entries.” Add it to the trade notes or strategy journal.</p>"
+    }
+  ],
+  "success": [
+    "The History record matches what happened during the replay.",
+    "The trade has at least one reason, tag, or note.",
+    "You have written one specific rule to follow in the next session."
+  ],
+  "faq": [
+    {
+      "q": "Are win rate and Profit Factor meaningful after one trade?",
+      "a": "<p>No. A tiny sample is useful only for confirming the workflow and data. Compare results after the same rules have produced more trades.</p>"
+    },
+    {
+      "q": "Is every losing trade a bad trade?",
+      "a": "<p>No. A rule-following loss is a cost of the strategy. A profitable trade that broke the rules can be more important to review.</p>"
+    },
+    {
+      "q": "Should I edit the original trade during review?",
+      "a": "<p>Do not change factual records to improve the result. Add reasons, tags, and notes, then turn any problem into a rule for the next session.</p>"
+    }
+  ]
+}

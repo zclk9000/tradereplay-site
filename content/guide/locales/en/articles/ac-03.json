@@ -1,0 +1,84 @@
+{
+  "id": "ac-03",
+  "code": "AC-03",
+  "title": "Import CFMMC futures daily or monthly statements",
+  "summary": "Import several CFMMC files together and restore fills, cash flows, and positions carried between months.",
+  "time": "13 min",
+  "level": "China futures",
+  "tier": "First account free",
+  "platform": "macOS / Windows",
+  "keywords": ["CFMMC", "daily statement", "monthly statement", "futures", "carried position"],
+  "outcome": "You will review futures fills, fees, cash flows, and positions by trading day, and open chart review for matched contracts.",
+  "before": [
+    "Have the daily or monthly statement files obtained from China Futures Market Monitoring Center.",
+    "You can select several files at once. Keep their dates continuous where possible.",
+    "Reports can contain sensitive account information. Process them only on your own computer."
+  ],
+  "sections": [
+    {
+      "id": "get-files",
+      "title": "1. Prepare the CFMMC files",
+      "body": "<p>If the files are already on your computer, collect the daily or monthly reports you need. Do not manually change their worksheet structure.</p><p>You can also open the CFMMC download page from the online window in TradeReplay. Enter usernames, passwords, verification codes, and two-factor authentication yourself. The tutorial and the app do not record them.</p>",
+      "media": {
+        "label": "CFMMC import sources: local files and the online window",
+        "alt": "TradeReplay CFMMC import page with local-file and online access options"
+      },
+      "callout": {
+        "tone": "security",
+        "title": "Complete sensitive steps yourself",
+        "body": "<p>Never include passwords, verification codes, or identity details in tutorial screenshots or support requests.</p>"
+      }
+    },
+    {
+      "id": "select-files",
+      "title": "2. Select daily or monthly statements",
+      "steps": [
+        {"title": "Open account import", "body": "<p>Go to <strong>Review → Accounts → Import</strong> and choose CFMMC.</p>"},
+        {"title": "Select the files", "body": "<p>You can select several daily or monthly reports. TradeReplay parses and groups them by trading day.</p>"},
+        {"title": "Wait for every file", "body": "<p>Do not close the window while a larger batch is being processed. Wait until the file and trading-day counts in the preview stop changing.</p>"}
+      ],
+      "media": {
+        "label": "Select several CFMMC files and finish parsing",
+        "alt": "Video showing multiple CFMMC reports selected and parsed in TradeReplay"
+      }
+    },
+    {
+      "id": "preview",
+      "title": "3. Check the preview",
+      "media": {
+        "label": "CFMMC preview with trading days, fills, fees, positions, and cash flows",
+        "alt": "TradeReplay CFMMC import preview showing reports, trades, fees, open positions, and cash flows"
+      },
+      "body": "<p>Review the file count, trading days, fill count, realized profit and loss, fees, open positions, deposits, withdrawals, and credit entries.</p><p>When a monthly statement includes a position carried from the previous month, TradeReplay estimates its opening price from the available settlement and profit data. Gaps in dates or fields may require manual verification.</p>"
+    },
+    {
+      "id": "match-contracts",
+      "title": "4. Match futures-contract market data",
+      "body": "<p>TradeReplay prioritizes the specific delivery contract instead of substituting only a continuous contract. If local data is missing, follow the prompt to download the relevant contract.</p><p>A 9999 continuous contract is useful for continuous observation. For fill-by-fill statement review, use the specific contract that was actually traded whenever possible.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Do not identify a contract by its product name alone",
+        "body": "<p>Delivery months for the same product have different prices and liquidity. Positions carried across months require particular care.</p>"
+      }
+    },
+    {
+      "id": "finish",
+      "title": "5. Import and check the account",
+      "media": {
+        "label": "Calendar and trades after a CFMMC account import",
+        "alt": "TradeReplay account page showing the calendar and futures trades imported from CFMMC"
+      },
+      "body": "<p>Start the import after confirming the preview. Then use the account details to inspect its calendar, equity curve, instruments, cash flows, and archived statements.</p><p>Spot-check one close-today fill, one close-previous-day fill, and one carried position. Confirm direction, price, fee, and opening date.</p>"
+    }
+  ],
+  "success": [
+    "The file, trading-day, and fill counts agree with the statements.",
+    "Cash flows distinguish deposits, withdrawals, and credit entries.",
+    "Matched contracts open a trade chart and carried positions have verifiable opening details."
+  ],
+  "faq": [
+    {"q": "Can daily and monthly reports be imported together?", "a": "<p>Yes. Check overlapping dates and duplicate ranges in the preview first. Appending removes duplicates, but you should still confirm the final new-item count.</p>"},
+    {"q": "Why is the close-today fee much higher than the close-previous-day fee?", "a": "<p>Some exchanges and products apply a separate close-today rate. TradeReplay records open, close-previous-day, and close-today fees separately, so one uniform rate cannot explain every fill.</p>"},
+    {"q": "Why is the opening price of a carried position different from what I remember?", "a": "<p>The app estimates it from available settlement and profit data. If an intermediate report is missing or the broker uses a special convention, verify it against the original statement.</p>"}
+  ]
+}

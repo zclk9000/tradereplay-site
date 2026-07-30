@@ -130,6 +130,12 @@ components:
       extensions: [png, jpg, jpeg, webp, gif]
       rename: safe
 
+  rich_text_en:
+    type: rich-text
+    options:
+      format: html
+      switcher: true
+
   article_sections:
     type: object
     label: 正文章节
@@ -256,6 +262,93 @@ components:
       - name: a
         label: 答案
         component: rich_text
+        required: true
+
+  article_sections_en:
+    type: object
+    label: English sections
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{title}"
+    fields:
+      - name: id
+        label: Section anchor
+        type: string
+        required: true
+        readonly: true
+        description: Must match the corresponding Chinese section.
+      - name: title
+        label: Section title
+        type: string
+        required: true
+      - name: body
+        label: Body
+        component: rich_text_en
+      - name: steps
+        label: Steps
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {title}"
+        fields:
+          - name: title
+            label: Step title
+            type: string
+            required: true
+          - name: body
+            label: Step instructions
+            component: rich_text_en
+      - name: bullets
+        label: Bullet points
+        type: text
+        list: true
+      - name: callout
+        label: Callout
+        type: object
+        fields:
+          - name: tone
+            label: Callout type
+            type: select
+            options:
+              values: [note, tip, warning, security]
+          - name: title
+            label: Callout title
+            type: string
+          - name: body
+            label: Callout body
+            component: rich_text_en
+      - name: media
+        label: English media text
+        type: object
+        description: The actual image or video is managed in the matching Chinese article.
+        fields:
+          - name: label
+            label: Caption
+            type: string
+            required: true
+          - name: alt
+            label: Accessible description
+            type: string
+            required: true
+            description: Describe the useful content without starting with “image” or “screenshot”.
+
+  article_faq_en:
+    type: object
+    label: Common questions
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{q}"
+    fields:
+      - name: q
+        label: Question
+        type: string
+        required: true
+      - name: a
+        label: Answer
+        component: rich_text_en
         required: true
 
 content:
@@ -558,7 +651,7 @@ content:
     type: group
     items:
       - name: guide_articles
-        label: 教程文章
+        label: 中文教程文章
         type: collection
         path: content/guide/articles
         format: json
@@ -695,8 +788,92 @@ content:
               value: "{fields.id}"
               label: "{fields.code} · {fields.title}"
 
+      - name: guide_articles_en
+        label: English tutorial articles
+        type: collection
+        path: content/guide/locales/en/articles
+        format: json
+        filename:
+          template: "{id}.json"
+          field: false
+        operations:
+          create: false
+          rename: false
+          delete: false
+        view:
+          fields: [code, title, level, tier]
+          primary: title
+          search: [code, title, summary, keywords]
+          sort: [code, title, level]
+          default:
+            sort: code
+            order: asc
+        fields:
+          - name: id
+            label: Article ID
+            type: string
+            required: true
+            readonly: true
+            description: Must match the Chinese article ID.
+          - name: code
+            label: Guide number
+            type: string
+            required: true
+            readonly: true
+          - name: title
+            label: Article title
+            type: string
+            required: true
+            options:
+              maxlength: 110
+          - name: summary
+            label: List summary
+            type: text
+            required: true
+            options:
+              maxlength: 220
+          - name: time
+            label: Reading time
+            type: string
+            required: true
+            description: For example, “5 min”.
+          - name: level
+            label: Level
+            type: string
+            required: true
+          - name: tier
+            label: Plan
+            type: string
+            required: true
+            description: For example, “Available in Free” or “Pro”.
+          - name: platform
+            label: Platform
+            type: string
+            required: true
+          - name: keywords
+            label: Search keywords
+            type: string
+            list: true
+            required: true
+          - name: outcome
+            label: What the reader will accomplish
+            type: text
+            required: true
+          - name: before
+            label: Before you start
+            type: text
+            list: true
+          - name: sections
+            component: article_sections_en
+          - name: success
+            label: What success looks like
+            type: text
+            list: true
+          - name: faq
+            component: article_faq_en
+
       - name: guide_catalog
-        label: 分类与版本设置
+        label: 中文分类与版本设置
         type: file
         path: content/guide/catalog.json
         format: json
@@ -765,6 +942,45 @@ content:
                 required: true
                 options:
                   values: [compass, database, chart, shield, notebook, receipt, activity, workflow, spark, sliders, lifebuoy]
+
+      - name: guide_catalog_en
+        label: English category text
+        type: file
+        path: content/guide/locales/en/catalog.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: language
+            label: Language
+            type: string
+            required: true
+            readonly: true
+          - name: categories
+            label: English categories
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{id} · {title}"
+            fields:
+              - name: id
+                label: Category ID
+                type: string
+                required: true
+                readonly: true
+              - name: title
+                label: Full title
+                type: string
+                required: true
+              - name: short
+                label: Short navigation title
+                type: string
+                required: true
+              - name: description
+                label: Category description
+                type: text
+                required: true
 
 settings:
   content:

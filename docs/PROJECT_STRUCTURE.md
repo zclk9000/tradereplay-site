@@ -34,7 +34,7 @@
 | `public/index.html` | `/` | 中英文官网首页 |
 | `public/download.html` | `/download.html` | Windows 与 Mac 下载 |
 | `public/changelog.html` | `/changelog.html` | 更新日志 |
-| `public/guide.html` | `/guide.html` | 教程首页、分类、文章与搜索 |
+| `public/guide.html` | `/guide.html` | 中英文教程首页、分类、文章与搜索 |
 | `public/support.html` | `/support.html` | 联系与售后支持 |
 | `public/privacy.html` | `/privacy.html` | 隐私政策 |
 | `public/terms.html` | `/terms.html` | 使用条款 |
@@ -64,7 +64,7 @@
 | 源内容 | 生成结果 | 工具 |
 |---|---|---|
 | `content/site/*.json` | `public/scripts/site-content.generated.js` | `scripts/build-site-content.mjs` |
-| `content/guide/catalog.json` 与 `content/guide/articles/*.json` | `public/data/guide-content.json` | `scripts/build-guide-content.mjs` |
+| `content/guide/catalog.json`、`content/guide/articles/*.json` 与 `content/guide/locales/en/` | `public/data/guide-content.json` | `scripts/build-guide-content.mjs` |
 
 生成文件不要直接手工修改。先修改 `content/` 中的源内容，再运行生成工具。
 

@@ -1,0 +1,54 @@
+{
+  "id": "tr-02",
+  "code": "TR-02",
+  "title": "Size a position by fixed lots, cash risk, or percentage risk",
+  "summary": "Compare three sizing modes and understand how executable net risk determines order size.",
+  "time": "10 min",
+  "level": "Intermediate",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["position size", "cash risk", "percentage risk", "lot size"],
+  "outcome": "You will understand all three sizing modes and derive an executable size from stop distance and account risk.",
+  "before": [
+    "Set the account balance and the correct point value or contract multiplier.",
+    "Prepare a clear stop price.",
+    "Know the instrument’s minimum size, size step, and maximum size."
+  ],
+  "sections": [
+    {
+      "id": "fixed",
+      "title": "1. Fixed lot size",
+      "body": "<p>Enter the number of lots directly. This is simple, but risk changes with stop distance, point value, and account size. It is useful for learning controls, not for keeping risk consistent across trades.</p>"
+    },
+    {
+      "id": "cash-risk",
+      "title": "2. Cash risk",
+      "body": "<p>Enter the maximum amount you are willing to risk in the account currency. TradeReplay combines entry, stop, point value, costs, and size rules to calculate the position.</p>"
+    },
+    {
+      "id": "percent-risk",
+      "title": "3. Percentage risk",
+      "body": "<p>Enter a percentage of account equity. The cash-risk amount changes as the account grows or declines, which supports a consistent long-term risk rule.</p>"
+    },
+    {
+      "id": "executable-risk",
+      "title": "4. Understand executable net risk",
+      "body": "<p>The theoretical size must be rounded to the minimum and step and is constrained by maximum size, margin, and costs. The displayed net risk may therefore be slightly below the target.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Risk-based sizing needs a valid stop",
+        "body": "<p>Cash and percentage risk depend on stop distance. Define where the trade is invalid first, then size the position to fit the risk.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can explain the difference between fixed size and risk-based sizing.",
+    "Calculated size changes when the stop distance changes.",
+    "Executable risk does not exceed the preset limit."
+  ],
+  "faq": [
+    {"q": "Why is displayed risk below 1% after I enter 1%?", "a": "<p>Size must follow the minimum and step. TradeReplay normally adjusts toward an executable size that does not exceed the limit.</p>"},
+    {"q": "Why is the calculated size zero?", "a": "<p>The target risk may be smaller than the risk of the minimum size, or margin may be insufficient. Check account parameters, stop distance, and instrument specifications.</p>"},
+    {"q": "Are fees included in risk?", "a": "<p>Executable risk accounts for configured trading costs where possible. More accurate costs produce a result closer to the real rules.</p>"}
+  ]
+}

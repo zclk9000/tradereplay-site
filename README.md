@@ -14,6 +14,8 @@ Open:
 - Chinese: <http://127.0.0.1:8801/>
 - English preview: <http://127.0.0.1:8801/?lang=en>
 - Three-mode section: <http://127.0.0.1:8801/#modes>
+- Chinese Help Center: <http://127.0.0.1:8801/guide.html?lang=zh>
+- English Help Center: <http://127.0.0.1:8801/guide.html?lang=en>
 
 ## Project layout
 

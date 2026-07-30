@@ -1,0 +1,59 @@
+{
+  "id": "se-10",
+  "code": "SE-10",
+  "title": "Restore a library from cloud backup",
+  "summary": "Restore user data from a snapshot in your own S3, COS, R2, or MinIO storage.",
+  "time": "12 min",
+  "level": "Data safety",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["S3", "cloud backup", "restore", "snapshot", "COS", "R2", "MinIO"],
+  "outcome": "Trades, accounts, strategies, settings, and journals from the selected snapshot will be restored to the local library. Official market data can be downloaded again when needed.",
+  "before": [
+    "Connect your own S3, COS, R2, Amazon S3, or MinIO storage under Settings → Data.",
+    "The current device has a valid Pro license and can access the backup bucket.",
+    "Restoring changes local user data. Create another rollback backup of the current library first."
+  ],
+  "sections": [
+    {
+      "id": "open-snapshots",
+      "title": "1. Open backup snapshots",
+      "media": {"label": "S3 cloud-backup connection status and snapshot entry", "alt": "TradeReplay Data settings showing a connected S3 backup and the snapshot-history entry"},
+      "body": "<p>Open the S3 cloud-backup area under <strong>Settings → Data</strong>, confirm that the connection is healthy, then open backup history.</p><p>If the connection test fails, do not start a restore. Check the endpoint, region, bucket, prefix, path style, and access credentials.</p>"
+    },
+    {
+      "id": "choose-snapshot",
+      "title": "2. Select the correct snapshot",
+      "media": {"label": "Cloud-backup history and snapshot details", "alt": "TradeReplay cloud-backup history showing snapshot date, size, device, and restore action"},
+      "body": "<p>Select a snapshot using its creation time and device details. Prefer the last backup you verified as usable rather than choosing by the latest timestamp alone.</p><p>Before restoring, confirm again that the snapshot belongs to the correct library and account collection.</p>",
+      "callout": {"tone": "warning", "title": "Restore is not a preview", "body": "<p>After confirmation, local user data switches to the snapshot state. Current changes that have not been backed up may be lost.</p>"}
+    },
+    {
+      "id": "restore",
+      "title": "3. Start the restore",
+      "media": {"label": "Select, confirm, and restore a snapshot", "alt": "Video showing a cloud-backup snapshot selected and restored in TradeReplay"},
+      "body": "<p>Select Restore and read the confirmation carefully. Keep TradeReplay and the network connection active. Do not run an import, download, or backtest during the restore.</p><p>TradeReplay restores user data. Large official system-data files do not all need to be stored in each snapshot; download them again when needed after recovery.</p>"
+    },
+    {
+      "id": "verify",
+      "title": "4. Verify each area after recovery",
+      "bullets": [
+        "Confirm live accounts, practice sessions, and trade counts.",
+        "Open systems, indicators, journals, and settings and check their latest modification times.",
+        "Open several trades with charts. Download official market data again if it is missing.",
+        "After every check passes, create a new cloud backup as the post-recovery baseline."
+      ],
+      "callout": {"tone": "security", "title": "Protect storage credentials", "body": "<p>Access keys and secrets are used only to connect to your storage. Do not capture them in screenshots, paste them into support requests, or send them to anyone. Use a dedicated least-privilege key and rotate it regularly.</p>"}
+    }
+  ],
+  "success": [
+    "Accounts, trades, strategies, journals, and settings match the target snapshot.",
+    "Missing official market data can be downloaded again and used for review.",
+    "A new post-recovery backup appears in history."
+  ],
+  "faq": [
+    {"q": "Does restoring delete the cloud snapshot?", "a": "<p>No. Restore reads the selected snapshot; it does not clear the remote backup.</p>"},
+    {"q": "Why must some market data be downloaded again?", "a": "<p>Cloud backup prioritizes irreplaceable user data. Official system data that can be obtained again may be downloaded after recovery to keep snapshots smaller.</p>"},
+    {"q": "Can I restore a snapshot from another computer onto a new computer?", "a": "<p>Yes, provided the new computer can access the same storage and runs a compatible TradeReplay version. Confirm the target library location and license status before restoring.</p>"}
+  ]
+}

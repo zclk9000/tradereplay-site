@@ -1,0 +1,41 @@
+{
+  "id": "se-12",
+  "code": "SE-12",
+  "title": "Activate Pro, check validity, and deactivate this device",
+  "summary": "Enter the purchase email and activation code, then manage the two-device allowance.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "License",
+  "platform": "macOS / Windows",
+  "keywords": ["activation", "activation code", "email", "device", "deactivate", "validity"],
+  "outcome": "The current computer will show Pro status, and you will know how to free an old device slot when switching computers.",
+  "before": [
+    "Have the email used for purchase and the activation code you received.",
+    "Confirm that the computer can reach license.tradereplay.dev.",
+    "One activation code can be used on up to two devices at the same time."
+  ],
+  "sections": [
+    {
+      "id": "activate",
+      "title": "1. Enter the email and activation code",
+      "media": {"label": "Email and activation code under Settings → License", "alt": "TradeReplay License settings with fields for the purchase email and activation code"},
+      "body": "<p>Open <strong>Settings → License</strong>, enter the purchase email and activation code, then select Activate.</p><p>When copying, avoid leading or trailing spaces. The email must match the one used for purchase.</p>"
+    },
+    {"id": "check-status", "title": "2. Check the license status", "body": "<p>After successful activation, the page displays Pro, a perpetual license, or an expiry date. The main window also shows the Pro badge.</p><p>When a time-limited license expires, existing data is not deleted. New actions follow Free-plan limits.</p>"},
+    {
+      "id": "deactivate",
+      "title": "3. Deactivate before changing devices",
+      "media": {"label": "Check the license status and deactivate the current device", "alt": "Video showing TradeReplay Pro license status and the deactivate-current-device action"},
+      "body": "<p>While the old computer is still available, open the License page and deactivate the current device. Then enter the same email and activation code on the new computer.</p><p>Deactivation frees a license slot; it does not delete the library on the old computer.</p>"
+    }
+  ],
+  "success": [
+    "The License page shows Pro and the correct validity period.",
+    "The main window no longer asks for activation.",
+    "Deactivation releases the current device slot."
+  ],
+  "faq": [
+    {"q": "What should I do when all device slots are in use?", "a": "<p>Deactivate a device you no longer use. If the old device is unavailable, contact official support so the purchase can be verified and the device slot handled.</p>"},
+    {"q": "Does activation upload my trade data?", "a": "<p>No. Activation verifies the license and device allowance; it does not require uploading trade records.</p>"}
+  ]
+}

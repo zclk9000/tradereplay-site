@@ -1,0 +1,67 @@
+{
+  "id": "qs-02",
+  "code": "QS-02",
+  "title": "Complete initial setup: language and library location",
+  "summary": "Choose the Chinese or English interface and decide where trades and market data will be stored.",
+  "time": "4 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["language", "library", "first launch", "folder", "path"],
+  "outcome": "You will choose the interface language and store trades, market data, review notes, and backups in a reliable local library.",
+  "before": [
+    "Prepare a local disk folder that will remain available and has sufficient free space.",
+    "If you are opening an existing library, confirm that its folder contains tradereplay.db.",
+    "Do not place the library in a cloud drive or third-party sync folder."
+  ],
+  "sections": [
+    {
+      "id": "choose-language",
+      "title": "1. Choose the interface language",
+      "body": "<p>Select <strong>简体中文</strong> or <strong>English</strong> on the first launch. This changes only the interface; it does not change market data, trade records, or account currency.</p><p>You can switch the language later in Settings.</p>"
+    },
+    {
+      "id": "choose-library",
+      "title": "2. Create or open a library",
+      "steps": [
+        {
+          "title": "Create a library",
+          "body": "<p>Choose an empty folder. TradeReplay will create the database, market-data folders, backups, and other required files inside it.</p>"
+        },
+        {
+          "title": "Open an existing library",
+          "body": "<p>Select the root folder of the original library, not one of its subfolders. TradeReplay checks the database version and integrity before opening it.</p>"
+        }
+      ],
+      "callout": {
+        "tone": "warning",
+        "title": "Let TradeReplay manage the complete library",
+        "body": "<p>Do not move individual files by hand or let sync software upload them while the app is using the library. Use the built-in library migration feature when you need to change its location.</p>"
+      }
+    },
+    {
+      "id": "verify",
+      "title": "3. Verify the setup",
+      "body": "<p>After setup, the main workspace opens. Check the current library path in Settings, then open Market Data to confirm that downloads will be written to this library.</p>"
+    }
+  ],
+  "success": [
+    "TradeReplay opens the main workspace normally.",
+    "The library path in Settings matches the folder you selected.",
+    "The initial setup does not reappear after you close and reopen the app."
+  ],
+  "faq": [
+    {
+      "q": "Why does a new library require an empty folder?",
+      "a": "<p>TradeReplay requires an empty folder to avoid overwriting existing files. Create a dedicated folder and try again.</p>"
+    },
+    {
+      "q": "Why can’t I open my old library?",
+      "a": "<p>Make sure you selected the complete root folder that contains tradereplay.db. If TradeReplay reports a newer version, incomplete files, or an integrity failure, preserve the original folder and follow the library troubleshooting guide.</p>"
+    },
+    {
+      "q": "Can I use an external drive?",
+      "a": "<p>Yes, if it remains connected reliably. Do not disconnect it while TradeReplay is running, and make sure the drive is mounted at the same path before each launch.</p>"
+    }
+  ]
+}
