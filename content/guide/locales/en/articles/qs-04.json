@@ -1,0 +1,118 @@
+{
+  "id": "qs-04",
+  "code": "QS-04",
+  "title": "Complete your first practice session",
+  "summary": "Download three months of EURUSD data, create a session, advance the chart, and complete a simulated trade.",
+  "time": "8 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["first practice", "EURUSD", "download data", "new session", "order", "replay"],
+  "outcome": "You will create an EURUSD replay session and complete the full workflow from chart replay and order entry to trade history.",
+  "before": [
+    "Complete the first-launch language and library setup.",
+    "Make sure the computer is online and the library disk has enough free space.",
+    "The Free plan can complete this guide. Free replay sessions are temporary and are cleared the next time the app starts."
+  ],
+  "sections": [
+    {
+      "id": "open-data",
+      "title": "1. Open Market Data",
+      "body": "<p>Select <strong>Market Data</strong> from the global tools, then open Bar Data. System data is grouped by market and instrument.</p>",
+      "media": {
+        "label": "Market Data entry and the Bar Data page",
+        "alt": "TradeReplay Market Data page showing the instrument directory"
+      }
+    },
+    {
+      "id": "download-eurusd",
+      "title": "2. Download three months of EURUSD data",
+      "steps": [
+        {
+          "title": "Find EURUSD",
+          "body": "<p>Expand Forex in the system-data directory and select EURUSD.</p>"
+        },
+        {
+          "title": "Choose three months",
+          "body": "<p>Three months downloads quickly and is enough for your first practice session.</p>"
+        },
+        {
+          "title": "Start the download",
+          "body": "<p>Select Download and wait for the task to finish. Do not close TradeReplay or move the library during the download.</p>"
+        }
+      ],
+      "media": {
+        "label": "Opening Market Data and completing the EURUSD download",
+        "alt": "EURUSD market-data download completing in TradeReplay"
+      }
+    },
+    {
+      "id": "create-session",
+      "title": "3. Create a replay session",
+      "body": "<p>After the download, select <strong>New session</strong>. Choose System as the data source and EURUSD as the instrument.</p><p>Choose a starting time. Use a random starting point if you do not want to know what comes next. Keep the default balance and account settings for the first exercise.</p>",
+      "media": {
+        "label": "New session settings for data, starting point, balance, and name",
+        "alt": "TradeReplay new-session form for EURUSD"
+      }
+    },
+    {
+      "id": "replay-and-trade",
+      "title": "4. Advance the chart and complete a trade",
+      "steps": [
+        {
+          "title": "Observe the chart first",
+          "body": "<p>Use the step-forward control to reveal one bar at a time, or select Play to advance automatically.</p>"
+        },
+        {
+          "title": "Set size and protection",
+          "body": "<p>Use a fixed lot size for the first trade. Enter a stop loss and take profit, then confirm that both price lines are placed reasonably on the chart.</p>"
+        },
+        {
+          "title": "Buy or sell",
+          "body": "<p>Select Buy or Sell. Once the position appears, continue the replay and watch equity, unrealized P&L, stop loss, and take profit.</p>"
+        },
+        {
+          "title": "Close the position",
+          "body": "<p>Wait for the stop or target to trigger, or close the position manually.</p>"
+        }
+      ],
+      "callout": {
+        "tone": "tip",
+        "title": "Practice the process, not the result",
+        "body": "<p>The first trade is about learning the controls. Do not rewind and change the decision because you already know what happens next.</p>"
+      },
+      "media": {
+        "label": "Replay controls, stop and target settings, order entry, and the open position",
+        "alt": "TradeReplay chart replay with order and position controls"
+      }
+    },
+    {
+      "id": "review",
+      "title": "5. Review history and statistics",
+      "body": "<p>Open <strong>Review → History</strong> and confirm that the completed trade is recorded. You can add its trading system, entry reason, tags, and notes.</p><p>Then open <strong>Review → Statistics</strong> to see net P&L, win rate, payoff ratio, and the equity curve. One trade is not a meaningful sample; at this stage, only confirm that data flows through the complete workflow.</p>",
+      "media": {
+        "label": "The first practice trade in History",
+        "alt": "TradeReplay History page showing a completed EURUSD practice trade"
+      }
+    }
+  ],
+  "success": [
+    "The EURUSD replay session appears in Review → Accounts.",
+    "The completed trade appears in Review → History.",
+    "Review → Statistics shows the session's basic results."
+  ],
+  "faq": [
+    {
+      "q": "Why can’t I find EURUSD after the download?",
+      "a": "<p>When creating the session, make sure the data source is set to System and confirm that the download status is complete.</p>"
+    },
+    {
+      "q": "Why did my Free session disappear after I restarted the app?",
+      "a": "<p>The Free plan allows up to two temporary replay sessions per true app launch. They are cleared on the next launch. Pro sessions are stored persistently.</p>"
+    },
+    {
+      "q": "Why can’t I place the first order?",
+      "a": "<p>Check that the lot size follows the minimum size and step, then review the stop, margin, and order-discipline messages.</p>"
+    }
+  ]
+}

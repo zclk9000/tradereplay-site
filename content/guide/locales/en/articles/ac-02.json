@@ -1,0 +1,79 @@
+{
+  "id": "ac-02",
+  "code": "AC-02",
+  "title": "Export and import MT4 or MT5 trade history",
+  "summary": "Select a platform history report, review the preview, account, and instruments, then complete the import.",
+  "time": "12 min",
+  "level": "Beginner",
+  "tier": "First account free",
+  "platform": "macOS / Windows",
+  "keywords": ["MT4", "MT5", "statement", "report", "import", "trade history"],
+  "outcome": "Your MT4 or MT5 trade history will be stored in a live account and available in History, Statistics, and chart review.",
+  "before": [
+    "Export a report containing the complete trade history from MT4 or MT5.",
+    "Select one report at a time. Import a newer report later when you need to append updates.",
+    "Importing does not modify the source report. Keep an untouched copy before you begin."
+  ],
+  "sections": [
+    {
+      "id": "export",
+      "title": "1. Export a history report from the platform",
+      "media": {
+        "label": "Where to export a history report in MT4 or MT5",
+        "alt": "MT4 or MT5 account history menu with the export report option"
+      },
+      "body": "<p>In MT4 or MT5 Account History, select the required date range and export the history report offered by the platform. Include the complete history where possible so that statistics do not cover only part of the account period.</p><p>Do not use a screenshot or a manually prepared spreadsheet as the report. TradeReplay reads the platform, account, currency, fills, and cash flows from the exported report.</p>"
+    },
+    {
+      "id": "choose-file",
+      "title": "2. Select the report in TradeReplay",
+      "steps": [
+        {"title": "Open Import", "body": "<p>Go to <strong>Review → Accounts</strong>, select Import, then choose MT4/MT5.</p>"},
+        {"title": "Choose the file", "body": "<p>Select the history report you just exported and wait for parsing to finish.</p>"},
+        {"title": "Do not click repeatedly", "body": "<p>A large report can take a moment. Keep the window open while parsing progress is visible.</p>"}
+      ],
+      "media": {
+        "label": "Select an MT4 or MT5 report and open the import preview",
+        "alt": "Video showing an MT4 or MT5 report selected for import in TradeReplay"
+      }
+    },
+    {
+      "id": "preview",
+      "title": "3. Review the import preview",
+      "media": {
+        "label": "MT4 or MT5 import preview with account, trades, and cash flows",
+        "alt": "TradeReplay import preview listing the account, trade count, cash flows, dates, and instruments"
+      },
+      "body": "<p>Confirm the platform, broker, account, currency, date range, trade count, and cash flows.</p><p>If TradeReplay recognizes an existing account, you can append to it. Otherwise, create a new account. Do not decide by display name alone; verify both the account number and currency.</p>"
+    },
+    {
+      "id": "mapping",
+      "title": "4. Check instrument and chart-data matching",
+      "body": "<p>TradeReplay tries to match broker instrument names to available market data. Broker prefixes, suffixes, and custom symbols may require manual selection.</p><p><strong>Unmatched</strong> means the instrument is not yet identified. <strong>Missing bars</strong> means it is identified but local data does not cover the review period. <strong>Source unavailable</strong> means no reference source is currently available for automatic download.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Do not match instruments merely because their codes look similar",
+        "body": "<p>Different indices, micro contracts, and standard contracts can have different contract sizes. Verify the instrument specification before saving a mapping.</p>"
+      }
+    },
+    {
+      "id": "finish",
+      "title": "5. Complete the import and check the result",
+      "media": {
+        "label": "Live-account details after an MT4 or MT5 import",
+        "alt": "TradeReplay live-account page showing imported history, equity, instruments, and cash flows"
+      },
+      "body": "<p>Start the import after approving the preview. Duplicate fills are removed when appending.</p><p>When it finishes, open the account and check the trading calendar, equity curve, instruments, cash flows, and account details. Open one trade and confirm its time, direction, price, and fees.</p>"
+    }
+  ],
+  "success": [
+    "The platform, currency, and trade count are correct in the account details.",
+    "The imported live trades can be filtered in History.",
+    "Trades for matched instruments can open a chart preview."
+  ],
+  "faq": [
+    {"q": "Will importing the same report twice create duplicate trades?", "a": "<p>Append imports are deduplicated by trade identifiers. Still check the new-item count in the preview so that two different accounts are not merged by mistake.</p>"},
+    {"q": "Why is a positive entry in the report classified as a deposit?", "a": "<p>Rebates or promotions may need a matching keyword under <strong>Settings → Data</strong>. Add the keyword, then import the relevant batch again.</p>"},
+    {"q": "Why are trade times several hours apart?", "a": "<p>Broker report time, chart display time zone, and underlying UTC data are separate concepts. See “Chart time differs from statement time by several hours” first.</p>"}
+  ]
+}

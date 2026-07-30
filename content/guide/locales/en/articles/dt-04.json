@@ -1,0 +1,79 @@
+{
+  "id": "dt-04",
+  "code": "DT-04",
+  "title": "Manage replay sessions",
+  "summary": "Continue, sort, rename, or delete sessions and restore missing market data.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["session", "rename", "delete", "restore market data"],
+  "outcome": "You will continue, sort, rename, and delete replay sessions and restore their charts when market data is missing.",
+  "before": [
+    "Create at least one replay session.",
+    "Before deleting a session, confirm that you no longer need its trades or notes."
+  ],
+  "sections": [
+    {
+      "id": "find-session",
+      "title": "1. Find the session on the Accounts page",
+      "body": "<p>Open <strong>Review → Accounts</strong>. Replay sessions, backtest results, and live accounts are grouped separately. Sort by recent use or name to find the target session.</p>"
+    },
+    {
+      "id": "session-actions",
+      "title": "2. Use session actions",
+      "steps": [
+        {
+          "title": "Continue practice",
+          "body": "<p>Opening a replay session restores its saved replay position and chart state.</p>"
+        },
+        {
+          "title": "Rename",
+          "body": "<p>Changing the display name does not change trade records. Include the practice objective in the name.</p>"
+        },
+        {
+          "title": "Edit account parameters",
+          "body": "<p>Adjust supported costs or trading specifications for future practice. Existing fills are not recalculated automatically.</p>"
+        },
+        {
+          "title": "Open History",
+          "body": "<p>Open the trades created by this session directly.</p>"
+        }
+      ]
+    },
+    {
+      "id": "restore-data",
+      "title": "3. Restore missing market data",
+      "body": "<p>If the original data was deleted, moved, or replaced, the session still keeps its trades, notes, and drawings. Follow the prompt to the matching data page: download system data again, reimport the correct custom file, or prepare the tick data again.</p><p>Once the instrument and date range match, reopen the session to restore the chart.</p>"
+    },
+    {
+      "id": "delete",
+      "title": "4. Delete a session",
+      "body": "<p>Deleting removes the complete practice record. Confirm the name and type first. If you only want to free market-data space, manage the data on the Market Data page instead of deleting the session.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Backtest results are read-only sessions",
+        "body": "<p>A backtest session is for reviewing results. You cannot continue placing simulated orders in it as you would in a replay session.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can find and continue a specific replay session.",
+    "You can distinguish replay sessions, backtests, and live accounts.",
+    "After restoring data, the original trades and notes remain available."
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between deleting data and deleting a session?",
+      "a": "<p>Deleting market data removes chart data but keeps trade records. Deleting a session removes that replay session and its contents.</p>"
+    },
+    {
+      "q": "Why does a session report mismatched data?",
+      "a": "<p>The local instrument, source, or date range differs from the data used to create the session. Restore the original data or select data that covers the full session range.</p>"
+    },
+    {
+      "q": "Why can’t I continue trading in a backtest session?",
+      "a": "<p>Backtest results are read-only. Create a separate replay session from the same data for manual practice.</p>"
+    }
+  ]
+}

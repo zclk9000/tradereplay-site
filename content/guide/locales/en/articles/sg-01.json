@@ -1,0 +1,37 @@
+{
+  "id": "sg-01",
+  "code": "SG-01",
+  "title": "Browse, search, and understand the indicator library",
+  "summary": "Find built-in and custom indicators and review their purpose, default parameters, formula syntax, and source.",
+  "time": "8 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["indicator", "built-in indicator", "custom indicator", "search"],
+  "outcome": "You will find a suitable built-in or custom indicator and understand its purpose, parameters, formula syntax, and source.",
+  "before": [
+    "Know the problem you want to solve, such as trend, momentum, volatility, or volume.",
+    "Do not decide how to use an indicator from its name alone."
+  ],
+  "sections": [
+    {"id": "browse", "title": "1. Browse the indicator library", "body": "<p>Go to <strong>Strategy → Indicators</strong>. Indicators are separated by built-in and custom sources. Browse categories or search by name, abbreviation, or purpose.</p>"},
+    {"id": "read", "title": "2. Read the indicator details", "body": "<p>Open an indicator and first review its purpose, outputs, default parameters, and suitable uses. Then read the source and implementation notes. A default parameter is a starting point, not the optimal answer for every market.</p>"},
+    {"id": "formula", "title": "3. Use the formula syntax", "body": "<p>The formula example shows how to reference the indicator and its parameters in a strategy expression. After copying it, adapt the instrument, timeframe, and rules to your own use.</p>"},
+    {
+      "id": "custom",
+      "title": "4. Manage custom indicators",
+      "body": "<p>Create a custom indicator when you need to extend the library. After saving, check compatibility and error messages, then validate its output on a small data sample. Keep clear version names before making changes.</p>",
+      "callout": {"tone": "tip", "title": "Start with the question, not a pile of indicators", "body": "<p>Each indicator should answer one clear question. Several highly correlated indicators often repeat the same information.</p>"}
+    }
+  ],
+  "success": [
+    "You can search for and open the target indicator.",
+    "You can explain its main outputs and default parameters.",
+    "You can distinguish built-in and custom sources."
+  ],
+  "faq": [
+    {"q": "Why can’t I find an indicator in search?", "a": "<p>Try its English abbreviation, full name, or purpose. You may also need to implement it as a custom indicator.</p>"},
+    {"q": "Can I use the default parameters in a backtest?", "a": "<p>Use them as a baseline, then validate them over different periods so the result does not depend on one historical range.</p>"},
+    {"q": "What should I do when an indicator looks wrong?", "a": "<p>Check data length, timeframe, parameter ranges, and any compatibility messages for the custom indicator.</p>"}
+  ]
+}

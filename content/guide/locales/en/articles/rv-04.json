@@ -1,0 +1,53 @@
+{
+  "id": "rv-04",
+  "code": "RV-04",
+  "title": "Open the chart preview for a trade",
+  "summary": "View statement or system market data, move between trades, and continue into a fuller review.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["chart preview", "next trade", "live trade", "review"],
+  "outcome": "You will open a chart preview from History, move between trades, and know when market data needs to be added or matched.",
+  "before": [
+    "The target trade exists in History.",
+    "Local bar data should cover the instrument and trade dates."
+  ],
+  "sections": [
+    {
+      "id": "open",
+      "title": "1. Open the preview from a trade",
+      "body": "<p>Select a trade in <strong>Review → History</strong> and open Chart preview. The chart loads around the entry and exit and marks direction and position.</p>"
+    },
+    {
+      "id": "source",
+      "title": "2. Understand the market-data source",
+      "body": "<p>Use statement-provided market data when it exists. Otherwise, use matched system or custom data. Reference data provides review context and does not rewrite original fill prices.</p>"
+    },
+    {
+      "id": "navigate",
+      "title": "3. Move between trades",
+      "body": "<p>Use Previous and Next to browse trades in the current filtered result. Keeping the same zoom and timeframe helps compare the same system or behavior.</p>"
+    },
+    {
+      "id": "full-review",
+      "title": "4. Continue to a fuller review",
+      "body": "<p>Open the review map when you need a wider range, trade lines, or the complete account process. Create a separate replay session if you want to simulate the decisions again.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Reference bars are not the broker’s tick-by-tick quotes",
+        "body": "<p>Data sources can differ in time zone, spread, or small price details. The original statement remains the source of truth for fills.</p>"
+      }
+    }
+  ],
+  "success": [
+    "Entry and exit markers appear in the preview.",
+    "You can move to the previous or next trade.",
+    "You know to match market data rather than edit a fill when chart data is missing."
+  ],
+  "faq": [
+    {"q": "Why does the preview report missing bar data?", "a": "<p>The instrument may not be matched, or local data may not cover the trade date. Complete instrument matching and prepare the required range.</p>"},
+    {"q": "Is it normal for the chart price to differ slightly from the fill?", "a": "<p>It can be. Reference data and broker fills may differ because of source, Bid/Ask, spread, and time zone.</p>"},
+    {"q": "Can the preview modify a trade?", "a": "<p>No. It shows context. Trade facts come from replay matching or the original statement and should not be rewritten on the chart.</p>"}
+  ]
+}

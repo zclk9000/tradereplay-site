@@ -1,0 +1,57 @@
+{
+  "id": "tr-08",
+  "code": "TR-08",
+  "title": "Use order-discipline rules to block impulsive trades",
+  "summary": "Require a stop, trading system, and entry reason before an order can be placed.",
+  "time": "8 min",
+  "level": "Intermediate",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["discipline", "block order", "stop loss", "entry reason"],
+  "outcome": "You will configure order gates that block submission when a required stop, system, or entry reason is missing.",
+  "before": [
+    "Create or select a trading system.",
+    "Decide which information is mandatory for every trade."
+  ],
+  "sections": [
+    {
+      "id": "open-settings",
+      "title": "1. Open order-discipline settings",
+      "body": "<p>Open the trading or discipline area in Settings and find the pre-order checks. A normal checklist is a reminder; only items enabled as discipline gates block submission.</p>"
+    },
+    {
+      "id": "requirements",
+      "title": "2. Choose mandatory items",
+      "body": "<p>Require a stop, trading system, entry reason, or other information that your process needs. Start with a few critical items instead of turning every optional field into paperwork.</p>"
+    },
+    {
+      "id": "test",
+      "title": "3. Test the gate",
+      "steps": [
+        {"title": "Leave one item blank on purpose", "body": "<p>Try to place an order in a replay session and confirm that the missing requirement is shown.</p>"},
+        {"title": "Complete it and retry", "body": "<p>Fill the missing item, then submit again.</p>"},
+        {"title": "Check History", "body": "<p>Confirm that the system and reason were saved with the trade for later statistics and review.</p>"}
+      ]
+    },
+    {
+      "id": "discipline",
+      "title": "4. Turn the gate into a stable process",
+      "body": "<p>Every discipline rule should map to an action you can execute. Review common block reasons. If an item is repeatedly filled with meaningless text, improve the rule definition instead of bypassing it.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "A checklist is not automatically an order gate",
+        "body": "<p>Trading-system checks can be used only for review. Enable the matching condition in order discipline if it must block an order.</p>"
+      }
+    }
+  ],
+  "success": [
+    "An order is blocked when a mandatory item is missing.",
+    "The message identifies what is missing.",
+    "After completion, the order submits normally and saves its context."
+  ],
+  "faq": [
+    {"q": "Why can I still trade when a checklist exists?", "a": "<p>The checklist may be for recording only. Enable the mandatory gate in order-discipline settings.</p>"},
+    {"q": "Do discipline rules change historical trades?", "a": "<p>No. They affect future order entry only.</p>"},
+    {"q": "What if too many gates interrupt practice?", "a": "<p>Keep only a few critical conditions and rewrite vague rules as actions that can be judged clearly.</p>"}
+  ]
+}

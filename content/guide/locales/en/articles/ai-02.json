@@ -1,0 +1,38 @@
+{
+  "id": "ai-02",
+  "code": "AI-02",
+  "title": "Have an open conversation with Mentor",
+  "summary": "Ask Mentor questions and control the data sent to your AI provider.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "Bring your own API key",
+  "platform": "macOS / Windows",
+  "keywords": ["Mentor", "conversation", "AI", "privacy"],
+  "outcome": "You will ask Mentor an actionable question, understand which TradeReplay data it can use, and control what is sent to the AI provider.",
+  "before": [
+    "Configure and test DeepSeek or OpenAI.",
+    "Confirm that the selected account or practice records do not include private notes you do not want to send.",
+    "AI answers can be wrong. Verify important conclusions yourself."
+  ],
+  "sections": [
+    {"id": "open", "title": "1. Open Mentor", "body": "<p>Select the global Mentor entry. Its conversation panel appears beside the current workspace. Open conversation uses your own API key.</p>"},
+    {"id": "ask", "title": "2. Ask a specific question", "body": "<p>State the goal, scope, and output format. For example: “Analyze only my latest 30 EURUSD practice trades, identify three repeated losing behaviors, and produce a checklist for my next session.” A specific question is easier to turn into action.</p>"},
+    {"id": "data-scope", "title": "3. Understand the data scope", "body": "<p>Mentor can work with trades recorded in TradeReplay, including imported live trades and practice sessions. Check the selected account, filters, and context before sending. Do not add unrelated sensitive material to the prompt.</p>"},
+    {
+      "id": "verify",
+      "title": "4. Verify the answer",
+      "body": "<p>Ask Mentor which samples and evidence it used, then verify them in History and Statistics. Convert a suggestion into a measurable practice rule instead of copying it directly as a live-trading instruction.</p>",
+      "callout": {"tone": "warning", "title": "Mentor does not provide investment advice", "body": "<p>AI can misread data or generate inaccurate content. Use it to organize information, ask questions, and form hypotheses. You remain responsible for every decision.</p>"}
+    }
+  ],
+  "success": [
+    "The question states a clear account, scope, and goal.",
+    "You can identify the trades or statistics used as evidence.",
+    "At least one suggestion has been converted into a testable rule."
+  ],
+  "faq": [
+    {"q": "Can Mentor see other files on my computer?", "a": "<p>It uses only the context the product supplies for the current request and does not browse unrelated computer files automatically. Do not paste unrelated sensitive information.</p>"},
+    {"q": "Why does the answer disagree with the Statistics page?", "a": "<p>Check the account, dates, filters, and cost assumptions used by each. AI can also calculate or explain something incorrectly, so the original records and app statistics are the source of truth.</p>"},
+    {"q": "Which Mentor features require Pro?", "a": "<p>Open conversation with your own API key is available directly. Productized analysis such as personalized review, patterns, trade insights, and strategy writing follows the current plan.</p>"}
+  ]
+}

@@ -10,6 +10,115 @@
   const searchDialog = document.querySelector("[data-search-dialog]");
   const modalSearch = document.querySelector("[data-modal-search]");
   const modalResults = document.querySelector("[data-modal-results]");
+  const languageSwitch = document.querySelector("[data-language-switch]");
+  const languageStorageKey = "tradereplay-language";
+  const copy = {
+    zh: {
+      centerName: "TradeReplay 帮助中心",
+      breadcrumbs: "面包屑",
+      home: "帮助中心",
+      categories: "教程分类",
+      searchEmpty: "暂时没有找到“{query}”",
+      searchHint: "试试更短的词，例如“CFMMC”“止损”“资料库”“回测”或复制软件里的错误提示。",
+      homeMetaTitle: "TradeReplay 官方教程",
+      homeMetaDescription: "按任务查找 TradeReplay 使用教程、功能说明、设置与故障排查。",
+      heroKicker: "TRADEREPLAY HELP CENTER",
+      heroTitle: "需要什么，直接搜",
+      heroCopy: "从第一次复盘训练到真实账单、策略回测和数据恢复。按你现在要完成的任务，一步一步操作。",
+      searchLabel: "搜索帮助文章",
+      searchPlaceholder: "搜索功能、问题或错误提示…",
+      popular: "常用搜索",
+      popularTerms: ["第一次训练", "CFMMC", "止损", "资料库", "激活"],
+      categorySection: "本分类文章",
+      approx: "约 {time}",
+      outcome: "完成后：",
+      before: "开始之前",
+      success: "成功后你会看到",
+      faq: "常见问题",
+      related: "相关文章",
+      feedback: "这篇文章解决了你的问题吗？",
+      yes: "解决了",
+      no: "还没有",
+      videoFallback: "你的浏览器暂时无法播放这个视频。",
+      notFoundMeta: "返回 TradeReplay 帮助中心继续查找。",
+      notFoundCrumb: "未找到",
+      notFoundTitle: "没有找到这篇教程",
+      notFoundCopy: "链接可能已经调整，或者内容暂未公开。请返回帮助中心搜索功能名称或错误提示。",
+      notFoundButton: "返回帮助中心",
+      feedbackYes: "谢谢反馈，我们会继续保持文章准确。",
+      feedbackNo: "谢谢反馈。你可以前往{support}告诉我们卡在哪一步。",
+      supportPage: "支持页面",
+      loadingError: "教程目录暂时无法载入，请刷新页面或前往{support}。",
+      switchLabel: "Switch to English",
+      switchText: "EN"
+    },
+    en: {
+      centerName: "TradeReplay Help Center",
+      breadcrumbs: "Breadcrumb",
+      home: "Help Center",
+      categories: "Guide categories",
+      searchEmpty: "No results for “{query}”",
+      searchHint: "Try a shorter term such as “CFMMC,” “stop loss,” “library,” or “backtest,” or paste the error message from the app.",
+      homeMetaTitle: "Official TradeReplay guides",
+      homeMetaDescription: "Find TradeReplay guides, feature explanations, settings, and troubleshooting by task.",
+      heroKicker: "TRADEREPLAY HELP CENTER",
+      heroTitle: "Search for what you need",
+      heroCopy: "From your first replay session to live statements, backtests, and data recovery. Choose the task in front of you and follow it step by step.",
+      searchLabel: "Search help articles",
+      searchPlaceholder: "Search for a feature, problem, or error…",
+      popular: "Popular searches",
+      popularTerms: ["first session", "CFMMC", "stop loss", "library", "activation"],
+      categorySection: "Articles in this category",
+      approx: "About {time}",
+      outcome: "What you will accomplish:",
+      before: "Before you start",
+      success: "What success looks like",
+      faq: "Common questions",
+      related: "Related articles",
+      feedback: "Did this article solve your problem?",
+      yes: "Yes",
+      no: "Not yet",
+      videoFallback: "Your browser cannot play this video.",
+      notFoundMeta: "Return to the TradeReplay Help Center and keep searching.",
+      notFoundCrumb: "Not found",
+      notFoundTitle: "We couldn’t find this guide",
+      notFoundCopy: "The link may have changed or the article may not be public. Return to the Help Center and search for a feature or error message.",
+      notFoundButton: "Return to Help Center",
+      feedbackYes: "Thanks for the feedback. We’ll keep this article accurate.",
+      feedbackNo: "Thanks for the feedback. Visit the {support} and tell us where you got stuck.",
+      supportPage: "Support page",
+      loadingError: "The guide catalog is temporarily unavailable. Refresh the page or visit the {support}.",
+      switchLabel: "切换到中文",
+      switchText: "中"
+    }
+  };
+
+  function getInitialLanguage() {
+    const queryLanguage = new URLSearchParams(window.location.search).get("lang");
+    if (queryLanguage === "zh" || queryLanguage === "en") return queryLanguage;
+    try {
+      const savedLanguage = window.localStorage.getItem(languageStorageKey);
+      if (savedLanguage === "zh" || savedLanguage === "en") return savedLanguage;
+    } catch {
+      // Local storage is optional.
+    }
+    return window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
+  }
+
+  let language = getInitialLanguage();
+  let strings = copy[language];
+  let publicArticles = [];
+  let publicCategories = [];
+  let categoriesById = new Map();
+  let articlesById = new Map();
+
+  function text(key, values = {}) {
+    let value = strings[key] ?? key;
+    for (const [name, replacement] of Object.entries(values)) {
+      value = String(value).replaceAll(`{${name}}`, replacement);
+    }
+    return value;
+  }
 
   if (!guide && window.TRADE_REPLAY_GUIDE_READY) {
     try {
@@ -21,17 +130,22 @@
 
   if (!guide || !view) {
     if (loading) {
-      loading.innerHTML =
-        '<p>教程目录暂时无法载入，请刷新页面或前往<a href="support.html">支持页面</a>。</p>';
+      const support = `<a href="${localizedHref("support.html")}">${text("supportPage")}</a>`;
+      loading.innerHTML = `<p>${text("loadingError", { support })}</p>`;
     }
     return;
   }
 
-  const publicArticles = guide.articles.filter((item) => item.status === "ready");
-  const publicCategoryIds = new Set(publicArticles.map((item) => item.category));
-  const publicCategories = guide.categories.filter((item) => publicCategoryIds.has(item.id));
-  const categoriesById = new Map(publicCategories.map((item) => [item.id, item]));
-  const articlesById = new Map(publicArticles.map((item) => [item.id, item]));
+  function selectLocale(languageValue) {
+    language = languageValue === "en" && guide.locales?.en ? "en" : "zh";
+    strings = copy[language];
+    const localeGuide = language === "en" ? guide.locales.en : guide;
+    publicArticles = localeGuide.articles.filter((item) => item.status === "ready");
+    const publicCategoryIds = new Set(publicArticles.map((item) => item.category));
+    publicCategories = localeGuide.categories.filter((item) => publicCategoryIds.has(item.id));
+    categoriesById = new Map(publicCategories.map((item) => [item.id, item]));
+    articlesById = new Map(publicArticles.map((item) => [item.id, item]));
+  }
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -196,12 +310,20 @@
     return `<svg class="${escapeHTML(className)}" viewBox="0 0 24 24" aria-hidden="true">${icons[name] || icons.info}</svg>`;
   }
 
+  function localizedHref(pathname, params = {}) {
+    const [pathPart, queryPart = ""] = pathname.split("?");
+    const query = new URLSearchParams(queryPart);
+    Object.entries(params).forEach(([name, value]) => query.set(name, value));
+    query.set("lang", language);
+    return `${pathPart}?${query.toString()}`;
+  }
+
   function articleHref(article) {
-    return `guide.html?article=${encodeURIComponent(article.id)}`;
+    return localizedHref("guide.html", { article: article.id });
   }
 
   function categoryHref(category) {
-    return `guide.html?category=${encodeURIComponent(category.id)}`;
+    return localizedHref("guide.html", { category: category.id });
   }
 
   function getCategory(article) {
@@ -209,15 +331,19 @@
   }
 
   function setDocumentMeta(title, description) {
-    document.title = `${title} — TradeReplay 帮助中心`;
+    document.title = `${title} — ${text("centerName")}`;
     const meta = document.querySelector('meta[name="description"]');
     if (meta && description) meta.setAttribute("content", description);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", title);
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription && description) ogDescription.setAttribute("content", description);
   }
 
   function breadcrumbs(items) {
     return `
-      <nav class="hc-breadcrumbs" aria-label="面包屑">
-        <a href="guide.html">帮助中心</a>
+      <nav class="hc-breadcrumbs" aria-label="${escapeHTML(text("breadcrumbs"))}">
+        <a href="${localizedHref("guide.html")}">${escapeHTML(text("home"))}</a>
         ${items
           .map(
             (item) =>
@@ -233,8 +359,8 @@
 
   function sideRail(currentCategoryId) {
     return `
-      <aside class="hc-side-rail" aria-label="教程分类">
-        <p class="hc-side-rail-label">教程分类</p>
+      <aside class="hc-side-rail" aria-label="${escapeHTML(text("categories"))}">
+        <p class="hc-side-rail-label">${escapeHTML(text("categories"))}</p>
         <nav class="hc-side-nav">
           ${publicCategories
             .map(
@@ -259,7 +385,8 @@
   }
 
   function renderSearchResults(query, target) {
-    const normalized = query.trim().toLocaleLowerCase("zh-CN");
+    const locale = language === "zh" ? "zh-CN" : "en";
+    const normalized = query.trim().toLocaleLowerCase(locale);
     if (!normalized) {
       target.innerHTML = "";
       return;
@@ -276,11 +403,11 @@
           category ? category.title : ""
         ]
           .join(" ")
-          .toLocaleLowerCase("zh-CN");
+          .toLocaleLowerCase(locale);
         const score =
-          article.title.toLocaleLowerCase("zh-CN").includes(normalized) ? 4 :
+          article.title.toLocaleLowerCase(locale).includes(normalized) ? 4 :
           (article.keywords || []).some((item) =>
-            item.toLocaleLowerCase("zh-CN").includes(normalized)
+            item.toLocaleLowerCase(locale).includes(normalized)
           ) ? 3 :
           haystack.includes(normalized) ? 1 : 0;
         return { article, category, score };
@@ -292,8 +419,8 @@
     if (!matches.length) {
       target.innerHTML = `
         <div class="hc-search-empty">
-          <strong>暂时没有找到“${escapeHTML(query)}”</strong>
-          <p>试试更短的词，例如“CFMMC”“止损”“资料库”“回测”或复制软件里的错误提示。</p>
+          <strong>${text("searchEmpty", { query: escapeHTML(query) })}</strong>
+          <p>${escapeHTML(text("searchHint"))}</p>
         </div>`;
       return;
     }
@@ -325,27 +452,27 @@
 
   function renderHome() {
     setDocumentMeta(
-      "TradeReplay 官方教程",
-      "按任务查找 TradeReplay 使用教程、功能说明、设置与故障排查。"
+      text("homeMetaTitle"),
+      text("homeMetaDescription")
     );
     view.innerHTML = `
       <section class="hc-home-hero" aria-labelledby="help-title">
         <div class="hc-shell hc-home-hero-inner">
-          <p class="hc-kicker">TRADEREPLAY HELP CENTER</p>
-          <h1 id="help-title">需要什么，直接搜</h1>
-          <p class="hc-home-hero-copy">从第一次复盘训练到真实账单、策略回测和数据恢复。按你现在要完成的任务，一步一步操作。</p>
+          <p class="hc-kicker">${escapeHTML(text("heroKicker"))}</p>
+          <h1 id="help-title">${escapeHTML(text("heroTitle"))}</h1>
+          <p class="hc-home-hero-copy">${escapeHTML(text("heroCopy"))}</p>
           <div class="hc-search-wrap">
             <label class="hc-search-field">
               ${icon("search")}
-              <span class="hc-visually-hidden">搜索帮助文章</span>
-              <input type="search" placeholder="搜索功能、问题或错误提示…" autocomplete="off" data-home-search>
+              <span class="hc-visually-hidden">${escapeHTML(text("searchLabel"))}</span>
+              <input type="search" placeholder="${escapeHTML(text("searchPlaceholder"))}" autocomplete="off" data-home-search>
               <kbd>/</kbd>
             </label>
             <div class="hc-search-results" data-home-results aria-live="polite"></div>
           </div>
           <div class="hc-popular-searches">
-            <span>常用搜索</span>
-            ${["第一次训练", "CFMMC", "止损", "资料库", "激活"]
+            <span>${escapeHTML(text("popular"))}</span>
+            ${strings.popularTerms
               .map((term) => `<button type="button" data-search-term="${term}">${term}</button>`)
               .join("")}
           </div>
@@ -353,7 +480,7 @@
       </section>
       <section class="hc-home-category-section" aria-labelledby="category-title">
         <div class="hc-shell">
-          <h2 class="hc-visually-hidden" id="category-title">教程分类</h2>
+          <h2 class="hc-visually-hidden" id="category-title">${escapeHTML(text("categories"))}</h2>
           <div class="hc-home-category-grid">
             ${publicCategories.map(homeCategoryTile).join("")}
           </div>
@@ -399,7 +526,7 @@
                 <p class="hc-category-lede">${escapeHTML(category.description)}</p>
               </header>
               <section class="hc-category-articles" aria-labelledby="category-articles-title">
-                <h2 id="category-articles-title">本分类文章</h2>
+                <h2 id="category-articles-title">${escapeHTML(text("categorySection"))}</h2>
                 <ul class="hc-article-title-list">
                   ${articles.map(articleTitleItem).join("")}
                 </ul>
@@ -443,13 +570,13 @@
                 <p class="hc-article-summary">${escapeHTML(article.summary)}</p>
                 <p class="hc-article-verified">
                   ${icon("check")}
-                  <span>${article.code} · ${escapeHTML(article.level)} · ${escapeHTML(article.platform)} · 约 ${escapeHTML(article.time)}</span>
+                  <span>${article.code} · ${escapeHTML(article.level)} · ${escapeHTML(article.platform)} · ${escapeHTML(text("approx", { time: article.time }))}</span>
                 </p>
               </header>
               ${renderArticleBody(article, related)}
             </article>
-            <aside class="hc-article-aside" aria-label="本分类文章">
-              <p class="hc-aside-title">本分类文章</p>
+            <aside class="hc-article-aside" aria-label="${escapeHTML(text("categorySection"))}">
+              <p class="hc-aside-title">${escapeHTML(text("categorySection"))}</p>
               <nav class="hc-section-article-list">
                 ${categoryArticles
                   .map(
@@ -471,11 +598,11 @@
   function renderArticleBody(article, related) {
     return `
       <div class="hc-article-body">
-        <p class="hc-article-outcome"><strong>完成后：</strong>${escapeHTML(article.outcome)}</p>
+        <p class="hc-article-outcome"><strong>${escapeHTML(text("outcome"))}</strong> ${escapeHTML(article.outcome)}</p>
         ${
           article.before && article.before.length
             ? `<section class="hc-article-section" id="before-you-start">
-                 <h2>开始之前</h2>
+                 <h2>${escapeHTML(text("before"))}</h2>
                  <ul class="hc-before-list">
                    ${article.before.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}
                  </ul>
@@ -486,7 +613,7 @@
         ${
           article.success && article.success.length
             ? `<section class="hc-article-section" id="success-state">
-                 <h2>成功后你会看到</h2>
+                 <h2>${escapeHTML(text("success"))}</h2>
                  <ul class="hc-success-list">
                    ${article.success.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}
                  </ul>
@@ -496,7 +623,7 @@
         ${
           article.faq && article.faq.length
             ? `<section class="hc-article-section" id="common-questions">
-                 <h2>常见问题</h2>
+                 <h2>${escapeHTML(text("faq"))}</h2>
                  <div class="hc-faq-list">
                    ${article.faq
                      .map(
@@ -512,15 +639,15 @@
             : ""
         }
         <div class="hc-article-end">
-          <h2>相关文章</h2>
+          <h2>${escapeHTML(text("related"))}</h2>
           <ul class="hc-related-links">
             ${related.map(relatedLink).join("")}
           </ul>
           <div class="hc-feedback" data-feedback>
-            <p>这篇文章解决了你的问题吗？</p>
+            <p>${escapeHTML(text("feedback"))}</p>
             <div class="hc-feedback-actions">
-              <button type="button" data-feedback-value="yes">解决了</button>
-              <button type="button" data-feedback-value="no">还没有</button>
+              <button type="button" data-feedback-value="yes">${escapeHTML(text("yes"))}</button>
+              <button type="button" data-feedback-value="no">${escapeHTML(text("no"))}</button>
             </div>
           </div>
         </div>
@@ -589,7 +716,7 @@
                 media.poster ? ` poster="${escapeHTML(media.poster)}"` : ""
               }>
                  <source src="${escapeHTML(media.file)}" type="video/mp4">
-                 你的浏览器暂时无法播放这个视频。
+                 ${escapeHTML(text("videoFallback"))}
                </video>`
             : `<img src="${escapeHTML(media.file)}" alt="${escapeHTML(media.alt || media.label)}" loading="lazy" decoding="async">`
         }
@@ -605,16 +732,16 @@
   }
 
   function renderNotFound() {
-    setDocumentMeta("没有找到这篇教程", "返回 TradeReplay 帮助中心继续查找。");
+    setDocumentMeta(text("notFoundTitle"), text("notFoundMeta"));
     view.innerHTML = `
       <div class="hc-page">
         <div class="hc-shell">
-          ${breadcrumbs([{ label: "未找到" }])}
+          ${breadcrumbs([{ label: text("notFoundCrumb") }])}
           <div class="hc-outline-state">
             ${icon("search")}
-            <h1>没有找到这篇教程</h1>
-            <p>链接可能已经调整，或者内容暂未公开。请返回帮助中心搜索功能名称或错误提示。</p>
-            <a class="hc-button" href="guide.html">返回帮助中心</a>
+            <h1>${escapeHTML(text("notFoundTitle"))}</h1>
+            <p>${escapeHTML(text("notFoundCopy"))}</p>
+            <a class="hc-button" href="${localizedHref("guide.html")}">${escapeHTML(text("notFoundButton"))}</a>
           </div>
         </div>
       </div>`;
@@ -628,8 +755,10 @@
           const solved = button.getAttribute("data-feedback-value") === "yes";
           feedback.classList.add("is-complete");
           feedback.innerHTML = solved
-            ? "谢谢反馈，我们会继续保持文章准确。"
-            : '谢谢反馈。你可以前往<a href="support.html">支持页面</a>告诉我们卡在哪一步。';
+            ? escapeHTML(text("feedbackYes"))
+            : text("feedbackNo", {
+                support: `<a href="${localizedHref("support.html")}">${escapeHTML(text("supportPage"))}</a>`
+              });
         });
       });
     }
@@ -658,6 +787,49 @@
     }
   }
 
+  function localizeStaticPage() {
+    const suffix = language === "zh" ? "Zh" : "En";
+    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+
+    document.querySelectorAll("[data-zh][data-en]").forEach((node) => {
+      node.textContent = node.dataset[language];
+    });
+    document.querySelectorAll("[data-href-zh][data-href-en]").forEach((node) => {
+      node.setAttribute("href", node.dataset[`href${suffix}`]);
+    });
+    document.querySelectorAll("[data-aria-zh][data-aria-en]").forEach((node) => {
+      node.setAttribute("aria-label", node.dataset[`aria${suffix}`]);
+    });
+    document.querySelectorAll("[data-placeholder-zh][data-placeholder-en]").forEach((node) => {
+      node.setAttribute("placeholder", node.dataset[`placeholder${suffix}`]);
+    });
+
+    if (languageSwitch) {
+      languageSwitch.textContent = text("switchText");
+      languageSwitch.setAttribute("aria-label", text("switchLabel"));
+      languageSwitch.setAttribute("title", text("switchLabel"));
+    }
+    document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
+      const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+      const label = language === "en"
+        ? `Switch to ${nextTheme} theme`
+        : nextTheme === "light" ? "切换到浅色主题" : "切换到深色主题";
+      toggle.setAttribute("aria-label", label);
+      toggle.setAttribute("title", label);
+      const hiddenLabel = toggle.querySelector(".theme-toggle-label");
+      if (hiddenLabel) hiddenLabel.textContent = label;
+    });
+
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute("content", language === "zh" ? "zh_CN" : "en_US");
+
+    try {
+      window.localStorage.setItem(languageStorageKey, language);
+    } catch {
+      // The page remains usable without local storage.
+    }
+  }
+
   function route() {
     const params = new URLSearchParams(window.location.search);
     const articleId = params.get("article");
@@ -675,6 +847,20 @@
     }
     if (loading) loading.remove();
     window.scrollTo(0, 0);
+  }
+
+  if (languageSwitch) {
+    languageSwitch.addEventListener("click", () => {
+      const nextLanguage = language === "zh" ? "en" : "zh";
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", nextLanguage);
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+      if (searchDialog?.open) searchDialog.close();
+      selectLocale(nextLanguage);
+      localizeStaticPage();
+      route();
+      updateReadingProgress();
+    });
   }
 
   function openSearch() {
@@ -748,6 +934,8 @@
   window.addEventListener("scroll", updateReadingProgress, { passive: true });
   window.addEventListener("resize", updateReadingProgress);
 
+  selectLocale(language);
+  localizeStaticPage();
   route();
   updateReadingProgress();
 })();

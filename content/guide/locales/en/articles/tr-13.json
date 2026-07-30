@@ -1,0 +1,53 @@
+{
+  "id": "tr-13",
+  "code": "TR-13",
+  "title": "How TradeReplay handles liquidation",
+  "summary": "Understand the liquidation threshold, the no-liquidation option, and the resulting trade record.",
+  "time": "9 min",
+  "level": "Intermediate",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["liquidation", "margin call", "stop-out", "margin"],
+  "outcome": "You will understand when simulated liquidation triggers, what it does, and the risk of disabling liquidation simulation.",
+  "before": [
+    "Configure margin or leverage parameters for the account.",
+    "The session has a position that consumes margin."
+  ],
+  "sections": [
+    {
+      "id": "trigger",
+      "title": "1. When liquidation triggers",
+      "body": "<p>TradeReplay triggers liquidation when unrealized loss reduces equity to the simulated risk threshold. Fixed-margin futures usually compare equity with used margin; other account types use their configured stop-out parameters.</p>"
+    },
+    {
+      "id": "process",
+      "title": "2. What happens after the trigger",
+      "body": "<p>The simulator closes the affected positions at available prices, records the liquidation reason, fills, and costs, and updates the balance. The exit reason is available in History.</p>"
+    },
+    {
+      "id": "no-liquidation",
+      "title": "3. The no-liquidation option",
+      "body": "<p>With liquidation simulation disabled, market replay and unrealized results continue, but TradeReplay does not close the position at the margin threshold. This can be used to study an extreme path; it does not mean a live account can absorb unlimited loss.</p>"
+    },
+    {
+      "id": "prevent",
+      "title": "4. Control risk before liquidation",
+      "body": "<p>Use stops, risk-based sizing, and lower margin usage. Liquidation is a final safety mechanism, not a normal exit method.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Live broker rules can be more complex",
+        "body": "<p>A live account may also be affected by margin calls, intraday changes, price limits, and liquidity. The simulation reflects only the current session parameters.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can find the liquidation threshold or no-liquidation setting.",
+    "A liquidated trade has a clear exit reason in History.",
+    "You understand that the simulation is not a promise of live-broker behavior."
+  ],
+  "faq": [
+    {"q": "Why did liquidation happen before the balance reached zero?", "a": "<p>Margin risk controls trigger when equity approaches used margin or another configured threshold; they do not wait for a zero balance.</p>"},
+    {"q": "What happens to the balance when liquidation is disabled?", "a": "<p>The position continues to produce unrealized results as the market moves. This mode is for research, not a representation of tradable live conditions.</p>"},
+    {"q": "Why is the liquidation fill different from the threshold?", "a": "<p>After triggering, the simulator uses the next available quote together with spread and replay granularity, so the fill may differ.</p>"}
+  ]
+}

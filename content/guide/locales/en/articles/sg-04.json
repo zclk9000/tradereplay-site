@@ -1,0 +1,39 @@
+{
+  "id": "sg-04",
+  "code": "SG-04",
+  "title": "Create a trading system",
+  "summary": "Define its name, description, tags, entry checklist, risk rules, and exit rules.",
+  "time": "12 min",
+  "level": "Advanced",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["trading system", "new system", "checklist", "rules"],
+  "outcome": "You will build a complete trading system with entry, risk, exit, and no-trade rules.",
+  "before": [
+    "Write down the market, timeframe, and trade direction addressed by the system.",
+    "Prepare at least one entry condition that can be judged objectively.",
+    "Distinguish a discretionary trading system from an automated backtest strategy; they serve different purposes."
+  ],
+  "sections": [
+    {"id": "identity", "title": "1. Add a name, description, and tags", "body": "<p>Go to <strong>Strategy → Systems</strong> and create a trading system. Use a name that distinguishes the market and version, describe when it applies, and add tags for filtering trades later.</p>"},
+    {"id": "entry", "title": "2. Write the entry rules", "body": "<p>Break conditions into rule groups that can be judged, and mark them as automatic, semi-automatic, or manual. Avoid descriptions such as “feels good” or “nice pattern” that cannot be verified later.</p>"},
+    {"id": "risk-exit", "title": "3. Complete risk and exit rules", "body": "<p>The risk module should cover at least risk per trade, stop location, and scaling rules. The exit module should define profit-taking, trailing protection, time-based exits, or signal invalidation.</p>"},
+    {"id": "prohibited", "title": "4. Add no-trade rules", "body": "<p>Record situations that require you to stand aside, such as before scheduled data, after consecutive losses, during abnormal spreads, or without a stop. No-trade rules often reduce impulsive decisions more effectively than adding more entry conditions.</p>"},
+    {
+      "id": "use",
+      "title": "5. Use the system in practice",
+      "body": "<p>After saving, select the system and complete its checklist before placing an order. When the trade ends, record execution and deviations in History or the strategy journal.</p>",
+      "callout": {"tone": "warning", "title": "A system checklist records compliance by default", "body": "<p>To block orders when conditions are missing, enable an enforced gate in order discipline as well.</p>"}
+    }
+  ],
+  "success": [
+    "The system includes entry, risk, exit, and no-trade modules.",
+    "Every main rule can clearly pass or fail.",
+    "Practice trades can be linked to the system."
+  ],
+  "faq": [
+    {"q": "What is the difference between a trading system and a backtest strategy?", "a": "<p>A trading system manages the complete discretionary decision and discipline process. A backtest strategy is an expression that historical data can execute. They can validate each other, but they are not the same object.</p>"},
+    {"q": "Are more rules always better?", "a": "<p>No. Keep only conditions you can explain, execute, and review. Too many rules make hindsight selection easier.</p>"},
+    {"q": "Will changing a system affect old trades?", "a": "<p>Old trades should retain the execution record from that time. Create a new version for major changes so that the results can be compared.</p>"}
+  ]
+}

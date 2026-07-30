@@ -1,0 +1,76 @@
+{
+  "id": "dt-03",
+  "code": "DT-03",
+  "title": "Create a replay session",
+  "summary": "Choose the data, replay starting point, balance, currency, and session name.",
+  "time": "8 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["new session", "balance", "starting point", "random start"],
+  "outcome": "You will create an independent replay session from prepared data and configure its starting point, balance, and account parameters.",
+  "before": [
+    "Download system data or import custom bar data.",
+    "Choose the instrument and approximate date range you want to practice.",
+    "If you are practicing risk management, decide on an initial balance."
+  ],
+  "sections": [
+    {
+      "id": "select-data",
+      "title": "1. Choose the data source",
+      "body": "<p>Open <strong>Review → Accounts</strong> and select New session. Choose System or Custom as the data source, then choose the instrument and data set.</p>"
+    },
+    {
+      "id": "start-point",
+      "title": "2. Choose the replay starting point",
+      "body": "<p>The starting point must be inside the available data range. Choose Random if you do not want to know what comes next; TradeReplay starts as close as possible to the beginning of a valid trading day.</p>"
+    },
+    {
+      "id": "account",
+      "title": "3. Configure the account and name",
+      "steps": [
+        {
+          "title": "Enter the initial balance and currency",
+          "body": "<p>The balance affects percentage risk, margin, and maximum order size. Use a currency appropriate for the market you are practicing.</p>"
+        },
+        {
+          "title": "Name the session",
+          "body": "<p>Include the instrument, timeframe, or practice objective so the session is easy to find later.</p>"
+        },
+        {
+          "title": "Review advanced parameters",
+          "body": "<p>For precise simulation, review point value, contract multiplier, minimum lot, lot step, spread, commission, swap, margin, and whether rewind is allowed.</p>"
+        }
+      ]
+    },
+    {
+      "id": "create",
+      "title": "4. Create and start",
+      "body": "<p>Create the session, then verify the instrument, current time, balance, and replay mode before advancing the chart.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Account parameters directly affect results",
+        "body": "<p>Incorrect point value, fees, or margin will distort P&L and risk calculations. Check them against the actual contract or broker rules before serious practice.</p>"
+      }
+    }
+  ],
+  "success": [
+    "The new session appears on the Accounts page.",
+    "The chart starts at the selected point within the data range.",
+    "The balance, currency, and instrument match the setup."
+  ],
+  "faq": [
+    {
+      "q": "Why can’t I select a particular date?",
+      "a": "<p>The date may be outside the data range or have no valid market data. Choose a trading day within the range or add the missing data first.</p>"
+    },
+    {
+      "q": "Can I change account parameters after creation?",
+      "a": "<p>Open the session menu on the Accounts page to change supported parameters for future practice. Existing fills are not recalculated automatically.</p>"
+    },
+    {
+      "q": "Why do advanced defaults change?",
+      "a": "<p>Different markets and instruments load different defaults. Always verify them against your actual contract or broker rules.</p>"
+    }
+  ]
+}

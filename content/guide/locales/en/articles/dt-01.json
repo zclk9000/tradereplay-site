@@ -1,0 +1,71 @@
+{
+  "id": "dt-01",
+  "code": "DT-01",
+  "title": "Download your first system bar data",
+  "summary": "Choose an instrument and historical range, then download the official market data to your local library.",
+  "time": "6 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["market data", "bar data", "download", "instrument"],
+  "outcome": "You will download system-provided data for one instrument and be able to create a replay session from it.",
+  "before": [
+    "Make sure the computer has a stable internet connection.",
+    "Make sure the library disk has enough free space.",
+    "Do not close TradeReplay or disconnect the library disk during the download."
+  ],
+  "sections": [
+    {
+      "id": "open-catalog",
+      "title": "1. Open the system-data catalog",
+      "body": "<p>Open the global <strong>Market Data</strong> tool, go to Bar Data, and choose System Data. Available history is organized by market and instrument.</p>"
+    },
+    {
+      "id": "choose-symbol",
+      "title": "2. Choose an instrument and range",
+      "body": "<p>Select the instrument you want to practice, then choose the required historical range. Start with a shorter range to confirm that the data and practice workflow work before downloading more.</p>",
+      "callout": {
+        "tone": "info",
+        "title": "Market data and replay sessions are separate",
+        "body": "<p>Market data can be reused. A replay session stores replay progress, simulated trades, and notes. You can create multiple sessions from the same data.</p>"
+      }
+    },
+    {
+      "id": "download",
+      "title": "3. Start and complete the download",
+      "steps": [
+        {
+          "title": "Select Download",
+          "body": "<p>Watch the progress and status after the task starts. Do not click repeatedly.</p>"
+        },
+        {
+          "title": "Wait for the write to finish",
+          "body": "<p>When complete, the instrument shows its available date range and local status.</p>"
+        },
+        {
+          "title": "Verify by creating a session",
+          "body": "<p>Open New replay session and confirm that the instrument is available under the System data source.</p>"
+        }
+      ]
+    }
+  ],
+  "success": [
+    "The data page shows the instrument as downloaded.",
+    "The start and end dates of the local data are visible.",
+    "The data can be selected when creating a replay session."
+  ],
+  "faq": [
+    {
+      "q": "Is a longer download always better?",
+      "a": "<p>No. Longer ranges take more time and disk space. Download only what your practice plan needs.</p>"
+    },
+    {
+      "q": "Does deleting market data delete my trades?",
+      "a": "<p>No. Trades, notes, and drawings remain, but sessions that depend on the data report it as missing. Download or match the data again to restore the chart.</p>"
+    },
+    {
+      "q": "What if the download never shows progress?",
+      "a": "<p>Do not create the task repeatedly. Follow the market-data download troubleshooting guide to check the network, disk, license, and selected range.</p>"
+    }
+  ]
+}

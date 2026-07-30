@@ -517,9 +517,9 @@ html[data-theme="light"] .changelog-body .tag-fix {
 
 @media (max-width: 800px) {
   .theme-toggle {
-    width: 42px;
-    height: 42px;
-    flex-basis: 42px;
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
   }
 
   .hc-header-actions {

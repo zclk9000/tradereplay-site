@@ -1,0 +1,38 @@
+{
+  "id": "ac-05",
+  "code": "AC-05",
+  "title": "Check an import preview before continuing",
+  "summary": "Verify the account, currency, trades, cash flows, dates, and instruments before writing data to the wrong account.",
+  "time": "8 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["import preview", "account", "currency", "trade count"],
+  "outcome": "You will verify the account, currency, dates, trades, cash flows, and instruments before anything is written to the library.",
+  "before": [
+    "Select an original MT4/MT5, CFMMC, or other supported report.",
+    "Keep the original report available for comparison."
+  ],
+  "sections": [
+    {"id": "account", "title": "1. Verify the account identity", "body": "<p>Start with the platform, broker, account number, and currency. When appending to an existing account, verify both the account number and currency rather than relying on a similar display name.</p>"},
+    {"id": "counts", "title": "2. Verify counts and dates", "body": "<p>Check the number of files, date range, trades, cash flows, and open positions. For an append import, pay particular attention to whether the <strong>new</strong> count is reasonable.</p>"},
+    {"id": "money", "title": "3. Verify amounts", "body": "<p>Spot-check realized profit and loss, fees, deposits, withdrawals, credit entries, and rebates. A positive cash flow is not always a deposit. Add the required cash-flow keywords and parse again when necessary.</p>"},
+    {
+      "id": "symbols",
+      "title": "4. Verify instrument matching",
+      "body": "<p>Review every unmatched instrument, missing-bar warning, and unavailable source. For futures, confirm the exact delivery month. For FX or CFDs, check broker prefixes and suffixes.</p>",
+      "callout": {"tone": "warning", "title": "Do not continue when the preview is wrong", "body": "<p>Return to the source file or account selection and resolve the cause. Cleaning up an incorrect account after import takes more work.</p>"}
+    },
+    {"id": "finish", "title": "5. Spot-check after import", "body": "<p>After importing, use the account details and History to check at least one winning trade, one losing trade, and one trade with fees. Confirm that the total count matches the preview.</p>"}
+  ],
+  "success": [
+    "The account number, currency, and target account agree.",
+    "The trade and cash-flow counts agree with the original report.",
+    "Every unusual instrument is either resolved or intentionally left unmatched."
+  ],
+  "faq": [
+    {"q": "Does the preview modify my library?", "a": "<p>No. Data is written only after you confirm the final import.</p>"},
+    {"q": "Why is the new-item count lower than the report’s trade count?", "a": "<p>The report may include duplicates, non-trade cash flows, or fills that were already imported. Review the deduplication and classification results in the preview.</p>"},
+    {"q": "Can I import with unmatched instruments?", "a": "<p>Yes. The trade facts can be retained and market data matched later, but those trades will not have a complete chart review until then.</p>"}
+  ]
+}

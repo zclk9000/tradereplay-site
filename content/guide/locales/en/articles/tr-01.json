@@ -1,0 +1,58 @@
+{
+  "id": "tr-01",
+  "code": "TR-01",
+  "title": "Place your first buy or sell order",
+  "summary": "Set direction, size, stop loss, and take profit, then place a market order.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["buy", "sell", "market order", "place order"],
+  "outcome": "You will set direction, position size, and protection in replay, submit a market order, and close the position correctly.",
+  "before": [
+    "Open a replay session that allows trading.",
+    "Advance the chart to the point where you plan to trade.",
+    "Make sure the account has sufficient available funds."
+  ],
+  "sections": [
+    {
+      "id": "pause",
+      "title": "1. Pause and confirm the trade plan",
+      "body": "<p>Pause the replay. Decide whether to go long or short, what invalidates the idea, and the maximum acceptable loss. Do not click Buy or Sell before defining the reason.</p>"
+    },
+    {
+      "id": "size-protection",
+      "title": "2. Set position size and protection",
+      "body": "<p>Choose fixed size, cash risk, or percentage risk, then enter a stop loss and take profit. Check that both lines are placed at reasonable prices and that estimated risk does not exceed the plan.</p>"
+    },
+    {
+      "id": "submit",
+      "title": "3. Buy or sell",
+      "steps": [
+        {"title": "Buy", "body": "<p>Opens a long position that benefits if price rises.</p>"},
+        {"title": "Sell", "body": "<p>Opens a short position that benefits if price falls.</p>"},
+        {"title": "Verify the fill", "body": "<p>After submission, check direction, fill price, size, stop, target, and unrealized P&L in the position panel.</p>"}
+      ]
+    },
+    {
+      "id": "close",
+      "title": "4. Continue replay and close the position",
+      "body": "<p>Advance the market. The stop or target can close the position, or you can close it manually from the position panel. Then open <strong>Review → History</strong> and verify the completed trade.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "A market order is not guaranteed to fill at the chart marker",
+        "body": "<p>Spread, tick quotes, fees, and market rules can affect the simulated fill and net result.</p>"
+      }
+    }
+  ],
+  "success": [
+    "The position panel shows the correct direction and size.",
+    "The stop and target match the plan.",
+    "A complete trade appears in History after the position is closed."
+  ],
+  "faq": [
+    {"q": "Why was no order placed?", "a": "<p>Check minimum size, size step, available margin, stop validity, and any order-discipline message.</p>"},
+    {"q": "Can long and short positions exist at the same time?", "a": "<p>That depends on the account and instrument position rules. For the first exercise, complete one single-direction trade.</p>"},
+    {"q": "Why doesn’t net P&L exactly match the price move?", "a": "<p>Net results also include point value, contract multiplier, spread, commission, and swap.</p>"}
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "ch-03",
+  "code": "CH-03",
+  "title": "Switch timeframes and customize the timeframe toolbar",
+  "summary": "Use minute, hour, daily, second, and tick timeframes and keep your frequently used choices.",
+  "time": "7 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["timeframe", "M1", "H1", "seconds", "tick chart"],
+  "outcome": "You will switch common timeframes, create a seconds or tick timeframe, and pin frequent choices to the toolbar.",
+  "before": [
+    "Open a chart.",
+    "Seconds and tick timeframes require a sufficiently detailed data source."
+  ],
+  "sections": [
+    {
+      "id": "switch",
+      "title": "1. Switch preset timeframes",
+      "body": "<p>The chart toolbar includes common presets such as M1, M5, M15, M30, H1, H4, and D1. Selecting one reaggregates the active chart.</p>"
+    },
+    {
+      "id": "active-chart",
+      "title": "2. Confirm the active chart",
+      "body": "<p>In a multi-chart layout, timeframe, indicator, and drawing actions apply to the active chart. Select the target chart before changing the timeframe.</p>"
+    },
+    {
+      "id": "custom",
+      "title": "3. Create a custom timeframe",
+      "body": "<p>Add a time-based or tick-based interval in timeframe management. Time-based intervals aggregate by seconds or minutes; tick intervals form one bar from a fixed number of ticks. Save it, then select it from the timeframe list.</p>"
+    },
+    {
+      "id": "toolbar",
+      "title": "4. Manage frequent timeframes",
+      "body": "<p>Add frequently used timeframes to the toolbar and remove ones you rarely use. The toolbar holds up to ten; all others remain available in the full list.</p>",
+      "callout": {
+        "tone": "tip",
+        "title": "Give each timeframe a role",
+        "body": "<p>For example, use H1 for structure and M5 for entries. Too many similar timeframes add repeated information rather than clarity.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can switch the active chart’s preset timeframe.",
+    "You can create and select a custom timeframe.",
+    "The frequent-timeframe toolbar contains no more than ten choices."
+  ],
+  "faq": [
+    {
+      "q": "Why is there no data on a seconds or tick timeframe?",
+      "a": "<p>The underlying data may not be detailed enough. Minute bars cannot reconstruct real seconds or tick movement.</p>"
+    },
+    {
+      "q": "Does switching timeframe change the replay time?",
+      "a": "<p>No. It reorganizes visible market data without changing the current historical moment.</p>"
+    },
+    {
+      "q": "Why did another chart change?",
+      "a": "<p>Timeframe actions apply to the active chart. Select the intended chart first.</p>"
+    }
+  ]
+}

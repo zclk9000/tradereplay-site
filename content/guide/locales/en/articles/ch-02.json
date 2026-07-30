@@ -1,0 +1,75 @@
+{
+  "id": "ch-02",
+  "code": "CH-02",
+  "title": "Choose the right replay mode",
+  "summary": "Compare control points, open prices, and real-tick replay.",
+  "time": "9 min",
+  "level": "Intermediate",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["replay mode", "control points", "open prices", "real ticks"],
+  "outcome": "You will choose between Open prices, Control points, and Real ticks based on the purpose of the practice.",
+  "before": [
+    "Open a replay session.",
+    "Real-tick replay requires tick data for the selected instrument and date range."
+  ],
+  "sections": [
+    {
+      "id": "open-prices",
+      "title": "1. Open prices: fastest for structure practice",
+      "body": "<p>Each step primarily reveals a complete display-timeframe bar. It is fast and uncluttered, making it useful for close-confirmed rules, higher-timeframe structure, and larger samples.</p><p>It does not show the intrabar order of prices, so it cannot determine whether a stop or target was reached first within the same bar.</p>"
+    },
+    {
+      "id": "control-points",
+      "title": "2. Control points: a balance of speed and detail",
+      "body": "<p>TradeReplay synthesizes an intrabar path from bar information so price moves through key points in stages. This mode suits most manual replay and order-entry practice.</p><p>Control points are not recorded tick-by-tick trades; the intrabar path remains an approximation.</p>"
+    },
+    {
+      "id": "real-tick",
+      "title": "3. Real ticks: highest time detail",
+      "body": "<p>This mode advances through recorded ticks and Bid/Ask quotes. Use it to study short-term triggers, spread, and intrabar execution order. It requires more data and preparation time.</p>"
+    },
+    {
+      "id": "choose",
+      "title": "4. Match the mode to the question",
+      "steps": [
+        {
+          "title": "Practice structure and collect rule samples",
+          "body": "<p>Start with Open prices.</p>"
+        },
+        {
+          "title": "Practice manual decisions and intrabar progression",
+          "body": "<p>Start with Control points.</p>"
+        },
+        {
+          "title": "Study precise triggers and spread",
+          "body": "<p>Prepare tick data, then use Real ticks.</p>"
+        }
+      ],
+      "callout": {
+        "tone": "info",
+        "title": "More detail does not automatically produce a better conclusion",
+        "body": "<p>Match data precision to the strategy’s decision frequency. A daily close strategy usually does not need tick-by-tick replay.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can explain the data granularity of all three modes.",
+    "You can choose a suitable mode for your strategy.",
+    "You will not treat a control-point path as recorded tick data."
+  ],
+  "faq": [
+    {
+      "q": "Can I use Real ticks without tick data?",
+      "a": "<p>Not fully. Prepare tick data for the instrument and date range in Market Data first.</p>"
+    },
+    {
+      "q": "Why does the same strategy produce different results in different modes?",
+      "a": "<p>Intrabar price path and execution ordering differ in precision, which can change pending-order, stop, and target outcomes. Keep the mode consistent when comparing results.</p>"
+    },
+    {
+      "q": "Which mode should I use for the first session?",
+      "a": "<p>Control points is usually a good start: it shows intrabar movement without the time and data requirements of Real ticks.</p>"
+    }
+  ]
+}

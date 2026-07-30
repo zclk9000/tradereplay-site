@@ -1,0 +1,53 @@
+{
+  "id": "rv-01",
+  "code": "RV-01",
+  "title": "Find a trade in History",
+  "summary": "Filter trades by source, date, instrument, direction, result, and tag.",
+  "time": "6 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["history", "filter", "trade", "tag"],
+  "outcome": "You will combine History filters to locate a trade quickly and restore the complete list afterward.",
+  "before": [
+    "At least one replay session, backtest, or live account contains trades.",
+    "Know the approximate date, instrument, or account source of the target trade."
+  ],
+  "sections": [
+    {
+      "id": "scope",
+      "title": "1. Narrow the account source first",
+      "body": "<p>Open <strong>Review → History</strong> and first select the account, replay session, or source type. A precise source makes later date and instrument filters clearer.</p>"
+    },
+    {
+      "id": "filters",
+      "title": "2. Combine filters",
+      "body": "<p>Narrow the list by date, instrument, direction, P&L result, and tag. Multiple filters usually apply together, so check for excessive restrictions when no results appear.</p>"
+    },
+    {
+      "id": "inspect",
+      "title": "3. Open the trade details",
+      "body": "<p>Select the target row to inspect open and close times, prices, size, fees, net P&L, system, reason, tags, and notes. Open the chart preview when you need market context.</p>"
+    },
+    {
+      "id": "reset",
+      "title": "4. Clear the filters",
+      "body": "<p>After finding the trade, clear or reset the filters and confirm that the complete list returns. Otherwise, a filtered view can look like missing data on your next visit.</p>",
+      "callout": {
+        "tone": "tip",
+        "title": "Stable tags make filtering useful",
+        "body": "<p>Use one tag for the same behavior. For example, do not split one idea across “chasing,” “late entry,” and “FOMO” unless they have distinct definitions.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can find the target range by account and date.",
+    "You can add instrument, direction, result, or tag filters.",
+    "The complete trade list returns after filters are cleared."
+  ],
+  "faq": [
+    {"q": "Why is History empty?", "a": "<p>Clear all filters, then check the account scope and date. If it is still empty, confirm that the trade was closed or the import completed.</p>"},
+    {"q": "Does an open position appear among completed trades?", "a": "<p>Open positions and complete closed trades use different views and statistics. Check the corresponding account or position area.</p>"},
+    {"q": "Do filters modify data?", "a": "<p>No. Filters change only the current display; they do not delete or edit trades.</p>"}
+  ]
+}

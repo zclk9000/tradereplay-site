@@ -1,0 +1,37 @@
+{
+  "id": "ac-07",
+  "code": "AC-07",
+  "title": "Match statement instruments to chart data",
+  "summary": "Distinguish unmatched instruments, missing bars, and unavailable sources, then use automatic or manual matching.",
+  "time": "10 min",
+  "level": "Advanced",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["automatic matching", "missing bars", "unmatched", "instrument"],
+  "outcome": "You will understand the three matching states, connect statement instruments to the correct local chart data, and open a trade preview.",
+  "before": [
+    "Trades have already been imported into a live account.",
+    "You know the real market or specific futures contract represented by the broker symbol."
+  ],
+  "sections": [
+    {"id": "statuses", "title": "1. Understand the statuses", "body": "<p><strong>Unmatched</strong>: the instrument represented by the code is not yet known. <strong>Missing bars</strong>: the instrument is identified, but local data does not cover the trade dates. <strong>Source unavailable</strong>: the current catalog has no reference source that can be downloaded automatically.</p>"},
+    {"id": "automatic", "title": "2. Use automatic matching", "body": "<p>Automatic matching finds candidates from normalized codes, markets, and available data. Accept an unambiguous result directly. When several candidates appear, verify them manually.</p>"},
+    {"id": "manual", "title": "3. Select the correct instrument manually", "body": "<p>Broker prefixes and suffixes, micro and standard contracts, and indices and CFDs cannot be identified from similar characters alone. Verify the contract specification, exchange, expiry month, and quote unit before saving the mapping.</p>"},
+    {
+      "id": "prepare-data",
+      "title": "4. Add chart data and verify the result",
+      "body": "<p>If Missing bars remains after matching, download system data or import custom data that covers the trade dates. Return to History, open one trade, and check that its markers appear at reasonable times and prices.</p>",
+      "callout": {"tone": "warning", "title": "Prefer the specific contract over a continuous substitute", "body": "<p>For fill-by-fill futures review, match the contract actually traded whenever possible. Continuous contracts are useful for continuous observation, but their prices may differ.</p>"}
+    }
+  ],
+  "success": [
+    "The target no longer appears as unmatched.",
+    "Local chart data covers the trade dates.",
+    "The trade preview shows reasonable entry and exit positions."
+  ],
+  "faq": [
+    {"q": "Why did automatic matching return no result?", "a": "<p>The broker code may contain a custom suffix, or the current data catalog may not cover that market. Search manually or import reference data.</p>"},
+    {"q": "Can I map every delivery month to a continuous contract?", "a": "<p>That is not recommended for exact fill-by-fill review. Contracts differ in price and liquidity; use the traded delivery month first.</p>"},
+    {"q": "What if I saved the wrong mapping?", "a": "<p>Open instrument mapping again, choose the correct data source, and check the trade preview. The original fill price is not rewritten by changing a mapping.</p>"}
+  ]
+}

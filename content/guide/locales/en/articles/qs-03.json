@@ -1,0 +1,75 @@
+{
+  "id": "qs-03",
+  "code": "QS-03",
+  "title": "Understand the new interface: Overview, Review, and Strategy",
+  "summary": "Learn the three main workspaces, their pages, and the global tools.",
+  "time": "6 min",
+  "level": "Beginner",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["navigation", "overview", "review", "strategy", "interface"],
+  "outcome": "You will understand the Overview, Review, and Strategy workspaces and quickly find Market Data, Mentor, Achievements, and Settings.",
+  "before": [
+    "Complete the first-launch setup.",
+    "You do not need to download market data or create a replay session first."
+  ],
+  "sections": [
+    {
+      "id": "primary-nav",
+      "title": "1. Three main workspaces",
+      "body": "<p><strong>Overview</strong> summarizes your accounts and practice activity. <strong>Review</strong> contains chart replay, history, statistics, and account management. <strong>Strategy</strong> contains indicators, backtests, trading systems, and the strategy journal.</p><p>Decide which kind of task you are doing first, then open the matching workspace.</p>"
+    },
+    {
+      "id": "review-tabs",
+      "title": "2. Four pages in Review",
+      "steps": [
+        {
+          "title": "Chart",
+          "body": "<p>Advance historical market data, place simulated orders, draw on the chart, and use indicators.</p>"
+        },
+        {
+          "title": "History",
+          "body": "<p>Find trades, add reasons, tags, and notes, and open a chart preview.</p>"
+        },
+        {
+          "title": "Statistics",
+          "body": "<p>Review equity, P&L, drawdown, behavior distributions, and diagnostic findings.</p>"
+        },
+        {
+          "title": "Accounts",
+          "body": "<p>Manage replay sessions, backtest results, and live accounts.</p>"
+        }
+      ]
+    },
+    {
+      "id": "strategy-tabs",
+      "title": "3. Four pages in Strategy",
+      "body": "<p><strong>Indicators</strong> contains built-in and custom indicators. <strong>Backtest</strong> validates strategy expressions. <strong>Systems</strong> manages entry, risk, exit, and no-trade rules. <strong>Journal</strong> records strategy iterations.</p>"
+    },
+    {
+      "id": "global-tools",
+      "title": "4. Global tools",
+      "body": "<p>The global tools provide access to Mentor, theme settings, Market Data, Achievements, and Settings. Some tools may move into the sidebar in a narrower layout, but their functions do not change.</p>",
+      "callout": {
+        "tone": "tip",
+        "title": "Check the window width if a tool seems to be missing",
+        "body": "<p>On a narrow window, text labels may collapse into icons or move into the sidebar. Hover over an icon to see its name.</p>"
+      }
+    }
+  ],
+  "success": [
+    "You can open Chart, History, Statistics, and Accounts from Review.",
+    "You can open Indicators, Backtest, Systems, and Journal from Strategy.",
+    "You can find Market Data and Settings in the global tools or sidebar."
+  ],
+  "faq": [
+    {
+      "q": "Why are my buttons in slightly different positions?",
+      "a": "<p>TradeReplay adapts its navigation to the window width. The names, icons, and page contents remain the same.</p>"
+    },
+    {
+      "q": "Where are my live accounts?",
+      "a": "<p>Open <strong>Review → Accounts</strong>. Live accounts, replay sessions, and backtest results are grouped by type.</p>"
+    }
+  ]
+}

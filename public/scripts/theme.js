@@ -40,9 +40,15 @@
 
   function updateToggle(toggle, theme) {
     const nextTheme = theme === "light" ? "dark" : "light";
-    toggle.setAttribute("aria-label", nextTheme === "light" ? "切换到浅色主题" : "切换到深色主题");
-    toggle.setAttribute("title", nextTheme === "light" ? "切换到浅色主题" : "切换到深色主题");
+    const isEnglish = document.documentElement.lang === "en";
+    const label = isEnglish
+      ? nextTheme === "light" ? "Switch to light theme" : "Switch to dark theme"
+      : nextTheme === "light" ? "切换到浅色主题" : "切换到深色主题";
+    toggle.setAttribute("aria-label", label);
+    toggle.setAttribute("title", label);
     toggle.setAttribute("aria-pressed", String(theme === "dark"));
+    const hiddenLabel = toggle.querySelector(".theme-toggle-label");
+    if (hiddenLabel) hiddenLabel.textContent = label;
   }
 
   function applyTheme(theme, options = {}) {

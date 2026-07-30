@@ -1,0 +1,39 @@
+{
+  "id": "ts-01",
+  "code": "TS-01",
+  "title": "Market-data download fails or makes no progress",
+  "summary": "Check the network, license, range, disk, and data source in a safe order.",
+  "time": "8 min",
+  "level": "Troubleshooting",
+  "tier": "Free / Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["download failed", "no progress", "network", "market data"],
+  "outcome": "You will troubleshoot failed, stalled, or unusable market-data downloads without damaging existing data.",
+  "before": [
+    "Keep the current task and complete error message. Do not click Download repeatedly.",
+    "Confirm that the drive containing the library is still connected.",
+    "Do not delete library files manually."
+  ],
+  "sections": [
+    {"id": "status", "title": "1. Record the status and range", "body": "<p>Record the instrument, data type, date range, progress position, and complete error. Distinguish a task that never started, an interrupted download, a write failure, and data that cannot be read after completion.</p>"},
+    {"id": "network-access", "title": "2. Check network access", "body": "<p>Confirm that ordinary websites load, the system clock is correct, and no proxy, firewall, or security software blocks TradeReplay. If only one source fails, try again later and check whether the service is temporarily unavailable.</p>"},
+    {"id": "range-permission", "title": "3. Check the range and license", "body": "<p>Confirm that the selected range is available for the instrument and included in the current license. Test a short range first, then expand it after success.</p>"},
+    {"id": "disk-library", "title": "4. Check the disk and library", "body": "<p>Confirm there is enough disk space, the folder is writable, an external drive is connected, and the library is not in a synced folder. Do not move the library or let cleanup software remove temporary files during a download.</p>"},
+    {
+      "id": "retry",
+      "title": "5. Retry safely",
+      "body": "<p>Cancel a task that has clearly failed, reopen Market Data, and retry a shorter range. If it still fails, retain the error text, app version, instrument, and dates when contacting support.</p>",
+      "callout": {"tone": "warning", "title": "Do not delete the database", "body": "<p>A market-data download problem rarely requires deleting tradereplay.db. Manual deletion can lose trades and notes.</p>"}
+    }
+  ],
+  "success": [
+    "You can identify whether the failure occurs in the network, permission, range, or local write stage.",
+    "A short-range test succeeds, or you have saved reproducible error details.",
+    "Existing trades and the library remain intact."
+  ],
+  "faq": [
+    {"q": "Can I click Download repeatedly when progress has not moved for a long time?", "a": "<p>No. Check whether processing is still active. Cancel a failed task, reopen the page, and retry once.</p>"},
+    {"q": "Why can’t a new session find the data after the download finishes?", "a": "<p>Check whether the session uses System, Custom, or Tick data and whether the instrument and local date range are correct.</p>"},
+    {"q": "What if changing networks does not fix it?", "a": "<p>Continue with the range, license, disk-space, and library-write checks. Keep the complete error when contacting support.</p>"}
+  ]
+}

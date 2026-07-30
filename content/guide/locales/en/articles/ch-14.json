@@ -1,0 +1,62 @@
+{
+  "id": "ch-14",
+  "code": "CH-14",
+  "title": "Review the complete trade process with the review map",
+  "summary": "See all available bars and trade lines in a read-only overview and locate any trade.",
+  "time": "9 min",
+  "level": "Intermediate",
+  "tier": "Available in Free",
+  "platform": "macOS / Windows",
+  "keywords": ["review map", "trade line", "locate trade", "read-only"],
+  "outcome": "You will inspect complete chart history with trade lines and quickly locate any completed trade.",
+  "before": [
+    "The account or session contains at least one closed trade.",
+    "Bar data is available for the instrument and trade dates."
+  ],
+  "sections": [
+    {
+      "id": "open-map",
+      "title": "1. Open the review map",
+      "body": "<p>Open the review map from a supported replay session, backtest, or live-account record. It loads available market data and places each trade’s open-to-close process on one read-only chart.</p>"
+    },
+    {
+      "id": "read-lines",
+      "title": "2. Read trade lines",
+      "body": "<p>Markers and lines connect the entry and exit. Use direction, time, and price to see whether the trade occurred during a trend, range, breakout, or pullback.</p>"
+    },
+    {
+      "id": "locate",
+      "title": "3. Locate a trade",
+      "body": "<p>Select a trade in the list. The chart moves to that area and highlights it. Use previous and next to review several trades from the same account in sequence.</p>"
+    },
+    {
+      "id": "readonly",
+      "title": "4. Understand the read-only overview",
+      "body": "<p>The review map is for observation. It does not continue matching, change historical fills, or alter replay progress. Create a separate replay session to practice again.</p>",
+      "callout": {
+        "tone": "tip",
+        "title": "Look for repeated patterns before judging one result",
+        "body": "<p>Reviewing similar trades in sequence makes recurring behaviors—such as chasing, exiting too early, or trading against the trend—easier to see.</p>"
+      }
+    }
+  ],
+  "success": [
+    "The complete chart and trade lines are visible.",
+    "Selecting a trade locates and highlights it.",
+    "You understand that the read-only map is not a replay chart for new orders."
+  ],
+  "faq": [
+    {
+      "q": "Why do I see trades but not the complete chart?",
+      "a": "<p>The matching market data may be missing. Prepare bar data that covers the instrument and trade dates.</p>"
+    },
+    {
+      "q": "Can I edit a fill price in the review map?",
+      "a": "<p>No. The map is read-only. Original trade facts should remain consistent with the imported or account record.</p>"
+    },
+    {
+      "q": "Why can’t I see the entry or exit after locating a trade?",
+      "a": "<p>Check that the trade is complete, its time is inside the available data range, and the statement time matches the display time zone.</p>"
+    }
+  ]
+}

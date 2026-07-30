@@ -1,0 +1,54 @@
+{
+  "id": "tr-11",
+  "code": "TR-11",
+  "title": "Understand futures open, close-yesterday, and close-today fees",
+  "summary": "Configure the three commission rates and understand complete round-trip cost.",
+  "time": "11 min",
+  "level": "Futures",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "keywords": ["futures", "open", "close yesterday", "close today", "commission"],
+  "outcome": "You will configure open, close-yesterday, and close-today fees separately and understand the cost of a futures round trip.",
+  "before": [
+    "Obtain the current fee rules from the exchange or futures broker.",
+    "Confirm whether fees are charged per contract, by notional percentage, or another method.",
+    "Understand how the instrument defines a trading day."
+  ],
+  "sections": [
+    {
+      "id": "three-fees",
+      "title": "1. Why there are three fees",
+      "body": "<p><strong>Open</strong> is charged when a position is established. <strong>Close yesterday</strong> closes a position opened on an earlier trading day. <strong>Close today</strong> closes a position opened during the current trading day. The three rates may differ.</p>"
+    },
+    {
+      "id": "trading-day",
+      "title": "2. Determine today and yesterday by trading day",
+      "body": "<p>A night session and a calendar day are not always the same. Determine whether a position is “today” from the market’s trading-day rules, not simply the computer date.</p>"
+    },
+    {
+      "id": "configure",
+      "title": "3. Enter the fees in account parameters",
+      "body": "<p>Enter open, close-yesterday, and close-today costs for the instrument, then verify the contract multiplier and fee method. Some metals may have a lower close-today rate, while some equity-index futures may have a much higher one. Always use current rules.</p>"
+    },
+    {
+      "id": "verify",
+      "title": "4. Verify with a small sample",
+      "body": "<p>Simulate a same-day open and close and a later-day close. Check the opening fee, closing fee, and net P&L in History. Complete round-trip cost is the opening fee plus the applicable closing fee.</p>",
+      "callout": {
+        "tone": "warning",
+        "title": "Do not keep using outdated rates",
+        "body": "<p>Exchanges and brokers can change their standards. Recheck them before a cost-sensitive backtest or practice session.</p>"
+      }
+    }
+  ],
+  "success": [
+    "All three fee types are configured separately.",
+    "Same-day and later-day closes use the appropriate rules.",
+    "History net P&L includes the corresponding fees."
+  ],
+  "faq": [
+    {"q": "Is close-today always more expensive than close-yesterday?", "a": "<p>No. Rules vary by instrument and period. Use the current exchange and broker standards.</p>"},
+    {"q": "Why can a position opened at night still count as today the next morning?", "a": "<p>A futures trading day may begin on the previous calendar evening. Use the trading-day boundary rather than midnight.</p>"},
+    {"q": "What does an incorrect fee affect?", "a": "<p>It affects net P&L, the equity curve, Profit Factor, expectancy, and backtest conclusions.</p>"}
+  ]
+}
