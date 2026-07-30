@@ -92,6 +92,18 @@ channels.
 - `prefers-reduced-motion` disables nonessential animation.
 - Body copy and controls must maintain readable contrast on the blue-black surface.
 
+## Website analytics
+
+The public website uses the donation-supported GoatCounter service at
+`tradereplay.goatcounter.com`. `public/scripts/site-analytics.js` loads its
+cookie-free tracking script only on the production hostname. The homepage footer
+reads the public `TOTAL` counter and falls back to an em dash when the analytics
+service or a privacy extension blocks the request.
+
+The GoatCounter setting “Allow adding visitor counts on your website” must
+remain enabled for the public footer count. Localhost previews are never sent to
+GoatCounter.
+
 ## Validation checklist
 
 Before committing:

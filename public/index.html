@@ -1,17 +1,20 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TradeReplay — 把盘感练成交易系统</title>
   <meta name="description" content="把主观判断、结构化条件和公式规则写进同一套系统。让软件处理重复筛选，把时间留给关键判断。">
-  <meta name="theme-color" content="#080b12">
+  <meta name="theme-color" content="#f6f8fc">
   <meta property="og:title" content="TradeReplay — 把盘感练成交易系统">
   <meta property="og:description" content="主观判断、结构化条件和公式规则，都能进入同一套可验证的交易系统。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tradereplay.dev/">
-  <link rel="icon" href="assets/brand/logo-dark.svg">
+  <link rel="icon" href="assets/brand/logo.svg">
+  <script src="scripts/theme.js?v=20260730-light1"></script>
+  <script src="scripts/site-analytics.js?v=20260730-1" defer></script>
   <link rel="stylesheet" href="styles/home-v10.css?v=20260729-taobao">
+  <link rel="stylesheet" href="styles/theme.css?v=20260730-light1">
   <script src="scripts/site-content.generated.js" defer></script>
   <script src="scripts/site-content-runtime.js" defer></script>
   <script src="scripts/home-v9.js?v=20260729-story8" defer></script>
@@ -23,7 +26,7 @@
   <header class="site-header" data-header>
     <div class="shell header-inner">
       <a class="brand" href="#top" aria-label="TradeReplay 首页" data-aria-zh="TradeReplay 首页" data-aria-en="TradeReplay home">
-        <img src="assets/brand/logo-dark.svg" width="34" height="34" alt="">
+        <img src="assets/brand/logo.svg" width="34" height="34" alt="">
         <span>TradeReplay</span>
       </a>
 
@@ -1769,7 +1772,7 @@
     <div class="shell footer-main">
       <div class="footer-brand">
         <a class="brand" href="#top">
-          <img src="assets/brand/logo-dark.svg" width="34" height="34" alt="">
+          <img src="assets/brand/logo.svg" width="34" height="34" alt="">
           <span>TradeReplay</span>
         </a>
         <p data-zh="定制自己的交易系统，并在 K 线中完成验证。"
@@ -1821,6 +1824,33 @@
     </div>
     <div class="shell footer-bottom">
       <p>© <span data-year>2026</span> <span data-zh="格物工坊" data-en="GeWu Studio">格物工坊</span> · TradeReplay</p>
+      <div class="footer-utilities" aria-label="网站信息" data-aria-zh="网站信息" data-aria-en="Website information">
+        <div class="footer-utility footer-visit-count" role="status" aria-live="polite" aria-busy="true" data-site-visit-status>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 12s3.2-5.5 9-5.5S21 12 21 12s-3.2 5.5-9 5.5S3 12 3 12Z"></path>
+            <circle cx="12" cy="12" r="2.5"></circle>
+          </svg>
+          <span data-zh="累计访问" data-en="Total visits">累计访问</span>
+          <strong data-site-visit-count>—</strong>
+        </div>
+        <a class="footer-utility" href="privacy.html?lang=zh"
+          data-href-zh="privacy.html?lang=zh"
+          data-href-en="privacy.html?lang=en">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3 5.5 5.6v5.6c0 4.3 2.6 7.5 6.5 9.8 3.9-2.3 6.5-5.5 6.5-9.8V5.6L12 3Z"></path>
+            <path d="m9.4 12 1.7 1.7 3.7-4"></path>
+          </svg>
+          <span data-zh="无 Cookie 统计" data-en="Cookie-free analytics">无 Cookie 统计</span>
+        </a>
+        <a class="footer-utility" href="changelog.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 4.5h12v15H6z"></path>
+            <path d="M9 8h6M9 12h6M9 16h4"></path>
+          </svg>
+          <span data-zh="当前版本" data-en="Current version">当前版本</span>
+          <strong data-content-text="release.displayVersion">v1.53.0</strong>
+        </a>
+      </div>
     </div>
   </footer>
 </body>

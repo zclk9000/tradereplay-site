@@ -2,6 +2,7 @@
 .DS_Store
 node_modules/
 _local/
+.playwright-mcp/
 
 # Local homepage source material. Production-ready derivatives live in public/assets/.
 iShot_*.png
