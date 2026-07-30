@@ -106,6 +106,11 @@ The GoatCounter setting “Allow adding visitor counts on your website” must
 remain enabled for the public footer count. Localhost previews are never sent to
 GoatCounter.
 
+The Cloudflare routes `tradereplay.dev/*` and `www.tradereplay.dev/*` are
+managed in Cloudflare rather than by the GitHub Actions token. Keep route entries
+out of `wrangler.toml` and leave `workers_dev = false`; this lets routine content
+deployments update the existing Worker without requiring zone-route permissions.
+
 ## Validation checklist
 
 Before committing:

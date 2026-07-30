@@ -2,14 +2,7 @@ name = "tradereplay-site"
 compatibility_date = "2025-01-01"
 main = "worker/index.mjs"
 preview_urls = true
-
-[[routes]]
-pattern = "tradereplay.dev/*"
-zone_name = "tradereplay.dev"
-
-[[routes]]
-pattern = "www.tradereplay.dev/*"
-zone_name = "tradereplay.dev"
+workers_dev = false
 
 [assets]
 directory = "./public"
