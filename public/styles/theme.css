@@ -363,9 +363,19 @@ html[data-theme="light"] .hc-home-category-tile {
   box-shadow: none;
 }
 
+html[data-theme="light"] .hc-home-category-visual {
+  border-bottom-color: rgba(11, 23, 40, 0.12);
+  background: var(--hc-primary);
+  color: #fff;
+}
+
 html[data-theme="light"] .hc-home-category-tile:hover {
-  border-color: var(--hc-line-strong);
-  background: #f9fbff;
+  border-color: rgba(47, 111, 237, 0.42);
+}
+
+html[data-theme="light"] .hc-home-category-tile:hover .hc-home-category-visual {
+  background: var(--hc-primary-hover);
+  color: #fff;
 }
 
 html[data-theme="light"] .hc-category-card {

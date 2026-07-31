@@ -30,7 +30,6 @@
       popular: "常用搜索",
       popularTerms: ["第一次训练", "CFMMC", "止损", "资料库", "激活"],
       categorySection: "本分类文章",
-      articleCount: "{count} 篇教程",
       approx: "约 {time}",
       outcome: "完成后：",
       before: "开始之前",
@@ -70,7 +69,6 @@
       popular: "Popular searches",
       popularTerms: ["first session", "CFMMC", "stop loss", "library", "activation"],
       categorySection: "Articles in this category",
-      articleCount: "{count} guides",
       approx: "About {time}",
       outcome: "What you will accomplish:",
       before: "Before you start",
@@ -502,23 +500,13 @@
   }
 
   function homeCategoryTile(category) {
-    const articleCount = publicArticles.filter(
-      (article) => article.category === category.id
-    ).length;
-
     return `
-      <a class="hc-home-category-tile" href="${categoryHref(category)}" data-tone="${category.tone}">
-        <span class="hc-home-category-heading">
+      <a class="hc-home-category-tile" href="${categoryHref(category)}">
+        <span class="hc-home-category-visual">
           ${categoryIcon(category)}
-          <span class="hc-home-category-number">${escapeHTML(category.number)}</span>
         </span>
-        <span class="hc-home-category-copy">
+        <span class="hc-home-category-label">
           <strong>${escapeHTML(category.title)}</strong>
-          <small>${escapeHTML(category.description)}</small>
-        </span>
-        <span class="hc-home-category-foot">
-          <span>${escapeHTML(text("articleCount", { count: articleCount }))}</span>
-          ${icon("arrow")}
         </span>
       </a>`;
   }
