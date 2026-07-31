@@ -358,27 +358,14 @@ html[data-theme="light"] .hc-search-dialog::backdrop {
 }
 
 html[data-theme="light"] .hc-home-category-tile {
-  border-color: rgba(47, 111, 237, 0.22);
-  background: #ffffff;
-  box-shadow: 0 12px 28px rgba(20, 44, 78, 0.07);
-}
-
-html[data-theme="light"] .hc-home-category-visual {
-  border-bottom-color: rgba(47, 111, 237, 0.15);
-  background:
-    radial-gradient(circle at 50% 12%, rgba(47, 111, 237, 0.13), transparent 58%),
-    #eaf1fb;
-  color: #2f6fed;
+  border-color: var(--hc-line);
+  background: var(--hc-surface);
+  box-shadow: none;
 }
 
 html[data-theme="light"] .hc-home-category-tile:hover {
-  border-color: rgba(47, 111, 237, 0.48);
-}
-
-html[data-theme="light"] .hc-home-category-tile:hover .hc-home-category-visual {
-  background:
-    radial-gradient(circle at 50% 12%, rgba(8, 127, 140, 0.15), transparent 58%),
-    #e4eef9;
+  border-color: var(--hc-line-strong);
+  background: #f9fbff;
 }
 
 html[data-theme="light"] .hc-category-card {
