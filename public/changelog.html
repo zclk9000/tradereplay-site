@@ -225,14 +225,36 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.53.10 -->
+    <!-- v1.53.30 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.53.10</span>
-        <span class="date" data-content-text="release.date">2026-07-30</span>
+        <span class="version" data-content-text="release.displayVersion">v1.53.30</span>
+        <span class="date" data-content-text="release.date">2026-08-01</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>图表画线工具新增风险回报规划：两次点击确定进场和止损，自动生成 1:1 初始止盈区域，可拖动调整并显示价格、距离、百分比和盈亏比。</span></li>
+        <li><span class="tag tag-new">新增</span><span>指标库新增 ZigZag，支持转折深度、最小偏差和 Backstep，并提供公式参考及末端重绘提示。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>交易系统结构化条件现在可引用同一根 K 线的开、高、低、收、成交量、持仓量和点差。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>优化大屏幕下“复盘习惯”卡片的高度与间距，减少无效空白；全局数字改用更清晰的普通 0，并继续保持等宽对齐。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复免费版白银 AG、螺纹钢 RB 数据权限异常，恢复最近一年数据的下载、更新和训练。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Added a risk/reward planning tool: two clicks set entry and stop, create an initial 1:1 target, and show draggable prices, distances, percentages, and risk/reward.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added ZigZag with Pivot Depth, Minimum Deviation, Backstep, formula guidance, and a warning that the provisional endpoint may repaint.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Structured trading-system conditions can now reference same-bar open, high, low, close, volume, open interest, and spread fields.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Improved the review-habit card height and spacing on large screens, and adopted clearer plain-zero numerals while preserving tabular alignment.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed an entitlement issue affecting free access to the latest year of AG silver and RB rebar data for downloads, updates, and training.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.53.10 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.53.10</span>
+        <span class="date">2026-07-30</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>新增内外盘通用的持仓“按方向合并”模式：汇总同方向仓位的总手数、加权均价和图表持仓线，国内期货同时显示今仓 / 昨仓，底层逐笔成交完整保留。</span></li>
         <li><span class="tag tag-new">新增</span><span>分批止盈止损支持按指定价格触发，并可按具体手数或持仓百分比退出；加仓、部分平仓或原锚点仓位退出后，剩余规则继续执行。</span></li>
         <li><span class="tag tag-improve">优化</span><span>合并持仓部分平仓会遵循不同市场的处理顺序；国内期货优先处理当前交易日仓位，再按时间处理较早仓位，并继续按原始逐笔持仓计算手续费和复盘数据。</span></li>
@@ -243,7 +265,7 @@
         <li><span class="tag tag-fix">修复</span><span>修复账单历史交易展开复盘时，右上角交易系统选择器被布局压缩遮挡的问题。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复合并持仓包含不同进场笔记时，编辑内容无法同步到全部底层持仓的问题；现在会保留各笔原始笔记，并把合并视图中新写的内容同步到每一笔持仓。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Added a cross-market “Merge by direction” view with total size, weighted average entry, and one chart position line. CN futures also show today / previous-day lots while preserving every underlying fill.</span></li>
         <li><span class="tag tag-new">New</span><span>Staged take-profit and stop-loss rules can now trigger at exact prices and exit by lots or position percentage. Remaining rules continue after scaling, partial closes, or the original anchor exits.</span></li>
         <li><span class="tag tag-improve">Improved</span><span>Partial closes on merged positions now follow each market’s close order. CN futures close current-trading-day lots first, then older lots, while fees and replay data remain fill-accurate.</span></li>
