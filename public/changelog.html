@@ -225,21 +225,45 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.53.30 -->
+    <!-- v1.54.0 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.53.30</span>
+        <span class="version" data-content-text="release.displayVersion">v1.54.0</span>
         <span class="date" data-content-text="release.date">2026-08-01</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>新增邮箱账号体系：免费用户也可以注册或登录，会员状态、授权期限和设备会跟随账号保存；登录后可使用兑换码升级或续费。</span></li>
+        <li><span class="tag tag-new">新增</span><span>交易系统新增有状态仓位管理：可按规则加仓、限制最大单位数、统一移动止损，并在条件中引用开仓价、最近加仓价、单位数和入场 ATR。</span></li>
+        <li><span class="tag tag-new">新增</span><span>交易系统新增信号记忆与组合级风控，可跟踪已执行和已跳过的信号，并按品种、相关品种组、方向单位数和回撤阶梯限制开仓。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>普通旧版授权在原激活设备升级后会自动迁移到邮箱账号，并保留原有期限或终身权益，无需再次输入旧版激活码。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>图表新增集中显示控制；所有内置与自定义指标会紧凑显示当前参数，ZigZag 统一为 TradingView 风格的反转偏差与 Pivot Legs。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复画线穿过持仓线或订单线时的选择拖动、脱离图表后继续绘制、MT5 小数秒导入、成交价格精度及突兀焦点边框等问题。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Added email accounts for free and Pro users, with membership, licence duration, and devices saved to the account. Redeem codes after sign-in to upgrade or renew.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added stateful position management with rule-driven entries, unit limits, formula stops, and position variables such as entry price, latest entry, unit count, and entry ATR.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added signal memory and portfolio-level controls for executed or skipped signals, symbol and correlation-group exposure, directional units, and drawdown tiers.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Existing standard licences now migrate automatically on their original activated device while preserving their remaining term or lifetime access, with no legacy code re-entry.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Added central chart display controls, compact live parameters for built-in and custom indicators, and TradingView-style reversal deviation and Pivot Legs for ZigZag.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed drawing interaction across position and order lines, detached drawing crashes, MT5 fractional-second imports, execution-price precision, and inconsistent focus frames.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.53.30 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.53.30</span>
+        <span class="date">2026-08-01</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>图表画线工具新增风险回报规划：两次点击确定进场和止损，自动生成 1:1 初始止盈区域，可拖动调整并显示价格、距离、百分比和盈亏比。</span></li>
         <li><span class="tag tag-new">新增</span><span>指标库新增 ZigZag，支持转折深度、最小偏差和 Backstep，并提供公式参考及末端重绘提示。</span></li>
         <li><span class="tag tag-improve">优化</span><span>交易系统结构化条件现在可引用同一根 K 线的开、高、低、收、成交量、持仓量和点差。</span></li>
         <li><span class="tag tag-improve">优化</span><span>优化大屏幕下“复盘习惯”卡片的高度与间距，减少无效空白；全局数字改用更清晰的普通 0，并继续保持等宽对齐。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复免费版白银 AG、螺纹钢 RB 数据权限异常，恢复最近一年数据的下载、更新和训练。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Added a risk/reward planning tool: two clicks set entry and stop, create an initial 1:1 target, and show draggable prices, distances, percentages, and risk/reward.</span></li>
         <li><span class="tag tag-new">New</span><span>Added ZigZag with Pivot Depth, Minimum Deviation, Backstep, formula guidance, and a warning that the provisional endpoint may repaint.</span></li>
         <li><span class="tag tag-improve">Improved</span><span>Structured trading-system conditions can now reference same-bar open, high, low, close, volume, open interest, and spread fields.</span></li>

@@ -1,15 +1,15 @@
 {
-  "version": "1.53.30",
-  "displayVersion": "v1.53.30",
+  "version": "1.54.0",
+  "displayVersion": "v1.54.0",
   "date": "2026-08-01",
   "downloadIntro": {
-    "zh": "当前版本 v1.53.30。选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.53.30. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.54.0。选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.54.0. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.53.30-Setup.exe",
-    "fileName": "TradeReplay-1.53.30-Setup.exe",
-    "installerLabel": ".exe · v1.53.30",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.54.0-Setup.exe",
+    "fileName": "TradeReplay-1.54.0-Setup.exe",
+    "installerLabel": ".exe · v1.54.0",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -20,9 +20,9 @@
     }
   },
   "mac": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.53.30-arm64.dmg",
-    "fileName": "TradeReplay-1.53.30-arm64.dmg",
-    "installerLabel": ".dmg · v1.53.30",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.54.0-arm64.dmg",
+    "fileName": "TradeReplay-1.54.0-arm64.dmg",
+    "installerLabel": ".dmg · v1.54.0",
     "summary": {
       "zh": "适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。",
       "en": "For Apple silicon Macs, delivered as a DMG disk image."
@@ -35,28 +35,33 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "图表画线工具新增风险回报规划：两次点击确定进场和止损，自动生成 1:1 初始止盈区域，可拖动调整并显示价格、距离、百分比和盈亏比。",
-      "en": "Added a risk/reward planning tool: two clicks set entry and stop, create an initial 1:1 target, and show draggable prices, distances, percentages, and risk/reward."
+      "zh": "新增邮箱账号体系：免费用户也可以注册或登录，会员状态、授权期限和设备会跟随账号保存；登录后可使用兑换码升级或续费。",
+      "en": "Added email accounts for free and Pro users, with membership, licence duration, and devices saved to the account. Redeem codes after sign-in to upgrade or renew."
     },
     {
       "type": "new",
-      "zh": "指标库新增 ZigZag，支持转折深度、最小偏差和 Backstep，并提供公式参考及末端重绘提示。",
-      "en": "Added ZigZag with Pivot Depth, Minimum Deviation, Backstep, formula guidance, and a warning that the provisional endpoint may repaint."
+      "zh": "交易系统新增有状态仓位管理：可按规则加仓、限制最大单位数、统一移动止损，并在条件中引用开仓价、最近加仓价、单位数和入场 ATR。",
+      "en": "Added stateful position management with rule-driven entries, unit limits, formula stops, and position variables such as entry price, latest entry, unit count, and entry ATR."
+    },
+    {
+      "type": "new",
+      "zh": "交易系统新增信号记忆与组合级风控，可跟踪已执行和已跳过的信号，并按品种、相关品种组、方向单位数和回撤阶梯限制开仓。",
+      "en": "Added signal memory and portfolio-level controls for executed or skipped signals, symbol and correlation-group exposure, directional units, and drawdown tiers."
     },
     {
       "type": "improved",
-      "zh": "交易系统结构化条件现在可引用同一根 K 线的开、高、低、收、成交量、持仓量和点差。",
-      "en": "Structured trading-system conditions can now reference same-bar open, high, low, close, volume, open interest, and spread fields."
+      "zh": "普通旧版授权在原激活设备升级后会自动迁移到邮箱账号，并保留原有期限或终身权益，无需再次输入旧版激活码。",
+      "en": "Existing standard licences now migrate automatically on their original activated device while preserving their remaining term or lifetime access, with no legacy code re-entry."
     },
     {
       "type": "improved",
-      "zh": "优化大屏幕下“复盘习惯”卡片的高度与间距，减少无效空白；全局数字改用更清晰的普通 0，并继续保持等宽对齐。",
-      "en": "Improved the review-habit card height and spacing on large screens, and adopted clearer plain-zero numerals while preserving tabular alignment."
+      "zh": "图表新增集中显示控制；所有内置与自定义指标会紧凑显示当前参数，ZigZag 统一为 TradingView 风格的反转偏差与 Pivot Legs。",
+      "en": "Added central chart display controls, compact live parameters for built-in and custom indicators, and TradingView-style reversal deviation and Pivot Legs for ZigZag."
     },
     {
       "type": "fixed",
-      "zh": "修复免费版白银 AG、螺纹钢 RB 数据权限异常，恢复最近一年数据的下载、更新和训练。",
-      "en": "Fixed an entitlement issue affecting free access to the latest year of AG silver and RB rebar data for downloads, updates, and training."
+      "zh": "修复画线穿过持仓线或订单线时的选择拖动、脱离图表后继续绘制、MT5 小数秒导入、成交价格精度及突兀焦点边框等问题。",
+      "en": "Fixed drawing interaction across position and order lines, detached drawing crashes, MT5 fractional-second imports, execution-price precision, and inconsistent focus frames."
     }
   ]
 }
