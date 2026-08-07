@@ -225,14 +225,38 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.54.0 -->
+    <!-- v1.55.0 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.54.0</span>
-        <span class="date" data-content-text="release.date">2026-08-01</span>
+        <span class="version" data-content-text="release.displayVersion">v1.55.0</span>
+        <span class="date" data-content-text="release.date">2026-08-07</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>Mentor AI 设置新增「Custom (OpenAI-compatible)」数据源，可填入任意兼容 OpenAI 协议的 HTTPS 端点地址和模型名称。</span></li>
+        <li><span class="tag tag-new">新增</span><span>资料库新增双滑块训练时间窗口选择器，可拖动设定起止时间；连续合约标签页设为默认首页。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新增券商服务器时区设置，可在会话信息中编辑服务器时钟；国内期货 M1 数据全面迁移至 Parquet v2 格式。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>图表切换周期性能大幅优化：延迟聚合、分层粗周期缓存，切换时保留缩放比例和滚动位置。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>历史交易聚焦连线改为渐入动画，三段脉冲更醒目；明暗主题网格可见性提升。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复回看复盘时切换周期丢失 K 线数量、持仓线菜单溢出图表、成交量在切换主题后不刷新、授权 OTP 请求超时等问题。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Added a Custom (OpenAI-compatible) provider to Mentor AI settings — enter any OpenAI-compatible HTTPS endpoint and model name.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added a dual-handle range slider for training time selection in the library, and made continuous contracts the default tab.</span></li>
+        <li><span class="tag tag-new">New</span><span>Added broker server timezone settings with an editable server clock, and migrated CN futures M1 data to the Parquet v2 format.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Major chart timeframe-switch performance improvements: deferred aggregation, layered coarse-period cache, and preserved zoom and scroll position.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Trade focus overlays now use a fade-in animation with triple pulse; improved grid visibility across light and dark themes.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed bar-count loss on timeframe switch during scroll-back, position-line menu overflow, volume not repainting on theme change, and licence OTP request timeouts.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.54.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.54.0</span>
+        <span class="date">2026-08-01</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>新增邮箱账号体系：免费用户也可以注册或登录，会员状态、授权期限和设备会跟随账号保存；登录后可使用兑换码升级或续费。</span></li>
         <li><span class="tag tag-new">新增</span><span>交易系统新增有状态仓位管理：可按规则加仓、限制最大单位数、统一移动止损，并在条件中引用开仓价、最近加仓价、单位数和入场 ATR。</span></li>
         <li><span class="tag tag-new">新增</span><span>交易系统新增信号记忆与组合级风控，可跟踪已执行和已跳过的信号，并按品种、相关品种组、方向单位数和回撤阶梯限制开仓。</span></li>
@@ -240,7 +264,7 @@
         <li><span class="tag tag-improve">优化</span><span>图表新增集中显示控制；所有内置与自定义指标会紧凑显示当前参数，ZigZag 统一为 TradingView 风格的反转偏差与 Pivot Legs。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复画线穿过持仓线或订单线时的选择拖动、脱离图表后继续绘制、MT5 小数秒导入、成交价格精度及突兀焦点边框等问题。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Added email accounts for free and Pro users, with membership, licence duration, and devices saved to the account. Redeem codes after sign-in to upgrade or renew.</span></li>
         <li><span class="tag tag-new">New</span><span>Added stateful position management with rule-driven entries, unit limits, formula stops, and position variables such as entry price, latest entry, unit count, and entry ATR.</span></li>
         <li><span class="tag tag-new">New</span><span>Added signal memory and portfolio-level controls for executed or skipped signals, symbol and correlation-group exposure, directional units, and drawdown tiers.</span></li>
