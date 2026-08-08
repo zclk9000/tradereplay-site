@@ -1,15 +1,15 @@
 {
-  "version": "1.55.25",
-  "displayVersion": "v1.55.25",
+  "version": "1.55.30",
+  "displayVersion": "v1.55.30",
   "date": "2026-08-08",
   "downloadIntro": {
-    "zh": "当前版本 v1.55.25。选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.55.25. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.55.30。选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.55.30. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.25-Setup.exe",
-    "fileName": "TradeReplay-1.55.25-Setup.exe",
-    "installerLabel": ".exe · v1.55.25",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.30-Setup.exe",
+    "fileName": "TradeReplay-1.55.30-Setup.exe",
+    "installerLabel": ".exe · v1.55.30",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -20,9 +20,9 @@
     }
   },
   "mac": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.25-arm64.dmg",
-    "fileName": "TradeReplay-1.55.25-arm64.dmg",
-    "installerLabel": ".dmg · v1.55.25",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.30-arm64.dmg",
+    "fileName": "TradeReplay-1.55.30-arm64.dmg",
+    "installerLabel": ".dmg · v1.55.30",
     "summary": {
       "zh": "适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。",
       "en": "For Apple silicon Macs, delivered as a DMG disk image."
@@ -35,8 +35,8 @@
   "highlights": [
     {
       "type": "fixed",
-      "zh": "修复新建存档选择“纽约收盘”制度后，切换图表周期明显卡顿的问题，切换响应现已接近默认 UTC 模式。",
-      "en": "Fixed pronounced lag when switching chart timeframes in sessions using the New York close convention, bringing responsiveness close to the default UTC mode."
+      "zh": "修复复盘播放时从大周期切换到小周期会离开最新 K 线并误触发历史回看、导致播放暂停的问题；切换后保持最新位置并继续播放。",
+      "en": "Fixed timeframe changes during replay—especially from larger to smaller intervals—moving away from the latest candle and incorrectly pausing as history review. Playback now stays at the latest position and continues."
     }
   ]
 }

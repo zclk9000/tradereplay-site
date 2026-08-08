@@ -225,17 +225,31 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.55.25 -->
+    <!-- v1.55.30 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.55.25</span>
+        <span class="version" data-content-text="release.displayVersion">v1.55.30</span>
         <span class="date" data-content-text="release.date">2026-08-08</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
-        <li><span class="tag tag-fix">修复</span><span>修复新建存档选择“纽约收盘”制度后，切换图表周期明显卡顿的问题，切换响应现已接近默认 UTC 模式。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复复盘播放时从大周期切换到小周期会离开最新 K 线并误触发历史回看、导致播放暂停的问题；切换后保持最新位置并继续播放。</span></li>
       </ul>
       <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed timeframe changes during replay—especially from larger to smaller intervals—moving away from the latest candle and incorrectly pausing as history review. Playback now stays at the latest position and continues.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.55.25 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.55.25</span>
+        <span class="date">2026-08-08</span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-fix">修复</span><span>修复新建存档选择“纽约收盘”制度后，切换图表周期明显卡顿的问题，切换响应现已接近默认 UTC 模式。</span></li>
+      </ul>
+      <ul class="lang-en">
         <li><span class="tag tag-fix">Fixed</span><span>Fixed pronounced lag when switching chart timeframes in sessions using the New York close convention, bringing responsiveness close to the default UTC mode.</span></li>
       </ul>
     </article>
