@@ -54,11 +54,6 @@
       "en": "Improved analysis for practice, backtests, and live accounts: switching accounts preserves the calendar month, calendars and equity curves open faster, and equity curves now draw in with a quick animation."
     },
     {
-      "type": "improved",
-      "zh": "暂时隐藏在线 Tick 数据入口；本地导入、已下载数据和现有 Tick 回放不受影响。",
-      "en": "Temporarily hid the online Tick data entry point; local imports, downloaded data, and existing Tick replay remain available."
-    },
-    {
       "type": "fixed",
       "zh": "修复训练、回测、账单和历史交易图表切换周期后，K 线粗细、位置及缩放状态不稳定的问题。",
       "en": "Fixed unstable candle width, position, and zoom state after switching timeframes in practice, backtests, statements, and trade history."
