@@ -225,14 +225,38 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.55.0 -->
+    <!-- v1.55.20 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.55.0</span>
-        <span class="date" data-content-text="release.date">2026-08-07</span>
+        <span class="version" data-content-text="release.displayVersion">v1.55.20</span>
+        <span class="date" data-content-text="release.date">2026-08-08</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>矩形、椭圆和三角形画线工具新增「无边框」样式，可仅保留填充区域。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>常用图表周期不再限制数量，自定义小时周期统一显示为 H2、H8 等格式；工具栏宽度不足时会自动收纳超出项。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>模拟训练、回测、账单和历史交易图表统一周期切换行为：保持 K 线视觉大小、居中时间范围和用户手动缩放。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复大周期 K 线偶发靠右、宽度异常和切换时的残影，同时清理最高价、最低价标记的短暂残留。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复小屏幕下盈亏日历文字溢出和行高被压缩的问题，并优化行情数据页右下角容量统计的布局。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>托管 Tick 数据入口暂时隐藏，待独立权益兑换与数据目录准备完成后按用户权益开放；本地导入和已有回放能力保留。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Added a borderless style for rectangle, ellipse, and triangle drawing tools, allowing fill-only shapes.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Removed the limit on favourite chart timeframes, standardised custom hourly labels such as H2 and H8, and automatically clips overflow in narrow toolbars.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Unified timeframe switching across practice, backtests, statements, and trade history to preserve candle size, centred time range, and manual zoom.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed coarse-timeframe candles intermittently aligning right, changing width, or leaving switch artefacts, including stale high/low markers.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed P&amp;L calendar text overflow and compressed rows on small screens, and refined the market-data size summary layout.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Temporarily hid hosted Tick downloads until the dedicated entitlement redemption flow and data catalogue are ready; local imports and existing replay support remain available.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.55.0 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.55.0</span>
+        <span class="date">2026-08-07</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>Mentor AI 设置新增「Custom (OpenAI-compatible)」数据源，可填入任意兼容 OpenAI 协议的 HTTPS 端点地址和模型名称。</span></li>
         <li><span class="tag tag-new">新增</span><span>资料库新增双滑块训练时间窗口选择器，可拖动设定起止时间；连续合约标签页设为默认首页。</span></li>
         <li><span class="tag tag-new">新增</span><span>新增券商服务器时区设置，可在会话信息中编辑服务器时钟；国内期货 M1 数据全面迁移至 Parquet v2 格式。</span></li>
@@ -240,7 +264,7 @@
         <li><span class="tag tag-improve">优化</span><span>历史交易聚焦连线改为渐入动画，三段脉冲更醒目；明暗主题网格可见性提升。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复回看复盘时切换周期丢失 K 线数量、持仓线菜单溢出图表、成交量在切换主题后不刷新、授权 OTP 请求超时等问题。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Added a Custom (OpenAI-compatible) provider to Mentor AI settings — enter any OpenAI-compatible HTTPS endpoint and model name.</span></li>
         <li><span class="tag tag-new">New</span><span>Added a dual-handle range slider for training time selection in the library, and made continuous contracts the default tab.</span></li>
         <li><span class="tag tag-new">New</span><span>Added broker server timezone settings with an editable server clock, and migrated CN futures M1 data to the Parquet v2 format.</span></li>
