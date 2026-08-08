@@ -233,20 +233,24 @@
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
-        <li><span class="tag tag-new">新增</span><span>矩形、椭圆和三角形画线工具新增「无边框」样式，可仅保留填充区域。</span></li>
-        <li><span class="tag tag-improve">优化</span><span>常用图表周期不再限制数量，自定义小时周期统一显示为 H2、H8 等格式；工具栏宽度不足时会自动收纳超出项。</span></li>
-        <li><span class="tag tag-improve">优化</span><span>模拟训练、回测、账单和历史交易图表统一周期切换行为：保持 K 线视觉大小、居中时间范围和用户手动缩放。</span></li>
-        <li><span class="tag tag-fix">修复</span><span>修复大周期 K 线偶发靠右、宽度异常和切换时的残影，同时清理最高价、最低价标记的短暂残留。</span></li>
-        <li><span class="tag tag-fix">修复</span><span>修复小屏幕下盈亏日历文字溢出和行高被压缩的问题，并优化行情数据页右下角容量统计的布局。</span></li>
-        <li><span class="tag tag-improve">优化</span><span>托管 Tick 数据入口暂时隐藏，待独立权益兑换与数据目录准备完成后按用户权益开放；本地导入和已有回放能力保留。</span></li>
+        <li><span class="tag tag-new">新增</span><span>矩形、椭圆和三角形画线工具支持“无边框”样式，可仅显示填充区域。</span></li>
+        <li><span class="tag tag-new">新增</span><span>复盘播放新增时间跳转控制，可按交易时段快速跨越休市区间。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>图表周期栏取消常用周期数量限制；自定义小时周期统一显示为 H2、H8 等格式，空间不足时自动收纳。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>优化训练、回测和真实账户的分析体验：切换账户后保留日历月份，日历与资金曲线打开更快，资金曲线新增快速绘制动画。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>暂时隐藏在线 Tick 数据入口；本地导入、已下载数据和现有 Tick 回放不受影响。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复训练、回测、账单和历史交易图表切换周期后，K 线粗细、位置及缩放状态不稳定的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复模拟训练平仓后，历史记录、交易日志、盈亏日历和资金曲线未及时更新的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复小屏幕下盈亏日历文字溢出、内容显示不完整的问题。</span></li>
       </ul>
       <ul class="lang-en" data-content-release-list="changelog-en">
-        <li><span class="tag tag-new">New</span><span>Added a borderless style for rectangle, ellipse, and triangle drawing tools, allowing fill-only shapes.</span></li>
-        <li><span class="tag tag-improve">Improved</span><span>Removed the limit on favourite chart timeframes, standardised custom hourly labels such as H2 and H8, and automatically clips overflow in narrow toolbars.</span></li>
-        <li><span class="tag tag-improve">Improved</span><span>Unified timeframe switching across practice, backtests, statements, and trade history to preserve candle size, centred time range, and manual zoom.</span></li>
-        <li><span class="tag tag-fix">Fixed</span><span>Fixed coarse-timeframe candles intermittently aligning right, changing width, or leaving switch artefacts, including stale high/low markers.</span></li>
-        <li><span class="tag tag-fix">Fixed</span><span>Fixed P&amp;L calendar text overflow and compressed rows on small screens, and refined the market-data size summary layout.</span></li>
-        <li><span class="tag tag-improve">Improved</span><span>Temporarily hid hosted Tick downloads until the dedicated entitlement redemption flow and data catalogue are ready; local imports and existing replay support remain available.</span></li>
+        <li><span class="tag tag-new">New</span><span>Rectangle, ellipse, and triangle drawing tools now support a borderless style for fill-only shapes.</span></li>
+        <li><span class="tag tag-new">New</span><span>Replay now includes time-jump controls that quickly cross market closures according to trading sessions.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>The chart toolbar no longer limits favourite timeframes; custom hourly periods use labels such as H2 and H8, with automatic overflow handling when space is limited.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Improved analysis for practice, backtests, and live accounts: switching accounts preserves the calendar month, calendars and equity curves open faster, and equity curves now draw in with a quick animation.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Temporarily hid the online Tick data entry point; local imports, downloaded data, and existing Tick replay remain available.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed unstable candle width, position, and zoom state after switching timeframes in practice, backtests, statements, and trade history.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed history, journals, the P&amp;L calendar, and the equity curve not updating promptly after closing a simulated trade.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed overflowing or incomplete P&amp;L calendar content on smaller screens.</span></li>
       </ul>
     </article>
 
