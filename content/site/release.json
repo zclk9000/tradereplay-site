@@ -1,15 +1,15 @@
 {
-  "version": "1.55.20",
-  "displayVersion": "v1.55.20",
-  "date": "2026-08-08",
+  "version": "1.55.0",
+  "displayVersion": "v1.55.0",
+  "date": "2026-08-07",
   "downloadIntro": {
-    "zh": "当前版本 v1.55.20。选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.55.20. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.55.0。选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.55.0. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.20-Setup.exe",
-    "fileName": "TradeReplay-1.55.20-Setup.exe",
-    "installerLabel": ".exe · v1.55.20",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.0-Setup.exe",
+    "fileName": "TradeReplay-1.55.0-Setup.exe",
+    "installerLabel": ".exe · v1.55.0",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -20,9 +20,9 @@
     }
   },
   "mac": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.20-arm64.dmg",
-    "fileName": "TradeReplay-1.55.20-arm64.dmg",
-    "installerLabel": ".dmg · v1.55.20",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.0-arm64.dmg",
+    "fileName": "TradeReplay-1.55.0-arm64.dmg",
+    "installerLabel": ".dmg · v1.55.0",
     "summary": {
       "zh": "适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。",
       "en": "For Apple silicon Macs, delivered as a DMG disk image."
@@ -35,33 +35,33 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "矩形、椭圆和三角形画线工具新增「无边框」样式，可仅保留填充区域。",
-      "en": "Added a borderless style for rectangle, ellipse, and triangle drawing tools, allowing fill-only shapes."
+      "zh": "Mentor AI 设置新增「Custom (OpenAI-compatible)」数据源，可填入任意兼容 OpenAI 协议的 HTTPS 端点地址和模型名称。",
+      "en": "Added a Custom (OpenAI-compatible) provider to Mentor AI settings — enter any OpenAI-compatible HTTPS endpoint and model name."
+    },
+    {
+      "type": "new",
+      "zh": "资料库新增双滑块训练时间窗口选择器，可拖动设定起止时间；连续合约标签页设为默认首页。",
+      "en": "Added a dual-handle range slider for training time selection in the library, and made continuous contracts the default tab."
+    },
+    {
+      "type": "new",
+      "zh": "新增券商服务器时区设置，可在会话信息中编辑服务器时钟；国内期货 M1 数据全面迁移至 Parquet v2 格式。",
+      "en": "Added broker server timezone settings with an editable server clock, and migrated CN futures M1 data to the Parquet v2 format."
     },
     {
       "type": "improved",
-      "zh": "常用图表周期不再限制数量，自定义小时周期统一显示为 H2、H8 等格式；工具栏宽度不足时会自动收纳超出项。",
-      "en": "Removed the limit on favourite chart timeframes, standardised custom hourly labels such as H2 and H8, and automatically clips overflow in narrow toolbars."
+      "zh": "图表切换周期性能大幅优化：延迟聚合、分层粗周期缓存，切换时保留缩放比例和滚动位置。",
+      "en": "Major chart timeframe-switch performance improvements: deferred aggregation, layered coarse-period cache, and preserved zoom and scroll position."
     },
     {
       "type": "improved",
-      "zh": "模拟训练、回测、账单和历史交易图表统一周期切换行为：保持 K 线视觉大小、居中时间范围和用户手动缩放。",
-      "en": "Unified timeframe switching across practice, backtests, statements, and trade history to preserve candle size, centred time range, and manual zoom."
+      "zh": "历史交易聚焦连线改为渐入动画，三段脉冲更醒目；明暗主题网格可见性提升。",
+      "en": "Trade focus overlays now use a fade-in animation with triple pulse; improved grid visibility across light and dark themes."
     },
     {
       "type": "fixed",
-      "zh": "修复大周期 K 线偶发靠右、宽度异常和切换时的残影，同时清理最高价、最低价标记的短暂残留。",
-      "en": "Fixed coarse-timeframe candles intermittently aligning right, changing width, or leaving switch artefacts, including stale high/low markers."
-    },
-    {
-      "type": "fixed",
-      "zh": "修复小屏幕下盈亏日历文字溢出和行高被压缩的问题，并优化行情数据页右下角容量统计的布局。",
-      "en": "Fixed P&L calendar text overflow and compressed rows on small screens, and refined the market-data size summary layout."
-    },
-    {
-      "type": "improved",
-      "zh": "托管 Tick 数据入口暂时隐藏，待独立权益兑换与数据目录准备完成后按用户权益开放；本地导入和已有回放能力保留。",
-      "en": "Temporarily hid hosted Tick downloads until the dedicated entitlement redemption flow and data catalogue are ready; local imports and existing replay support remain available."
+      "zh": "修复回看复盘时切换周期丢失 K 线数量、持仓线菜单溢出图表、成交量在切换主题后不刷新、授权 OTP 请求超时等问题。",
+      "en": "Fixed bar-count loss on timeframe switch during scroll-back, position-line menu overflow, volume not repainting on theme change, and licence OTP request timeouts."
     }
   ]
 }
