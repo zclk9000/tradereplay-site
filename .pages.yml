@@ -575,6 +575,7 @@ content:
                 label: 群二维码
                 type: image
                 required: true
+                description: 可直接上传新的二维码，文件名无需与旧图相同。保存后点击“发布当前官网（含教程）”即可更新线上图片。
                 options:
                   media: site_media
                   extensions: [png, jpg, jpeg, webp]
@@ -604,6 +605,7 @@ content:
                 label: 群二维码
                 type: image
                 required: true
+                description: 可直接上传新的二维码，文件名无需与旧图相同。保存后点击“发布当前官网（含教程）”即可同步更新首页、下载页和支持页。
                 options:
                   media: site_media
                   extensions: [png, jpg, jpeg, webp]

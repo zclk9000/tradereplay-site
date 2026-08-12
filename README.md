@@ -52,8 +52,11 @@ node scripts/validate-public-site.mjs
 
 `check-repo-hygiene.mjs` rejects tracked caches, local/private folders,
 root-level page dumps and oversized files before they can reach a release.
-CI and the production publishing workflow rebuild generated content and require
-`git diff --exit-code`, so source and generated files must be committed together.
+CI rebuilds generated content and requires `git diff --exit-code`. The Pages CMS
+production workflow also rebuilds content; when a CMS save changes a source file,
+the workflow commits only the corresponding generated browser files to the current
+branch before deployment. Any other unexpected build-time change still fails the
+publication.
 
 ## Deployment
 
@@ -68,5 +71,6 @@ site, then deploys only `public/` from the current `main` branch to
 - Save or commit every intended website change to `main` before publishing.
 - A Git push alone does not deploy production.
 - Do not run a separate manual production deployment from another task.
-- Pages CMS tutorial edits are committed first; publishing remains an explicit
-  second action so unfinished edits are not made public accidentally.
+- Pages CMS edits are committed first; publishing validates them, synchronizes
+  generated browser content when needed, and remains an explicit second action so
+  unfinished edits are not made public accidentally.

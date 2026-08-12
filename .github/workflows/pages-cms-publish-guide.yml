@@ -9,7 +9,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: pages-cms-production
@@ -23,6 +23,9 @@ jobs:
     steps:
       - name: Check out selected branch
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
 
       - name: Check repository hygiene
         run: node scripts/check-repo-hygiene.mjs
@@ -41,8 +44,35 @@ jobs:
       - name: Validate publication boundary and local links
         run: node scripts/validate-public-site.mjs
 
-      - name: Confirm generated files are committed
-        run: git diff --exit-code
+      - name: Confirm only generated browser files changed
+        shell: bash
+        run: |
+          unexpected="$(git status --short --untracked-files=all -- . \
+            ':(exclude)public/scripts/site-content.generated.js' \
+            ':(exclude)public/data/guide-content.json')"
+          if [[ -n "$unexpected" ]]; then
+            echo "Unexpected files changed while rebuilding content:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Commit generated browser files when needed
+        shell: bash
+        run: |
+          if git diff --quiet -- \
+            public/scripts/site-content.generated.js \
+            public/data/guide-content.json; then
+            echo "Generated browser content is already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- \
+            public/scripts/site-content.generated.js \
+            public/data/guide-content.json
+          git commit -m "chore(cms): rebuild published content"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Deploy current website to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
