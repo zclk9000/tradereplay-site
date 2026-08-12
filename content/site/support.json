@@ -48,7 +48,7 @@
       "zh": "扫码加入",
       "en": "Scan to join"
     },
-    "qrImage": "assets/support/wecom-group-qr.jpg",
+    "qrImage": "/assets/cms/img0593.jpg",
     "iconImage": "assets/support/wecom-official.png"
   },
   "email": "zclk9000@me.com"
