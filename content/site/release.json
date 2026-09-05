@@ -1,15 +1,15 @@
 {
-  "version": "1.56.1",
-  "displayVersion": "v1.56.1",
+  "version": "1.56.2",
+  "displayVersion": "v1.56.2",
   "date": "2026-09-05",
   "downloadIntro": {
-    "zh": "当前版本 v1.56.1（Windows）。Mac 版暂为 v1.55.30，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.56.1 for Windows; the Mac build is still v1.55.30. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.56.2（Windows）。Mac 版暂为 v1.55.30，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.56.2 for Windows; the Mac build is still v1.55.30. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.1-Setup.exe",
-    "fileName": "TradeReplay-1.56.1-Setup.exe",
-    "installerLabel": ".exe · v1.56.1",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.2-Setup.exe",
+    "fileName": "TradeReplay-1.56.2-Setup.exe",
+    "installerLabel": ".exe · v1.56.2",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -35,13 +35,13 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "多品种同步复盘：一个存档可加入多个陪跑品种，在同一时钟上与主品种同步回放；同市场、同账户体系的品种可直接交易并共用一个账户的保证金，跨市场品种作参考显示。陪跑品种随存档保存。",
-      "en": "Multi-symbol replay: add companion symbols to a session and replay them on one shared clock. Symbols in the same market and account type can be traded against the shared account margin; cross-market symbols show as references. Companions are saved with the session."
+      "zh": "多品种同步复盘：一个存档可加入多个陪跑品种，在同一时钟上与主品种同步回放；同市场、同账户体系的品种可直接交易并共用一个账户的保证金，跨市场品种作参考显示。陪跑品种随存档保存，并随复盘进度自动续载数据。",
+      "en": "Multi-symbol replay: add companion symbols to a session and replay them on one shared clock. Symbols in the same market and account type can be traded against the shared account margin; cross-market symbols show as references. Companions are saved with the session and keep loading data ahead of the replay."
     },
     {
       "type": "new",
-      "zh": "品种列表视图：集中查看存档内全部品种的最新价、日涨跌、持仓与浮动盈亏，可添加、移出品种并分配到窗格；多个窗格可显示同一品种。",
-      "en": "Symbol list view: see every symbol in the session with its latest price, daily change, positions and floating P&L; add or remove symbols and assign them to panes, including the same symbol in several panes."
+      "zh": "品种列表视图：集中查看存档内全部品种的最新价、日涨跌、持仓与浮动盈亏，可添加、移出品种并分配到窗格；单击某行即把下单面板切到该品种，多个窗格可显示同一品种。工具栏布局按钮一键在图表与列表间切换。",
+      "en": "Symbol list view: see every symbol in the session with its latest price, daily change, positions and floating P&L; add or remove symbols and assign them to panes. Click a row to switch the order ticket to that symbol, show the same symbol in several panes, and flip between charts and the list with the toolbar layout button."
     },
     {
       "type": "new",
