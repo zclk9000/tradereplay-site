@@ -225,17 +225,43 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.55.30 -->
+    <!-- v1.56.0 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.55.30</span>
-        <span class="date" data-content-text="release.date">2026-08-08</span>
+        <span class="version" data-content-text="release.displayVersion">v1.56.0</span>
+        <span class="date" data-content-text="release.date">2026-09-05</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
-        <li><span class="tag tag-fix">修复</span><span>修复复盘播放时从大周期切换到小周期会离开最新 K 线并误触发历史回看、导致播放暂停的问题；切换后保持最新位置并继续播放。</span></li>
+        <li><span class="tag tag-new">新增</span><span>多品种同步复盘：一个存档可加入多个陪跑品种，在同一时钟上与主品种同步回放；同市场、同账户体系的品种可直接交易并共用一个账户的保证金，跨市场品种作参考显示。陪跑品种随存档保存。</span></li>
+        <li><span class="tag tag-new">新增</span><span>品种列表视图：集中查看存档内全部品种的最新价、日涨跌、持仓与浮动盈亏，可添加、移出品种并分配到窗格；多个窗格可显示同一品种。</span></li>
+        <li><span class="tag tag-new">新增</span><span>批量下单：勾选多个品种后一次按各自报价开出多笔市价单，逐品种设置手数，止损止盈按点数分别换算，策略名与入场笔记写到每笔持仓。</span></li>
+        <li><span class="tag tag-new">新增</span><span>MT5 同步（Beta）：在软件内安装随附的 EA 并自动配置，MT5 账户已完成的交易自动进入账单；账户列表显示 EA 心跳状态。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>图表会预先绘制下一日 / 周 / 月的周期分隔线；交易历史新增可选的「盈亏点数」列；云备份设置导入改为先选文件再输密码；下载浏览器分类默认折叠。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复复盘后退在 Tick 存档中卡住、图表显示菜单被右侧面板遮挡、存档信息与账户详情在矮屏上无法滚动的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复「% 名义本金」手续费按 100 倍收取、每手固定手续费与按金额触发的分批规则未按账户货币计算、整数手期货按百分比平仓被整仓平掉、清空数据后重新下载「全部」不完整、早期资料库无法下载外汇数据等问题。</span></li>
       </ul>
       <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Multi-symbol replay: add companion symbols to a session and replay them on one shared clock. Symbols in the same market and account type can be traded against the shared account margin; cross-market symbols show as references. Companions are saved with the session.</span></li>
+        <li><span class="tag tag-new">New</span><span>Symbol list view: see every symbol in the session with its latest price, daily change, positions and floating P&amp;L; add or remove symbols and assign them to panes, including the same symbol in several panes.</span></li>
+        <li><span class="tag tag-new">New</span><span>Batch orders: tick several symbols and place market orders on all of them at once, each at its own quote, with per-symbol lot sizes, point-based stops and targets, and the strategy name and entry note stamped on every position.</span></li>
+        <li><span class="tag tag-new">New</span><span>MT5 sync (Beta): install and configure the bundled EA from inside the app so completed MT5 trades flow into your statements automatically; the accounts list shows the EA heartbeat.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Charts now draw the upcoming day, week and month separators ahead of the cursor; trade history gains an optional P&amp;L-in-points column; cloud-backup settings import now picks the file before asking for the password; the download browser collapses categories by default.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed replay step-back stalling in tick sessions, the chart display menu being hidden behind the right panel, and session info and account details being unscrollable on short screens.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed percentage-of-notional commission charging 100× the intended rate, per-lot commission and money-based scaling rules not using the account currency, percentage closes wiping whole-lot futures positions, incomplete re-downloads after clearing data, and FX downloads failing on older libraries.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.55.30 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.55.30</span>
+        <span class="date">2026-08-08</span>
+      </div>
+      <ul class="lang-zh">
+        <li><span class="tag tag-fix">修复</span><span>修复复盘播放时从大周期切换到小周期会离开最新 K 线并误触发历史回看、导致播放暂停的问题；切换后保持最新位置并继续播放。</span></li>
+      </ul>
+      <ul class="lang-en">
         <li><span class="tag tag-fix">Fixed</span><span>Fixed timeframe changes during replay—especially from larger to smaller intervals—moving away from the latest candle and incorrectly pausing as history review. Playback now stays at the latest position and continues.</span></li>
       </ul>
     </article>
