@@ -1,15 +1,15 @@
 {
-  "version": "1.56.0",
-  "displayVersion": "v1.56.0",
+  "version": "1.56.1",
+  "displayVersion": "v1.56.1",
   "date": "2026-09-05",
   "downloadIntro": {
-    "zh": "当前版本 v1.56.0（Windows）。Mac 版暂为 v1.55.30，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.56.0 for Windows; the Mac build is still v1.55.30. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.56.1（Windows）。Mac 版暂为 v1.55.30，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.56.1 for Windows; the Mac build is still v1.55.30. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.0-Setup.exe",
-    "fileName": "TradeReplay-1.56.0-Setup.exe",
-    "installerLabel": ".exe · v1.56.0",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.1-Setup.exe",
+    "fileName": "TradeReplay-1.56.1-Setup.exe",
+    "installerLabel": ".exe · v1.56.1",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
