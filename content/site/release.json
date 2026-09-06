@@ -3,8 +3,8 @@
   "displayVersion": "v1.56.0",
   "date": "2026-09-05",
   "downloadIntro": {
-    "zh": "当前版本 v1.56.0（Windows）。Mac 版暂为 v1.55.30，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.56.0 for Windows; the Mac build is still v1.55.30. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.56.0，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.56.0. Choose the installer that matches your computer."
   },
   "windows": {
     "url": "https://dl.tradereplay.dev/TradeReplay-1.56.0-Setup.exe",
@@ -20,9 +20,9 @@
     }
   },
   "mac": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.55.30-arm64.dmg",
-    "fileName": "TradeReplay-1.55.30-arm64.dmg",
-    "installerLabel": ".dmg · v1.55.30",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.0-arm64.dmg",
+    "fileName": "TradeReplay-1.56.0-arm64.dmg",
+    "installerLabel": ".dmg · v1.56.0",
     "summary": {
       "zh": "适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。",
       "en": "For Apple silicon Macs, delivered as a DMG disk image."
