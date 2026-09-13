@@ -1,15 +1,15 @@
 {
-  "version": "1.56.0",
-  "displayVersion": "v1.56.0",
-  "date": "2026-09-05",
+  "version": "1.56.10",
+  "displayVersion": "v1.56.10",
+  "date": "2026-09-12",
   "downloadIntro": {
-    "zh": "当前版本 v1.56.0，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.56.0. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.56.10（Windows）。Mac 版暂为 v1.56.0，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.56.10 for Windows; the Mac build is still v1.56.0. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.0-Setup.exe",
-    "fileName": "TradeReplay-1.56.0-Setup.exe",
-    "installerLabel": ".exe · v1.56.0",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.10-Setup.exe",
+    "fileName": "TradeReplay-1.56.10-Setup.exe",
+    "installerLabel": ".exe · v1.56.10",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -35,38 +35,38 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "多品种同步复盘：一个存档可加入多个陪跑品种，在同一时钟上与主品种同步回放；同市场、同账户体系的品种可直接交易并共用一个账户的保证金，跨市场品种作参考显示。陪跑品种随存档保存，并随复盘进度自动续载数据。",
-      "en": "Multi-symbol replay: add companion symbols to a session and replay them on one shared clock. Symbols in the same market and account type can be traded against the shared account margin; cross-market symbols show as references. Companions are saved with the session and keep loading data ahead of the replay."
+      "zh": "交易日志与自由笔记可导出为单个 HTML 文件：左侧按年 / 月折叠的导航、封面统计、每日 KPI 行与盈亏曲线、笔记内嵌图片、跟随软件主题、离线可打开、可直接打印成 PDF；大档案按需渲染，十几万笔交易也不卡。",
+      "en": "Export the trading journal and free notes as a single HTML file: a collapsible year/month navigation, cover statistics, a daily KPI strip with the day's P&L curve, embedded note images, your app theme, offline-ready and printable to PDF; large archives render on demand without lag."
     },
     {
       "type": "new",
-      "zh": "品种列表视图：集中查看存档内全部品种的最新价、日涨跌、持仓与浮动盈亏，可添加、移出品种并分配到窗格；单击某行即把下单面板切到该品种，多个窗格可显示同一品种。工具栏布局按钮一键在图表与列表间切换。",
-      "en": "Symbol list view: see every symbol in the session with its latest price, daily change, positions and floating P&L; add or remove symbols and assign them to panes. Click a row to switch the order ticket to that symbol, show the same symbol in several panes, and flip between charts and the list with the toolbar layout button."
+      "zh": "回放「回退到光标所在 K 线」：按 J 或点回放控制条上的定位按钮，竖线跟着光标、右侧变灰预览，单击即回退到那根 K 线，其余 K 线原地不动；提示条上的「回到跳转前」一键返回。",
+      "en": "Rewind to the bar under the cursor: press J or the locate button on the replay strip, follow the guide line with the bars to its right dimmed, and click to rewind while every other bar stays put; \"Back to before the jump\" returns you in one click."
     },
     {
       "type": "new",
-      "zh": "批量下单：勾选多个品种后一次按各自报价开出多笔市价单，逐品种设置手数，止损止盈按点数分别换算，策略名与入场笔记写到每笔持仓。",
-      "en": "Batch orders: tick several symbols and place market orders on all of them at once, each at its own quote, with per-symbol lot sizes, point-based stops and targets, and the strategy name and entry note stamped on every position."
+      "zh": "止损 / 止盈可从图表吸取价格（磁吸到 K 线开高低收，按住 Alt 取原始价），挂单表单同样支持；图表显示时区新增「跟随交易服务器」并补齐 UTC−12 ~ UTC+14 整点偏移；斐波那契扩展线可关闭色块填充；文字工具支持 Shift+Enter 换行。",
+      "en": "Pick stop-loss and take-profit prices straight off the chart (snapped to the bar's O/H/L/C, Alt for the raw price), also in the pending-order form; the chart display time zone gains \"Follow the trading server\" plus every whole-hour UTC offset; Fibonacci extension bands can be switched off; the text tool breaks lines with Shift+Enter."
     },
     {
       "type": "new",
-      "zh": "MT5 同步（Beta）：在软件内安装随附的 EA 并自动配置，MT5 账户已完成的交易自动进入账单；账户列表显示 EA 心跳状态。",
-      "en": "MT5 sync (Beta): install and configure the bundled EA from inside the app so completed MT5 trades flow into your statements automatically; the accounts list shows the EA heartbeat."
+      "zh": "品种列表新增「点差」与「时间」列，角色列改为 M / S；公式引擎内置 DMI（PDI / MDI / ADX / ADXR），可跨指标引用。",
+      "en": "The symbol list gains Spread and Time columns with M / S role letters; the formula engine adds a built-in DMI (PDI / MDI / ADX / ADXR) that other indicators can reference."
     },
     {
       "type": "improved",
-      "zh": "图表会预先绘制下一日 / 周 / 月的周期分隔线；交易历史新增可选的「盈亏点数」列；云备份设置导入改为先选文件再输密码；下载浏览器分类默认折叠。",
-      "en": "Charts now draw the upcoming day, week and month separators ahead of the cursor; trade history gains an optional P&L-in-points column; cloud-backup settings import now picks the file before asking for the password; the download browser collapses categories by default."
+      "zh": "箭头与折线工具的箭头重做，不再粗糙；持仓面板默认显示每一笔；提示条改在图表窗格标题行显示，不再被右侧下单面板遮住；新建训练与添加品种面板用期货中文名显示。",
+      "en": "Arrow and path tools get a properly drawn arrowhead; the positions panel shows each entry by default; toasts move to the chart pane header so the order panel never covers them; futures show their Chinese names when creating a session or adding a symbol."
+    },
+    {
+      "type": "improved",
+      "zh": "外汇数据下载：分批从已有数据的那一侧起，中断也不会留下空洞；一次点击自动分批补完；资料库覆盖条直接画出空缺段并用叹号 / 勾号标明是否连续，有空缺时一键「补全空缺并更新」。",
+      "en": "FX downloads now grow from the data you already hold, so an interrupted run never leaves a hole; one click fills the rest batch by batch; the library's coverage strip shows any gap in place with a contiguity mark and a \"Fill gap and update\" action."
     },
     {
       "type": "fixed",
-      "zh": "修复复盘后退在 Tick 存档中卡住、图表显示菜单被右侧面板遮挡、存档信息与账户详情在矮屏上无法滚动的问题。",
-      "en": "Fixed replay step-back stalling in tick sessions, the chart display menu being hidden behind the right panel, and session info and account details being unscrollable on short screens."
-    },
-    {
-      "type": "fixed",
-      "zh": "修复「% 名义本金」手续费按 100 倍收取、每手固定手续费与按金额触发的分批规则未按账户货币计算、整数手期货按百分比平仓被整仓平掉、清空数据后重新下载「全部」不完整、早期资料库无法下载外汇数据等问题。",
-      "en": "Fixed percentage-of-notional commission charging 100× the intended rate, per-lot commission and money-based scaling rules not using the account currency, percentage closes wiping whole-lot futures positions, incomplete re-downloads after clearing data, and FX downloads failing on older libraries."
+      "zh": "修复新建存档设定的截止时间不生效、更新后弹「资料库文件夹不可用」只能退出、「跟随交易服务器」时区在统计 / 日志 / 跳转处崩溃及切换后图表不刷新、回放遇到数据空洞跨年接上后面的数据、品种列表价格滞后于下单面板且位数不对、ADX 的 +DI / −DI 未按百分比绘制、公式中 && / || 落空等问题。",
+      "en": "Fixed the end time chosen for a new session not applying, the \"data folder unavailable\" dialog after updating that only offered Quit, crashes and stale charts with the \"Follow the trading server\" time zone, replay bridging a multi-month data hole onto later data, symbol-list prices lagging the order ticket with the wrong precision, ADX's +DI / −DI not drawn as percentages, and && / || in formulas evaluating to nothing."
     }
   ]
 }
