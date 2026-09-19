@@ -225,14 +225,36 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.56.10 -->
+    <!-- v1.56.20 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.56.10</span>
-        <span class="date" data-content-text="release.date">2026-09-12</span>
+        <span class="version" data-content-text="release.displayVersion">v1.56.20</span>
+        <span class="date" data-content-text="release.date">2026-09-19</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>同品种多窗口画线同步：同一品种开了多个窗口时画线是同一份，在任一窗口画线、拖动、改样式或删除，其他窗口实时跟随，画的过程中就能看到；价格在所有周期完全一致。绘图工具栏新增链条开关，可随时改回各窗口各画各的。</span></li>
+        <li><span class="tag tag-new">新增</span><span>画线支持撤销与恢复：Ctrl+Z 撤销上一步画线操作（新画、删除、拖动、改样式、清除所有标注都能撤销），Ctrl+Y 或 Ctrl+Shift+Z 恢复，Mac 上为 ⌘Z / ⌘⇧Z。</span></li>
+        <li><span class="tag tag-new">新增</span><span>绘图工具栏新增「保持绘图模式」：开启后画完一个图形自动接着用同一工具，按 Esc 结束；射线画到水平、垂直或 45° 时端点旁会提示，按住 Shift 可锁定为水平。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>时间跳转可以跳到整个存档的任意时刻（到存档设定的截止时间为止），不再局限于已加载的约二十天；选着画图工具时，鼠标移进哪个窗口，焦点和工具就跟到哪个窗口，第一下点击即开始画。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复双击结束折线时顺带放大窗口、多窗口时「回退到光标所在 K 线」与从图表吸取止损止盈价只在第一个窗口有效、选着画图工具切换窗口或周期后工具画不了等问题。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Drawings sync across panes of the same symbol: draw, drag, restyle or delete in any pane and every other pane of that symbol follows live, even mid-stroke, at the same price on every timeframe. A chain toggle in the drawing toolbar switches back to separate drawings per pane.</span></li>
+        <li><span class="tag tag-new">New</span><span>Undo and redo for drawings: Ctrl+Z steps back through new, deleted, moved and restyled drawings, even a full clear; Ctrl+Y or Ctrl+Shift+Z redoes (⌘Z / ⌘⇧Z on Mac).</span></li>
+        <li><span class="tag tag-new">New</span><span>Stay in drawing mode keeps the same tool armed after each shape until Esc; rays show a badge when they lie level, vertical or at 45°, and Shift locks them level.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Jump to any moment in the whole session up to its end time, not just the few weeks already loaded; with a drawing tool picked, moving into another pane brings focus and the tool along, so the first click there draws.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed double-clicking to finish a path also maximizing the pane, rewind-to-cursor and picking stop/target prices off the chart working only in the first pane, and a picked drawing tool not drawing after switching panes or timeframes.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.56.10 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.56.10</span>
+        <span class="date">2026-09-12</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>交易日志与自由笔记可导出为单个 HTML 文件：左侧按年 / 月折叠的导航、封面统计、每日 KPI 行与盈亏曲线、笔记内嵌图片、跟随软件主题、离线可打开、可直接打印成 PDF；大档案按需渲染，十几万笔交易也不卡。</span></li>
         <li><span class="tag tag-new">新增</span><span>回放「回退到光标所在 K 线」：按 J 或点回放控制条上的定位按钮，竖线跟着光标、右侧变灰预览，单击即回退到那根 K 线，其余 K 线原地不动；提示条上的「回到跳转前」一键返回。</span></li>
         <li><span class="tag tag-new">新增</span><span>止损 / 止盈可从图表吸取价格（磁吸到 K 线开高低收，按住 Alt 取原始价），挂单表单同样支持；图表显示时区新增「跟随交易服务器」并补齐 UTC−12 ~ UTC+14 整点偏移；斐波那契扩展线可关闭色块填充；文字工具支持 Shift+Enter 换行。</span></li>
@@ -241,7 +263,7 @@
         <li><span class="tag tag-improve">优化</span><span>外汇数据下载：分批从已有数据的那一侧起，中断也不会留下空洞；一次点击自动分批补完；资料库覆盖条直接画出空缺段并用叹号 / 勾号标明是否连续，有空缺时一键「补全空缺并更新」。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复新建存档设定的截止时间不生效、更新后弹「资料库文件夹不可用」只能退出、「跟随交易服务器」时区在统计 / 日志 / 跳转处崩溃及切换后图表不刷新、回放遇到数据空洞跨年接上后面的数据、品种列表价格滞后于下单面板且位数不对、ADX 的 +DI / −DI 未按百分比绘制、公式中 &amp;&amp; / || 落空等问题。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Export the trading journal and free notes as a single HTML file: a collapsible year/month navigation, cover statistics, a daily KPI strip with the day's P&amp;L curve, embedded note images, your app theme, offline-ready and printable to PDF; large archives render on demand without lag.</span></li>
         <li><span class="tag tag-new">New</span><span>Rewind to the bar under the cursor: press J or the locate button on the replay strip, follow the guide line with the bars to its right dimmed, and click to rewind while every other bar stays put; "Back to before the jump" returns you in one click.</span></li>
         <li><span class="tag tag-new">New</span><span>Pick stop-loss and take-profit prices straight off the chart (snapped to the bar's O/H/L/C, Alt for the raw price), also in the pending-order form; the chart display time zone gains "Follow the trading server" plus every whole-hour UTC offset; Fibonacci extension bands can be switched off; the text tool breaks lines with Shift+Enter.</span></li>
