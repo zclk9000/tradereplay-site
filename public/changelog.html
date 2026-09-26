@@ -225,21 +225,43 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.56.20 -->
+    <!-- v1.56.50 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.56.20</span>
-        <span class="date" data-content-text="release.date">2026-09-19</span>
+        <span class="version" data-content-text="release.displayVersion">v1.56.50</span>
+        <span class="date" data-content-text="release.date">2026-09-25</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>图表布局新增 3×2（6 格）和 3×3（9 格）；指标图例显示数值，随光标所在的 K 线变化。</span></li>
+        <li><span class="tag tag-new">新增</span><span>自定义时间线：在自己指定的时刻画竖线，可设名称、时间和颜色；这些时刻也能在回放跳转里直接跳过去。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>多窗口回放更流畅；首页「近期脉搏」按实际下单时间统计最近 30 天；时间输入改为时、分两个框，点一下即可覆写。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复阿里云 OSS 无法用作云备份，以及从 1.55.30 及更早版本升级后偏好设置、图表模板和已解锁成就丢失的问题。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>修复多窗口画线同步时已删除的线重新出现、Tick 存档暂停后往回跳转账户没有回滚等问题。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>New 3×2 and 3×3 chart layouts (6 and 9 panes); indicator legends now show values that follow the bar under the cursor.</span></li>
+        <li><span class="tag tag-new">New</span><span>Custom time lines: mark a time of day with a labelled vertical line in your own name, time and colour, and jump straight to it from the replay time jump.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Smoother multi-pane replay; the home page Recent pulse counts the last 30 days by when you actually traded; time fields split into hour and minute boxes that select on click.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed Alibaba Cloud OSS not working for cloud backup, and preferences, chart templates and earned achievements going missing after upgrading from 1.55.30 or earlier.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Fixed deleted drawings reappearing when drawing sync was turned back on, and the account not rolling back after jumping backwards in a paused tick session.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.56.20 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.56.20</span>
+        <span class="date">2026-09-19</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>同品种多窗口画线同步：同一品种开了多个窗口时画线是同一份，在任一窗口画线、拖动、改样式或删除，其他窗口实时跟随，画的过程中就能看到；价格在所有周期完全一致。绘图工具栏新增链条开关，可随时改回各窗口各画各的。</span></li>
         <li><span class="tag tag-new">新增</span><span>画线支持撤销与恢复：Ctrl+Z 撤销上一步画线操作（新画、删除、拖动、改样式、清除所有标注都能撤销），Ctrl+Y 或 Ctrl+Shift+Z 恢复，Mac 上为 ⌘Z / ⌘⇧Z。</span></li>
         <li><span class="tag tag-new">新增</span><span>绘图工具栏新增「保持绘图模式」：开启后画完一个图形自动接着用同一工具，按 Esc 结束；射线画到水平、垂直或 45° 时端点旁会提示，按住 Shift 可锁定为水平。</span></li>
         <li><span class="tag tag-improve">优化</span><span>时间跳转可以跳到整个存档的任意时刻（到存档设定的截止时间为止），不再局限于已加载的约二十天；选着画图工具时，鼠标移进哪个窗口，焦点和工具就跟到哪个窗口，第一下点击即开始画。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修复双击结束折线时顺带放大窗口、多窗口时「回退到光标所在 K 线」与从图表吸取止损止盈价只在第一个窗口有效、选着画图工具切换窗口或周期后工具画不了等问题。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Drawings sync across panes of the same symbol: draw, drag, restyle or delete in any pane and every other pane of that symbol follows live, even mid-stroke, at the same price on every timeframe. A chain toggle in the drawing toolbar switches back to separate drawings per pane.</span></li>
         <li><span class="tag tag-new">New</span><span>Undo and redo for drawings: Ctrl+Z steps back through new, deleted, moved and restyled drawings, even a full clear; Ctrl+Y or Ctrl+Shift+Z redoes (⌘Z / ⌘⇧Z on Mac).</span></li>
         <li><span class="tag tag-new">New</span><span>Stay in drawing mode keeps the same tool armed after each shape until Esc; rays show a badge when they lie level, vertical or at 45°, and Shift locks them level.</span></li>
