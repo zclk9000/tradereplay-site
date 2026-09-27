@@ -122,6 +122,47 @@
     renderReleaseList(node, node.dataset.contentReleaseList);
   });
 
+  document.querySelectorAll("[data-content-video-list]").forEach((node) => {
+    const videos = get(node.dataset.contentVideoList);
+    if (!Array.isArray(videos)) return;
+    node.replaceChildren(...videos.map((video) => {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.className = "tutorial-video";
+      link.href = video.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.title = video.title;
+
+      const cover = document.createElement("span");
+      cover.className = "tutorial-video-cover";
+      const image = document.createElement("img");
+      image.src = video.cover;
+      image.alt = ""; // The adjacent title names the same link.
+      image.width = 112;
+      image.height = 63;
+      image.loading = "lazy";
+      image.decoding = "async";
+      cover.append(image);
+      const copy = document.createElement("span");
+      copy.className = "tutorial-video-copy";
+      const title = document.createElement("span");
+      title.className = "tutorial-video-title";
+      title.textContent = video.shortTitle || video.title;
+      copy.append(title);
+      if (video.duration) {
+        const duration = document.createElement("span");
+        duration.className = "tutorial-video-duration";
+        duration.textContent = video.duration;
+        copy.append(duration);
+      }
+
+      link.append(cover, copy);
+      item.append(link);
+      return item;
+    }));
+  });
+
   document.querySelectorAll("[data-content-email]").forEach((node) => {
     const value = get(node.dataset.contentEmail);
     if (typeof value !== "string" || !value) return;

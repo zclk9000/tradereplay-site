@@ -25,7 +25,7 @@ content.home.pricing.purchaseUrl = {
 };
 
 const bindingPattern =
-  /\bdata-content-(?:text|href|src|alt|list|email|group-number)="([^"]+)"/g;
+  /\bdata-content-(?:text|href|src|alt|list|email|group-number|video-list)="([^"]+)"/g;
 const errors = [];
 let bindingCount = 0;
 

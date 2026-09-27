@@ -15,6 +15,26 @@
 - `public/guide.html`、`public/styles/guide.css`、`public/scripts/guide.js` — 页面、
   样式、语言切换、搜索和内容呈现。
 
+## 下载页 B 站视频教程
+
+下载页的独立视频列表使用 `content/site/support.json` 的 `videoTutorials`，
+不属于站内图文教程目录。Pages CMS →「教程入口与支持渠道」→「下载页 B 站视频教程」
+可以修改主页链接，添加、删除或调整视频顺序。每条填写视频原始标题、可选的页面短标题、完整 BV 链接、
+上传封面（推荐 16:9），以及可选时长（如 `18:41`）。保存后，通过
+「发布当前官网（含教程）」上线；在 B 站发布视频本身不会自动添加到官网列表。
+
+列表按 CMS 顺序向下延伸。宽屏显示在下载卡片左侧，窄屏位于下载卡片之后。
+下载页的图文教程与 QQ 售后群位于宽屏右侧；较窄桌面上两组入口并排放在下载卡片之后，
+手机上纵向排列。QQ 二维码始终展开；下载页不展示企业微信二维码。
+封面和标题在新标签页打开对应视频，主页链接打开作者空间。视频优先展示简洁的页面短标题，
+原始标题通过悬停保留；英文预览保留视频中文标题。无 JavaScript 时仍可通过主页入口访问教程。
+
+`node scripts/build-site-content.mjs` 校验 BV 链接、重复视频、主页链接和本地封面，
+生成现有 `site-content.generated.js`；不要手改生成文件。页面由
+`public/scripts/site-content-runtime.js` 渲染，样式在 `public/styles/download-tutorials.css`。
+首批封面来自用户提供的两条视频，压缩后的成品保存在 `public/assets/tutorials/`；
+CMS 后续上传的封面仍进入 `public/assets/cms/`。网页加载时不请求 B 站接口或播放器。
+
 ## 路由与语言
 
 帮助中心使用查询参数导航，`lang` 由链接显式传递：

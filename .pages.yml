@@ -622,6 +622,46 @@ content:
             label: 支持邮箱
             type: string
             required: true
+          - name: videoTutorials
+            label: 下载页 B 站视频教程
+            type: object
+            fields:
+              - name: channelUrl
+                label: B 站主页链接
+                type: string
+                required: true
+                description: 填写 https://space.bilibili.com/ 后接账号 UID 的完整链接。
+              - name: items
+                label: 视频列表（按这里的顺序展示）
+                type: object
+                list: true
+                description: 添加视频标题、链接和封面即可。可调整顺序；保存后点击“发布当前官网（含教程）”上线。可填写页面短标题以保持列表简洁。
+                fields:
+                  - name: title
+                    label: 视频标题
+                    type: string
+                    required: true
+                  - name: url
+                    label: B 站视频链接
+                    type: string
+                    required: true
+                    description: 填写 https://www.bilibili.com/video/BV…/ 完整链接。
+                  - name: shortTitle
+                    label: 页面短标题（可选）
+                    type: string
+                    description: 推荐 6–14 个字，只保留教程主题；不填则使用原始标题。
+                  - name: cover
+                    label: 视频封面
+                    type: image
+                    required: true
+                    options:
+                      media: site_media
+                      extensions: [png, jpg, jpeg, webp]
+                      rename: safe
+                  - name: duration
+                    label: 视频时长（可选）
+                    type: string
+                    description: 例如 18:41。
 
       - name: legal_content
         label: 政策页设置

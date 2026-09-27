@@ -1,0 +1,157 @@
+/* Download cards are primary; the two rails share a quiet, compact rhythm. */
+.download-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr) 240px;
+  column-gap: 48px;
+  width: min(1776px, calc(100% - 96px));
+  align-items: start;
+}
+.download-layout > .download-page-hero,
+.download-layout > .download-platform-grid,
+.download-layout > .download-release {
+  grid-column: 2;
+  min-width: 0;
+}
+.download-tutorials,
+.download-help {
+  grid-row: 2 / span 2;
+  min-width: 0;
+  margin-top: 54px;
+  padding-top: 4px;
+}
+.download-tutorials { grid-column: 1; }
+.download-help { grid-column: 3; }
+.download-tutorials h2,
+.download-help h2 {
+  margin: 0 0 16px;
+  color: var(--c-ink-soft);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.download-tutorials-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.download-tutorials-list li + li,
+.download-help-qq,
+.download-help-en-only { border-top: 1px solid var(--c-line); }
+.tutorial-video {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  color: var(--c-ink-soft);
+}
+.tutorial-video-cover {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 5px;
+  background: var(--c-surface);
+}
+.tutorial-video-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.tutorial-video-copy { min-width: 0; }
+.tutorial-video-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.tutorial-video-duration {
+  display: block;
+  margin-top: 6px;
+  color: var(--c-muted);
+  font-family: var(--font-number);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.download-tutorials-channel,
+.download-help-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  color: var(--c-ink-soft);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.download-tutorials-channel {
+  justify-content: flex-start;
+  width: fit-content;
+  margin-top: 8px;
+  color: var(--c-body);
+  font-size: 12px;
+}
+.download-help-links > .download-help-link { min-height: 86px; }
+.download-help-link > [aria-hidden] {
+  color: var(--c-muted);
+  font-size: 12px;
+}
+.download-help-qq { padding-top: 12px; }
+.download-help-number {
+  margin: 0;
+  color: var(--c-muted);
+  font-family: var(--font-number);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.download-help-qr { margin-top: 20px; }
+.download-help-qr img {
+  display: block;
+  width: 128px;
+  height: 128px;
+  margin-top: 8px;
+  border: 6px solid #fff;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.download-help-en-only,
+html[lang="en"] .download-help-cn-only { display: none; }
+html[lang="en"] .download-help-en-only { display: flex; }
+.tutorial-video:hover,
+.download-tutorials-channel:hover,
+.download-help-link:hover { color: var(--c-primary); }
+.tutorial-video:focus-visible,
+.download-tutorials-channel:focus-visible,
+.download-help-link:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+@media (max-width: 1439px) {
+  .download-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 48px;
+    width: min(1200px, calc(100% - 56px));
+  }
+  .download-layout > .download-page-hero,
+  .download-layout > .download-platform-grid,
+  .download-layout > .download-release { grid-column: 1 / -1; }
+  .download-tutorials,
+  .download-help {
+    grid-row: 3;
+    margin-top: 40px;
+    padding: 24px 0 16px;
+    border-top: 1px solid var(--c-line);
+  }
+  .download-help { grid-column: 2; }
+  .download-layout > .download-release { grid-row: 4; }
+}
+@media (max-width: 680px) {
+  .download-layout {
+    display: block;
+    width: calc(100% - 40px);
+  }
+  .download-help { margin-top: 16px; }
+}

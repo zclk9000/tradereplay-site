@@ -51,5 +51,24 @@
     "qrImage": "/assets/cms/img0593.jpg",
     "iconImage": "assets/support/wecom-official.png"
   },
-  "email": "zclk9000@me.com"
+  "email": "zclk9000@me.com",
+  "videoTutorials": {
+    "channelUrl": "https://space.bilibili.com/3707002001820118",
+    "items": [
+      {
+        "title": "交易也需要刻意练习：如何带着交易系统复盘｜TradeReplay 01",
+        "shortTitle": "带着交易系统复盘",
+        "url": "https://www.bilibili.com/video/BV1AdGN6WEKK/",
+        "cover": "assets/tutorials/tradereplay-01.webp",
+        "duration": "18:41"
+      },
+      {
+        "title": "快速上手：图表操作技巧｜TradeReplay 02",
+        "shortTitle": "图表操作技巧",
+        "url": "https://www.bilibili.com/video/BV15BuR6MEFE/",
+        "cover": "assets/tutorials/tradereplay-02.webp",
+        "duration": "18:37"
+      }
+    ]
+  }
 }

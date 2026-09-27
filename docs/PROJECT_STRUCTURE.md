@@ -53,6 +53,7 @@
 | `public/assets/modes/` | 三种运行模式的压缩视频与封面 |
 | `public/assets/showcase/` | 六项核心能力展示图 |
 | `public/assets/support/` | QQ、企业微信图标与二维码 |
+| `public/assets/tutorials/` | 下载页 B 站视频教程封面 |
 | `public/assets/commerce/` | 购买渠道图形 |
 | `public/assets/cms/` | Pages CMS 上传的普通官网图片 |
 | `public/assets/screenshots/product-gallery/` | 已整理的产品截图组 |

@@ -131,6 +131,36 @@ requireLocalized(data.support.wecom?.button, "support.wecom.button");
 requireLocalImage(data.support.wecom.qrImage, "support.wecom.qrImage");
 requireLocalImage(data.support.wecom.iconImage, "support.wecom.iconImage");
 requireText(data.support.email, "support.email");
+const videoTutorials = data.support.videoTutorials;
+if (!/^https:\/\/space\.bilibili\.com\/\d+\/?$/.test(videoTutorials?.channelUrl ?? "")) {
+  errors.push("support.videoTutorials.channelUrl 必须是 B 站主页链接");
+}
+if (!Array.isArray(videoTutorials?.items)) {
+  errors.push("support.videoTutorials.items 必须是视频列表");
+} else {
+  const urls = new Set();
+  videoTutorials.items.forEach((video, index) => {
+    const label = `support.videoTutorials.items.${index}`;
+    requireText(video?.title, `${label}.title`);
+    if (video?.shortTitle != null && typeof video.shortTitle !== "string") {
+      errors.push(`${label}.shortTitle 必须是文字`);
+    }
+    if (!/^https:\/\/www\.bilibili\.com\/video\/BV[0-9A-Za-z]{10}\/?(?:\?[^\s#]*)?$/.test(video?.url ?? "")) {
+      errors.push(`${label}.url 必须是完整的 B 站 BV 视频链接`);
+    }
+    const canonicalUrl = typeof video?.url === "string" ? video.url.split("?")[0].replace(/\/$/, "") : "";
+    if (urls.has(canonicalUrl)) errors.push(`${label}.url 与其他视频重复`);
+    urls.add(canonicalUrl);
+    if (!/^\/?assets\/[a-z0-9_/-]+\.(?:webp|png|jpe?g)$/i.test(video?.cover ?? "") || video.cover.includes("..")) {
+      errors.push(`${label}.cover 必须是 public/assets 下的封面图片`);
+    } else {
+      requireLocalImage(video.cover, `${label}.cover`);
+    }
+    if (video?.duration && !/^(?:\d+:)?\d{1,2}:[0-5]\d$/.test(video.duration)) {
+      errors.push(`${label}.duration 使用 分:秒 或 时:分:秒`);
+    }
+  });
+}
 if (data.support.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.support.email)) {
   errors.push("support.email 格式无效");
 }
