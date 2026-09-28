@@ -1,0 +1,126 @@
+{
+  "id": "sg-02",
+  "code": "SG-02",
+  "title": "Write a custom indicator in JavaScript",
+  "summary": "Learn the code structure, inputs and outputs, parameters, and line styles of a JavaScript indicator, then build one from three working examples.",
+  "time": "15 min",
+  "level": "Advanced",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "keywords": [
+    "JavaScript",
+    "JS indicator",
+    "custom indicator",
+    "indicator code",
+    "compute",
+    "sandbox"
+  ],
+  "outcome": "You will write a JavaScript indicator that appears on the chart and know its limits and what its error messages mean.",
+  "before": [
+    "Know some JavaScript: variables, arrays, for loops, and functions.",
+    "Write common standard indicators as TDX formulas first; use JavaScript for logic a TDX formula cannot express."
+  ],
+  "sections": [
+    {
+      "id": "basics",
+      "title": "1. Three things that are different",
+      "body": "<p>The editor accepts standard JavaScript syntax, run in an isolated sandbox. Compared with code for a web page or Node, three things are different:</p><ol><li><strong>The whole source is one object.</strong> Its first character must be <code>{</code> or <code>(</code>. Do not write <code>export default</code> or <code>module.exports</code>, and do not start with a comment, or the editor reads the code as a TDX formula.</li><li><strong>The sandbox has plain JavaScript only.</strong> There is no window or document, no network, no <code>require</code> or <code>import</code> for libraries, and no timers. <code>console.log</code> prints nothing.</li><li><strong>There are no built-in MA, EMA, or STD functions.</strong> Write the calculations yourself with arrays and loops.</li></ol><p>Modern syntax works: <code>let</code>, <code>const</code>, arrow functions, destructuring, template strings, <code>?.</code> and <code>??</code>, <code>class</code>, <code>Map</code>, <code>Set</code>, <code>Math</code>, and <code>JSON</code>.</p>"
+    },
+    {
+      "id": "where",
+      "title": "2. Where to write it",
+      "steps": [
+        {
+          "title": "Open custom indicators",
+          "body": "<p>Go to <strong>Strategy → Indicators</strong>, switch to <strong>Custom</strong> at the top left, and click <strong>+</strong> to create a custom indicator.</p>"
+        },
+        {
+          "title": "Paste the code",
+          "body": "<p>Delete the default TDX formula in the editor and paste your JavaScript. <strong>Indicator name</strong> can stay empty. With <strong>Display position</strong> set to <strong>Auto detect</strong>, <code>overlay</code> in your code decides between the main chart and a subplot.</p>"
+        },
+        {
+          "title": "Save and add it to a chart",
+          "body": "<p>Saving checks the syntax and structure. After saving, the indicator appears in the chart’s <strong>Add indicator</strong> menu.</p>"
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "title": "3. Code structure",
+      "body": "<p>Paste and save this first. If a close-price line appears in a subplot, everything is set up; then add your own calculation.</p><pre><code>{\n  name: 'Close price',\n  params: [],\n  lines: [\n    { name: 'CLOSE', defaultColor: '#2962ff', defaultWidth: 1 }\n  ],\n  compute(candles, params) {\n    return {\n      lines: [\n        { name: 'CLOSE', values: candles.map((c) =&gt; c.close) }\n      ]\n    }\n  }\n}</code></pre><table><thead><tr><th>Field</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td>Yes</td><td>Indicator name</td></tr><tr><td><code>shortName</code></td><td>No</td><td>Short name for the chart legend</td></tr><tr><td><code>overlay</code></td><td>No</td><td><code>true</code> draws on the main chart; omitted or <code>false</code> draws in a subplot</td></tr><tr><td><code>params</code></td><td>Yes</td><td>Parameter list; write <code>[]</code> when there are none</td></tr><tr><td><code>lines</code></td><td>Yes</td><td>Lines to draw, at least one</td></tr><tr><td><code>subplotScale</code></td><td>No</td><td>Subplot axis, for example <code>{ min: 0, max: 100, levels: [30, 70] }</code> fixes the range to 0–100 with horizontal lines at 30 and 70</td></tr><tr><td><code>compute</code></td><td>Yes</td><td>The calculation, <code>compute(candles, params)</code></td></tr></tbody></table><p>For shared helper functions, wrap the object in <code>(() =&gt; { … return { … } })()</code> and define the functions before <code>return</code>. Example 3 shows how.</p>"
+    },
+    {
+      "id": "io",
+      "title": "4. What compute receives and returns",
+      "body": "<p><code>candles</code> is an array of bars. Each bar has:</p><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><code>time</code></td><td>Bar time in Unix seconds (UTC)</td></tr><tr><td><code>open</code> <code>high</code> <code>low</code> <code>close</code></td><td>Open, high, low, close</td></tr><tr><td><code>volume</code></td><td>Volume</td></tr><tr><td><code>oi</code></td><td>Open interest, for China futures only; <code>undefined</code> elsewhere</td></tr><tr><td><code>spread</code></td><td>Spread, when the data has it</td></tr></tbody></table><ul><li>Bars are ordered oldest first. The last one is the current bar at the replay cursor.</li><li>You receive a window of the chart timeframe, not the full history: about 3,000 bars before the cursor during playback, and up to about 33,000 when paused. Cumulative indicators such as OBV start counting at the first bar of the window.</li><li><code>params</code> holds the current parameter values by <code>id</code>, for example <code>params.period</code>.</li></ul><p><code>compute</code> returns <code>{ lines: [{ name, values }] }</code>:</p><ul><li>Return the lines in the same order as the declared <code>lines</code>. The app matches them by position, not by name.</li><li>Each <code>values</code> array has <code>candles.length</code> items; item i belongs to bar i.</li><li>Use <code>null</code> where there is no value, and the line breaks there. A 4-period average, for example, starts with three <code>null</code> values.</li></ul>"
+    },
+    {
+      "id": "params",
+      "title": "5. Parameters",
+      "body": "<p>Each parameter becomes an input or a dropdown in the chart’s indicator settings, and its value reaches <code>compute</code> as <code>params[id]</code>.</p><table><thead><tr><th>kind</th><th>Use</th><th>Fields</th></tr></thead><tbody><tr><td><code>'int'</code></td><td>Whole numbers, such as a period</td><td><code>id</code> <code>label</code> <code>default</code>, optional <code>min</code> <code>max</code> <code>step</code></td></tr><tr><td><code>'float'</code></td><td>Decimals, such as a multiplier</td><td>Same as above</td></tr><tr><td><code>'source'</code></td><td>Price source dropdown</td><td><code>id</code> <code>label</code> <code>default</code>, one of <code>'close'</code> <code>'open'</code> <code>'high'</code> <code>'low'</code> <code>'hl2'</code> <code>'hlc3'</code> <code>'ohlc4'</code></td></tr><tr><td><code>'select'</code></td><td>Your own dropdown</td><td><code>id</code> <code>label</code> <code>default</code> <code>options: [{ value, label }]</code></td></tr></tbody></table><p><code>'source'</code> only passes a string such as <code>'hl2'</code>; your <code>compute</code> decides which price that means. Example 1 shows the code.</p>"
+    },
+    {
+      "id": "lines",
+      "title": "6. Line styles and other drawings",
+      "body": "<table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td>Line name shown in the legend</td></tr><tr><td><code>defaultColor</code></td><td>Default color, for example <code>'#2962ff'</code></td></tr><tr><td><code>defaultWidth</code></td><td>Default width, 1 to 4</td></tr><tr><td><code>shape</code></td><td><code>'line'</code> (default), <code>'histogram'</code>, or <code>'points'</code></td></tr><tr><td><code>dotted</code></td><td><code>true</code> draws a dotted line</td></tr><tr><td><code>signal</code></td><td><code>true</code> draws arrows: a value above 0 puts an up arrow below the bar, below 0 a down arrow above it; 0 or <code>null</code> draws nothing</td></tr></tbody></table><p>Besides lines, the result can include these drawings. Every <code>index</code> is a position in <code>candles</code>:</p><table><thead><tr><th>Field</th><th>Item format</th><th>Draws</th></tr></thead><tbody><tr><td><code>markers</code></td><td><code>{ index, position, shape, color, text }</code>, position <code>'aboveBar'</code> / <code>'belowBar'</code> / <code>'inBar'</code>, shape <code>'arrowUp'</code> / <code>'arrowDown'</code> / <code>'circle'</code> / <code>'square'</code></td><td>A marker on bar index</td></tr><tr><td><code>texts</code></td><td><code>{ index, price, color, text, placement }</code>, placement <code>'above'</code> / <code>'below'</code></td><td>Text at a price</td></tr><tr><td><code>sticks</code></td><td><code>{ index, y1, y2, color, width }</code></td><td>A vertical stick from y1 to y2</td></tr><tr><td><code>segments</code></td><td><code>{ x1, y1, x2, y2, color, expand }</code>, x is a bar index</td><td>A line between two points; <code>expand: true</code> extends it to the right</td></tr><tr><td><code>polylines</code></td><td><code>{ points: [{ index, y }], color, width }</code></td><td>A polyline</td></tr><tr><td><code>bands</code></td><td>An array of arrays of <code>{ index, upper, lower, color }</code></td><td>A filled band between two edges, one band per inner array</td></tr><tr><td><code>gbk</code></td><td><code>{ index, color }</code></td><td>A background color behind the bar</td></tr><tr><td><code>vertlines</code></td><td><code>{ index, color, style }</code>, style 0 solid, 1 dashed, 2 dotted</td><td>A full-height vertical line</td></tr><tr><td><code>colorKlines</code></td><td><code>{ index, color, hollow }</code></td><td>Recolors the bar; <code>hollow: true</code> draws it hollow</td></tr></tbody></table>"
+    },
+    {
+      "id": "example-boll",
+      "title": "7. Example 1: Bollinger Bands",
+      "body": "<p>Draws three lines on the main chart, uses whole-number, decimal, and price-source parameters, and keeps rolling sums so the whole range is read once. The result matches Bollinger Bands written as a TDX formula in the app.</p><pre><code>{\n  name: 'Bollinger Bands (JS)',\n  shortName: 'BOLL',\n  overlay: true,\n  params: [\n    { kind: 'int', id: 'period', label: 'Period', default: 20, min: 2, max: 500 },\n    { kind: 'float', id: 'mult', label: 'Multiplier', default: 2, min: 0.5, max: 5, step: 0.1 },\n    { kind: 'source', id: 'src', label: 'Price', default: 'close' }\n  ],\n  lines: [\n    { name: 'MID', defaultColor: '#f5a623', defaultWidth: 1 },\n    { name: 'UPPER', defaultColor: '#2962ff', defaultWidth: 1 },\n    { name: 'LOWER', defaultColor: '#2962ff', defaultWidth: 1 }\n  ],\n\n  compute(candles, params) {\n    const n = Math.max(2, Math.round(params.period ?? 20))\n    const k = Number(params.mult ?? 2)\n    const len = candles.length\n\n    // Pick the price once for the whole range\n    const price = candles.map((c) =&gt; {\n      switch (params.src) {\n        case 'open': return c.open\n        case 'high': return c.high\n        case 'low': return c.low\n        case 'hl2': return (c.high + c.low) / 2\n        case 'hlc3': return (c.high + c.low + c.close) / 3\n        case 'ohlc4': return (c.open + c.high + c.low + c.close) / 4\n        default: return c.close\n      }\n    })\n\n    const mid = new Array(len).fill(null)\n    const upper = new Array(len).fill(null)\n    const lower = new Array(len).fill(null)\n\n    // Rolling sums: add the new bar, drop the oldest, one pass in total\n    let sum = 0\n    let sumSq = 0\n    for (let i = 0; i &lt; len; i++) {\n      sum += price[i]\n      sumSq += price[i] * price[i]\n      if (i &gt;= n) {\n        sum -= price[i - n]\n        sumSq -= price[i - n] * price[i - n]\n      }\n      if (i &lt; n - 1) continue // fewer than n bars: leave null, nothing is drawn\n\n      const mean = sum / n\n      // Divides by n, like the app's TDX STD\n      const sd = Math.sqrt(Math.max(0, sumSq / n - mean * mean))\n      mid[i] = mean\n      upper[i] = mean + k * sd\n      lower[i] = mean - k * sd\n    }\n\n    // Same order as the lines declared above\n    return {\n      lines: [\n        { name: 'MID', values: mid },\n        { name: 'UPPER', values: upper },\n        { name: 'LOWER', values: lower }\n      ]\n    }\n  }\n}</code></pre>"
+    },
+    {
+      "id": "example-rsi",
+      "title": "8. Example 2: RSI overbought and oversold",
+      "body": "<p>Draws in a subplot with a fixed 0–100 axis and lines at 30 and 70, and uses <code>markers</code> where RSI rises back above 30 or falls back below 70.</p><pre><code>{\n  name: 'RSI overbought/oversold (JS)',\n  shortName: 'RSI',\n  overlay: false,\n  params: [\n    { kind: 'int', id: 'period', label: 'Period', default: 14, min: 2, max: 200 }\n  ],\n  lines: [\n    { name: 'RSI', defaultColor: '#7e57c2', defaultWidth: 2 }\n  ],\n  // Fixed 0-100 axis with horizontal lines at 30 and 70\n  subplotScale: { min: 0, max: 100, levels: [30, 70] },\n\n  compute(candles, params) {\n    const n = Math.max(2, Math.round(params.period ?? 14))\n    const rsi = new Array(candles.length).fill(null)\n    const markers = []\n    let avgGain = 0\n    let avgLoss = 0\n\n    for (let i = 1; i &lt; candles.length; i++) {\n      const change = candles[i].close - candles[i - 1].close\n      const gain = Math.max(change, 0)\n      const loss = Math.max(-change, 0)\n      if (i &lt;= n) {\n        // First n bars: plain average gain and loss\n        avgGain += gain / n\n        avgLoss += loss / n\n        if (i &lt; n) continue\n      } else {\n        // After that: Wilder smoothing\n        avgGain = (avgGain * (n - 1) + gain) / n\n        avgLoss = (avgLoss * (n - 1) + loss) / n\n      }\n      rsi[i] = avgLoss === 0 ? 100 : 100 - 100 / (1 + avgGain / avgLoss)\n\n      // Mark a rise back above 30 and a fall back below 70\n      const prev = rsi[i - 1]\n      if (prev !== null &amp;&amp; prev &lt; 30 &amp;&amp; rsi[i] &gt;= 30) {\n        markers.push({ index: i, position: 'belowBar', shape: 'arrowUp', color: '#26a69a', text: 'Up' })\n      }\n      if (prev !== null &amp;&amp; prev &gt; 70 &amp;&amp; rsi[i] &lt;= 70) {\n        markers.push({ index: i, position: 'aboveBar', shape: 'arrowDown', color: '#ef5350', text: 'Down' })\n      }\n    }\n\n    return {\n      lines: [{ name: 'RSI', values: rsi }],\n      markers\n    }\n  }\n}</code></pre>"
+    },
+    {
+      "id": "example-cross",
+      "title": "9. Example 3: Moving average crossover",
+      "body": "<p>Wraps the object in <code>(() =&gt; { … })()</code> to define a shared <code>sma</code> function, and draws golden and death crosses as arrows with <code>signal: true</code> lines.</p><pre><code>(() =&gt; {\n  // Functions written before return can be used inside compute\n  function sma(values, n) {\n    const out = new Array(values.length).fill(null)\n    let sum = 0\n    for (let i = 0; i &lt; values.length; i++) {\n      sum += values[i]\n      if (i &gt;= n) sum -= values[i - n]\n      if (i &gt;= n - 1) out[i] = sum / n\n    }\n    return out\n  }\n\n  return {\n    name: 'MA crossover (JS)',\n    shortName: 'MA CROSS',\n    overlay: true,\n    params: [\n      { kind: 'int', id: 'fast', label: 'Fast', default: 10, min: 1, max: 500 },\n      { kind: 'int', id: 'slow', label: 'Slow', default: 30, min: 2, max: 500 }\n    ],\n    lines: [\n      { name: 'FAST', defaultColor: '#f5a623', defaultWidth: 1 },\n      { name: 'SLOW', defaultColor: '#2962ff', defaultWidth: 2 },\n      // A signal: true line draws arrows: positive values get an up arrow below\n      // the bar, negative values a down arrow above it\n      { name: 'Golden', defaultColor: '#26a69a', defaultWidth: 1, signal: true },\n      { name: 'Death', defaultColor: '#ef5350', defaultWidth: 1, signal: true }\n    ],\n\n    compute(candles, params) {\n      const close = candles.map((c) =&gt; c.close)\n      const fast = sma(close, Math.max(1, Math.round(params.fast ?? 10)))\n      const slow = sma(close, Math.max(2, Math.round(params.slow ?? 30)))\n      const golden = new Array(close.length).fill(null)\n      const death = new Array(close.length).fill(null)\n\n      for (let i = 1; i &lt; close.length; i++) {\n        if ([fast[i - 1], slow[i - 1], fast[i], slow[i]].includes(null)) continue\n        if (fast[i - 1] &lt;= slow[i - 1] &amp;&amp; fast[i] &gt; slow[i]) golden[i] = 1\n        if (fast[i - 1] &gt;= slow[i - 1] &amp;&amp; fast[i] &lt; slow[i]) death[i] = -1\n      }\n\n      return {\n        lines: [\n          { name: 'FAST', values: fast },\n          { name: 'SLOW', values: slow },\n          { name: 'Golden', values: golden },\n          { name: 'Death', values: death }\n        ]\n      }\n    }\n  }\n})()</code></pre>"
+    },
+    {
+      "id": "limits",
+      "title": "10. Limits",
+      "body": "<ul><li>Each calculation gets up to 2 seconds and 256 MB of memory. When it runs over or throws an error, the indicator shows nothing for that calculation, without a message.</li><li>The source can be up to 1 MB.</li><li>Every calculation starts in a fresh sandbox, so variables do not carry over between calculations.</li><li>JavaScript indicators draw on charts only. Trading-system rules and formula conditions under <strong>Strategy → Systems</strong> cannot reference them; write those indicators as TDX formulas.</li></ul>",
+      "callout": {
+        "tone": "warning",
+        "title": "Keep the calculation fast",
+        "body": "<p>The sandbox interprets your code, which is much slower than JavaScript in a browser, and playback recalculates the indicator on every new bar. Read the bars in a single pass where you can, as the rolling sums in Example 1 do, instead of looping N times for every bar. Several JavaScript indicators at once make playback stutter.</p>"
+      }
+    },
+    {
+      "id": "errors",
+      "title": "11. Error messages",
+      "body": "<p>Saving checks the syntax and structure and shows errors below the editor.</p><table><thead><tr><th>Message</th><th>Cause</th></tr></thead><tbody><tr><td>A TDX formula error, such as “no output line”</td><td>The first character is not <code>{</code> or <code>(</code>: the code starts with a comment, <code>export default</code>, or <code>module.exports</code></td></tr><tr><td><code>JavaScript indicator error: SyntaxError …</code></td><td>A syntax error, such as an unmatched bracket or a missing comma</td></tr><tr><td><code>Missing name (string)</code></td><td><code>name</code> is missing</td></tr><tr><td><code>Missing compute() function</code></td><td>There is no <code>compute</code> function</td></tr><tr><td><code>params must be an array</code></td><td><code>params</code> is missing; write <code>params: []</code> when there are none</td></tr><tr><td><code>lines must be a non-empty array</code></td><td><code>lines</code> is empty</td></tr><tr><td><code>line.defaultColor must be a string</code><br><code>line.defaultWidth must be a number</code></td><td>A line is missing its color or width, or the value has the wrong type</td></tr><tr><td>The indicator saves but draws nothing</td><td><code>compute</code> threw an error or ran out of time, or the result has the wrong shape (line order or <code>values</code> length)</td></tr></tbody></table>",
+      "callout": {
+        "tone": "tip",
+        "title": "Build it in small steps",
+        "body": "<p>Errors during a calculation are silent, so get the smallest example working first and add to it gradually. To inspect a value, draw it as a temporary extra line and read it in the legend.</p>"
+      }
+    }
+  ],
+  "success": [
+    "The smallest example appears on the chart after saving.",
+    "You can explain what compute receives and returns.",
+    "You know where to look when an indicator saves but draws nothing."
+  ],
+  "faq": [
+    {
+      "q": "Can I use a JavaScript indicator in a trading system or backtest?",
+      "a": "<p>Not yet. JavaScript indicators draw on charts only; write indicators you want to reference in trading-system rules as TDX formulas.</p>"
+    },
+    {
+      "q": "Can I use npm packages or TA-Lib?",
+      "a": "<p>No. The sandbox has no <code>require</code> or <code>import</code>, so write the calculations in your code. Shared helpers can live inside <code>(() =&gt; { … })()</code>.</p>"
+    },
+    {
+      "q": "When should I use a TDX formula instead?",
+      "a": "<p>Whenever TDX can express it: it has more than a hundred built-in functions, the editor checks compatibility line by line, it runs faster, and trading-system rules can reference it. JavaScript suits logic TDX cannot express, such as complex loops, multi-step state, or your own algorithms.</p>"
+    },
+    {
+      "q": "Why does console.log print nothing?",
+      "a": "<p><code>console</code> in the sandbox is a placeholder that prints nothing. To inspect a value, draw it as a temporary extra line.</p>"
+    }
+  ]
+}

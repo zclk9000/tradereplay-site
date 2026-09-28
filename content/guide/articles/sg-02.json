@@ -1,0 +1,133 @@
+{
+  "id": "sg-02",
+  "code": "SG-02",
+  "category": "strategy-backtest",
+  "title": "用 JavaScript 编写自定义指标",
+  "summary": "了解 JS 指标的代码结构、输入输出、参数和线型，照着三个例子写出能在图表上显示的指标。",
+  "time": "15 分钟",
+  "level": "进阶",
+  "tier": "Pro",
+  "platform": "macOS / Windows",
+  "status": "ready",
+  "keywords": [
+    "JavaScript",
+    "JS 指标",
+    "自定义指标",
+    "指标代码",
+    "compute",
+    "沙箱"
+  ],
+  "outcome": "完成后，你能写出一个在图表上显示的 JavaScript 指标，并知道它的限制和报错提示的含义。",
+  "before": [
+    "会一点 JavaScript：变量、数组、for 循环和函数。",
+    "常见的标准指标优先用通达信公式写，JavaScript 适合通达信写不出来的逻辑。"
+  ],
+  "sections": [
+    {
+      "id": "basics",
+      "title": "1. 先了解三点不同",
+      "body": "<p>编辑器里的 JavaScript 就是标准 JS 语法，只是运行在一个隔离的沙箱里。和写网页或 Node 脚本比，有三点不一样：</p><ol><li><strong>整段代码是一个对象。</strong>代码的第一个字符必须是 <code>{</code> 或 <code>(</code>。不要写 <code>export default</code>、<code>module.exports</code>，开头也不要放注释，否则编辑器会把它当成通达信公式。</li><li><strong>沙箱里只有纯 JavaScript。</strong>没有 window、document，不能联网，不能用 <code>require</code> 或 <code>import</code> 引入第三方库，也没有定时器；<code>console.log</code> 不会输出任何内容。</li><li><strong>没有内置的 MA、EMA、STD 等函数。</strong>计算要自己用数组和循环写。</li></ol><p>常用的现代写法都能用：<code>let</code>、<code>const</code>、箭头函数、解构、模板字符串、<code>?.</code> 和 <code>??</code>、<code>class</code>、<code>Map</code>、<code>Set</code>、<code>Math</code> 和 <code>JSON</code>。</p>"
+    },
+    {
+      "id": "where",
+      "title": "2. 在哪里写",
+      "steps": [
+        {
+          "title": "打开自定义指标",
+          "body": "<p>进入“策略 → 指标”，在左上角切到“自定义”，点旁边的“+”新建自定义指标。</p>"
+        },
+        {
+          "title": "粘贴代码",
+          "body": "<p>删掉编辑框里默认的通达信公式，粘贴 JavaScript 代码。“指标名字”可以留空；“显示位置”选“智能判断”时，按代码里的 <code>overlay</code> 决定画在主图还是副图。</p>"
+        },
+        {
+          "title": "保存并添加到图表",
+          "body": "<p>保存时编辑器会检查语法和结构。保存后，在图表的“添加指标”菜单里就能选到它。</p>"
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "title": "3. 代码结构",
+      "body": "<p>先把下面这段粘进去保存，能在副图看到一条收盘价线，就说明环境没问题，再往里加自己的计算。</p><pre><code>{\n  name: '收盘价',\n  params: [],\n  lines: [\n    { name: 'CLOSE', defaultColor: '#2962ff', defaultWidth: 1 }\n  ],\n  compute(candles, params) {\n    return {\n      lines: [\n        { name: 'CLOSE', values: candles.map((c) =&gt; c.close) }\n      ]\n    }\n  }\n}</code></pre><table><thead><tr><th>字段</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td><code>name</code></td><td>是</td><td>指标名称</td></tr><tr><td><code>shortName</code></td><td>否</td><td>图例里显示的短名</td></tr><tr><td><code>overlay</code></td><td>否</td><td><code>true</code> 画在主图 K 线上；不写或写 <code>false</code> 画在副图</td></tr><tr><td><code>params</code></td><td>是</td><td>参数列表，没有参数也要写 <code>[]</code></td></tr><tr><td><code>lines</code></td><td>是</td><td>要画的线，至少一条</td></tr><tr><td><code>subplotScale</code></td><td>否</td><td>副图纵轴，例如 <code>{ min: 0, max: 100, levels: [30, 70] }</code> 固定 0–100，并在 30、70 画水平线</td></tr><tr><td><code>compute</code></td><td>是</td><td>计算函数 <code>compute(candles, params)</code></td></tr></tbody></table><p>需要写公用函数时，把整个对象包进 <code>(() =&gt; { … return { … } })()</code>，函数写在 <code>return</code> 前面，写法见例 3。</p>"
+    },
+    {
+      "id": "io",
+      "title": "4. compute 的输入和输出",
+      "body": "<p><code>candles</code> 是 K 线数组，每一根包含：</p><table><thead><tr><th>字段</th><th>说明</th></tr></thead><tbody><tr><td><code>time</code></td><td>K 线时间，Unix 秒（UTC）</td></tr><tr><td><code>open</code> <code>high</code> <code>low</code> <code>close</code></td><td>开、高、低、收</td></tr><tr><td><code>volume</code></td><td>成交量</td></tr><tr><td><code>oi</code></td><td>持仓量，只有国内期货有，其他品种是 <code>undefined</code></td></tr><tr><td><code>spread</code></td><td>点差，部分数据有</td></tr></tbody></table><ul><li>按时间从早到晚排列，最后一根是复盘光标所在的当前 K 线。</li><li>传进来的是图表当前周期的一段 K 线，不是全部历史：播放时大约是光标前 3000 根，暂停翻看时最多约 33000 根。累计型指标（例如 OBV）会从这一段的第一根开始累计。</li><li><code>params</code> 是参数的当前值，按参数的 <code>id</code> 取，例如 <code>params.period</code>。</li></ul><p><code>compute</code> 要返回 <code>{ lines: [{ name, values }] }</code>：</p><ul><li><code>lines</code> 的顺序必须和声明的 <code>lines</code> 一致。软件按顺序对应，不看名字。</li><li>每条线的 <code>values</code> 长度等于 <code>candles.length</code>，第 i 个值对应第 i 根 K 线。</li><li>没有值的位置写 <code>null</code>，图上会在那里断开。例如 4 周期均线，前 3 个值是 <code>null</code>。</li></ul>"
+    },
+    {
+      "id": "params",
+      "title": "5. 参数",
+      "body": "<p>每个参数会在图表的指标设置里变成一个输入框或下拉框，值通过 <code>params[id]</code> 传给 <code>compute</code>。</p><table><thead><tr><th>kind</th><th>用途</th><th>要写的字段</th></tr></thead><tbody><tr><td><code>'int'</code></td><td>整数，例如周期</td><td><code>id</code> <code>label</code> <code>default</code>，可选 <code>min</code> <code>max</code> <code>step</code></td></tr><tr><td><code>'float'</code></td><td>小数，例如倍数</td><td>同上</td></tr><tr><td><code>'source'</code></td><td>价格来源下拉框</td><td><code>id</code> <code>label</code> <code>default</code>，取值 <code>'close'</code> <code>'open'</code> <code>'high'</code> <code>'low'</code> <code>'hl2'</code> <code>'hlc3'</code> <code>'ohlc4'</code></td></tr><tr><td><code>'select'</code></td><td>自定义下拉框</td><td><code>id</code> <code>label</code> <code>default</code> <code>options: [{ value, label }]</code></td></tr></tbody></table><p><code>'source'</code> 只传给你一个字符串，例如 <code>'hl2'</code>，具体取哪个价格要在 <code>compute</code> 里自己写，例 1 里有现成的写法。</p>"
+    },
+    {
+      "id": "lines",
+      "title": "6. 线的样式和其他图形",
+      "body": "<table><thead><tr><th>字段</th><th>说明</th></tr></thead><tbody><tr><td><code>name</code></td><td>线名，显示在图例里</td></tr><tr><td><code>defaultColor</code></td><td>默认颜色，例如 <code>'#2962ff'</code></td></tr><tr><td><code>defaultWidth</code></td><td>默认线宽，1 到 4</td></tr><tr><td><code>shape</code></td><td><code>'line'</code> 线（默认）、<code>'histogram'</code> 柱、<code>'points'</code> 点</td></tr><tr><td><code>dotted</code></td><td><code>true</code> 画成点线</td></tr><tr><td><code>signal</code></td><td><code>true</code> 画成箭头：值大于 0 在 K 线下方画向上箭头，小于 0 在上方画向下箭头，0 或 <code>null</code> 不画</td></tr></tbody></table><p>除了线，返回值里还可以加这些图形。所有 <code>index</code> 都是 <code>candles</code> 里的序号：</p><table><thead><tr><th>字段</th><th>每一项的格式</th><th>效果</th></tr></thead><tbody><tr><td><code>markers</code></td><td><code>{ index, position, shape, color, text }</code>，position 为 <code>'aboveBar'</code> / <code>'belowBar'</code> / <code>'inBar'</code>，shape 为 <code>'arrowUp'</code> / <code>'arrowDown'</code> / <code>'circle'</code> / <code>'square'</code></td><td>在第 index 根 K 线上打标记</td></tr><tr><td><code>texts</code></td><td><code>{ index, price, color, text, placement }</code>，placement 为 <code>'above'</code> / <code>'below'</code></td><td>在指定价格写字</td></tr><tr><td><code>sticks</code></td><td><code>{ index, y1, y2, color, width }</code></td><td>从 y1 到 y2 的竖线段</td></tr><tr><td><code>segments</code></td><td><code>{ x1, y1, x2, y2, color, expand }</code>，x 是 K 线序号</td><td>两点连线，<code>expand: true</code> 向右延长</td></tr><tr><td><code>polylines</code></td><td><code>{ points: [{ index, y }], color, width }</code></td><td>折线</td></tr><tr><td><code>bands</code></td><td>数组的数组，每项 <code>{ index, upper, lower, color }</code></td><td>在上下边界之间填色，每个内层数组是一条带</td></tr><tr><td><code>gbk</code></td><td><code>{ index, color }</code></td><td>这根 K 线的背景色</td></tr><tr><td><code>vertlines</code></td><td><code>{ index, color, style }</code>，style 0 实线、1 虚线、2 点线</td><td>整列竖直线</td></tr><tr><td><code>colorKlines</code></td><td><code>{ index, color, hollow }</code></td><td>给这根 K 线换颜色，<code>hollow: true</code> 为空心</td></tr></tbody></table>"
+    },
+    {
+      "id": "example-boll",
+      "title": "7. 例 1：布林带",
+      "body": "<p>画在主图，三条线；用了整数、小数和价格来源三种参数；滚动求和，整段只循环一遍。结果和软件里用通达信公式写的布林带一致。</p><pre><code>{\n  name: '布林带（JS）',\n  shortName: 'BOLL',\n  overlay: true,\n  params: [\n    { kind: 'int', id: 'period', label: '周期', default: 20, min: 2, max: 500 },\n    { kind: 'float', id: 'mult', label: '倍数', default: 2, min: 0.5, max: 5, step: 0.1 },\n    { kind: 'source', id: 'src', label: '价格', default: 'close' }\n  ],\n  lines: [\n    { name: 'MID', defaultColor: '#f5a623', defaultWidth: 1 },\n    { name: 'UPPER', defaultColor: '#2962ff', defaultWidth: 1 },\n    { name: 'LOWER', defaultColor: '#2962ff', defaultWidth: 1 }\n  ],\n\n  compute(candles, params) {\n    const n = Math.max(2, Math.round(params.period ?? 20))\n    const k = Number(params.mult ?? 2)\n    const len = candles.length\n\n    // 按参数取价格，整段只取一遍\n    const price = candles.map((c) =&gt; {\n      switch (params.src) {\n        case 'open': return c.open\n        case 'high': return c.high\n        case 'low': return c.low\n        case 'hl2': return (c.high + c.low) / 2\n        case 'hlc3': return (c.high + c.low + c.close) / 3\n        case 'ohlc4': return (c.open + c.high + c.low + c.close) / 4\n        default: return c.close\n      }\n    })\n\n    const mid = new Array(len).fill(null)\n    const upper = new Array(len).fill(null)\n    const lower = new Array(len).fill(null)\n\n    // 滚动求和：每根 K 线加一个新值、减一个旧值，整段只循环一遍\n    let sum = 0\n    let sumSq = 0\n    for (let i = 0; i &lt; len; i++) {\n      sum += price[i]\n      sumSq += price[i] * price[i]\n      if (i &gt;= n) {\n        sum -= price[i - n]\n        sumSq -= price[i - n] * price[i - n]\n      }\n      if (i &lt; n - 1) continue // 不够 n 根：保持 null，图上不画\n\n      const mean = sum / n\n      // 标准差除以 n，和软件里通达信的 STD 一致\n      const sd = Math.sqrt(Math.max(0, sumSq / n - mean * mean))\n      mid[i] = mean\n      upper[i] = mean + k * sd\n      lower[i] = mean - k * sd\n    }\n\n    // 顺序必须和上面 lines 的顺序一致\n    return {\n      lines: [\n        { name: 'MID', values: mid },\n        { name: 'UPPER', values: upper },\n        { name: 'LOWER', values: lower }\n      ]\n    }\n  }\n}</code></pre>"
+    },
+    {
+      "id": "example-rsi",
+      "title": "8. 例 2：RSI 超买超卖",
+      "body": "<p>画在副图，纵轴固定 0–100 并画出 30、70 两条线；RSI 从 30 以下回升、从 70 以上回落时，用 <code>markers</code> 打标记。</p><pre><code>{\n  name: 'RSI 超买超卖（JS）',\n  shortName: 'RSI',\n  overlay: false,\n  params: [\n    { kind: 'int', id: 'period', label: '周期', default: 14, min: 2, max: 200 }\n  ],\n  lines: [\n    { name: 'RSI', defaultColor: '#7e57c2', defaultWidth: 2 }\n  ],\n  // 副图纵轴固定 0–100，并在 30、70 画水平线\n  subplotScale: { min: 0, max: 100, levels: [30, 70] },\n\n  compute(candles, params) {\n    const n = Math.max(2, Math.round(params.period ?? 14))\n    const rsi = new Array(candles.length).fill(null)\n    const markers = []\n    let avgGain = 0\n    let avgLoss = 0\n\n    for (let i = 1; i &lt; candles.length; i++) {\n      const change = candles[i].close - candles[i - 1].close\n      const gain = Math.max(change, 0)\n      const loss = Math.max(-change, 0)\n      if (i &lt;= n) {\n        // 前 n 根：先求平均涨幅、平均跌幅\n        avgGain += gain / n\n        avgLoss += loss / n\n        if (i &lt; n) continue\n      } else {\n        // 之后：Wilder 平滑\n        avgGain = (avgGain * (n - 1) + gain) / n\n        avgLoss = (avgLoss * (n - 1) + loss) / n\n      }\n      rsi[i] = avgLoss === 0 ? 100 : 100 - 100 / (1 + avgGain / avgLoss)\n\n      // 从 30 下方回到 30 上方、从 70 上方回到 70 下方时打标记\n      const prev = rsi[i - 1]\n      if (prev !== null &amp;&amp; prev &lt; 30 &amp;&amp; rsi[i] &gt;= 30) {\n        markers.push({ index: i, position: 'belowBar', shape: 'arrowUp', color: '#26a69a', text: '回升' })\n      }\n      if (prev !== null &amp;&amp; prev &gt; 70 &amp;&amp; rsi[i] &lt;= 70) {\n        markers.push({ index: i, position: 'aboveBar', shape: 'arrowDown', color: '#ef5350', text: '回落' })\n      }\n    }\n\n    return {\n      lines: [{ name: 'RSI', values: rsi }],\n      markers\n    }\n  }\n}</code></pre>"
+    },
+    {
+      "id": "example-cross",
+      "title": "9. 例 3：双均线金叉死叉",
+      "body": "<p>用 <code>(() =&gt; { … })()</code> 包起来，在前面写公用的 <code>sma</code> 函数；金叉、死叉用 <code>signal: true</code> 的线画成箭头。</p><pre><code>(() =&gt; {\n  // 写在 return 前面的函数，compute 里都能用\n  function sma(values, n) {\n    const out = new Array(values.length).fill(null)\n    let sum = 0\n    for (let i = 0; i &lt; values.length; i++) {\n      sum += values[i]\n      if (i &gt;= n) sum -= values[i - n]\n      if (i &gt;= n - 1) out[i] = sum / n\n    }\n    return out\n  }\n\n  return {\n    name: '双均线金叉死叉（JS）',\n    shortName: 'MA CROSS',\n    overlay: true,\n    params: [\n      { kind: 'int', id: 'fast', label: '快线', default: 10, min: 1, max: 500 },\n      { kind: 'int', id: 'slow', label: '慢线', default: 30, min: 2, max: 500 }\n    ],\n    lines: [\n      { name: 'FAST', defaultColor: '#f5a623', defaultWidth: 1 },\n      { name: 'SLOW', defaultColor: '#2962ff', defaultWidth: 2 },\n      // signal: true 的线画成箭头：正数在 K 线下方画向上箭头，负数在上方画向下箭头\n      { name: '金叉', defaultColor: '#26a69a', defaultWidth: 1, signal: true },\n      { name: '死叉', defaultColor: '#ef5350', defaultWidth: 1, signal: true }\n    ],\n\n    compute(candles, params) {\n      const close = candles.map((c) =&gt; c.close)\n      const fast = sma(close, Math.max(1, Math.round(params.fast ?? 10)))\n      const slow = sma(close, Math.max(2, Math.round(params.slow ?? 30)))\n      const golden = new Array(close.length).fill(null)\n      const dead = new Array(close.length).fill(null)\n\n      for (let i = 1; i &lt; close.length; i++) {\n        if ([fast[i - 1], slow[i - 1], fast[i], slow[i]].includes(null)) continue\n        if (fast[i - 1] &lt;= slow[i - 1] &amp;&amp; fast[i] &gt; slow[i]) golden[i] = 1\n        if (fast[i - 1] &gt;= slow[i - 1] &amp;&amp; fast[i] &lt; slow[i]) dead[i] = -1\n      }\n\n      return {\n        lines: [\n          { name: 'FAST', values: fast },\n          { name: 'SLOW', values: slow },\n          { name: '金叉', values: golden },\n          { name: '死叉', values: dead }\n        ]\n      }\n    }\n  }\n})()</code></pre>"
+    },
+    {
+      "id": "limits",
+      "title": "10. 限制",
+      "body": "<ul><li>每次计算最多 2 秒、256 MB 内存。超时或运行出错时，这一次整个指标不显示，也不会弹出提示。</li><li>代码最长 1 MB。</li><li>每次计算都在全新的环境里运行，两次计算之间留不住变量。</li><li>JS 指标目前只能画在图上，不能在“策略 → 系统”的规则或公式条件里引用。要在交易系统里用，请用通达信公式写。</li></ul>",
+      "callout": {
+        "tone": "warning",
+        "title": "计算要尽量快",
+        "body": "<p>沙箱是解释执行的，比浏览器里的 JavaScript 慢得多，而且复盘播放时每前进一根 K 线都要重算一次。尽量整段只循环一遍（像例 1 那样滚动求和），不要在每根 K 线里再套一层 N 次的循环。同时打开多个 JS 指标，播放会变卡。</p>"
+      }
+    },
+    {
+      "id": "errors",
+      "title": "11. 报错对照",
+      "body": "<p>保存时会检查语法和结构，错误显示在编辑框下方。</p><table><thead><tr><th>看到的提示</th><th>原因</th></tr></thead><tbody><tr><td>公式没有输出线，或其他通达信公式错误</td><td>代码第一个字符不是 <code>{</code> 或 <code>(</code>：开头有注释，或者写了 <code>export default</code> / <code>module.exports</code></td></tr><tr><td><code>JavaScript indicator error: SyntaxError …</code></td><td>语法错误，例如括号没有配对、少了逗号</td></tr><tr><td><code>Missing name (string)</code></td><td>没写 <code>name</code></td></tr><tr><td><code>Missing compute() function</code></td><td>没有 <code>compute</code> 函数</td></tr><tr><td><code>params must be an array</code></td><td>没写 <code>params</code>；没有参数也要写 <code>params: []</code></td></tr><tr><td><code>lines must be a non-empty array</code></td><td><code>lines</code> 是空的</td></tr><tr><td><code>line.defaultColor must be a string</code><br><code>line.defaultWidth must be a number</code></td><td>某条线缺颜色或线宽，或者类型写错了</td></tr><tr><td>保存成功，图上却没有线</td><td><code>compute</code> 运行时出错或超时，或者返回的格式不对（线的顺序、<code>values</code> 的长度）</td></tr></tbody></table>",
+      "callout": {
+        "tone": "tip",
+        "title": "一小步一小步地写",
+        "body": "<p>运行时出错不会有提示，所以先跑通最小的例子，再一点点往里加。想看某个中间值，就临时多加一条线把它画出来，看图例上的数值。</p>"
+      }
+    }
+  ],
+  "success": [
+    "最小的例子保存后能在图表上显示。",
+    "能说清 compute 收到什么、要返回什么。",
+    "指标保存成功却不显示时，知道从哪里查起。"
+  ],
+  "faq": [
+    {
+      "q": "JavaScript 指标能用在交易系统或回测里吗？",
+      "a": "<p>目前不能。JS 指标只能画在图上；要在交易系统规则里引用的指标，请用通达信公式写。</p>"
+    },
+    {
+      "q": "可以用 npm 包或 TA-Lib 吗？",
+      "a": "<p>不能。沙箱里不能用 <code>require</code> 或 <code>import</code>，需要的计算直接写在代码里；公用函数可以写在 <code>(() =&gt; { … })()</code> 里面。</p>"
+    },
+    {
+      "q": "什么时候该用通达信公式？",
+      "a": "<p>能用通达信写的优先用通达信：内置上百个函数，编辑器会逐行检查兼容性，算得更快，还能在交易系统规则里引用。JavaScript 适合通达信写不出来的逻辑，比如复杂的循环、多步的状态判断，或者自己设计的算法。</p>"
+    },
+    {
+      "q": "为什么 console.log 没有输出？",
+      "a": "<p>沙箱里的 <code>console</code> 只是占位，不输出任何内容。想看中间值，临时加一条线把它画出来。</p>"
+    }
+  ],
+  "related": [
+    "sg-01",
+    "sg-04",
+    "bt-01"
+  ]
+}
