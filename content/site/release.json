@@ -1,15 +1,15 @@
 {
-  "version": "1.56.50",
-  "displayVersion": "v1.56.50",
-  "date": "2026-09-25",
+  "version": "1.57.0",
+  "displayVersion": "v1.57.0",
+  "date": "2026-10-08",
   "downloadIntro": {
-    "zh": "当前版本 v1.56.50，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.56.50. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.57.0（Windows）。Mac 版暂为 v1.56.50，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.57.0 for Windows; the Mac build is still v1.56.50. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.56.50-Setup.exe",
-    "fileName": "TradeReplay-1.56.50-Setup.exe",
-    "installerLabel": ".exe · v1.56.50",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.57.0-Setup.exe",
+    "fileName": "TradeReplay-1.57.0-Setup.exe",
+    "installerLabel": ".exe · v1.57.0",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -35,28 +35,28 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "图表布局新增 3×2（6 格）和 3×3（9 格）；指标图例显示数值，随光标所在的 K 线变化。",
-      "en": "New 3×2 and 3×3 chart layouts (6 and 9 panes); indicator legends now show values that follow the bar under the cursor."
+      "zh": "盲测存档：新建训练时打开「盲测」，点创建时才随机抽开始时间；训练中图表和列表只显示星期和时刻，练完再揭晓日期。",
+      "en": "Blind sessions: turn on Blind test when creating a session and the start is drawn at random; while you train, the chart and lists show only the weekday and time until you reveal the dates."
     },
     {
       "type": "new",
-      "zh": "自定义时间线：在自己指定的时刻画竖线，可设名称、时间和颜色；这些时刻也能在回放跳转里直接跳过去。",
-      "en": "Custom time lines: mark a time of day with a labelled vertical line in your own name, time and colour, and jump straight to it from the replay time jump."
+      "zh": "AI 导师读盘：按当前回放时刻解读行情，给出倾向、多空两种情形和带仓位的计划；策略里的 AI 系统助手可以生成或修改完整的交易系统。",
+      "en": "Mentor market read: reads the market at the replay moment with a lean, both cases and a sized plan; the AI system assistant in Strategies drafts or edits a complete trading system."
+    },
+    {
+      "type": "new",
+      "zh": "外盘下载新增美元指数 DXY、US2000、富时中国 A50、VOLIDX 及 USDCNH 等 9 个品种；持仓列表的表头可拖动排序，右键选择显示哪些列。",
+      "en": "Nine new global instruments, including the dollar index DXY, US2000, FTSE China A50, VOLIDX and USDCNH; drag position-table headers to reorder them and right-click to choose columns."
     },
     {
       "type": "improved",
-      "zh": "多窗口回放更流畅；首页「近期脉搏」按实际下单时间统计最近 30 天；时间输入改为时、分两个框，点一下即可覆写。",
-      "en": "Smoother multi-pane replay; the home page Recent pulse counts the last 30 days by when you actually traded; time fields split into hour and minute boxes that select on click."
+      "zh": "下载按整次任务申请授权，限流时有限次重试；订单改用存档内的短编号，部分平仓按 MT4 方式衔接并显示前后关联；新增 Alt＋左键任意价差测量。",
+      "en": "Downloads are authorized once per task and retry rate limits a bounded number of times; orders get short numbers within each session, and partial closes link their remainders as MT4 does; Alt-click measures any price distance."
     },
     {
       "type": "fixed",
-      "zh": "修复阿里云 OSS 无法用作云备份，以及从 1.55.30 及更早版本升级后偏好设置、图表模板和已解锁成就丢失的问题。",
-      "en": "Fixed Alibaba Cloud OSS not working for cloud backup, and preferences, chart templates and earned achievements going missing after upgrading from 1.55.30 or earlier."
-    },
-    {
-      "type": "fixed",
-      "zh": "修复多窗口画线同步时已删除的线重新出现、Tick 存档暂停后往回跳转账户没有回滚等问题。",
-      "en": "Fixed deleted drawings reappearing when drawing sync was turned back on, and the account not rolling back after jumping backwards in a paused tick session."
+      "zh": "修复 Windows 关机后资料库打不开、日志和交易笔记里粘贴的截图丢失、统计把分批平仓当成加仓等问题。",
+      "en": "Fixed a library that would not open after a Windows shutdown, screenshots pasted into journal and trade notes going missing, and partial closes being counted as adding to a position."
     }
   ]
 }
