@@ -36,6 +36,7 @@
 }
 .download-tutorials-list li + li,
 .download-help-qq,
+.download-help-wechat,
 .download-help-en-only { border-top: 1px solid var(--c-line); }
 .tutorial-video {
   display: grid;
@@ -98,7 +99,19 @@
   color: var(--c-muted);
   font-size: 12px;
 }
-.download-help-qq { padding-top: 12px; }
+.download-help-qq,
+.download-help-wechat { padding-top: 12px; }
+.download-help-wechat { margin-top: 24px; }
+.download-help-label {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  color: var(--c-ink-soft);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+}
 .download-help-number {
   margin: 0;
   color: var(--c-muted);
