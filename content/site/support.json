@@ -37,19 +37,19 @@
   },
   "wecom": {
     "title": {
-      "zh": "企业微信售后群",
-      "en": "WeCom Support Group"
+      "zh": "微信售后",
+      "en": "WeChat Support"
     },
     "description": {
-      "zh": "使用企业微信扫码加入。",
-      "en": "Scan with WeCom to join."
+      "zh": "使用微信扫码添加。",
+      "en": "Scan with WeChat to add us."
     },
     "button": {
-      "zh": "扫码加入",
-      "en": "Scan to join"
+      "zh": "扫码添加",
+      "en": "Scan to add"
     },
-    "qrImage": "/assets/cms/img0593.jpg",
-    "iconImage": "assets/support/wecom-official.png"
+    "qrImage": "assets/support/wechat-contact-qr.png",
+    "iconImage": "assets/support/wechat-official.png"
   },
   "email": "zclk9000@me.com",
   "videoTutorials": {
