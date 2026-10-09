@@ -35,3 +35,12 @@ iShot_*.png
 /image-*
 /screenshot-*
 /audit/
+
+# Taobao has its own local workspace. Keep only its organization documents in Git.
+/taobao-site/*
+!/taobao-site/AGENTS.md
+!/taobao-site/README.md
+
+# Local Bilibili video workspace. Never published.
+/B站视频/
+/B0.000000E+007
