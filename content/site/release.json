@@ -1,15 +1,15 @@
 {
-  "version": "1.57.20",
-  "displayVersion": "v1.57.20",
+  "version": "1.57.21",
+  "displayVersion": "v1.57.21",
   "date": "2026-10-10",
   "downloadIntro": {
-    "zh": "当前版本 v1.57.20（Windows）。Mac 版暂为 v1.57.10，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.57.20 for Windows; the Mac build is still v1.57.10. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.57.21（Windows）。Mac 版暂为 v1.57.10，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.57.21 for Windows; the Mac build is still v1.57.10. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.57.20-Setup.exe",
-    "fileName": "TradeReplay-1.57.20-Setup.exe",
-    "installerLabel": ".exe · v1.57.20",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.57.21-Setup.exe",
+    "fileName": "TradeReplay-1.57.21-Setup.exe",
+    "installerLabel": ".exe · v1.57.21",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -52,6 +52,11 @@
       "type": "improved",
       "zh": "统计口径统一，胜率、收益率和回撤在各页面保持一致；图表周期在重启和打开存档后保持不变。",
       "en": "Consistent statistics: win rate, return and drawdown now match on every page; chart timeframes stay as you set them after a restart or opening a session."
+    },
+    {
+      "type": "improved",
+      "zh": "保持绘图模式下文字也能连续写，点图表上的下一个位置接着写；多窗格同步画线时，任一窗格都能直接落笔。",
+      "en": "Stay-in-drawing mode now keeps the text tool: click the next spot to write the next label. With drawing sync on, a picked tool works in every pane."
     }
   ]
 }
