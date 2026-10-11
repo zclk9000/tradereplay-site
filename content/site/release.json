@@ -1,15 +1,15 @@
 {
-  "version": "1.57.10",
-  "displayVersion": "v1.57.10",
-  "date": "2026-10-09",
+  "version": "1.57.20",
+  "displayVersion": "v1.57.20",
+  "date": "2026-10-10",
   "downloadIntro": {
-    "zh": "当前版本 v1.57.10，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.57.10. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.57.20（Windows）。Mac 版暂为 v1.57.10，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.57.20 for Windows; the Mac build is still v1.57.10. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.57.10-Setup.exe",
-    "fileName": "TradeReplay-1.57.10-Setup.exe",
-    "installerLabel": ".exe · v1.57.10",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.57.20-Setup.exe",
+    "fileName": "TradeReplay-1.57.20-Setup.exe",
+    "installerLabel": ".exe · v1.57.20",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -35,23 +35,23 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "训练页面板自由停靠：「交易与历史」「下单」「Mentor AI」可以拖到图表的左、右、下方或并排摆放，布局按电脑记住，右键标题栏可恢复默认。",
-      "en": "Dockable training panels: drag Trades & history, Order and Mentor AI to the left, right or bottom of the chart, or side by side; each computer remembers its layout, and right-clicking a title bar restores the default."
+      "zh": "标签原地编辑：点交易的标签格直接输入，回车生成标签，Tab 跳到下一笔接着打。",
+      "en": "Edit tags in place: click a trade's tag cell, type and press Enter, then Tab to the next trade."
     },
     {
       "type": "new",
-      "zh": "快捷键 Q 显示或收起下单面板，看历史时一按就回到下单面板；快捷键 1 显示或收起「交易与历史」，两个键都能在设置里改。",
-      "en": "Press Q to show or collapse the order panel, which also brings it back from History, and 1 to show or collapse Trades & history; both keys can be changed in Settings."
+      "zh": "标签管理：双击标签可以只改这一笔，也可以让所有交易和笔记一起改；还能统一合并或删除标签，改完可以撤销。",
+      "en": "Rename a tag on one trade or on every trade and note at once, and merge or remove tags in Manage tags, with undo."
     },
     {
       "type": "new",
-      "zh": "锁定画线：画线照常显示，但不能选中或拖动，拖动旁边的止损、止盈和挂单线时不会误拖画线。",
-      "en": "Lock drawings: they stay on the chart but cannot be selected or moved, so stop, target and pending-order lines next to them are easy to drag."
+      "zh": "画线样式条增加删除按钮；价格测量卡片同时显示价差和点数。",
+      "en": "A delete button on the drawing style bar; measure cards show the price move alongside points."
     },
     {
-      "type": "new",
-      "zh": "画线时右键取消：画到一半点右键只去掉这一个图形，开着保持绘图模式时可以接着画，不再落点或弹出挂单菜单。",
-      "en": "Right-click cancels the shape being drawn instead of placing a point and opening the pending-order menu; in stay-in-drawing mode you keep drawing."
+      "type": "improved",
+      "zh": "统计口径统一，胜率、收益率和回撤在各页面保持一致；图表周期在重启和打开存档后保持不变。",
+      "en": "Consistent statistics: win rate, return and drawdown now match on every page; chart timeframes stay as you set them after a restart or opening a session."
     }
   ]
 }
