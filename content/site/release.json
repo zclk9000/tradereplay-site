@@ -1,15 +1,15 @@
 {
-  "version": "1.57.21",
-  "displayVersion": "v1.57.21",
-  "date": "2026-10-10",
+  "version": "1.57.30",
+  "displayVersion": "v1.57.30",
+  "date": "2026-10-11",
   "downloadIntro": {
-    "zh": "当前版本 v1.57.21，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.57.21. Choose the installer that matches your computer."
+    "zh": "当前版本 v1.57.30（Windows）。Mac 版暂为 v1.57.21，选择与你的电脑匹配的安装包。",
+    "en": "The current release is v1.57.30 for Windows; the Mac build is still v1.57.21. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.57.21-Setup.exe",
-    "fileName": "TradeReplay-1.57.21-Setup.exe",
-    "installerLabel": ".exe · v1.57.21",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.57.30-Setup.exe",
+    "fileName": "TradeReplay-1.57.30-Setup.exe",
+    "installerLabel": ".exe · v1.57.30",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -35,28 +35,28 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "标签原地编辑：点交易的标签格直接输入，回车生成标签，Tab 跳到下一笔接着打。",
-      "en": "Edit tags in place: click a trade's tag cell, type and press Enter, then Tab to the next trade."
+      "zh": "复盘历史交易更顺手：选中一笔后按 ↑/↓ 切到上一笔、下一笔；一屏放不下的交易自动切到能看全的周期，可一键切回。",
+      "en": "Step through reviewed trades with ↑/↓ once one is selected; a trade too long for the screen switches the chart to a timeframe that shows it whole, with one click back."
     },
     {
       "type": "new",
-      "zh": "标签管理：双击标签可以只改这一笔，也可以让所有交易和笔记一起改；还能统一合并或删除标签，改完可以撤销。",
-      "en": "Rename a tag on one trade or on every trade and note at once, and merge or remove tags in Manage tags, with undo."
+      "zh": "期货账单的跨月持仓显示真实开仓时间，几个月一起导入或逐月导入都能配上。",
+      "en": "Futures statements now give positions held across months their real open time, whether you import months together or one at a time."
     },
     {
       "type": "new",
-      "zh": "画线样式条增加删除按钮；价格测量卡片同时显示价差和点数。",
-      "en": "A delete button on the drawing style bar; measure cards show the price move alongside points."
+      "zh": "斐波那契回撤可以向左、向右延长，新画的沿用上次的设置。",
+      "en": "Fibonacci retracements can extend left and right; new ones keep your last choice."
     },
     {
       "type": "improved",
-      "zh": "统计口径统一，胜率、收益率和回撤在各页面保持一致；图表周期在重启和打开存档后保持不变。",
-      "en": "Consistent statistics: win rate, return and drawdown now match on every page; chart timeframes stay as you set them after a restart or opening a session."
+      "zh": "期货账单导入更准确：夜盘成交不再提前一个交易日，平仓按交易所规则配对开仓。已导入的账单删除后重新导入即可更新。",
+      "en": "More accurate futures statements: night-session fills land on the right evening and closes pair with opens by exchange rules. Re-import statements you already imported to apply it."
     },
     {
       "type": "improved",
-      "zh": "保持绘图模式下文字也能连续写，点图表上的下一个位置接着写；多窗格同步画线时，任一窗格都能直接落笔。",
-      "en": "Stay-in-drawing mode now keeps the text tool: click the next spot to write the next label. With drawing sync on, a picked tool works in every pane."
+      "zh": "AI「测试连接」能直接查出余额不足、API key 无效或模型名写错，报错改成看得懂的提示。",
+      "en": "AI Test connection now catches an empty balance, a rejected API key or a wrong model name, and AI errors read in plain language."
     }
   ]
 }
