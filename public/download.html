@@ -59,9 +59,9 @@
         <header class="download-page-hero" data-reveal>
           <p class="section-kicker" data-zh="桌面版下载" data-en="DESKTOP DOWNLOAD">桌面版下载</p>
           <h1 id="download-page-title" data-zh="选择你的系统" data-en="Choose your platform">选择你的系统</h1>
-          <p data-content-text="release.downloadIntro" data-zh="当前版本 v1.57.30（Windows）。Mac 版暂为 v1.57.21，选择与你的电脑匹配的安装包。"
-            data-en="The current release is v1.57.30 for Windows; the Mac build is still v1.57.21. Choose the installer that matches your computer.">
-            当前版本 v1.57.30（Windows）。Mac 版暂为 v1.57.21，选择与你的电脑匹配的安装包。
+          <p data-content-text="release.downloadIntro" data-zh="当前版本 v1.57.30，选择与你的电脑匹配的安装包。"
+            data-en="The current release is v1.57.30. Choose the installer that matches your computer.">
+            当前版本 v1.57.30，选择与你的电脑匹配的安装包。
           </p>
         </header>
 
@@ -138,16 +138,16 @@
               </div>
               <div>
                 <dt data-zh="安装文件" data-en="Installer">安装文件</dt>
-                <dd data-content-text="release.mac.installerLabel">.dmg · v1.57.21</dd>
+                <dd data-content-text="release.mac.installerLabel">.dmg · v1.57.30</dd>
               </div>
             </dl>
 
             <a class="button button-secondary button-block download-platform-button" data-content-href="release.mac.url"
-              href="https://dl.tradereplay.dev/TradeReplay-1.57.21-arm64.dmg"
+              href="https://dl.tradereplay.dev/TradeReplay-1.57.30-arm64.dmg"
               data-content-text="release.mac.button"
               data-zh="下载 Mac 版"
               data-en="Download for macOS">下载 Mac 版</a>
-            <p class="download-file-name" data-content-text="release.mac.fileName">TradeReplay-1.57.21-arm64.dmg</p>
+            <p class="download-file-name" data-content-text="release.mac.fileName">TradeReplay-1.57.30-arm64.dmg</p>
           </article>
         </div>
 
@@ -227,66 +227,23 @@
           <ul class="download-release-list" data-content-release-list="download">
             <li>
               <span class="download-release-tag is-new" data-zh="新增" data-en="NEW">新增</span>
-              <span data-zh="新增内外盘通用的持仓“按方向合并”模式：汇总同方向仓位的总手数、加权均价和图表持仓线，国内期货同时显示今仓 / 昨仓，底层逐笔成交完整保留。"
-                data-en="Added a cross-market “Merge by direction” view with total size, weighted average entry, and one chart position line. CN futures also show today / previous-day lots while preserving every underlying fill.">
-                新增内外盘通用的持仓“按方向合并”模式：汇总同方向仓位的总手数、加权均价和图表持仓线，国内期货同时显示今仓 / 昨仓，底层逐笔成交完整保留。
-              </span>
+              <span data-zh="复盘历史交易更顺手：选中一笔后按 ↑/↓ 切到上一笔、下一笔；一屏放不下的交易自动切到能看全的周期，可一键切回。" data-en="Step through reviewed trades with ↑/↓ once one is selected; a trade too long for the screen switches the chart to a timeframe that shows it whole, with one click back.">复盘历史交易更顺手：选中一笔后按 ↑/↓ 切到上一笔、下一笔；一屏放不下的交易自动切到能看全的周期，可一键切回。</span>
             </li>
             <li>
               <span class="download-release-tag is-new" data-zh="新增" data-en="NEW">新增</span>
-              <span data-zh="分批止盈止损支持按指定价格触发，并可按具体手数或持仓百分比退出；加仓、部分平仓或原锚点仓位退出后，剩余规则继续执行。"
-                data-en="Staged take-profit and stop-loss rules can now trigger at exact prices and exit by lots or position percentage. Remaining rules continue after scaling, partial closes, or the original anchor exits.">
-                分批止盈止损支持按指定价格触发，并可按具体手数或持仓百分比退出；加仓、部分平仓或原锚点仓位退出后，剩余规则继续执行。
-              </span>
+              <span data-zh="期货账单的跨月持仓显示真实开仓时间，几个月一起导入或逐月导入都能配上。" data-en="Futures statements now give positions held across months their real open time, whether you import months together or one at a time.">期货账单的跨月持仓显示真实开仓时间，几个月一起导入或逐月导入都能配上。</span>
+            </li>
+            <li>
+              <span class="download-release-tag is-new" data-zh="新增" data-en="NEW">新增</span>
+              <span data-zh="斐波那契回撤可以向左、向右延长，新画的沿用上次的设置。" data-en="Fibonacci retracements can extend left and right; new ones keep your last choice.">斐波那契回撤可以向左、向右延长，新画的沿用上次的设置。</span>
             </li>
             <li>
               <span class="download-release-tag is-improved" data-zh="优化" data-en="IMPROVED">优化</span>
-              <span data-zh="合并持仓部分平仓会遵循不同市场的处理顺序；国内期货优先处理当前交易日仓位，再按时间处理较早仓位，并继续按原始逐笔持仓计算手续费和复盘数据。"
-                data-en="Partial closes on merged positions now follow each market’s close order. CN futures close current-trading-day lots first, then older lots, while fees and replay data remain fill-accurate.">
-                合并持仓部分平仓会遵循不同市场的处理顺序；国内期货优先处理当前交易日仓位，再按时间处理较早仓位，并继续按原始逐笔持仓计算手续费和复盘数据。
-              </span>
+              <span data-zh="期货账单导入更准确：夜盘成交不再提前一个交易日，平仓按交易所规则配对开仓。已导入的账单删除后重新导入即可更新。" data-en="More accurate futures statements: night-session fills land on the right evening and closes pair with opens by exchange rules. Re-import statements you already imported to apply it.">期货账单导入更准确：夜盘成交不再提前一个交易日，平仓按交易所规则配对开仓。已导入的账单删除后重新导入即可更新。</span>
             </li>
             <li>
               <span class="download-release-tag is-improved" data-zh="优化" data-en="IMPROVED">优化</span>
-              <span data-zh="仓位下单后锁定对应交易系统，避免持仓期间误改；同一合并持仓包含不同系统或未关联系统时，会明确显示为未统一。"
-                data-en="Trading-system assignment is now locked after entry to prevent accidental changes. Merged positions with mixed or missing system links are clearly shown as not unified.">
-                仓位下单后锁定对应交易系统，避免持仓期间误改；同一合并持仓包含不同系统或未关联系统时，会明确显示为未统一。
-              </span>
-            </li>
-            <li>
-              <span class="download-release-tag is-improved" data-zh="优化" data-en="IMPROVED">优化</span>
-              <span data-zh="国内期货“分时”可作为第一个常用快捷周期；10 个快捷周期上限会正确计入分时和自定义周期，删除自定义周期后也不会留下无效占位。"
-                data-en="CN futures can now place intraday view first in the timeframe shortcuts. The 10-shortcut limit correctly counts intraday and custom periods, with no stale slots after a custom period is removed.">
-                国内期货“分时”可作为第一个常用快捷周期；10 个快捷周期上限会正确计入分时和自定义周期，删除自定义周期后也不会留下无效占位。
-              </span>
-            </li>
-            <li>
-              <span class="download-release-tag is-fixed" data-zh="修复" data-en="FIXED">修复</span>
-              <span data-zh="修复 2×2 四窗布局中只有左上窗口双击能正确最大化的问题；现在四个窗口均可双击铺满，并再次双击恢复原布局。"
-                data-en="Fixed 2×2 chart layouts only maximising the top-left pane. Every pane can now be double-clicked to fill the workspace and double-clicked again to restore the grid.">
-                修复 2×2 四窗布局中只有左上窗口双击能正确最大化的问题；现在四个窗口均可双击铺满，并再次双击恢复原布局。
-              </span>
-            </li>
-            <li>
-              <span class="download-release-tag is-fixed" data-zh="修复" data-en="FIXED">修复</span>
-              <span data-zh="修复统计与复盘日历的盈亏颜色没有跟随内盘 / 外盘市场颜色习惯切换的问题。"
-                data-en="Fixed statistics and replay-calendar P&amp;L colours not following the selected CN / global market convention.">
-                修复统计与复盘日历的盈亏颜色没有跟随内盘 / 外盘市场颜色习惯切换的问题。
-              </span>
-            </li>
-            <li>
-              <span class="download-release-tag is-fixed" data-zh="修复" data-en="FIXED">修复</span>
-              <span data-zh="修复账单历史交易展开复盘时，右上角交易系统选择器被布局压缩遮挡的问题。"
-                data-en="Fixed the trading-system picker being compressed or hidden when opening statement-history trade review.">
-                修复账单历史交易展开复盘时，右上角交易系统选择器被布局压缩遮挡的问题。
-              </span>
-            </li>
-            <li>
-              <span class="download-release-tag is-fixed" data-zh="修复" data-en="FIXED">修复</span>
-              <span data-zh="修复合并持仓包含不同进场笔记时，编辑内容无法同步到全部底层持仓的问题；现在会保留各笔原始笔记，并把合并视图中新写的内容同步到每一笔持仓。"
-                data-en="Fixed merged-position note edits not reaching every underlying fill. Original per-entry notes are preserved, while new content added in the merged view syncs to each position.">
-                修复合并持仓包含不同进场笔记时，编辑内容无法同步到全部底层持仓的问题；现在会保留各笔原始笔记，并把合并视图中新写的内容同步到每一笔持仓。
-              </span>
+              <span data-zh="AI「测试连接」能直接查出余额不足、API key 无效或模型名写错，报错改成看得懂的提示。" data-en="AI Test connection now catches an empty balance, a rejected API key or a wrong model name, and AI errors read in plain language.">AI「测试连接」能直接查出余额不足、API key 无效或模型名写错，报错改成看得懂的提示。</span>
             </li>
           </ul>
         </section>
