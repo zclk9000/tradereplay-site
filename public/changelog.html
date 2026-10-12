@@ -225,21 +225,45 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.57.30 -->
+    <!-- v1.57.35 -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.57.30</span>
-        <span class="date" data-content-text="release.date">2026-10-11</span>
+        <span class="version" data-content-text="release.displayVersion">v1.57.35</span>
+        <span class="date" data-content-text="release.date">2026-10-12</span>
         <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>分时默认只显示当天：整个交易日铺满一屏，纵轴以昨收为中心上下对称，左侧显示涨跌幅；可在「图表显示」里关掉。</span></li>
+        <li><span class="tag tag-new">新增</span><span>盈亏比工具的左右两端可以拖动，调整区域宽度。</span></li>
+        <li><span class="tag tag-new">新增</span><span>斐波那契线可以隐藏档位标签里的价格。</span></li>
+        <li><span class="tag tag-new">新增</span><span>快捷键 A 打开「历史」交易列表，再按一次回到「交易」。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>分时改用更细的线条，均价线、最新价圆点和网格看起来更清爽。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>选中画线时，时间轴上锚点的标签和十字光标显示同一个时间、同一种语言。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>The intraday chart now shows just the current trading day: the whole session fills the screen, centred on the previous close, with the change in percent down the left. Turn it off under Chart display.</span></li>
+        <li><span class="tag tag-new">New</span><span>Drag either end of the risk/reward tool to change its width.</span></li>
+        <li><span class="tag tag-new">New</span><span>Fibonacci levels can hide the price in their labels.</span></li>
+        <li><span class="tag tag-new">New</span><span>Press A to open the History list, and again to go back to Trade.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Thinner lines on the intraday chart, with a cleaner average-price line, last-price dot and grid.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>With a drawing selected, its anchor labels on the time axis show the same time and language as the crosshair.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.57.30 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.57.30</span>
+        <span class="date">2026-10-11</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>复盘历史交易更顺手：选中一笔后按 ↑/↓ 切到上一笔、下一笔；一屏放不下的交易自动切到能看全的周期，可一键切回。</span></li>
         <li><span class="tag tag-new">新增</span><span>期货账单的跨月持仓显示真实开仓时间，几个月一起导入或逐月导入都能配上。</span></li>
         <li><span class="tag tag-new">新增</span><span>斐波那契回撤可以向左、向右延长，新画的沿用上次的设置。</span></li>
         <li><span class="tag tag-improve">优化</span><span>期货账单导入更准确：夜盘成交不再提前一个交易日，平仓按交易所规则配对开仓。已导入的账单删除后重新导入即可更新。</span></li>
         <li><span class="tag tag-improve">优化</span><span>AI「测试连接」能直接查出余额不足、API key 无效或模型名写错，报错改成看得懂的提示。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Step through reviewed trades with ↑/↓ once one is selected; a trade too long for the screen switches the chart to a timeframe that shows it whole, with one click back.</span></li>
         <li><span class="tag tag-new">New</span><span>Futures statements now give positions held across months their real open time, whether you import months together or one at a time.</span></li>
         <li><span class="tag tag-new">New</span><span>Fibonacci retracements can extend left and right; new ones keep your last choice.</span></li>
