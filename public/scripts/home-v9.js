@@ -300,7 +300,9 @@ function setLanguage(language) {
 
   document.querySelectorAll('[data-href-zh][data-href-en]').forEach((node) => {
     node.href = node.dataset[`href${currentLanguage === 'zh' ? 'Zh' : 'En'}`]
-    const isExternal = node.href.startsWith('http')
+    // node.href is always absolute here; links marked data-same-tab are this
+    // site's own pages and stay in the current tab.
+    const isExternal = node.href.startsWith('http') && !node.hasAttribute('data-same-tab')
     if (isExternal) {
       node.target = '_blank'
       node.rel = 'noopener'
