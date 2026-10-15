@@ -283,11 +283,13 @@
     const anyQr = methods.alipay || methods.wechat
     $('withdraw-button').textContent = L(`申请提现 ${yuan(available)}`, `Withdraw ${yuan(available)}`)
     $('withdraw-button').disabled = !enough || !anyQr
-    $('withdraw-note').textContent = !anyQr
+    const clawback = summary.amounts.clawbackCents || 0
+    $('withdraw-note').textContent = (!anyQr
       ? L('先在上方上传收款码', 'Upload a QR code above first')
       : enough
         ? L('提交后人工核对并转账', 'We check and pay by hand')
-        : L(`满 ${yuan(summary.minWithdrawalCents)} 可提现`, `Available from ${yuan(summary.minWithdrawalCents)}`)
+        : L(`满 ${yuan(summary.minWithdrawalCents)} 可提现`, `Available from ${yuan(summary.minWithdrawalCents)}`)) +
+      (clawback ? L(`（已扣除退款订单的返利 ${yuan(clawback)}）`, ` (${yuan(clawback)} of refunded rewards deducted)`) : '')
   }
 
   function statusBadge(text, tone) {
@@ -323,6 +325,7 @@
     const rows = summary.referrals.map((item) => {
       const status = {
         holding: [L(`冻结中 · ${date(item.availableAt)} 可提现`, `Held until ${date(item.availableAt)}`), 'wait'],
+        clawedBack: [L('提现后退款，已从后续返利扣回', 'Refunded after withdrawal; taken off later rewards'), 'off'],
         available: [L('可提现', 'Withdrawable'), 'ok'],
         withdrawn: [L('已提现', 'Withdrawn'), null],
         cancelled: [L('已退款取消', 'Cancelled (refund)'), 'off']
@@ -374,8 +377,8 @@
   $('copy-pitch').addEventListener('click', () => {
     if (!summary?.code) return
     const pitch = L(
-      `我在用 TradeReplay 做行情复盘训练。淘宝搜「TradeReplay」，拍「终身版推荐价」，在软件「账号与授权」兑换时填我的推荐码 ${summary.code}，就能用推荐价买终身版。`,
-      `I use TradeReplay for market replay training. Buy the lifetime referral-price voucher of TradeReplay on Taobao and enter my referral code ${summary.code} when you redeem it in the app.`
+      `我在用 TradeReplay 做行情复盘训练。淘宝搜「TradeReplay」，拍「终身版推荐价」，打开领取链接时填我的推荐码 ${summary.code}，就能用推荐价买终身版。`,
+      `I use TradeReplay for market replay training. Buy the lifetime referral-price voucher of TradeReplay on Taobao and enter my referral code ${summary.code} on its delivery page.`
     )
     copyText(pitch, $('copy-pitch'), L('已复制', 'Copied'))
   })
