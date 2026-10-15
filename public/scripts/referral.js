@@ -20,12 +20,20 @@
   let summary = null
   const qrUrls = {}
 
+  // The sign-in stays on this computer across browser restarts until it
+  // expires or the visitor signs out. Earlier pages kept it per tab only.
   function readSession() {
     try {
-      const stored = JSON.parse(window.sessionStorage.getItem(SESSION_KEY) || 'null')
-      if (stored && typeof stored.token === 'string' && stored.expiresAt > Date.now()) return stored
+      const raw = window.localStorage.getItem(SESSION_KEY) || window.sessionStorage.getItem(SESSION_KEY)
+      const stored = JSON.parse(raw || 'null')
+      if (stored && typeof stored.token === 'string' && stored.expiresAt > Date.now()) {
+        window.localStorage.setItem(SESSION_KEY, JSON.stringify(stored))
+        window.sessionStorage.removeItem(SESSION_KEY)
+        return stored
+      }
+      window.localStorage.removeItem(SESSION_KEY)
     } catch {
-      // Session storage is optional; the visitor signs in again.
+      // Storage is optional; the visitor signs in again.
     }
     return null
   }
@@ -33,11 +41,14 @@
   function saveSession(value) {
     session = value
     try {
-      if (value) window.sessionStorage.setItem(SESSION_KEY, JSON.stringify(value))
-      else window.sessionStorage.removeItem(SESSION_KEY)
+      if (value) window.localStorage.setItem(SESSION_KEY, JSON.stringify(value))
+      else window.localStorage.removeItem(SESSION_KEY)
+      window.sessionStorage.removeItem(SESSION_KEY)
     } catch {
       // Keep the in-memory session.
     }
+    // The header link (account-link.js) shows the email while signed in.
+    window.dispatchEvent(new Event('tradereplay-account-change'))
   }
 
   const ERRORS = {

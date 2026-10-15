@@ -616,9 +616,60 @@ html[data-theme="light"] .changelog-body .tag-fix {
   }
 }
 
-/* The narrowest phones keep the logo and drop the wordmark so the header fits. */
-@media (max-width: 359px) {
-  .legal-brand span {
+/* Small phones keep the logo and drop the wordmark so the brand, language,
+   sign-in and theme buttons all fit on one header row. */
+@media (max-width: 420px) {
+  .legal-brand span,
+  .site-header .brand span,
+  .changelog-site-header .brand span,
+  .hc-brand span {
     display: none;
+  }
+}
+
+/* The help centre header also carries a menu button; its section name goes. */
+@media (max-width: 360px) {
+  .hc-brand-divider,
+  .hc-help-name {
+    display: none;
+  }
+}
+
+/* Signed in: the link shows the account email with a small status dot. */
+.account-login-link.is-signed-in {
+  gap: 7px;
+  max-width: 220px;
+  font-weight: 600;
+}
+
+.account-login-link.is-signed-in::before {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: #35c49a;
+  content: "";
+}
+
+.account-login-email {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-login-initial {
+  display: none;
+}
+
+/* Phones have no room for an email beside the brand and the other buttons:
+   the dot and the first character say "signed in", the title says who. */
+@media (max-width: 520px) {
+  .account-login-email {
+    display: none;
+  }
+
+  .account-login-initial {
+    display: inline;
   }
 }
