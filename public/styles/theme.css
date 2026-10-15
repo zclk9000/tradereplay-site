@@ -542,3 +542,83 @@ html[data-theme="light"] .changelog-body .tag-fix {
     transition: none;
   }
 }
+
+/* Account sign-in, top right on every page (referral settlement). */
+.account-login-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--theme-toggle-border);
+  border-radius: 12px;
+  background: var(--theme-toggle-bg);
+  color: var(--theme-toggle-ink);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.account-login-link:hover {
+  border-color: var(--theme-toggle-border-hover);
+  background: var(--theme-toggle-bg-hover);
+  color: var(--theme-toggle-ring);
+}
+
+.account-login-link:focus-visible {
+  outline: 2px solid var(--theme-toggle-ring);
+  outline-offset: 3px;
+}
+
+.header-inner > .account-login-link {
+  margin-left: 8px;
+}
+
+/* Legal pages hide their nav links below 820px; the sign-in link stays. */
+@media (max-width: 820px) {
+  .legal-nav .account-login-link {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 560px) {
+  .account-login-link {
+    min-height: 36px;
+    padding: 0 12px;
+  }
+
+  .header-inner > .account-login-link {
+    margin-left: 4px;
+    padding: 0 10px;
+  }
+
+  /* Language, sign-in and theme buttons must fit beside the brand. */
+  .legal-nav {
+    gap: 8px;
+  }
+}
+
+/* Changelog hides its nav below 800px; keep the sign-in link on the right. */
+@media (max-width: 800px) {
+  .changelog-header-inner > .account-login-link {
+    margin-left: auto;
+  }
+
+  .changelog-header-inner > .account-login-link ~ .changelog-language-toggle {
+    margin-left: 0;
+  }
+}
+
+/* The narrowest phones keep the logo and drop the wordmark so the header fits. */
+@media (max-width: 359px) {
+  .legal-brand span {
+    display: none;
+  }
+}
