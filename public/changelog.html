@@ -228,14 +228,36 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.57.50 Windows -->
+    <!-- v1.57.55 Windows -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.57.50</span>
+        <span class="version" data-content-text="release.displayVersion">v1.57.55</span>
         <span class="date" data-content-text="release.date">2026-10-16</span>
         <span class="latest"><span class="lang-zh">最新 · Windows</span><span class="lang-en">Latest · Windows</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>画图工具收藏：在画图菜单中点击星标收藏常用工具，收藏的工具显示在可拖动的收藏工具条上；左侧画图栏底部的星标按钮可显示或隐藏工具条。</span></li>
+        <li><span class="tag tag-new">新增</span><span>指标收藏：指标菜单的每一项都可收藏，收藏的指标显示在菜单顶部。</span></li>
+        <li><span class="tag tag-new">新增</span><span>工具条停靠：收藏工具条和画图属性栏可拖入图表标题栏，紧靠时区显示，不再遮挡 K 线；拖出即恢复浮动。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>新画的图形沿用该工具上次设置的完整样式，包括填充颜色和透明度、中线、文字颜色等；「应用默认样式」会完整恢复出厂样式，套用画图模板不再覆盖图形上的文字。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>Tick 存档的时间跳转可到达数据范围内的任意时间，不再局限于已加载的几周；跳转窗口显示实际可跳范围。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Favorite drawing tools: star tools in the drawing menus to put them on a draggable favorites toolbar. The star at the bottom of the drawing toolbar shows or hides it.</span></li>
+        <li><span class="tag tag-new">New</span><span>Favorite indicators: star any indicator in the indicator menu to list it at the top.</span></li>
+        <li><span class="tag tag-new">New</span><span>Docking: drag the favorites toolbar or the drawing properties bar into the chart header, beside the timezone, so it no longer covers the candles. Drag it out to float it again.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>New drawings start with the full look you last gave that tool, including fill colour and opacity, middle lines and text colour. Apply default style restores the full factory look, and applying a drawing template keeps the drawing's own text.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Time jumps in tick sessions reach any time in the data, not just the weeks already loaded, and the jump dialog shows the range you can actually reach.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.57.50 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.57.50</span>
+        <span class="date">2026-10-16</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>扩充绘图工具：新增多种线条、通道、分叉线、斐波那契、江恩、形态、艾略特波浪及周期工具，同时补充旋转矩形、曲线、箭头和文字注释等工具。</span></li>
         <li><span class="tag tag-new">新增</span><span>激光笔：笔迹随绘制逐渐消失，适合讲解和临时标记；支持调整颜色、粗细及多种拖尾样式。</span></li>
         <li><span class="tag tag-new">新增</span><span>行情推演工具：支持复制已有 K 线形态、绘制模拟 K 线，以及在图表上添加交易计划表格。</span></li>
@@ -253,7 +275,7 @@
         <li><span class="tag tag-fix">修复</span><span>修正复盘习惯统计：按连续复盘场次计算次数和单次平均时长，短时间重启合并计算，保留原有累计时长。</span></li>
         <li><span class="tag tag-fix">修复</span><span>修正 S3 云备份状态提示与自动刷新冲突；恢复密钥不匹配时，支持导入配置并在新目录重新开始备份。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>More drawing tools: new lines, channels, pitchforks, Fibonacci and Gann studies, chart patterns, Elliott waves and cycles, plus rotated rectangles, curves, arrows and annotations.</span></li>
         <li><span class="tag tag-new">New</span><span>A laser pointer with fading strokes for explanations and temporary highlights. Adjust its colour, width and tail style.</span></li>
         <li><span class="tag tag-new">New</span><span>Explore chart scenarios by copying existing bars, drawing simulated candles and adding trading-plan tables to the chart.</span></li>
