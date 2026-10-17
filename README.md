@@ -31,6 +31,16 @@ Open:
 See [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) for the page,
 asset and folder indexes.
 
+## Video cover and title-card tools
+
+The reusable Bilibili cover generator, required source images, and episode-one
+title-card renderer are tracked in [`scripts/bilibili/`](scripts/bilibili/README.md).
+After pulling this repository on another computer, open
+[`TradeReplay-Bilibili-cover-maker.html`](scripts/bilibili/cover-maker/TradeReplay-Bilibili-cover-maker.html)
+directly in a browser to export a cover offline. See the tool README for rebuilding
+the HTML and running the macOS Swift card renderer. These tools are outside
+`public/` and are not deployed to the website.
+
 ## Release updates
 
 When publishing a desktop release, update both Windows and Mac download URLs in
