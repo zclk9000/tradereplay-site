@@ -1,7 +1,8 @@
 /* Two editions on one site (2026-10-19).
  *
  * - The edition switcher in a page header (futures.html, stocks.html).
- * - The chooser page at the site root (index.html): pick 外汇期货版 or 股票版.
+ * - The chooser page at the site root (index.html): pick 外汇期货版 or 股票版
+ *   on a split screen.
  *
  * The chooser and the stocks page are dark only for now; the futures pages
  * keep their light theme through theme.css. */
@@ -191,23 +192,31 @@ html[data-theme="light"] .edition-menu:not(.is-stocks) small {
   }
 }
 
-/* ── Chooser page ──────────────────────────────────────────────────────── */
+/* ── Chooser page: split screen ────────────────────────────────────────────
+ *
+ * The page is one grid (.split). Both halves (.split-side) cover the whole
+ * grid and are cut along one diagonal by clip-path; --split-top and
+ * --split-bottom are where that diagonal meets the top and bottom edges.
+ * Hovering a half, or focusing its button, moves the diagonal towards the
+ * other side. Each half is a link, so the whole coloured area is clickable;
+ * the copy above it lets clicks through except on its own links.
+ *
+ * Phones stack the halves: 外汇期货版 on top, 股票版 below, with a short
+ * diagonal between them. */
 
 .chooser-page {
   --ch-ink: #f4f7fc;
   --ch-ink-soft: #d6dde9;
   --ch-body: #a7b2c3;
   --ch-muted: #8592a6;
-  --ch-line: rgba(160, 180, 214, 0.13);
+  --ch-futures-soft: #8db1ff;
+  --ch-stocks: #7b85f4;
+  --ch-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   margin: 0;
-  min-height: 100vh;
+  background: #05070c;
   color: var(--ch-ink-soft);
   font-family: "Manrope", "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
-  background:
-    radial-gradient(ellipse 55% 45% at 14% -6%, rgba(25, 91, 151, 0.32), transparent 62%),
-    radial-gradient(ellipse 50% 42% at 90% -4%, rgba(123, 133, 244, 0.2), transparent 64%),
-    #070b13;
 }
 
 .chooser-page a {
@@ -215,25 +224,116 @@ html[data-theme="light"] .edition-menu:not(.is-stocks) small {
   text-decoration: none;
 }
 
-.chooser-shell {
-  display: flex;
+.split {
+  --split-top: 56%;
+  --split-bottom: 44%;
+  --split-gutter: max(48px, 6vw);
+  position: relative;
+  display: grid;
   min-height: 100vh;
-  flex-direction: column;
+  min-height: 100svh;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "head head"
+    "title title"
+    "futures stocks"
+    "foot foot";
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.chooser-wrap {
+.split-main {
+  display: contents;
+}
+
+/* Halves */
+
+.split-side {
+  position: absolute;
+  z-index: 0;
+  grid-area: 1 / 1 / -1 / -1;
+  inset: 0;
+  display: block;
+  transition:
+    clip-path 800ms var(--ch-ease),
+    filter 600ms ease;
+}
+
+.split-side canvas {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding-inline: 48px;
-  box-sizing: border-box;
+  height: 100%;
 }
 
-.chooser-header {
+.split-side.is-futures {
+  background:
+    radial-gradient(80% 70% at 18% 45%, rgba(46, 98, 214, 0.32), transparent 70%),
+    linear-gradient(160deg, #0a1322, #060a12);
+  clip-path: polygon(0 0, var(--split-top) 0, var(--split-bottom) 100%, 0 100%);
+  animation: split-wipe-futures 1100ms var(--ch-ease) backwards;
+}
+
+.split-side.is-stocks {
+  background:
+    radial-gradient(80% 70% at 82% 45%, rgba(123, 98, 214, 0.26), transparent 70%),
+    radial-gradient(60% 50% at 80% 92%, rgba(229, 72, 77, 0.14), transparent 70%),
+    linear-gradient(200deg, #141519, #0a0b0d);
+  clip-path: polygon(var(--split-top) 0, 100% 0, 100% 100%, var(--split-bottom) 100%);
+  animation: split-wipe-stocks 1100ms var(--ch-ease) backwards;
+}
+
+/* The candle tape fades out under each half's copy so the words stay clear. */
+.split-side.is-futures canvas {
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18) 32%, #000 50%);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18) 32%, #000 50%);
+}
+
+.split-side.is-stocks canvas {
+  -webkit-mask-image: linear-gradient(270deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18) 32%, #000 50%);
+  mask-image: linear-gradient(270deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18) 32%, #000 50%);
+}
+
+.split-seam {
+  position: absolute;
+  z-index: 1;
+  grid-area: 1 / 1 / -1 / -1;
+  inset: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+.split-seam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0));
+  clip-path: polygon(
+    var(--split-top) 0,
+    calc(var(--split-top) + 1.5px) 0,
+    calc(var(--split-bottom) + 1.5px) 100%,
+    var(--split-bottom) 100%
+  );
+  transition: clip-path 800ms var(--ch-ease);
+}
+
+/* Header, title and footer sit above both halves */
+
+.split-header {
+  position: relative;
+  z-index: 3;
   display: flex;
   height: 74px;
+  grid-area: head;
   align-items: center;
   gap: 14px;
+  padding-inline: var(--split-gutter);
+  pointer-events: none;
+}
+
+.split-header > * {
+  pointer-events: auto;
 }
 
 .chooser-brand {
@@ -267,7 +367,7 @@ html[data-theme="light"] .edition-menu:not(.is-stocks) small {
 }
 
 .chooser-nav > a:not(.account-login-link):hover {
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--ch-ink);
 }
 
@@ -275,397 +375,446 @@ html[data-theme="light"] .edition-menu:not(.is-stocks) small {
   margin-left: 8px;
 }
 
-.chooser-intro {
+.split-title {
+  position: relative;
+  z-index: 2;
   display: flex;
+  grid-area: title;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 30px 0 30px;
+  gap: 6px;
+  justify-self: center;
+  padding: 2px 20px 0;
   text-align: center;
+  pointer-events: none;
+  animation: split-rise 900ms var(--ch-ease) 450ms backwards;
 }
 
-.chooser-eyebrow {
-  margin: 0;
-  color: var(--ch-muted);
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.12em;
-}
-
-.chooser-intro h1 {
+.split-title h1 {
   margin: 0;
   color: var(--ch-ink);
-  font-size: 52px;
+  font-size: 22px;
   font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
-  text-wrap: balance;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
 
-.chooser-intro p {
-  max-width: 620px;
+.split-title p {
   margin: 0;
-  color: var(--ch-body);
-  font-size: 17px;
-  line-height: 1.7;
-  text-wrap: pretty;
+  color: var(--ch-muted);
+  font-size: 13px;
 }
 
-.chooser-cards {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 24px;
-  transition: grid-template-columns 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-@media (hover: hover) and (min-width: 901px) {
-  .chooser-cards:has(.chooser-card.is-futures:hover) {
-    grid-template-columns: minmax(0, 1.16fr) minmax(0, 1fr);
-  }
-
-  .chooser-cards:has(.chooser-card.is-stocks:hover) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.16fr);
-  }
-}
-
-.chooser-card {
+.split-footer {
   position: relative;
+  z-index: 3;
   display: flex;
-  min-width: 0;
+  grid-area: foot;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  justify-self: center;
+  padding: 24px 20px 26px;
+  color: var(--ch-muted);
+  font-size: 12.5px;
+  pointer-events: none;
+}
+
+.split-footer a {
+  pointer-events: auto;
+}
+
+.split-footer a:hover {
+  color: var(--ch-ink-soft);
+}
+
+/* Copy */
+
+.split-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(420px, 100%);
   flex-direction: column;
-  overflow: hidden;
-  padding: 32px 34px 0;
-  border-radius: 22px;
+  align-self: center;
+  gap: 14px;
+  padding-block: 24px;
+  pointer-events: none;
   transition:
-    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 300ms ease;
+    opacity 600ms ease,
+    translate 800ms var(--ch-ease);
+  animation: split-rise 900ms var(--ch-ease) backwards;
 }
 
-.chooser-card:hover {
-  transform: translateY(-4px);
+.split-copy a {
+  pointer-events: auto;
 }
 
-.chooser-card:focus-visible {
-  outline: 2px solid #8db1ff;
-  outline-offset: 4px;
+.split-copy.is-futures {
+  grid-area: futures;
+  justify-self: start;
+  margin-left: var(--split-gutter);
 }
 
-.chooser-card.is-futures {
-  background:
-    radial-gradient(110% 70% at 0% 0%, rgba(75, 131, 247, 0.24), transparent 62%),
-    linear-gradient(180deg, #0e1726, #09101b);
-  box-shadow:
-    inset 0 0 0 1px rgba(160, 180, 214, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+.split-copy.is-stocks {
+  grid-area: stocks;
+  align-items: flex-end;
+  justify-self: end;
+  margin-right: var(--split-gutter);
+  text-align: right;
+  animation-delay: 200ms;
 }
 
-.chooser-card.is-futures:hover {
-  box-shadow:
-    inset 0 0 0 1px rgba(75, 131, 247, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 34px 90px -36px rgba(75, 131, 247, 0.55);
-}
-
-.chooser-card.is-stocks {
-  background:
-    radial-gradient(110% 70% at 100% 0%, rgba(123, 133, 244, 0.22), transparent 62%),
-    radial-gradient(70% 45% at 100% 100%, rgba(229, 72, 77, 0.1), transparent 70%),
-    linear-gradient(180deg, #151619, #0e0f12);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-.chooser-card.is-stocks:hover {
-  box-shadow:
-    inset 0 0 0 1px rgba(123, 133, 244, 0.62),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 34px 90px -36px rgba(123, 133, 244, 0.55);
-}
-
-.chooser-card-top {
+.split-kicker {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  color: var(--ch-body);
-  font-size: 13px;
+  margin: 0;
+  color: var(--ch-muted);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
 }
 
-.chooser-state {
+.split-copy.is-stocks .split-kicker {
+  flex-direction: row-reverse;
+}
+
+.split-last {
+  display: none;
+  height: 22px;
+  align-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ch-ink);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.split-copy.is-last .split-last {
+  display: inline-flex;
+}
+
+.split-copy h2 {
+  margin: 0;
+  color: var(--ch-ink);
+  font-size: clamp(44px, 4.6vw, 68px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+}
+
+.split-lede {
+  margin: 0;
+  color: var(--ch-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.split-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 4px 0 8px;
+  padding: 0;
+  color: var(--ch-ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+  list-style: none;
+}
+
+.split-copy.is-stocks .split-facts {
+  align-items: flex-end;
+}
+
+.split-facts li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.split-copy.is-stocks .split-facts li {
+  flex-direction: row-reverse;
+}
+
+.split-facts li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.split-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.split-copy.is-stocks .split-actions {
+  flex-direction: row-reverse;
+}
+
+.split-go {
+  display: inline-flex;
+  height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 650;
+  transition:
+    transform 160ms ease,
+    box-shadow 240ms ease;
+}
+
+.split-go svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 240ms ease;
+}
+
+.split-go:hover {
+  transform: translateY(-1px);
+}
+
+.split-go:hover svg {
+  transform: translateX(4px);
+}
+
+.split-go:focus-visible {
+  outline: 2px solid var(--ch-futures-soft);
+  outline-offset: 3px;
+}
+
+.split-go.is-futures {
+  background: linear-gradient(180deg, #5b8ef8, #3a6fe0);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 10px 30px -10px rgba(75, 131, 247, 0.8);
+}
+
+.split-go.is-stocks {
+  background: linear-gradient(180deg, #717bf0, #4f5ad6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 10px 30px -10px rgba(108, 118, 236, 0.85);
+}
+
+.split-state {
   display: inline-flex;
   height: 24px;
   align-items: center;
   gap: 7px;
   padding: 0 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 0 0 1px rgba(160, 180, 214, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(160, 180, 214, 0.15);
+  color: var(--ch-ink-soft);
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 12px;
   font-weight: 600;
 }
 
-.chooser-state i {
+.split-state i {
   width: 6px;
   height: 6px;
   border-radius: 50%;
 }
 
-.chooser-last {
-  display: none;
-  height: 24px;
-  align-items: center;
-  margin-left: auto;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--ch-ink);
-  font-size: 12px;
-  font-weight: 600;
+.split-state i.is-live {
+  background: #35c49a;
+  box-shadow: 0 0 8px rgba(53, 196, 154, 0.8);
 }
 
-.chooser-card.is-last .chooser-last {
-  display: inline-flex;
+.split-state i.is-beta {
+  background: var(--ch-stocks);
+  box-shadow: 0 0 8px rgba(123, 133, 244, 0.9);
 }
 
-.chooser-card h2 {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  margin: 22px 0 0;
-  color: var(--ch-ink);
-  font-size: 40px;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+/* Hover: the chosen half widens, the other one fades back */
+
+@media (hover: hover) and (min-width: 901px) {
+  .split:has(.split-side.is-futures:hover, .split-go.is-futures:hover, .split-go.is-futures:focus-visible) {
+    --split-top: 66%;
+    --split-bottom: 54%;
+  }
+
+  .split:has(.split-side.is-stocks:hover, .split-go.is-stocks:hover, .split-go.is-stocks:focus-visible) {
+    --split-top: 46%;
+    --split-bottom: 34%;
+  }
+
+  .split:has(.split-side.is-futures:hover, .split-go.is-futures:hover, .split-go.is-futures:focus-visible) .split-side.is-stocks,
+  .split:has(.split-side.is-stocks:hover, .split-go.is-stocks:hover, .split-go.is-stocks:focus-visible) .split-side.is-futures {
+    filter: saturate(0.45) brightness(0.6);
+  }
+
+  .split:has(.split-side.is-futures:hover, .split-go.is-futures:hover, .split-go.is-futures:focus-visible) .split-copy.is-stocks,
+  .split:has(.split-side.is-stocks:hover, .split-go.is-stocks:hover, .split-go.is-stocks:focus-visible) .split-copy.is-futures {
+    opacity: 0.32;
+  }
+
+  .split:has(.split-side.is-futures:hover, .split-go.is-futures:hover, .split-go.is-futures:focus-visible) .split-copy.is-futures {
+    translate: 2vw 0;
+  }
+
+  .split:has(.split-side.is-stocks:hover, .split-go.is-stocks:hover, .split-go.is-stocks:focus-visible) .split-copy.is-stocks {
+    translate: -2vw 0;
+  }
 }
 
-.chooser-edition {
-  padding: 0 9px;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: 0;
-  line-height: 24px;
+@keyframes split-wipe-futures {
+  from {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
 }
 
-.is-futures .chooser-edition {
-  background: rgba(75, 131, 247, 0.16);
-  box-shadow: inset 0 0 0 1px rgba(75, 131, 247, 0.32);
-  color: #a9c3ff;
+@keyframes split-wipe-stocks {
+  from {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  }
 }
 
-.is-stocks .chooser-edition {
-  background: rgba(229, 72, 77, 0.14);
-  box-shadow: inset 0 0 0 1px rgba(229, 72, 77, 0.3);
-  color: #ff9c94;
-}
-
-.chooser-lede {
-  margin: 10px 0 0;
-  color: var(--ch-ink-soft);
-  font-size: 19px;
-  line-height: 1.6;
-}
-
-.chooser-facts {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  margin: 18px 0 0;
-  padding: 0;
-  color: var(--ch-body);
-  font-size: 14.5px;
-  line-height: 1.5;
-  list-style: none;
-}
-
-.chooser-facts li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.chooser-facts svg,
-.chooser-go svg {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 auto;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.is-futures .chooser-facts svg {
-  color: #4b83f7;
-}
-
-.is-stocks .chooser-facts svg {
-  color: #8e97ff;
-}
-
-.chooser-go {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  font-size: 15px;
-  font-weight: 650;
-}
-
-.is-futures .chooser-go {
-  color: #8db1ff;
-}
-
-.is-stocks .chooser-go {
-  color: #a3abff;
-}
-
-.chooser-go svg {
-  transition: transform 250ms ease;
-}
-
-.chooser-card:hover .chooser-go svg {
-  transform: translateX(4px);
-}
-
-.chooser-shot {
-  height: 250px;
-  flex: 0 0 auto;
-  margin-top: auto;
-  overflow: hidden;
-  padding-top: 28px;
-}
-
-.chooser-shot img {
-  display: block;
-  width: 112%;
-  max-width: none;
-  height: auto;
-  border-radius: 12px 12px 0 0;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 -20px 60px -20px rgba(0, 0, 0, 0.8);
-  transform: translateY(14px);
-  transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.chooser-card:hover .chooser-shot img {
-  transform: translateY(0);
-}
-
-.chooser-hint {
-  max-width: 760px;
-  margin: 26px auto 0;
-  color: var(--ch-muted);
-  font-size: 14px;
-  line-height: 1.7;
-  text-align: center;
-}
-
-.chooser-hint b {
-  color: var(--ch-ink-soft);
-  font-weight: 600;
-}
-
-.chooser-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 22px;
-  margin-top: auto;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  color: var(--ch-muted);
-  font-size: 13px;
-}
-
-.chooser-footer a:hover {
-  color: var(--ch-ink-soft);
+@keyframes split-rise {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .chooser-cards,
-  .chooser-card,
-  .chooser-shot img,
-  .chooser-go svg {
+  .split-side,
+  .split-seam::before,
+  .split-title,
+  .split-copy,
+  .split-go,
+  .split-go svg {
+    animation: none;
     transition: none;
   }
 }
 
-@media (max-width: 900px) {
-  .chooser-wrap {
-    padding-inline: 20px;
+@media (max-width: 1100px) and (min-width: 901px) {
+  .split {
+    --split-gutter: 40px;
   }
 
-  .chooser-header {
+  .split-copy {
+    width: min(360px, 100%);
+  }
+
+  .split-facts {
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width: 900px) {
+  .split {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+      "head"
+      "title"
+      "futures"
+      "stocks"
+      "foot";
+  }
+
+  /* Each half covers its own rows and reaches 28px past them, so the two
+     clip paths meet on one diagonal between 外汇期货版 and 股票版. */
+  .split-side.is-futures {
+    grid-area: 1 / 1 / 4 / 2;
+    inset: 0 0 -28px 0;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 56px), 0 100%);
+  }
+
+  .split-side.is-stocks {
+    grid-area: 4 / 1 / 6 / 2;
+    inset: -28px 0 0 0;
+    clip-path: polygon(0 56px, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .split-side canvas {
+    opacity: 0.5;
+  }
+
+  .split-side.is-futures canvas,
+  .split-side.is-stocks canvas {
+    -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.25), #000 75%);
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.25), #000 75%);
+  }
+
+  .split-seam {
+    display: none;
+  }
+
+  .split-header {
     height: 64px;
+    padding-inline: 20px;
   }
 
   .chooser-nav > a:not(.account-login-link) {
     display: none;
   }
 
-  .chooser-intro {
+  .split-title {
     align-items: flex-start;
-    padding: 18px 0 22px;
+    justify-self: start;
+    padding: 6px 20px 0;
     text-align: left;
   }
 
-  .chooser-intro h1 {
-    font-size: 32px;
+  .split-title h1 {
+    font-size: 20px;
   }
 
-  .chooser-intro p {
-    font-size: 15px;
-  }
-
-  .chooser-cards {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-  }
-
-  .chooser-card {
-    min-height: 0;
-    padding: 22px 22px 0;
-    border-radius: 18px;
-  }
-
-  .chooser-card h2 {
-    margin-top: 14px;
-    font-size: 28px;
-  }
-
-  .chooser-lede {
-    font-size: 16px;
-  }
-
-  .chooser-facts {
-    display: none;
-  }
-
-  .chooser-go {
-    margin-top: 14px;
-  }
-
-  .chooser-shot {
-    height: 120px;
-    overflow: hidden;
-    padding-top: 18px;
-  }
-
-  .chooser-shot img {
-    width: 150%;
-    transform: none;
-  }
-
-  .chooser-hint {
-    margin-top: 18px;
-    font-size: 13px;
+  .split-copy.is-futures,
+  .split-copy.is-stocks {
+    width: auto;
+    align-items: flex-start;
+    justify-self: stretch;
+    margin: 0;
+    padding: 26px 20px 64px;
     text-align: left;
+  }
+
+  .split-copy.is-stocks {
+    padding-top: 64px;
+    padding-bottom: 20px;
+  }
+
+  .split-copy.is-stocks .split-kicker,
+  .split-copy.is-stocks .split-actions,
+  .split-copy.is-stocks .split-facts li {
+    flex-direction: row;
+  }
+
+  .split-copy.is-stocks .split-facts {
+    align-items: flex-start;
+  }
+
+  .split-copy h2 {
+    font-size: 44px;
+  }
+
+  .split-footer {
+    justify-content: flex-start;
+    justify-self: start;
+    gap: 8px 18px;
+    padding: 18px 20px 28px;
   }
 }

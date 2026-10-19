@@ -441,6 +441,12 @@ motion:
 - Respect `prefers-reduced-motion`.
 - Reduced-motion mode must preserve all content and state changes.
 
+The edition chooser at the site root (`index.html`) is the one page allowed a
+continuous background: each half carries a slowly scrolling candle tape behind
+its copy. The tape fades out under the words, never moves with the pointer,
+stops off screen and is drawn still with reduced motion. Its split moves with
+`clip-path`, which the halves need for their diagonal edge.
+
 ## 10. Navigation
 
 ### Desktop header
