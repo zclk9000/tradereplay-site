@@ -577,18 +577,35 @@
   margin-top: 22px;
 }
 
+/* The QQ group is shared with 外汇期货版; its number, link and QR code come
+   from support.qq in content/site/support.json. */
 .stocks-qr {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--st-body);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stocks-qr img {
+  display: block;
   width: 160px;
   height: 160px;
-  place-items: center;
+  padding: 6px;
   border-radius: 14px;
-  color: var(--st-muted);
-  font-size: 13px;
-  line-height: 1.5;
-  text-align: center;
-  background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0 10px, transparent 10px 20px);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: #242424;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 14px 32px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 240ms ease;
+}
+
+.stocks-qr:hover img {
+  box-shadow:
+    0 0 0 1px rgba(123, 133, 244, 0.6),
+    0 14px 32px rgba(0, 0, 0, 0.35);
 }
 
 .stocks-footer {
@@ -697,6 +714,15 @@
 
   .stocks-join h2 {
     font-size: 30px;
+  }
+
+  .stocks-qr {
+    align-items: flex-start;
+  }
+
+  .stocks-qr img {
+    width: 132px;
+    height: 132px;
   }
 
   .stocks-footer-note {
