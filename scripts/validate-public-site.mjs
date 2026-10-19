@@ -9,6 +9,8 @@ const checkedReferences = new Set();
 const dynamicRoutes = new Set(["/api/site-visits"]);
 const requiredPages = [
   "index.html",
+  "futures.html",
+  "stocks.html",
   "download.html",
   "changelog.html",
   "guide.html",

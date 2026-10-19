@@ -6,6 +6,8 @@ const root = process.cwd();
 const publicRoot = path.join(root, "public");
 const pages = [
   "index.html",
+  "futures.html",
+  "stocks.html",
   "download.html",
   "changelog.html",
   "support.html",
