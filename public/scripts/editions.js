@@ -1,20 +1,21 @@
 // Two editions on one site. The page says which one it is with
-// <body data-edition="futures|stocks|chooser">.
+// <html data-edition="futures|stocks|chooser">.
 //
 // - futures / stocks pages remember the edition last looked at, so the
 //   chooser at the site root can mark it. The chooser never redirects on
 //   that alone: shared links and search engines keep seeing the chooser.
-// - Old links into the former homepage (/#pricing, /?lang=en, …) still land
-//   on the futures homepage, which is where that content now lives.
+// - Old links into the former homepage still land on the futures homepage,
+//   which is where that content now lives: any link with a section anchor
+//   (/#pricing, /#whop, …) and any English link (/?lang=en). The chooser has
+//   no anchors of its own, and it is Chinese only.
 // - The edition switcher in a page header opens and closes its menu.
 (() => {
   const STORAGE_KEY = 'tradereplay-edition'
-  const FUTURES_ANCHORS = ['#top', '#main', '#system', '#modes', '#capabilities', '#guides', '#pricing']
   const page = document.documentElement.dataset.edition
 
   if (page === 'chooser') {
     const params = new URLSearchParams(window.location.search)
-    if (params.get('lang') === 'en' || FUTURES_ANCHORS.includes(window.location.hash)) {
+    if (params.get('lang') === 'en' || window.location.hash.length > 1) {
       window.location.replace(`futures.html${window.location.search}${window.location.hash}`)
       return
     }
