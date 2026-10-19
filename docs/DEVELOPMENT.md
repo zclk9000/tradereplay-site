@@ -27,8 +27,9 @@ Since 2026-10-19 the site root is a chooser between the two desktop products:
   `public/scripts/chooser.js` (blue/teal for futures, A-share red/green with
   涨停 tops for stocks). Phones stack the halves. It never redirects on the
   visitor's last choice; it only marks that half 上次浏览. Old links into the former
-  homepage (`/#pricing`, `/?lang=en`, …) are forwarded to `futures.html` by
-  `public/scripts/editions.js`.
+  homepage are forwarded to `futures.html` by `public/scripts/editions.js`: any
+  link with a section anchor (`/#pricing`, `/#whop`, …) and any English link
+  (`/?lang=en`). A bare `tradereplay.dev` stays on the chooser.
 - `public/futures.html` (`/futures`): the former homepage, unchanged apart from
   the edition switcher in its header. Download, changelog, guide, support and
   legal pages link home to it.
