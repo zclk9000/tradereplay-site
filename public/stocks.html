@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-edition="stocks">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TradeReplay 股票版 — 收盘后，把今天复盘清楚</title>
+  <meta name="description" content="沪深 A 股的盘后复盘桌面软件：全市场看板、条件选股和历史验证、逐笔五档回放和个股盲练。内测中。">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta property="og:title" content="TradeReplay 股票版 — 收盘后，把今天复盘清楚">
+  <meta property="og:description" content="全市场看板、条件选股和逐笔回放，装在一个桌面软件里。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tradereplay.dev/stocks">
+  <link rel="icon" href="assets/brand/logo-dark.svg">
+  <script src="scripts/editions.js?v=20261019-1" defer></script>
+  <script src="scripts/account-link.js?v=20261015-2" defer></script>
+  <script src="scripts/site-analytics.js?v=20260730-1" defer></script>
+  <link rel="stylesheet" href="styles/theme.css?v=20261015-login8">
+  <link rel="stylesheet" href="styles/editions.css?v=20261019-1">
+  <link rel="stylesheet" href="styles/stocks.css?v=20261019-1">
+</head>
+<body class="stocks-page">
+  <header class="stocks-header">
+    <div class="stocks-wrap stocks-header-inner">
+      <a class="stocks-brand" href="stocks.html" aria-label="TradeReplay 股票版首页">
+        <img src="assets/brand/logo-dark.svg" width="30" height="30" alt="">
+        <span>TradeReplay</span>
+      </a>
+      <div class="edition-switch" data-edition-switch>
+        <button class="edition-switch-button is-stocks" type="button" aria-expanded="false" aria-haspopup="true" data-edition-toggle>
+          股票版<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="edition-menu is-stocks" role="menu" hidden data-edition-menu>
+          <a role="menuitem" href="futures.html"><span><strong>外汇期货版</strong><small>外汇 · 贵金属 · 国内期货 · 加密货币</small></span></a>
+          <a role="menuitem" class="is-current" href="stocks.html" aria-current="page"><span><strong>股票版</strong><small>沪深 A 股 · 内测中</small></span><svg class="edition-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg></a>
+          <span class="edition-menu-sep" role="separator"></span>
+          <a role="menuitem" href="index.html"><span><strong>回首页重新选择</strong></span></a>
+        </div>
+      </div>
+      <nav class="stocks-nav" aria-label="股票版">
+        <a class="stocks-nav-link" href="#features">功能</a>
+        <a class="stocks-nav-link" href="#data">数据</a>
+        <a class="account-login-link" data-same-tab href="referral.html?lang=zh">登录</a>
+        <a class="stocks-btn is-primary is-small" href="#join">预约内测</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="stocks-wrap stocks-hero" aria-labelledby="stocks-title">
+      <p class="stocks-eyebrow">沪深 A 股 · 盘后复盘工作台</p>
+      <h1 id="stocks-title"><span>收盘后半小时</span><span>看清今天的市场</span></h1>
+      <p>全市场看板、条件选股和逐笔回放，装在一个桌面软件里。<br>看清今天，用历史验证，再回到盘面练一遍。</p>
+      <div class="stocks-ctas">
+        <a class="stocks-btn is-primary" href="#join">预约内测</a>
+        <a class="stocks-btn is-ghost" href="#features">看看能做什么<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+      </div>
+      <div class="stocks-facts">
+        <div class="stocks-fact"><b class="stocks-num">5,214</b><span>只沪深 A 股</span></div>
+        <div class="stocks-fact"><b class="stocks-num">1990</b><span>年起的全市场日线</span></div>
+        <div class="stocks-fact"><b class="stocks-num">2013</b><span>年起的逐笔五档</span></div>
+        <div class="stocks-fact"><b class="stocks-num">19:00</b><span>前后出当晚的看板</span></div>
+      </div>
+    </section>
+
+    <div class="stocks-shot">
+      <img src="assets/stocks/stocks-today.webp" width="2160" height="1353" alt="今日看板：大盘 K 线、八个指数、情绪温度和涨停、炸板、连板的统计">
+    </div>
+
+    <section class="stocks-wrap stocks-section" id="features" aria-labelledby="loop-title">
+      <div class="stocks-section-head is-centered">
+        <p class="stocks-eyebrow">一天的复盘</p>
+        <h2 id="loop-title">每天收盘后的三件事</h2>
+        <p>先看市场，再用历史检验自己的想法，最后回到当天的盘面亲手练一遍。</p>
+      </div>
+      <ol class="stocks-steps">
+        <li class="stocks-step">
+          <span class="stocks-step-number stocks-num">01</span>
+          <h3>看清今天</h3>
+          <p>涨停、炸板、连板梯队和情绪温度一页看完。每晚 19:00 前后出初版，数据到齐后定版。</p>
+          <span class="stocks-step-where">在软件里：<b>今日</b></span>
+          <svg class="stocks-step-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </li>
+        <li class="stocks-step">
+          <span class="stocks-step-number stocks-num">02</span>
+          <h3>用历史验证</h3>
+          <p>每个选股条件都回看过去的次日表现。一字板买不进、停牌和 T+1 都算进去。</p>
+          <span class="stocks-step-where">在软件里：<b>选股</b></span>
+          <svg class="stocks-step-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </li>
+        <li class="stocks-step">
+          <span class="stocks-step-number stocks-num">03</span>
+          <h3>回到盘面练</h3>
+          <p>挑一只股票、一天，从开盘逐笔回放。看着五档和成交明细，按 A 股规则下单。</p>
+          <span class="stocks-step-where">在软件里：<b>训练</b></span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="stocks-wrap stocks-section" aria-labelledby="screener-title">
+      <div class="stocks-feature">
+        <div class="stocks-feature-copy">
+          <p class="stocks-eyebrow">选股</p>
+          <h2 id="screener-title">先看条件过去灵不灵</h2>
+          <p>12 种常用选法开箱即用。也能写通达信公式，或者用中文描述，让 AI 写成公式。</p>
+          <ul class="stocks-bullets">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>历史验证按次日开盘买入算，扣掉费用、一字板和停牌</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>和全市场同期比，看超出的部分是不是真的</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>存成自己的条件，每天收盘自动跑，命中的放进明日观察池</li>
+          </ul>
+        </div>
+        <div class="stocks-feature-media">
+          <img src="assets/stocks/stocks-screener.webp" width="2160" height="1353" alt="选股页：12 种选法的卡片、首板的名单和个股日线" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="stocks-wrap stocks-section" aria-labelledby="replay-title">
+      <div class="stocks-feature is-reversed">
+        <div class="stocks-feature-media">
+          <img src="assets/stocks/stocks-replay-card.webp" width="1002" height="366" alt="今天推荐复盘：新华文轩 3 连板，盘中开板 5 次后回封" loading="lazy">
+          <div class="stocks-placeholder">训练页截图<br>（训练页改版后换上）</div>
+        </div>
+        <div class="stocks-feature-copy">
+          <p class="stocks-eyebrow">复盘回放</p>
+          <h2 id="replay-title">在当天的盘面里练一遍</h2>
+          <p>每天收盘后，软件从涨停和炸板的股票里挑一只值得回放的，点一下就从开盘开始。</p>
+          <ul class="stocks-bullets">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>3 秒一笔快照，五档盘口和成交明细一起回放</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>按 A 股规则成交：涨跌停、T+1、佣金和印花税</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>盲练：隐藏股票名和日期，练完再揭晓</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="stocks-wrap stocks-section" aria-labelledby="overview-title">
+      <div class="stocks-section-head">
+        <p class="stocks-eyebrow">概览</p>
+        <h2 id="overview-title">每次打开，先看自己</h2>
+        <p>练习成绩、钱在哪里赚在哪里亏、自己定下的规则，打开软件的第一页就能看到。</p>
+      </div>
+      <div class="stocks-tiles">
+        <div class="stocks-tile"><h3>今天要做的事</h3><p>推荐复盘的股票、继续上次的练习、明日观察池。</p></div>
+        <div class="stocks-tile"><h3>我的全貌</h3><p>实战和练习分开算，钱不相加。</p></div>
+        <div class="stocks-tile"><h3>在哪里赚钱、在哪里亏钱</h3><p>按买入时段、持有天数和股票拆开看。</p></div>
+        <div class="stocks-tile"><h3>心得笔记</h3><p>置顶自己的交易规则，提醒还没写复盘的亏损单。</p></div>
+      </div>
+      <p class="stocks-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>交割单导入即将支持：导入以后，实盘和练习用同一套口径对比。</p>
+    </section>
+
+    <section class="stocks-band" id="data" aria-labelledby="data-title">
+      <div class="stocks-wrap">
+        <div class="stocks-section-head">
+          <p class="stocks-eyebrow">数据</p>
+          <h2 id="data-title">数据下载到本机，离线也能复盘</h2>
+          <p>数据服务每晚整理当天的日线、逐笔和基础信息。逐笔和分钟线、日线三方核对，补过和对不上的地方都单独标出。</p>
+        </div>
+        <div class="stocks-figures">
+          <div class="stocks-figure"><b class="stocks-num">5,214</b><span>只沪深 A 股</span></div>
+          <div class="stocks-figure"><b class="stocks-num">1990</b><span>年起的全市场日线</span></div>
+          <div class="stocks-figure"><b class="stocks-num">2013</b><span>年起的逐笔五档快照</span></div>
+          <div class="stocks-figure"><b class="stocks-num">8</b><span>个主要指数的日 K</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stocks-wrap" id="join" aria-labelledby="join-title">
+      <div class="stocks-join">
+        <div>
+          <h2 id="join-title">想第一批用上？</h2>
+          <p>加入内测群，第一时间拿到安装包。用下来哪里不顺手，直接在群里说。</p>
+          <div class="stocks-ctas">
+            <a class="stocks-btn is-ghost is-small" href="futures.html">也做外汇期货？看外汇期货版</a>
+          </div>
+        </div>
+        <div class="stocks-qr">内测群二维码<br>（待提供）</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="stocks-wrap stocks-footer">
+    <span>© 2026 TradeReplay</span>
+    <a href="index.html">两个版本</a>
+    <a href="privacy.html">隐私政策</a>
+    <a href="terms.html">服务条款</a>
+    <a href="refund.html">退款说明</a>
+    <span class="stocks-footer-note">软件只用于复盘和练习，不提供投资建议。</span>
+  </footer>
+</body>
+</html>

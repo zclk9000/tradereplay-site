@@ -17,11 +17,27 @@ changing files. New tasks use isolated Git worktrees below
 `/Users/charlie/ClaudeCode/TradeReplay/.worktrees/`; do not create peer copies
 of this repository beside the canonical checkout.
 
-## Homepage architecture
+## Two editions
 
-The homepage is deliberately dependency-free:
+Since 2026-10-19 the site root is a chooser between the two desktop products:
 
-- semantic HTML in `public/index.html`;
+- `public/index.html` (`/`): pick 外汇期货版 or 股票版. It never redirects on the
+  visitor's last choice; it only marks that card. Old links into the former
+  homepage (`/#pricing`, `/?lang=en`, …) are forwarded to `futures.html` by
+  `public/scripts/editions.js`.
+- `public/futures.html` (`/futures`): the former homepage, unchanged apart from
+  the edition switcher in its header. Download, changelog, guide, support and
+  legal pages link home to it.
+- `public/stocks.html` (`/stocks`): the stocks edition, Chinese only, dark only,
+  styled after the app (`public/styles/stocks.css`). It has no prices while the
+  edition is in beta; its call to action is 预约内测.
+- `public/styles/editions.css` holds the chooser and the header switcher.
+
+## Futures homepage architecture
+
+The futures homepage is deliberately dependency-free:
+
+- semantic HTML in `public/futures.html`;
 - CSS tokens, responsive layout and motion in `public/styles/home-v10.css`;
 - progressive enhancement in `public/scripts/home-v9.js`;
 - static screenshots and compressed MP4 demonstrations in `public/assets/`.
