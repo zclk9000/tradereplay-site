@@ -21,8 +21,12 @@ of this repository beside the canonical checkout.
 
 Since 2026-10-19 the site root is a chooser between the two desktop products:
 
-- `public/index.html` (`/`): pick 外汇期货版 or 股票版. It never redirects on the
-  visitor's last choice; it only marks that card. Old links into the former
+- `public/index.html` (`/`): pick 外汇期货版 or 股票版 on a split screen. The
+  two halves meet on a diagonal that leans towards the half under the mouse;
+  each half shows a slowly scrolling candle tape drawn by
+  `public/scripts/chooser.js` (blue/teal for futures, A-share red/green with
+  涨停 tops for stocks). Phones stack the halves. It never redirects on the
+  visitor's last choice; it only marks that half 上次浏览. Old links into the former
   homepage (`/#pricing`, `/?lang=en`, …) are forwarded to `futures.html` by
   `public/scripts/editions.js`.
 - `public/futures.html` (`/futures`): the former homepage, unchanged apart from
@@ -31,7 +35,9 @@ Since 2026-10-19 the site root is a chooser between the two desktop products:
 - `public/stocks.html` (`/stocks`): the stocks edition, Chinese only, dark only,
   styled after the app (`public/styles/stocks.css`). It has no prices while the
   edition is in beta; its call to action is 预约内测.
-- `public/styles/editions.css` holds the chooser and the header switcher.
+- `public/styles/editions.css` holds the chooser and the header switcher;
+  `public/scripts/chooser.js` draws the chooser's candle tapes and stops them
+  off screen and with reduced motion.
 
 ## Futures homepage architecture
 

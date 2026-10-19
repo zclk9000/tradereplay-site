@@ -52,7 +52,7 @@
 | `public/guide-assets/` | Pages CMS 上传的教程媒体；公开路径为 `/guide-assets/` |
 | `public/assets/brand/` | Logo 与品牌图形 |
 | `public/assets/product/` | 外汇期货版主页使用的产品界面与功能截图 |
-| `public/assets/stocks/` | 股票版主页和选择页使用的股票版截图 |
+| `public/assets/stocks/` | 股票版主页使用的股票版截图 |
 | `public/assets/modes/` | 三种运行模式的压缩视频与封面 |
 | `public/assets/showcase/` | 六项核心能力展示图 |
 | `public/assets/support/` | QQ、企业微信图标与二维码 |

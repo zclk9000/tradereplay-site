@@ -5,21 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TradeReplay — 交易复盘与训练软件</title>
   <meta name="description" content="TradeReplay 有两个版本：外汇期货版做外汇、贵金属、国内期货和加密货币的复盘训练；股票版做沪深 A 股的盘后复盘、条件选股和逐笔回放。">
-  <meta name="theme-color" content="#070b13">
+  <meta name="theme-color" content="#05070c">
   <meta property="og:title" content="TradeReplay — 交易复盘与训练软件">
   <meta property="og:description" content="外汇期货版和股票版，两套独立的桌面软件，一个账号通用。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tradereplay.dev/">
   <link rel="icon" href="assets/brand/logo-dark.svg">
   <script src="scripts/editions.js?v=20261019-1"></script>
+  <script src="scripts/site-content.generated.js" defer></script>
+  <script src="scripts/site-content-runtime.js" defer></script>
+  <script src="scripts/chooser.js?v=20261019-1" defer></script>
   <script src="scripts/account-link.js?v=20261015-2" defer></script>
   <script src="scripts/site-analytics.js?v=20260730-1" defer></script>
   <link rel="stylesheet" href="styles/theme.css?v=20261015-login8">
   <link rel="stylesheet" href="styles/editions.css?v=20261019-1">
 </head>
 <body class="chooser-page">
-  <div class="chooser-shell">
-    <header class="chooser-wrap chooser-header">
+  <div class="split" data-split>
+    <a class="split-side is-futures" href="futures.html" tabindex="-1" aria-hidden="true" data-split-side="futures"><canvas data-split-tape="futures"></canvas></a>
+    <a class="split-side is-stocks" href="stocks.html" tabindex="-1" aria-hidden="true" data-split-side="stocks"><canvas data-split-tape="stocks"></canvas></a>
+    <div class="split-seam" aria-hidden="true"></div>
+
+    <header class="split-header">
       <a class="chooser-brand" href="index.html" aria-label="TradeReplay 首页">
         <img src="assets/brand/logo-dark.svg" width="30" height="30" alt="">
         <span>TradeReplay</span>
@@ -31,57 +38,44 @@
       </nav>
     </header>
 
-    <main class="chooser-wrap" id="main">
-      <div class="chooser-intro">
-        <p class="chooser-eyebrow">交易复盘与训练 · 桌面软件</p>
+    <main class="split-main" id="main">
+      <div class="split-title">
         <h1>你交易哪个市场？</h1>
-        <p>两个版本是两套独立的软件。一个账号两边都能登录，会员分开购买。</p>
+        <p>两套独立的桌面软件，一个账号两边通用</p>
       </div>
 
-      <div class="chooser-cards">
-        <a class="chooser-card is-futures" href="futures.html" data-edition-card="futures">
-          <div class="chooser-card-top">
-            <span>外汇 · 贵金属 · 国内期货 · 加密货币</span>
-            <span class="chooser-state"><i style="background: #35c49a; box-shadow: 0 0 8px rgba(53, 196, 154, 0.8);"></i>v1.58.0 已发布</span>
-            <span class="chooser-last">上次浏览</span>
-          </div>
-          <h2>TradeReplay<span class="chooser-edition">外汇期货版</span></h2>
-          <p class="chooser-lede">把盘感练成交易系统。</p>
-          <ul class="chooser-facts">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>127 个品种，其中 82 个国内期货</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>交易系统、策略扫描、自动回测</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>导入 MT4、MT5、期货监控中心账单</li>
-          </ul>
-          <span class="chooser-go">进入外汇期货版<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <div class="chooser-shot">
-            <img src="assets/product/hero-screen-static.png" width="3454" height="2156" alt="外汇期货版的训练界面：多周期 K 线回放和下单面板" loading="eager">
-          </div>
-        </a>
+      <section class="split-copy is-futures" data-edition-card="futures" aria-labelledby="split-futures-title">
+        <p class="split-kicker"><span>外汇 · 贵金属 · 国内期货 · 加密货币</span><span class="split-last">上次浏览</span></p>
+        <h2 id="split-futures-title">外汇<br>期货版</h2>
+        <p class="split-lede">把盘感练成交易系统。</p>
+        <ul class="split-facts">
+          <li>127 个品种，其中 82 个国内期货</li>
+          <li>交易系统、策略扫描、自动回测</li>
+          <li>导入 MT4、MT5、期货监控中心账单</li>
+        </ul>
+        <div class="split-actions">
+          <a class="split-go is-futures" href="futures.html" data-split-side="futures">进入外汇期货版<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <span class="split-state"><i class="is-live"></i><span data-content-text="release.displayVersion">v1.58.0</span> 已发布</span>
+        </div>
+      </section>
 
-        <a class="chooser-card is-stocks" href="stocks.html" data-edition-card="stocks">
-          <div class="chooser-card-top">
-            <span>沪深 A 股 · 全市场</span>
-            <span class="chooser-state"><i style="background: #7b85f4; box-shadow: 0 0 8px rgba(123, 133, 244, 0.9);"></i>内测中</span>
-            <span class="chooser-last">上次浏览</span>
-          </div>
-          <h2>TradeReplay<span class="chooser-edition">股票版</span></h2>
-          <p class="chooser-lede">收盘后，把今天复盘清楚。</p>
-          <ul class="chooser-facts">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>盘后看板：涨停、炸板、连板梯队、情绪温度</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>条件选股，先看过去的次日表现</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10"/></svg>逐笔五档回放和个股盲练</li>
-          </ul>
-          <span class="chooser-go">进入股票版<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <div class="chooser-shot">
-            <img src="assets/stocks/stocks-today.webp" width="2160" height="1353" alt="股票版的今日看板：大盘 K 线、情绪温度和涨停统计" loading="eager">
-          </div>
-        </a>
-      </div>
-
-      <p class="chooser-hint">外汇、贵金属、国内期货和加密货币，选<b>外汇期货版</b>；沪深 A 股，选<b>股票版</b>。</p>
+      <section class="split-copy is-stocks" data-edition-card="stocks" aria-labelledby="split-stocks-title">
+        <p class="split-kicker"><span>沪深 A 股 · 全市场</span><span class="split-last">上次浏览</span></p>
+        <h2 id="split-stocks-title">A 股<br>股票版</h2>
+        <p class="split-lede">收盘后，把今天复盘清楚。</p>
+        <ul class="split-facts">
+          <li>盘后看板：涨停、炸板、连板梯队</li>
+          <li>条件选股，先看过去的次日表现</li>
+          <li>逐笔五档回放和个股盲练</li>
+        </ul>
+        <div class="split-actions">
+          <a class="split-go is-stocks" href="stocks.html" data-split-side="stocks">进入股票版<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <span class="split-state"><i class="is-beta"></i>内测中</span>
+        </div>
+      </section>
     </main>
 
-    <footer class="chooser-wrap chooser-footer">
+    <footer class="split-footer">
       <span>© 2026 TradeReplay</span>
       <a href="changelog.html?lang=zh">更新日志</a>
       <a href="privacy.html">隐私政策</a>
