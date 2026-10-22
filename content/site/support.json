@@ -68,6 +68,13 @@
         "url": "https://www.bilibili.com/video/BV15BuR6MEFE/",
         "cover": "assets/tutorials/tradereplay-02.webp",
         "duration": "18:37"
+      },
+      {
+        "title": "快速上手：图表进阶操作及复盘维度｜TradeReplay 03",
+        "shortTitle": "图表进阶与复盘维度",
+        "url": "https://www.bilibili.com/video/BV15WnE6wEFC/",
+        "cover": "assets/tutorials/tradereplay-03.webp",
+        "duration": "22:48"
       }
     ]
   }
