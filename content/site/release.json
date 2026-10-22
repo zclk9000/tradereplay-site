@@ -1,15 +1,15 @@
 {
-  "version": "1.59.0",
-  "displayVersion": "v1.59.0",
+  "version": "1.59.1",
+  "displayVersion": "v1.59.1",
   "date": "2026-10-22",
   "downloadIntro": {
-    "zh": "Mac 版已回退至 v1.58.0，Windows 版当前为 v1.59.0。请选择与你的电脑匹配的安装包。",
-    "en": "The Mac download has reverted to v1.58.0. Windows remains v1.59.0. Choose the installer that matches your computer."
+    "zh": "Windows 版已更新至 v1.59.1，Mac 版当前为 v1.58.0。请选择与你的电脑匹配的安装包。",
+    "en": "Windows is now v1.59.1; the current Mac release is v1.58.0. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.0-Setup.exe",
-    "fileName": "TradeReplay-1.59.0-Setup.exe",
-    "installerLabel": ".exe · v1.59.0",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.1-Setup.exe",
+    "fileName": "TradeReplay-1.59.1-Setup.exe",
+    "installerLabel": ".exe · v1.59.1",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -77,6 +77,11 @@
       "type": "improved",
       "zh": "其他：跳转的时间超出本训练的数据范围时会直接说明，并可以补充更早的历史；期货下载失败时会说明是网络、服务器还是数据校验的问题；价格提醒触发时会响提示音。",
       "en": "Also: a jump time outside the session's data now says so and offers to add earlier history; a failed futures download says whether the network, the server or the data check failed; price alerts play a chime when they fire."
+    },
+    {
+      "type": "fixed",
+      "zh": "修复 1.59.0 中左侧画图栏排版错乱、停靠在图表标题栏的画图属性栏和收藏工具条变成竖排的问题。",
+      "en": "Fixed the drawing toolbars in 1.59.0: the left drawing toolbar was jumbled, and the drawing properties bar and favorites toolbar docked in the chart header stacked into a column."
     },
     {
       "type": "fixed",
