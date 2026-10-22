@@ -1,15 +1,15 @@
 {
-  "version": "1.58.0",
-  "displayVersion": "v1.58.0",
-  "date": "2026-10-18",
+  "version": "1.59.0",
+  "displayVersion": "v1.59.0",
+  "date": "2026-10-22",
   "downloadIntro": {
-    "zh": "当前版本 v1.58.0，选择与你的电脑匹配的安装包。",
-    "en": "The current release is v1.58.0. Choose the installer that matches your computer."
+    "zh": "Windows 版已更新至 v1.59.0，Mac 版当前为 v1.58.0。请选择与你的电脑匹配的安装包。",
+    "en": "Windows is now v1.59.0; the current Mac release is v1.58.0. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.58.0-Setup.exe",
-    "fileName": "TradeReplay-1.58.0-Setup.exe",
-    "installerLabel": ".exe · v1.58.0",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.0-Setup.exe",
+    "fileName": "TradeReplay-1.59.0-Setup.exe",
+    "installerLabel": ".exe · v1.59.0",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -35,53 +35,68 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "支持 Pine Script：v5/v6 直接运行，v1–v4 的旧写法会自动转换。指标脚本粘贴到「指标」区，策略脚本粘贴到「回测」区。支持标签、线段、方框、表格和渐变填充，支持读取同品种其他周期的数据、import 自己保存的 Pine 库。脚本设置按 TradingView 的方式排布，有分组、同行、勾选框、颜色和提示说明。报错提示是中文，脚本运行出错时，图例上会标出出错的行。脚本列表会标明语言：Pine、通达信或 JS。",
-      "en": "Pine Script support: v5/v6 scripts run as they are, and older v1–v4 syntax is converted automatically. Paste indicator scripts in Indicators and strategy scripts in Backtest. Labels, lines, boxes, tables and gradient fills are drawn, and scripts can read other timeframes of the same symbol and import Pine libraries you have saved. Script settings are laid out as on TradingView, with groups, inline rows, checkboxes, colours and tooltips. Error messages appear in the app's language, and a script that fails while running marks the failing line in its legend. Script lists show each script's language: Pine, TDX or JS."
+      "zh": "MT5 模拟盘交易（测试）：在「账户」里安装新版 EA，并把它挂到 MT5 的图表上。之后到「账户 → 实盘」点这个账户的播放键，就能在复盘图表上用 MT5 模拟账户下单、平仓、改止损止盈。持仓、历史和报价都来自 MT5，图表可以往回翻到 MT5 里最早的 K 线。目前只能连接模拟账户。",
+      "en": "MT5 demo trading (beta): install the new EA from Accounts and attach it to a chart in MT5. Then press the play button on that account under Accounts → Live to place orders, close positions and move stops and targets on the replay chart with your MT5 demo account. Positions, history and quotes come from MT5, and the chart scrolls back as far as MT5 has bars. Only demo accounts can be connected for now."
     },
     {
       "type": "new",
-      "zh": "Pine 策略回测：在「回测」区可以和通达信策略一样回测，结果存成回测存档。手数、手续费、隔夜利息和强平都按软件里的账户规则算；K 线内谁先成交，可以选按 1 分钟 K 线或 Tick 来推算。",
-      "en": "Pine strategy backtests: backtest Pine strategies in Backtest just like TDX strategies and save the results as backtest sessions. Position size, commissions, swap and stop-outs follow the app's account rules, and fills inside a bar can be worked out from 1-minute bars or ticks."
+      "zh": "勾选持仓再平仓：持仓列表每行前面有勾选框。勾了几笔，下单面板的平仓就只平这几笔；全选就是平整个账户。持仓表可以点表头排序。底部栏在「交易」页显示浮动盈亏合计和每个品种的盈亏，「历史」页还是原来的统计。",
+      "en": "Tick positions to close them: each row in the positions list has a tick box, and the order panel's close actions then close only the ticked positions; ticking them all closes the whole account. Click a column header to sort the list. On the Trade tab the bar below the list shows the total floating P/L and each symbol's P/L; on the History tab it keeps the trade statistics."
     },
     {
       "type": "new",
-      "zh": "图表窗格可以拖到其他显示器：按住窗格标题栏的空白处拖出主窗口，松手的那块屏幕上就会打开一个图表窗口，拖回主窗口就还原。所有窗口共用回放进度、账户和画线，合计最多 18 个窗格（每个窗口 9 个），下次启动时窗口回到原来的位置。另外新增 3+2、4+3、4×2 三种布局。",
-      "en": "Move chart panes to another monitor: drag a pane by the empty part of its header out of the main window, and a chart window opens on the screen where you let go; drag it back to return it. All windows share the replay position, account and drawings, with up to 18 panes in total (9 per window), and the windows reopen where you left them. New 3+2, 4+3 and 4×2 layouts."
+      "zh": "随机跳转：在「跳转到时间」里点骰子，会随机跳到一个有行情的时间。选中某个关键市场时刻时，会随机跳到某一天的这个时刻。有持仓或挂单时不能用。",
+      "en": "Random jump: click the dice in Jump to time to land on a random time with market data. With a key market time selected, it lands on that moment on a random day. Not available while positions or pending orders are open."
     },
     {
       "type": "new",
-      "zh": "复盘地图的交易列表旁新增「损益」页，显示累计盈亏曲线，以及每笔交易的最大浮盈和最大浮亏。鼠标悬停可以看这笔的明细，点击就在图上定位到这笔交易。",
-      "en": "A P&L tab beside the replay map's trade list shows the cumulative P&L curve and each trade's run-up and drawdown. Hover a trade for its details, or click it to find it on the chart."
-    },
-    {
-      "type": "new",
-      "zh": "MACD 新增「样式」和「柱子数值」两项设置。样式可选 TradingView（默认）或经典；柱子数值可选 2×(DIF−DEA)（默认，和文华、通达信一致）或 DIF−DEA。已有的 MACD 会换成新样式，但自己改过的颜色会保留；想要原来的样子，选「经典」即可。",
-      "en": "MACD gains Style and Histogram value settings. Style is TradingView (the default) or Classic; the histogram value is 2×(DIF−DEA) (the default, as in Wenhua and TDX) or DIF−DEA. Existing MACDs switch to the new style but keep any colours you changed; choose Classic for the old look."
+      "zh": "主图截图：图表工具栏的相机按钮（Alt+S）可以复制或保存当前图表。",
+      "en": "Chart screenshots: the camera button in the chart toolbar (Alt+S) copies or saves the chart."
     },
     {
       "type": "improved",
-      "zh": "图表外观向 TradingView 看齐：网格改成实线，时间刻度更密，网格和时间刻度一直延伸到最后一根 K 线右侧的空白处。日、周、月分隔线改成蓝色短虚线，画在两个周期之间、K 线下方，不再压住 K 线。",
-      "en": "Charts look more like TradingView: solid grid lines, denser time labels, and grid lines and time labels that continue into the empty space right of the last bar. Day, week and month separators are short blue dashes drawn between periods and under the candles, so they no longer cover them."
+      "zh": "下单面板：卖出、买入按钮直接显示卖价和买价，标题右边显示点差，期货显示相对昨收的涨跌。平仓菜单默认只平当前品种；「保本」会把手续费和隔夜费算进去。",
+      "en": "Order panel: the Sell and Buy buttons show the bid and ask, and the header shows the spread, or for futures the change since the previous close. The close menu acts on the current symbol by default, and Breakeven allows for commission and swap."
     },
     {
       "type": "improved",
-      "zh": "画图属性栏可以直接改矩形、圆形等形状的填充颜色和透明度。模板菜单可以另存模板，也能直接套用已保存的模板。左侧画图栏的删除按钮：图上只有画线或只有指标时直接清除，两种都有时先问清除哪一种。",
-      "en": "Change the fill colour and opacity of rectangles, circles and other shapes right from the drawing properties bar. Its template menu can save a new template and apply saved ones directly. The bin on the drawing toolbar clears drawings or indicators straight away when the chart has only one kind, and asks which when it has both."
+      "zh": "指标：VWAP 默认每个交易日重新计算；MACD 可以选计算来源。",
+      "en": "Indicators: VWAP restarts every trading day by default, and MACD can be calculated from a source of your choice."
     },
     {
       "type": "improved",
-      "zh": "开多个窗格时，十字光标所在的价格会同时显示在其他窗格的价格轴上；多个窗格同时回放和画线时也更流畅。",
-      "en": "With several panes open, the crosshair price also shows on the other panes' price axes, and replaying and drawing across many panes is smoother."
+      "zh": "回测：跑完后显示主要统计、资金曲线和最近几笔交易，可以直接回去改设置再跑。",
+      "en": "Backtests: a finished run shows the key statistics, the equity curve and the last few trades, and you can go straight back to change the settings and run again."
     },
     {
       "type": "improved",
-      "zh": "「图表显示」菜单新增「时间线（交易时段 / 自定义时刻）」开关。",
-      "en": "A Time lines (sessions / your moments) switch in the Chart display menu."
+      "zh": "登录与安装：首次启动的引导会先指出在哪里登录、在哪里填兑换码。账号页把邮箱、验证码、兑换码分成三步。网络不稳时，登录不会白白用掉验证码。Windows 安装程序改为中文，可以选安装位置和是否建快捷方式。",
+      "en": "Sign-in and setup: the first-run tour starts by showing where to sign in and where a voucher goes. The account page lays out email, code and voucher as three steps, and signing in on a shaky connection no longer uses up the code. The Windows installer is in Chinese and lets you choose the install folder and shortcuts."
+    },
+    {
+      "type": "improved",
+      "zh": "其他：跳转的时间超出本训练的数据范围时会直接说明，并可以补充更早的历史；期货下载失败时会说明是网络、服务器还是数据校验的问题；价格提醒触发时会响提示音。",
+      "en": "Also: a jump time outside the session's data now says so and offers to add earlier history; a failed futures download says whether the network, the server or the data check failed; price alerts play a chime when they fire."
     },
     {
       "type": "fixed",
-      "zh": "修复指标副图重启后的几处问题：拖动调整过的高度、「保存为自定义」之后的零轴线不再丢失，隐藏的 MACD 柱子不会再冒出来；在指标设置里双击复选框，也不会再把窗格放大。",
-      "en": "Fixed indicator subplots after a restart: resized subplot heights and the zero line of an indicator saved with Save as custom are kept, and a hidden MACD histogram stays hidden. Double-clicking a checkbox in indicator settings no longer maximises the pane."
+      "zh": "指标：同一个 MACD 公式，不管从图表还是从指标库保存，都会显示零轴线；DPO、ROC、MTM、TRIX、BIAS、DMA 补上了零轴虚线。价格轴数字左边的小短横默认去掉，不会再被看成负号（在设置里可以恢复）。",
+      "en": "Indicators: a MACD formula shows its zero line whether it was saved from the chart or from the indicator library, and DPO, ROC, MTM, TRIX, BIAS and DMA get a dashed zero line. The short dash beside price-axis labels, easy to read as a minus sign, is off by default (Settings can bring it back)."
+    },
+    {
+      "type": "fixed",
+      "zh": "图表：加了自定义周期后，周期栏高亮的周期和图表实际显示的不一致；多窗格时十字光标移到最后一根 K 线右边，其他窗格会停住不动；完全缩小时，右侧空白处的网格会消失。",
+      "en": "Charts: after adding a custom period, the period toolbar could light a different period from the one shown; with several panes, the other panes froze when the crosshair moved past the last bar; zoomed fully out, the grid vanished from the empty space on the right."
+    },
+    {
+      "type": "fixed",
+      "zh": "Pine：只画图的脚本（最后一行是 plot(na)）画的图形不显示；部分标签的位置比 TradingView 偏右一根 K 线。",
+      "en": "Pine: drawing-only scripts (ending in plot(na)) drew nothing, and some labels sat one bar to the right of where TradingView puts them."
+    },
+    {
+      "type": "fixed",
+      "zh": "MT 日志同步（需要更新 EA）：分批平仓的单子只同步了第一批；EA 每分钟重发全部历史，导致账户页一直转圈。",
+      "en": "MT journal sync (needs the updated EA): a position closed in parts synced only its first part, and the EA resent the whole history every minute, leaving the account page spinning."
     }
   ]
 }
