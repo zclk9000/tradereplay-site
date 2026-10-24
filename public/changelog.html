@@ -228,14 +228,50 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.59.1 Mac and Windows (replaces v1.59.0) -->
+    <!-- v1.59.20 Windows -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.59.1</span>
-        <span class="date" data-content-text="release.date">2026-10-22</span>
-        <span class="latest"><span class="lang-zh">最新</span><span class="lang-en">Latest</span></span>
+        <span class="version" data-content-text="release.displayVersion">v1.59.20</span>
+        <span class="date" data-content-text="release.date">2026-10-24</span>
+        <span class="latest"><span class="lang-zh">最新 · Windows</span><span class="lang-en">Latest · Windows</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>MT4 模拟盘交易（测试）：和 MT5 一样，在「账户 → 实盘」打开 MT4 账户，就能在复盘图表上下单、平仓、改止损止盈。需要在 MT4 里装新版 EA，勾选「允许 DLL 导入」时连接更快。目前只能连接模拟账户。</span></li>
+        <li><span class="tag tag-new">新增</span><span>K 线编号工具（Alt+N）：点一根 K 线，之后的 K 线会按间隔编号。可以设置起始数字、间隔、位置、字号和颜色，也能单独补标某一根。</span></li>
+        <li><span class="tag tag-new">新增</span><span>历史交易聚光：在「历史」列表或复盘地图里选中一笔交易，图表其余部分会变暗，从进场到出场逐根展开并画出连线，标出进出场价格和净盈亏。再点一次就取消。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>MT 实盘（需要更新 EA）：报价列表里所有品种都有实时报价和当日涨跌，重启软件后也保留。实盘图表上可以用价格提醒和 K 线倒计时，每个品种按券商的小数位显示，切换账户时不再带着上一个账户的报价和持仓。MT 数据分成「MT4/MT5」（自己下载的）和「自动缓存」两页，新建训练时可以直接选 MT 账户的数据。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>副图指标的数值标签按大小整齐排开，不再挤在一起。可以在「设置 → 图表」里关掉，只看图例里的数值。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>Windows 上的下拉菜单打开时不再闪白。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>盲测存档揭晓前，历史、统计、日志、归集、CSV 导出和 AI 教练里都不显示日期。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>其他：统计不到 30 笔交易时不下结论，没有亏损单时盈利因子显示 ∞；止损移过开仓价后，图上显示锁定的盈利，金额小于 100 时显示到分；下单面板拉窄时，按钮和金额会自动缩短；期货月合约按交割月排序。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>多窗格时，十字光标同步、持仓线和挂单线会画到其他品种的窗格上（比如金价的线出现在比特币窗格里）。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>交易：最小手数不是步长的整数倍时，按比例平仓没反应；SPX500 等股指的挂单价被取整到整数点；高倍速回放时，止盈成交价偏离设定价；在持仓行里输入方向不对的止损止盈，会立刻平仓。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>Windows：点过确认弹窗后，输入框打不进字；用 Win+Shift+S 截图后，趋势线一直被锁在 0/45/90 度。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>网络不稳时偶尔被登出，导致外汇和加密货币数据下载失败；统计诊断报告的 AI 点评总是生成失败。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>MT4 demo trading (beta): as with MT5, open an MT4 account under Accounts → Live to place orders, close positions and move stops and targets on the replay chart. Install the new EA in MT4; ticking "Allow DLL imports" makes the connection faster. Only demo accounts can be connected for now.</span></li>
+        <li><span class="tag tag-new">New</span><span>Bar count tool (Alt+N): click a bar and the bars after it are numbered at an interval. Set the start number, interval, placement, font size and colour, or mark a single bar on its own.</span></li>
+        <li><span class="tag tag-new">New</span><span>Trade spotlight: select a trade in the History list or on the replay map and the rest of the chart dims while the trade unfolds bar by bar from entry to exit, with its connector, entry and exit prices and net P/L. Click it again to clear it.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>MT live trading (update the EA): every symbol in the quote list has a live price and day change, kept across app restarts. Price alerts and the candle countdown work on the live chart, each symbol shows its broker's decimals, and switching accounts no longer carries over the previous account's quotes and positions. MT data is split into MT4/MT5 (your downloads) and Automatic cache, and New training can start from an MT account's data.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Indicator subplot value labels line up in value order instead of piling on top of each other. Turn them off in Settings → Chart to read the values in the legend only.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Dropdowns on Windows no longer flash white when they open.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Until a blind session is revealed, its dates stay hidden in History, Statistics, the journal, aggregated trades, CSV exports and the AI coach.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Also: Statistics gives no verdict below 30 trades and shows ∞ for a profit factor without losing trades; a stop moved past the entry shows the gain it locks in, with cents below 100; buttons and amounts shorten in a narrow order panel; futures month contracts sort by delivery month.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>With several panes open, crosshair sync and position and order lines no longer spill onto panes of other instruments (gold's lines on a bitcoin pane).</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Trading: percentage closes did nothing when the minimum lot was not a whole number of steps; SPX500 and other indices rounded pending prices to whole points; take-profits filled away from their level at high replay speeds; a stop or target typed on the wrong side of the market in a position row closed the position at once.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Windows: fields could not take typing after a confirmation dialog closed; after a Win+Shift+S screenshot, trend lines stayed locked to 0/45/90 degrees.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>An unstable network could sign the app out and make FX and crypto downloads fail; the AI comments in the statistics diagnosis report always failed to generate.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.59.1 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.59.1</span>
+        <span class="date">2026-10-22</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>MT5 模拟盘交易（测试）：在「账户」里安装新版 EA，并把它挂到 MT5 的图表上。之后到「账户 → 实盘」点这个账户的播放键，就能在复盘图表上用 MT5 模拟账户下单、平仓、改止损止盈。持仓、历史和报价都来自 MT5，图表可以往回翻到 MT5 里最早的 K 线。目前只能连接模拟账户。</span></li>
         <li><span class="tag tag-new">新增</span><span>勾选持仓再平仓：持仓列表每行前面有勾选框。勾了几笔，下单面板的平仓就只平这几笔；全选就是平整个账户。持仓表可以点表头排序。底部栏在「交易」页显示浮动盈亏合计和每个品种的盈亏，「历史」页还是原来的统计。</span></li>
         <li><span class="tag tag-new">新增</span><span>随机跳转：在「跳转到时间」里点骰子，会随机跳到一个有行情的时间。选中某个关键市场时刻时，会随机跳到某一天的这个时刻。有持仓或挂单时不能用。</span></li>
@@ -251,7 +287,7 @@
         <li><span class="tag tag-fix">修复</span><span>Pine：只画图的脚本（最后一行是 plot(na)）画的图形不显示；部分标签的位置比 TradingView 偏右一根 K 线。</span></li>
         <li><span class="tag tag-fix">修复</span><span>MT 日志同步（需要更新 EA）：分批平仓的单子只同步了第一批；EA 每分钟重发全部历史，导致账户页一直转圈。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>MT5 demo trading (beta): install the new EA from Accounts and attach it to a chart in MT5. Then press the play button on that account under Accounts → Live to place orders, close positions and move stops and targets on the replay chart with your MT5 demo account. Positions, history and quotes come from MT5, and the chart scrolls back as far as MT5 has bars. Only demo accounts can be connected for now.</span></li>
         <li><span class="tag tag-new">New</span><span>Tick positions to close them: each row in the positions list has a tick box, and the order panel's close actions then close only the ticked positions; ticking them all closes the whole account. Click a column header to sort the list. On the Trade tab the bar below the list shows the total floating P/L and each symbol's P/L; on the History tab it keeps the trade statistics.</span></li>
         <li><span class="tag tag-new">New</span><span>Random jump: click the dice in Jump to time to land on a random time with market data. With a key market time selected, it lands on that moment on a random day. Not available while positions or pending orders are open.</span></li>
