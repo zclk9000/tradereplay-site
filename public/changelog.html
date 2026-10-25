@@ -228,14 +228,50 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.59.20 Mac and Windows -->
+    <!-- v1.59.30 Windows -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.59.20</span>
-        <span class="date" data-content-text="release.date">2026-10-24</span>
-        <span class="latest"><span class="lang-zh">最新 · Mac / Windows</span><span class="lang-en">Latest · Mac / Windows</span></span>
+        <span class="version" data-content-text="release.displayVersion">v1.59.30</span>
+        <span class="date" data-content-text="release.date">2026-10-25</span>
+        <span class="latest"><span class="lang-zh">最新 · Windows</span><span class="lang-en">Latest · Windows</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>在图上下单和管理订单：下单面板可以下限价单和突破单，价格可以在图上点选。盈亏比工具画好后，点入场线右端的标签，就按画的价格下单，可以锁定盈亏比（1:1、2:1 等），也能直接改手数。持仓线和挂单线的标签显示盈亏比和浮动盈亏，带 ✕，可一键平仓或撤单；点标签上的文字，可以直接输入止损止盈点数；价格轴上的价格框也能拖动。十字光标价格标签旁有「+」，可以在这个价位挂单或画水平线。训练里挂单拖过市价，会自动在限价和突破之间切换。</span></li>
+        <li><span class="tag tag-new">新增</span><span>新播放控件：播放、步进按钮和速度框重新设计，点速度可以直接输入倍数。把控件拖出工具栏会变成悬浮卡片，拖回去或双击手柄就归位。原来的样式可以在「设置 → 图表 → 播放控件」里换回。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>盈亏比改成「盈利:亏损」的写法，例如 2.68:1。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>十字线的时间可以跨品种同步（默认打开）：不同品种的窗格会在同一时刻显示阴影带，那一刻休市的窗格画一条蓝线。价格横线仍只在同品种之间同步。不需要时，在「图表显示」菜单里关掉。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>新画线沿用这个工具上次设置的显示周期，并且一定会在当前周期显示。设置窗口打开时停在上次用的页签。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>历史交易聚光：第一次按 Esc 去掉遮罩，方便截图；再按一次取消选中。图表截图也不会带上遮罩。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>粘贴到笔记里的截图保持原图清晰，不再压缩发糊；笔记图片总容量提高到 1 GB。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>窗口较窄时，图表工具栏会把部分工具收进「»」菜单，播放控件不再被下单面板挡住。画图栏的小箭头只在鼠标移上去时出现。最高价标签不再压住 OHLC 和指标图例。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>回测和账单回放图表上，会出现当前训练存档的持仓、挂单和交易连线。在「历史」和回放里查看交易时，图上的订单现在是只读的。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>挂单价、止损或止盈超出涨跌停时，下单面板误报「保证金不足」，从右键菜单挂单则没有任何提示。现在会说明是哪个价格超出了范围。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>MT 实盘：关掉软件一段时间再打开，K 线会出现缺口；服务器切换夏令时后，K 线和交易记录的时间差一小时；时区设为「跟随交易服务器」时，账户信息页会崩溃。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>其他：账单卡片可能打开不含这些交易的行情数据；用拖动的方式画盈亏比工具，止损会丢；在灰掉的按钮上松开鼠标后，图表一直处于按下状态；在 M1 数据上选 15 秒这类周期，会切过去并导致坐标轴错乱。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Place and manage orders on the chart: the order panel takes limit and stop orders, with the price picked on the chart. Draw a risk/reward tool and click the tag at the right end of its entry line to place the order at the drawn prices; lock the reward-to-risk ratio (1:1, 2:1 and so on) or type the lots right there. Position and order line chips show R:R and floating P/L with a ✕ that closes the position or cancels the order; click a chip's words to type stop and target in points, and drag the price boxes on the axis. A + beside the crosshair's price label places an order or a horizontal line at that price. In training, an order dragged past the market switches between limit and stop.</span></li>
+        <li><span class="tag tag-new">New</span><span>New replay controls: redesigned play, step and speed controls, and you can click the speed to type it. Drag the controls off the toolbar to float them as a card; drag them back or double-click the handle to dock them again. The previous style is still available under Settings → Chart → Replay controls.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>In Chinese, 盈亏比 now reads profit to loss, such as 2.68:1.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Crosshair time can sync across instruments (on by default): panes on different instruments show the same moment's band, and a pane whose market was closed then draws a blue line. The price line still syncs only between panes on the same instrument. Turn it off in the Chart display menu.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>A new drawing keeps the timeframes last set for its tool and always shows on the timeframe it is drawn on. The settings dialog opens on the page you used last.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Trade spotlight: the first Escape removes the dimming so the chart is easy to capture, and a second one clears the selection. Chart screenshots never include the dimming.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Screenshots pasted into notes stay sharp instead of being compressed, and note images can now take up to 1 GB in total.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>In a narrow window the chart toolbar moves some tools into a » menu, so the order panel no longer covers the replay controls. The drawing toolbar's small arrows appear only on hover, and the high-price tag no longer covers the OHLC and indicator legends.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Backtest and statement replay charts showed the open training session's positions, orders and trade lines. While reviewing trades in History or a replay, chart orders are now read-only.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>An order price, stop or target outside the daily limit was reported as insufficient margin in the order panel, and orders from the right-click menu failed without a word. Now the message names the price that is out of range.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>MT live: reopening the app after a while left a gap in the bars; after the server's daylight-saving change, bar and trade times were an hour out; the account info page crashed when the time zone followed the trading server.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Also: a statement card could open data that does not hold its trades; a risk/reward tool drawn by dragging lost its stop; releasing the mouse over a greyed-out button left the chart pressed; picking a period like 15 seconds on M1 data switched to it and broke the axis.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.59.20 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.59.20</span>
+        <span class="date">2026-10-24</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>MT4 模拟盘交易（测试）：和 MT5 一样，在「账户 → 实盘」打开 MT4 账户，就能在复盘图表上下单、平仓、改止损止盈。需要在 MT4 里装新版 EA，勾选「允许 DLL 导入」时连接更快。目前只能连接模拟账户。</span></li>
         <li><span class="tag tag-new">新增</span><span>K 线编号工具（Alt+N）：点一根 K 线，之后的 K 线会按间隔编号。可以设置起始数字、间隔、位置、字号和颜色，也能单独补标某一根。</span></li>
         <li><span class="tag tag-new">新增</span><span>历史交易聚光：在「历史」列表或复盘地图里选中一笔交易，图表其余部分会变暗，从进场到出场逐根展开并画出连线，标出进出场价格和净盈亏。再点一次就取消。</span></li>
@@ -249,7 +285,7 @@
         <li><span class="tag tag-fix">修复</span><span>Windows：点过确认弹窗后，输入框打不进字；用 Win+Shift+S 截图后，趋势线一直被锁在 0/45/90 度。</span></li>
         <li><span class="tag tag-fix">修复</span><span>网络不稳时偶尔被登出，导致外汇和加密货币数据下载失败；统计诊断报告的 AI 点评总是生成失败。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>MT4 demo trading (beta): as with MT5, open an MT4 account under Accounts → Live to place orders, close positions and move stops and targets on the replay chart. Install the new EA in MT4; ticking "Allow DLL imports" makes the connection faster. Only demo accounts can be connected for now.</span></li>
         <li><span class="tag tag-new">New</span><span>Bar count tool (Alt+N): click a bar and the bars after it are numbered at an interval. Set the start number, interval, placement, font size and colour, or mark a single bar on its own.</span></li>
         <li><span class="tag tag-new">New</span><span>Trade spotlight: select a trade in the History list or on the replay map and the rest of the chart dims while the trade unfolds bar by bar from entry to exit, with its connector, entry and exit prices and net P/L. Click it again to clear it.</span></li>
