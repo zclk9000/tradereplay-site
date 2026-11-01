@@ -228,10 +228,10 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.59.50 Windows -->
+    <!-- v1.59.51 Windows -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.59.50</span>
+        <span class="version" data-content-text="release.displayVersion">v1.59.51</span>
         <span class="date" data-content-text="release.date">2026-10-31</span>
         <span class="latest"><span class="lang-zh">最新 · Windows</span><span class="lang-en">Latest · Windows</span></span>
       </div>
@@ -242,6 +242,7 @@
         <li><span class="tag tag-improve">优化</span><span>快捷键调整：交易与历史列表由 1 改为 Q，下单面板由 Q 改为 A，历史由 A 改为 Z。自己改过的快捷键不受影响。</span></li>
         <li><span class="tag tag-improve">优化</span><span>自定义指标卡死保护：Pine 脚本一次计算超过 3 秒、JS 超过 2 秒就停下，图例显示「运行超时」；上次因指标卡死关掉的，下次启动先暂停该存档的自定义指标，点一下即可恢复。</span></li>
         <li><span class="tag tag-improve">优化</span><span>画线的显示周期：每次选择都完整替换上一次的设置；在别的周期上设的范围会写明是哪个周期。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>外汇、贵金属、指数、加密货币的训练存档，每单最多只能下 100 手：资金大的存档「可开」显示几千手，手数框却被压回 100；合并持仓里超过 100 手的分批平仓也没有反应。现在只受「可开」限制。</span></li>
         <li><span class="tag tag-fix">修复</span><span>强平：K 线回放时，爆仓按价格穿过强平线的位置平仓，不再按整根 K 线的最高或最低价平，账户不会再被打成负数。</span></li>
         <li><span class="tag tag-fix">修复</span><span>按名义本金百分比收手续费的外汇、加密货币存档，当天平仓会多收巨额手续费。</span></li>
         <li><span class="tag tag-fix">修复</span><span>把止盈、止损线拖到还没越过现价的位置，松手后会被设在现价外一跳、下一根就触发；现在保持原来的设置不变。</span></li>
@@ -254,6 +255,7 @@
         <li><span class="tag tag-improve">Improved</span><span>Hotkeys moved: trades and history list from 1 to Q, order panel from Q to A, History from A to Z. Hotkeys you customized stay as they are.</span></li>
         <li><span class="tag tag-improve">Improved</span><span>Custom indicator hang guard: a Pine script stops after 3 seconds of one calculation and a JS indicator after 2 seconds, and the legend shows Timed out. If the app was closed because an indicator hung, that session's custom indicators start paused next time and resume with one click.</span></li>
         <li><span class="tag tag-improve">Improved</span><span>Drawing visibility by timeframe: each choice fully replaces the previous one, and a range set on another timeframe names that timeframe.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>FX, metals, index and crypto training sessions capped each order at 100 lots: a large account showed thousands under Max lots, yet the lot box snapped back to 100, and a partial close of more than 100 lots from a merged position did nothing. Free margin is now the only limit.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Stop-out: during bar replay a margin call now closes where price crosses the stop-out line, not at the bar's high or low, so the account no longer goes negative.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>FX and crypto sessions with a percentage-of-notional fee were overcharged when a position was closed the same day.</span></li>
         <li><span class="tag tag-fix">Fixed</span><span>Dragging a take-profit or stop-loss line short of the current price set it one tick past the market, so it triggered on the next bar. It now keeps the previous setting.</span></li>

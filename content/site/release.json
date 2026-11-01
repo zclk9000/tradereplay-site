@@ -1,15 +1,15 @@
 {
-  "version": "1.59.50",
-  "displayVersion": "v1.59.50",
+  "version": "1.59.51",
+  "displayVersion": "v1.59.51",
   "date": "2026-10-31",
   "downloadIntro": {
-    "zh": "Windows 版已更新至 v1.59.50，Mac 版当前为 v1.59.30。请选择与你的电脑匹配的安装包。",
-    "en": "Windows is now v1.59.50; the current Mac release is v1.59.30. Choose the installer that matches your computer."
+    "zh": "Windows 版已更新至 v1.59.51，Mac 版当前为 v1.59.30。请选择与你的电脑匹配的安装包。",
+    "en": "Windows is now v1.59.51; the current Mac release is v1.59.30. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.50-Setup.exe",
-    "fileName": "TradeReplay-1.59.50-Setup.exe",
-    "installerLabel": ".exe · v1.59.50",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.51-Setup.exe",
+    "fileName": "TradeReplay-1.59.51-Setup.exe",
+    "installerLabel": ".exe · v1.59.51",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -62,6 +62,11 @@
       "type": "improved",
       "zh": "画线的显示周期：每次选择都完整替换上一次的设置；在别的周期上设的范围会写明是哪个周期。",
       "en": "Drawing visibility by timeframe: each choice fully replaces the previous one, and a range set on another timeframe names that timeframe."
+    },
+    {
+      "type": "fixed",
+      "zh": "外汇、贵金属、指数、加密货币的训练存档，每单最多只能下 100 手：资金大的存档「可开」显示几千手，手数框却被压回 100；合并持仓里超过 100 手的分批平仓也没有反应。现在只受「可开」限制。",
+      "en": "FX, metals, index and crypto training sessions capped each order at 100 lots: a large account showed thousands under Max lots, yet the lot box snapped back to 100, and a partial close of more than 100 lots from a merged position did nothing. Free margin is now the only limit."
     },
     {
       "type": "fixed",
