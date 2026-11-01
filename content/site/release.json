@@ -1,15 +1,15 @@
 {
-  "version": "1.59.30",
-  "displayVersion": "v1.59.30",
-  "date": "2026-10-26",
+  "version": "1.59.50",
+  "displayVersion": "v1.59.50",
+  "date": "2026-10-31",
   "downloadIntro": {
-    "zh": "Mac 和 Windows 版均已更新至 v1.59.30。请选择与你的电脑匹配的安装包。",
-    "en": "Mac and Windows are now v1.59.30. Choose the installer that matches your computer."
+    "zh": "Windows 版已更新至 v1.59.50，Mac 版当前为 v1.59.30。请选择与你的电脑匹配的安装包。",
+    "en": "Windows is now v1.59.50; the current Mac release is v1.59.30. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.30-Setup.exe",
-    "fileName": "TradeReplay-1.59.30-Setup.exe",
-    "installerLabel": ".exe · v1.59.30",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.50-Setup.exe",
+    "fileName": "TradeReplay-1.59.50-Setup.exe",
+    "installerLabel": ".exe · v1.59.50",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -35,63 +35,53 @@
   "highlights": [
     {
       "type": "new",
-      "zh": "在图上下单和管理订单：下单面板可以下限价单和突破单，价格可以在图上点选。盈亏比工具画好后，点入场线右端的标签，就按画的价格下单，可以锁定盈亏比（1:1、2:1 等），也能直接改手数。持仓线和挂单线的标签显示盈亏比和浮动盈亏，带 ✕，可一键平仓或撤单；点标签上的文字，可以直接输入止损止盈点数；价格轴上的价格框也能拖动。十字光标价格标签旁有「+」，可以在这个价位挂单或画水平线。训练里挂单拖过市价，会自动在限价和突破之间切换。",
-      "en": "Place and manage orders on the chart: the order panel takes limit and stop orders, with the price picked on the chart. Draw a risk/reward tool and click the tag at the right end of its entry line to place the order at the drawn prices; lock the reward-to-risk ratio (1:1, 2:1 and so on) or type the lots right there. Position and order line chips show R:R and floating P/L with a ✕ that closes the position or cancels the order; click a chip's words to type stop and target in points, and drag the price boxes on the axis. A + beside the crosshair's price label places an order or a horizontal line at that price. In training, an order dragged past the market switches between limit and stop."
+      "zh": "画线警报、碰线开仓、碰线平仓：在趋势线、射线、水平线等画线上右键，选「添加警报…（Alt+A）」「碰线开仓」或「碰线平仓」，在点击处设置。价格碰到线时按设定提醒并暂停、开仓或平仓；线尾的小标记可以暂停、修改或删除；回放倒退到触发之前会自动恢复。目前用于训练图表上本品种的窗格。",
+      "en": "Line alerts and line-touch orders: right-click a trend line, ray, horizontal line or similar drawing and choose Add alert… (Alt+A), Open on touch or Close on touch, then set it up where you clicked. When price touches the line it alerts and pauses, opens or closes as set. A small mark at the line's end lets you pause, edit or delete it, and stepping replay back before the trigger restores it. Available on the training chart's own-instrument panes."
     },
     {
       "type": "new",
-      "zh": "新播放控件：播放、步进按钮和速度框重新设计，点速度可以直接输入倍数。把控件拖出工具栏会变成悬浮卡片，拖回去或双击手柄就归位。原来的样式可以在「设置 → 图表 → 播放控件」里换回。",
-      "en": "New replay controls: redesigned play, step and speed controls, and you can click the speed to type it. Drag the controls off the toolbar to float them as a card; drag them back or double-click the handle to dock them again. The previous style is still available under Settings → Chart → Replay controls."
+      "zh": "国内期货下单板：期货训练的下单面板改为对手价、排队价、最新价、市价、指定价、条件六种价格方式，可设超价跳数，显示模拟的卖一、买一，「高级」里可设追单。平多、平空也按所选价格方式成交，挂出的平仓单会冻结手数；持仓表增加「可平」列，持仓分今、昨显示。上期所、能源中心默认先平今，其他交易所先开先平。",
+      "en": "China futures order board: the futures training order panel now offers six price modes (opposite, queue, last, market, specified and conditional), with extra ticks, a simulated best bid and ask, and order chasing under Advanced. Close Long and Close Short follow the chosen price mode, and resting close orders lock their lots. Positions gain a Closable column and show today's and earlier lots. SHFE and INE close today's lots first by default; other exchanges close the oldest first."
+    },
+    {
+      "type": "new",
+      "zh": "数字键 1–9 按工具栏上的顺序切换周期。",
+      "en": "Keys 1–9 switch timeframes in toolbar order."
     },
     {
       "type": "improved",
-      "zh": "盈亏比改成「盈利:亏损」的写法，例如 2.68:1。",
-      "en": "In Chinese, 盈亏比 now reads profit to loss, such as 2.68:1."
+      "zh": "快捷键调整：交易与历史列表由 1 改为 Q，下单面板由 Q 改为 A，历史由 A 改为 Z。自己改过的快捷键不受影响。",
+      "en": "Hotkeys moved: trades and history list from 1 to Q, order panel from Q to A, History from A to Z. Hotkeys you customized stay as they are."
     },
     {
       "type": "improved",
-      "zh": "十字线的时间可以跨品种同步（默认打开）：不同品种的窗格会在同一时刻显示阴影带，那一刻休市的窗格画一条蓝线。价格横线仍只在同品种之间同步。不需要时，在「图表显示」菜单里关掉。",
-      "en": "Crosshair time can sync across instruments (on by default): panes on different instruments show the same moment's band, and a pane whose market was closed then draws a blue line. The price line still syncs only between panes on the same instrument. Turn it off in the Chart display menu."
+      "zh": "自定义指标卡死保护：Pine 脚本一次计算超过 3 秒、JS 超过 2 秒就停下，图例显示「运行超时」；上次因指标卡死关掉的，下次启动先暂停该存档的自定义指标，点一下即可恢复。",
+      "en": "Custom indicator hang guard: a Pine script stops after 3 seconds of one calculation and a JS indicator after 2 seconds, and the legend shows Timed out. If the app was closed because an indicator hung, that session's custom indicators start paused next time and resume with one click."
     },
     {
       "type": "improved",
-      "zh": "新画线沿用这个工具上次设置的显示周期，并且一定会在当前周期显示。设置窗口打开时停在上次用的页签。",
-      "en": "A new drawing keeps the timeframes last set for its tool and always shows on the timeframe it is drawn on. The settings dialog opens on the page you used last."
-    },
-    {
-      "type": "improved",
-      "zh": "历史交易聚光：第一次按 Esc 去掉遮罩，方便截图；再按一次取消选中。图表截图也不会带上遮罩。",
-      "en": "Trade spotlight: the first Escape removes the dimming so the chart is easy to capture, and a second one clears the selection. Chart screenshots never include the dimming."
-    },
-    {
-      "type": "improved",
-      "zh": "粘贴到笔记里的截图保持原图清晰，不再压缩发糊；笔记图片总容量提高到 1 GB。",
-      "en": "Screenshots pasted into notes stay sharp instead of being compressed, and note images can now take up to 1 GB in total."
-    },
-    {
-      "type": "improved",
-      "zh": "窗口较窄时，图表工具栏会把部分工具收进「»」菜单，播放控件不再被下单面板挡住。画图栏的小箭头只在鼠标移上去时出现。最高价标签不再压住 OHLC 和指标图例。",
-      "en": "In a narrow window the chart toolbar moves some tools into a » menu, so the order panel no longer covers the replay controls. The drawing toolbar's small arrows appear only on hover, and the high-price tag no longer covers the OHLC and indicator legends."
+      "zh": "画线的显示周期：每次选择都完整替换上一次的设置；在别的周期上设的范围会写明是哪个周期。",
+      "en": "Drawing visibility by timeframe: each choice fully replaces the previous one, and a range set on another timeframe names that timeframe."
     },
     {
       "type": "fixed",
-      "zh": "回测和账单回放图表上，会出现当前训练存档的持仓、挂单和交易连线。在「历史」和回放里查看交易时，图上的订单现在是只读的。",
-      "en": "Backtest and statement replay charts showed the open training session's positions, orders and trade lines. While reviewing trades in History or a replay, chart orders are now read-only."
+      "zh": "强平：K 线回放时，爆仓按价格穿过强平线的位置平仓，不再按整根 K 线的最高或最低价平，账户不会再被打成负数。",
+      "en": "Stop-out: during bar replay a margin call now closes where price crosses the stop-out line, not at the bar's high or low, so the account no longer goes negative."
     },
     {
       "type": "fixed",
-      "zh": "挂单价、止损或止盈超出涨跌停时，下单面板误报「保证金不足」，从右键菜单挂单则没有任何提示。现在会说明是哪个价格超出了范围。",
-      "en": "An order price, stop or target outside the daily limit was reported as insufficient margin in the order panel, and orders from the right-click menu failed without a word. Now the message names the price that is out of range."
+      "zh": "按名义本金百分比收手续费的外汇、加密货币存档，当天平仓会多收巨额手续费。",
+      "en": "FX and crypto sessions with a percentage-of-notional fee were overcharged when a position was closed the same day."
     },
     {
       "type": "fixed",
-      "zh": "MT 实盘：关掉软件一段时间再打开，K 线会出现缺口；服务器切换夏令时后，K 线和交易记录的时间差一小时；时区设为「跟随交易服务器」时，账户信息页会崩溃。",
-      "en": "MT live: reopening the app after a while left a gap in the bars; after the server's daylight-saving change, bar and trade times were an hour out; the account info page crashed when the time zone followed the trading server."
+      "zh": "把止盈、止损线拖到还没越过现价的位置，松手后会被设在现价外一跳、下一根就触发；现在保持原来的设置不变。",
+      "en": "Dragging a take-profit or stop-loss line short of the current price set it one tick past the market, so it triggered on the next bar. It now keeps the previous setting."
     },
     {
       "type": "fixed",
-      "zh": "其他：账单卡片可能打开不含这些交易的行情数据；用拖动的方式画盈亏比工具，止损会丢；在灰掉的按钮上松开鼠标后，图表一直处于按下状态；在 M1 数据上选 15 秒这类周期，会切过去并导致坐标轴错乱。",
-      "en": "Also: a statement card could open data that does not hold its trades; a risk/reward tool drawn by dragging lost its stop; releasing the mouse over a greyed-out button left the chart pressed; picking a period like 15 seconds on M1 data switched to it and broke the axis."
+      "zh": "退出回测或账单回放后，训练的报价变成 0；MT4 关一夜后重新打开，图上缺一段 K 线；以及几处挂单、下载提示、逐笔回放和界面文字的问题。",
+      "en": "Training quotes read 0 after leaving a backtest or statement replay; reopening MT4 after a night left a gap of missing bars; plus fixes to pending orders, download messages, tick replay and interface text."
     }
   ]
 }
