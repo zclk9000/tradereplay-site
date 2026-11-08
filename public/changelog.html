@@ -228,14 +228,44 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.59.51 Windows -->
+    <!-- v1.59.60 Windows -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.59.51</span>
-        <span class="date" data-content-text="release.date">2026-10-31</span>
+        <span class="version" data-content-text="release.displayVersion">v1.59.60</span>
+        <span class="date" data-content-text="release.date">2026-11-08</span>
         <span class="latest"><span class="lang-zh">最新 · Windows</span><span class="lang-en">Latest · Windows</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>画线快捷键按 TradingView 的方式工作：鼠标在 K 线区时，Alt+H / Alt+J / Alt+V / Alt+C 直接在鼠标处画出水平线、水平射线、垂直线、十字线（带磁吸），鼠标在别处时仍只是选中工具；Ctrl+X 剪切画线，Esc 取消选中，画矩形时按住 Shift 画正方形。画线工具的提示和下拉菜单每行右侧标出对应按键。</span></li>
+        <li><span class="tag tag-new">新增</span><span>X 键显示或隐藏历史交易连线，和显示菜单、设置里的「历史交易连线」是同一个开关，重启后保留。</span></li>
+        <li><span class="tag tag-new">新增</span><span>画线模板菜单里可以删除已保存的模板：鼠标移到模板上会出现删除按钮。</span></li>
+        <li><span class="tag tag-improve">优化</span><span>快捷键在 Windows 上写成 Ctrl / Alt / Shift，以前设置里的快捷键列表在 Windows 上也显示 Mac 符号；图表右键「粘贴绘图」标出按键，策略条件编辑器在 Windows 上提示按 Ctrl+Enter 保存。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>编辑一条画线时，其他画线也会被改动，锁定的也不例外：落在周末、缺数据的日子或窗口外的端点，会被挪到前一根 K 线上。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>只在当前周期显示的画线，切换周期后有时还留在图上，位置也不对；开着画线同步拖动画线时，不该显示它的窗格里也会出现预览；Tick 图表不理会画线的显示周期设置。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>系统切换浅色或深色后，自己改过的图表颜色（比如止损线的颜色）每次启动都会被重置；有几档回放速度（比如 M1 上的 ×10、×50）重启后会变回 ×60。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>登录：杀毒或备份软件占着登录文件时，刷新后的登录状态会丢；登录文件一时读不出来时，软件会退出账号、换一个新设备号，多占一个设备名额。现在会等文件释放，读不出来时保持原样。</span></li>
+        <li><span class="tag tag-fix">修复</span><span>MT5 的允许地址：设置、实盘检查清单和 EA 提示统一写 127.0.0.1。以前设置里写的 http://127.0.0.1:7311 只能让同步连上，实盘连接会失败。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>Drawing shortcuts work as in TradingView: with the mouse over the candles, Alt+H / Alt+J / Alt+V / Alt+C draw a horizontal line, horizontal ray, vertical line or cross line right there (with the magnet); elsewhere they still just pick the tool. Ctrl+X cuts a drawing, Esc clears the selection, and Shift while drawing a rectangle makes a square. Drawing tool tooltips and menu rows show each tool's key.</span></li>
+        <li><span class="tag tag-new">New</span><span>X shows or hides the trade history lines. It is the same switch as Trade history lines in the display menu and in Settings, and it is kept across restarts.</span></li>
+        <li><span class="tag tag-new">New</span><span>Saved drawing templates can be deleted from the template menu: hover a template to show its delete button.</span></li>
+        <li><span class="tag tag-improve">Improved</span><span>Shortcuts read Ctrl / Alt / Shift on Windows; the shortcut list in Settings used to show Mac symbols there. The chart's Paste drawing item shows its key, and the strategy condition editor tells Windows users to press Ctrl+Enter to save.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Editing one drawing changed the others, locked ones included: points on a weekend, a missing day or outside the loaded window moved to the bar before.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>A drawing shown on the current timeframe only sometimes stayed on the chart, in the wrong place, after a timeframe switch; dragging a synced drawing previewed it in panes that should not show it; tick charts ignored the drawing's timeframe choice.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>After a system light/dark switch, chart colours you had changed (such as the stop-loss line) were reset at every start; some replay speeds (such as ×10 and ×50 on M1) went back to ×60 after a restart.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>Sign-in: while antivirus or backup software held the sign-in file, the refreshed sign-in was lost; when the file could not be read for a moment, the app signed out and took a new device id, using up a second device seat. It now waits for the file and leaves it as it is when it cannot be read.</span></li>
+        <li><span class="tag tag-fix">Fixed</span><span>MT5 allowed address: Settings, the live checklist and the EA messages all ask for 127.0.0.1. The http://127.0.0.1:7311 that Settings used to show let only the sync through, and the live connection failed.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.59.51 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.59.51</span>
+        <span class="date">2026-10-31</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>画线警报、碰线开仓、碰线平仓：在趋势线、射线、水平线等画线上右键，选「添加警报…（Alt+A）」「碰线开仓」或「碰线平仓」，在点击处设置。价格碰到线时按设定提醒并暂停、开仓或平仓；线尾的小标记可以暂停、修改或删除；回放倒退到触发之前会自动恢复。目前用于训练图表上本品种的窗格。</span></li>
         <li><span class="tag tag-new">新增</span><span>国内期货下单板：期货训练的下单面板改为对手价、排队价、最新价、市价、指定价、条件六种价格方式，可设超价跳数，显示模拟的卖一、买一，「高级」里可设追单。平多、平空也按所选价格方式成交，挂出的平仓单会冻结手数；持仓表增加「可平」列，持仓分今、昨显示。上期所、能源中心默认先平今，其他交易所先开先平。</span></li>
         <li><span class="tag tag-new">新增</span><span>数字键 1–9 按工具栏上的顺序切换周期。</span></li>
@@ -248,7 +278,7 @@
         <li><span class="tag tag-fix">修复</span><span>把止盈、止损线拖到还没越过现价的位置，松手后会被设在现价外一跳、下一根就触发；现在保持原来的设置不变。</span></li>
         <li><span class="tag tag-fix">修复</span><span>退出回测或账单回放后，训练的报价变成 0；MT4 关一夜后重新打开，图上缺一段 K 线；以及几处挂单、下载提示、逐笔回放和界面文字的问题。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Line alerts and line-touch orders: right-click a trend line, ray, horizontal line or similar drawing and choose Add alert… (Alt+A), Open on touch or Close on touch, then set it up where you clicked. When price touches the line it alerts and pauses, opens or closes as set. A small mark at the line's end lets you pause, edit or delete it, and stepping replay back before the trigger restores it. Available on the training chart's own-instrument panes.</span></li>
         <li><span class="tag tag-new">New</span><span>China futures order board: the futures training order panel now offers six price modes (opposite, queue, last, market, specified and conditional), with extra ticks, a simulated best bid and ask, and order chasing under Advanced. Close Long and Close Short follow the chosen price mode, and resting close orders lock their lots. Positions gain a Closable column and show today's and earlier lots. SHFE and INE close today's lots first by default; other exchanges close the oldest first.</span></li>
         <li><span class="tag tag-new">New</span><span>Keys 1–9 switch timeframes in toolbar order.</span></li>
