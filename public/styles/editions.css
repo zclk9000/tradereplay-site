@@ -210,7 +210,6 @@ html[data-theme="light"] .edition-menu:not(.is-stocks) small {
   --ch-body: #a7b2c3;
   --ch-muted: #8592a6;
   --ch-futures-soft: #8db1ff;
-  --ch-stocks: #7b85f4;
   --ch-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   margin: 0;
   background: #05070c;
@@ -637,11 +636,6 @@ html[data-theme="light"] .edition-menu:not(.is-stocks) small {
 .split-state i.is-live {
   background: #35c49a;
   box-shadow: 0 0 8px rgba(53, 196, 154, 0.8);
-}
-
-.split-state i.is-beta {
-  background: var(--ch-stocks);
-  box-shadow: 0 0 8px rgba(123, 133, 244, 0.9);
 }
 
 /* Hover: the chosen half widens, the other one fades back */

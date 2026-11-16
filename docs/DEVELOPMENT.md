@@ -34,10 +34,9 @@ Since 2026-10-19 the site root is a chooser between the two desktop products:
   the edition switcher in its header. Download, changelog, guide, support and
   legal pages link home to it.
 - `public/stocks.html` (`/stocks`): the stocks edition, Chinese only, dark only,
-  styled after the app (`public/styles/stocks.css`). It has no prices while the
-  edition is in beta; its call to action is 预约内测, which leads to the same
-  QQ group as the futures edition (`support.qq` in `content/site/support.json`).
-  One group serves both editions.
+  styled after the app (`public/styles/stocks.css`). Its hero links directly
+  to the Windows and Apple silicon Mac installers. The footer links to the
+  shared guides and support page.
 - `public/styles/editions.css` holds the chooser and the header switcher;
   `public/scripts/chooser.js` draws the chooser's candle tapes and stops them
   off screen and with reduced motion.
