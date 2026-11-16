@@ -206,6 +206,13 @@
   margin-top: 8px;
 }
 
+.stocks-hero .stocks-dl-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--st-muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .stocks-facts {
   display: flex;
   flex-wrap: wrap;
