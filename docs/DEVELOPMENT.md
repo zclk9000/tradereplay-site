@@ -35,7 +35,9 @@ Since 2026-10-19 the site root is a chooser between the two desktop products:
   legal pages link home to it.
 - `public/stocks.html` (`/stocks`): the stocks edition, Chinese only, dark only,
   styled after the app (`public/styles/stocks.css`). Its hero links directly
-  to the Windows and Apple silicon Mac installers. The footer links to the
+  to the Windows and Apple silicon Mac installers, plus the Taobao listing
+  that sells the 月卡 (its note says what the free version covers). The
+  footer links to the
   shared guides and support page.
 - `public/styles/editions.css` holds the chooser and the header switcher;
   `public/scripts/chooser.js` draws the chooser's candle tapes and stops them
