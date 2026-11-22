@@ -1,15 +1,15 @@
 {
-  "version": "1.59.72",
-  "displayVersion": "v1.59.72",
-  "date": "2026-11-14",
+  "version": "1.59.80",
+  "displayVersion": "v1.59.80",
+  "date": "2026-11-21",
   "downloadIntro": {
-    "zh": "Windows 版已更新至 v1.59.72，Mac 版当前为 v1.59.60。请选择与你的电脑匹配的安装包。",
-    "en": "Windows is now v1.59.72; the current Mac release is v1.59.60. Choose the installer that matches your computer."
+    "zh": "Windows 版已更新至 v1.59.80，Mac 版当前为 v1.59.60。请选择与你的电脑匹配的安装包。",
+    "en": "Windows is now v1.59.80; the current Mac release is v1.59.60. Choose the installer that matches your computer."
   },
   "windows": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.72-Setup.exe",
-    "fileName": "TradeReplay-1.59.72-Setup.exe",
-    "installerLabel": ".exe · v1.59.72",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.80-Setup.exe",
+    "fileName": "TradeReplay-1.59.80-Setup.exe",
+    "installerLabel": ".exe · v1.59.80",
     "summary": {
       "zh": "适用于常见的 Intel 与 AMD 电脑，提供标准安装程序。",
       "en": "For common Intel and AMD PCs, delivered as a standard installer."
@@ -34,9 +34,64 @@
   },
   "highlights": [
     {
+      "type": "new",
+      "zh": "标签分组：标签库里可以建分组，每组设颜色、单选或多选。标注、历史筛选、统计「按标签」和 CSV 导出都按分组排列；不建分组时一切照旧。",
+      "en": "Tag groups: the tag library can hold groups, each with its own colour and single or multiple choice. Tagging, the history filter, statistics By tag and the CSV export all line tags up by group; without groups nothing changes."
+    },
+    {
+      "type": "new",
+      "zh": "每个训练存档记住自己的图表布局：窗格数量和布局、各窗格的周期和图表类型、拖到其他显示器的图表窗口。打开存档时自动恢复。",
+      "en": "Each training archive keeps its own chart layout: the number of panes and their arrangement, each pane's period and chart type, and chart windows on other monitors. Opening the archive puts it back."
+    },
+    {
+      "type": "new",
+      "zh": "统计页可以勾选多个训练或回测存档合并统计：只合并同一币种，分别列出每个存档，最后给合计。",
+      "en": "Statistics can combine several training or backtest archives: archives of one currency only, each listed on its own, with a combined row last."
+    },
+    {
+      "type": "new",
+      "zh": "新增 5 种多图布局：1 大 4 小、4 小 1 大、上 2 下 3，以及 1 大加 2×2（大图在左或在右）。",
+      "en": "Five new multi-chart layouts: 1 large + 4 small, 4 small + 1 large, 2 + 3, and 1 large + 2×2 with the large pane on either side."
+    },
+    {
+      "type": "new",
+      "zh": "图表快捷键：Alt+R 重置图表，Ctrl+↑/↓ 缩放，Ctrl+←/→ 平移，Alt+Shift+←/→ 跳到最早或最新的 K 线，Alt+I 翻转价格坐标，Alt+K 切换图表类型，Ctrl+Alt+Shift+H 一键隐藏或显示全部；G / T 从图上点选止损价、止盈价。",
+      "en": "Chart shortcuts: Alt+R resets the chart, Ctrl+↑/↓ zooms, Ctrl+←/→ scrolls, Alt+Shift+←/→ jumps to the earliest or latest bar, Alt+I inverts the price scale, Alt+K steps the chart type, Ctrl+Alt+Shift+H hides or shows everything; G / T pick the stop loss and take profit from the chart."
+    },
+    {
+      "type": "new",
+      "zh": "鼠标滚轮放在价格轴上时缩放价格；最新 K 线右边留出图表宽度的 16%，拖图表上边缘的小三角可以调这个比例。",
+      "en": "The mouse wheel over a price axis scales that axis. The room right of the latest candle is 16% of the chart's width, set by dragging the small triangle on the chart's top edge."
+    },
+    {
+      "type": "new",
+      "zh": "界面大小：整个软件可以放大（自动或 100%–175%），也可以按 Ctrl +/−/0 调；概览页铺满窗口。",
+      "en": "Interface size: the whole app scales (automatic or 100%–175%), also with Ctrl +/−/0, and the overview fills the window."
+    },
+    {
+      "type": "new",
+      "zh": "AI 教练支持 Claude 和自定义中转地址（OpenAI 或 Claude 格式），模型从服务商的模型列表里选。导出日志带上每笔交易的笔记和图片，每日卡片和笔记都可以折叠。国内期货新增葵花籽油（SO）。",
+      "en": "Mentor AI supports Claude and custom relay addresses (OpenAI or Claude format), with models picked from the provider's own list. The journal export includes each trade's note and pictures, and its day cards and notes fold. Chinese futures add sunflower oil (SO)."
+    },
+    {
+      "type": "improved",
+      "zh": "图表工具栏合成一行，窗口窄时逐步收起（设置里可换回两行）；图表较窄时，持仓线和挂单线上的标签缩成只显示金额的小胶囊；设置页统一排版并加了搜索框。",
+      "en": "The chart toolbar is one row that folds step by step on a narrow window (two rows remain in Settings); on a narrow chart, position and order line labels shrink to amount-only capsules; Settings pages share one layout and gain a search box."
+    },
+    {
       "type": "fixed",
-      "zh": "回放时整张图表会隔帧左右晃动几个像素：价格轴随最新价标签变宽变窄，K 线区跟着挪动。现在播放中价格轴只变宽、不再变窄。",
-      "en": "During replay the whole chart shook sideways by a few pixels as the price axis widened and narrowed with the last-price label. The axis now only widens while playing."
+      "zh": "经纪商服务器在夏令时切换那天，24 小时交易的品种（比如 BTCUSD）的 M5/M15 图表会空白或报错。",
+      "en": "On the day a broker's server clock changed for daylight saving, M5/M15 charts of round-the-clock symbols such as BTCUSD went blank or failed."
+    },
+    {
+      "type": "fixed",
+      "zh": "国内期货回测跑不起来：内置策略下 0.1 手，不符合期货最小 1 手，所有订单都被拒。现在回测配置里可以直接改仓位和交易成本。",
+      "en": "Chinese futures backtests could not run: built-in strategies ordered 0.1 lot, below the 1-lot minimum, and every order was rejected. Position size and trading costs can now be edited in the backtest setup."
+    },
+    {
+      "type": "fixed",
+      "zh": "保本止损会停在交易所不存在的价格上，现在按最小变动价位取整；交易历史 CSV 的金额不再出现长尾小数；「实盘」标签按账户计数。",
+      "en": "Breakeven stops landed on prices no exchange fills and now snap to the tick; money in the trade history CSV no longer carries long decimal tails; the Live tab counts accounts."
     }
   ]
 }
