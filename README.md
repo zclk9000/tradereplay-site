@@ -49,6 +49,12 @@ generated content, then verify every download before deployment. The active
 desktop channels are the direct-sale Windows installer and Mac DMG; the retired
 Mac App Store channel must not be restored.
 
+The Mac card offers two DMGs of the same version: `release.mac` is Apple silicon
+(`TradeReplay-<version>-arm64.dmg`) and `release.mac.intel` is Intel
+(`TradeReplay-<version>-x64.dmg`). `build-site-content.mjs` rejects a pair whose
+versions or URLs disagree. Update the static fallbacks in `public/download.html`
+for both buttons as well.
+
 ## Validation
 
 ```bash

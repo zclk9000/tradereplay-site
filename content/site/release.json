@@ -24,12 +24,20 @@
     "fileName": "TradeReplay-1.59.60-arm64.dmg",
     "installerLabel": ".dmg · v1.59.60",
     "summary": {
-      "zh": "适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。",
-      "en": "For Apple silicon Macs, delivered as a DMG disk image."
+      "zh": "适用于 Apple 芯片与 Intel 芯片的 Mac，以 DMG 磁盘映像安装。",
+      "en": "For Apple silicon and Intel Macs, delivered as a DMG disk image."
     },
     "button": {
-      "zh": "下载 Mac 版",
-      "en": "Download for macOS"
+      "zh": "下载 Apple 芯片版",
+      "en": "Download for Apple silicon"
+    },
+    "intel": {
+      "url": "https://dl.tradereplay.dev/TradeReplay-1.59.60-x64.dmg",
+      "fileName": "TradeReplay-1.59.60-x64.dmg",
+      "button": {
+        "zh": "下载 Intel 芯片版",
+        "en": "Download for Intel"
+      }
     }
   },
   "highlights": [

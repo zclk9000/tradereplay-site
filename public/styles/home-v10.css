@@ -5747,6 +5747,17 @@ html[lang="en"] .comparison-purchase-icon {
   text-align: center;
 }
 
+/* Mac: the Apple silicon and Intel DMGs stacked, each with its file name. */
+.download-mac-options {
+  display: grid;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.download-mac-options .download-platform-button {
+  margin-top: 0;
+}
+
 .download-support {
   margin-top: 24px;
   padding: 30px 34px 32px;
