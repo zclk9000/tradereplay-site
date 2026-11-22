@@ -228,14 +228,28 @@
 
   <main class="releases" id="releases">
 
-    <!-- v1.59.80 Windows -->
+    <!-- v1.59.82 Windows -->
     <article class="release" data-managed-latest-release>
       <div class="release-head">
-        <span class="version" data-content-text="release.displayVersion">v1.59.80</span>
-        <span class="date" data-content-text="release.date">2026-11-21</span>
+        <span class="version" data-content-text="release.displayVersion">v1.59.82</span>
+        <span class="date" data-content-text="release.date">2026-11-22</span>
         <span class="latest"><span class="lang-zh">最新 · Windows</span><span class="lang-en">Latest · Windows</span></span>
       </div>
       <ul class="lang-zh" data-content-release-list="changelog-zh">
+        <li><span class="tag tag-new">新增</span><span>K线收线倒计时可以显示在价格线旁：每个图表窗格在最新价标签左边显示自己周期的倒计时，多个窗格看不同周期时各看各的。在图表显示菜单或「设置 → 图表」里选「关 / 工具栏 / 价格线」，原来的开关自动换成对应选项，默认仍为关。</span></li>
+      </ul>
+      <ul class="lang-en" data-content-release-list="changelog-en">
+        <li><span class="tag tag-new">New</span><span>The candle close countdown can sit beside the price line: each chart pane shows its own timeframe's countdown next to the last-price label, so panes on different timeframes each show their own. Choose Off / Toolbar / Last price line in the chart display menu or Settings → Chart; the old switch carries over, and the default stays Off.</span></li>
+      </ul>
+    </article>
+
+    <!-- v1.59.80 -->
+    <article class="release">
+      <div class="release-head">
+        <span class="version">v1.59.80</span>
+        <span class="date">2026-11-21</span>
+      </div>
+      <ul class="lang-zh">
         <li><span class="tag tag-new">新增</span><span>标签分组：标签库里可以建分组，每组设颜色、单选或多选。标注、历史筛选、统计「按标签」和 CSV 导出都按分组排列；不建分组时一切照旧。</span></li>
         <li><span class="tag tag-new">新增</span><span>每个训练存档记住自己的图表布局：窗格数量和布局、各窗格的周期和图表类型、拖到其他显示器的图表窗口。打开存档时自动恢复。</span></li>
         <li><span class="tag tag-new">新增</span><span>统计页可以勾选多个训练或回测存档合并统计：只合并同一币种，分别列出每个存档，最后给合计。</span></li>
@@ -249,7 +263,7 @@
         <li><span class="tag tag-fix">修复</span><span>国内期货回测跑不起来：内置策略下 0.1 手，不符合期货最小 1 手，所有订单都被拒。现在回测配置里可以直接改仓位和交易成本。</span></li>
         <li><span class="tag tag-fix">修复</span><span>保本止损会停在交易所不存在的价格上，现在按最小变动价位取整；交易历史 CSV 的金额不再出现长尾小数；「实盘」标签按账户计数。</span></li>
       </ul>
-      <ul class="lang-en" data-content-release-list="changelog-en">
+      <ul class="lang-en">
         <li><span class="tag tag-new">New</span><span>Tag groups: the tag library can hold groups, each with its own colour and single or multiple choice. Tagging, the history filter, statistics By tag and the CSV export all line tags up by group; without groups nothing changes.</span></li>
         <li><span class="tag tag-new">New</span><span>Each training archive keeps its own chart layout: the number of panes and their arrangement, each pane's period and chart type, and chart windows on other monitors. Opening the archive puts it back.</span></li>
         <li><span class="tag tag-new">New</span><span>Statistics can combine several training or backtest archives: archives of one currency only, each listed on its own, with a combined row last.</span></li>
