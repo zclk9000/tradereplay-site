@@ -3,8 +3,8 @@
   "displayVersion": "v1.59.82",
   "date": "2026-11-22",
   "downloadIntro": {
-    "zh": "Windows 版已更新至 v1.59.82，Mac 版当前为 v1.59.60。请选择与你的电脑匹配的安装包。",
-    "en": "Windows is now v1.59.82; the current Mac release is v1.59.60. Choose the installer that matches your computer."
+    "zh": "Mac 与 Windows 版均已更新至 v1.59.82，Mac 版现提供 Apple 芯片与 Intel 芯片两个安装包。请选择与你的电脑匹配的安装包。",
+    "en": "Mac and Windows are now v1.59.82, and Mac now comes in Apple silicon and Intel builds. Choose the installer that matches your computer."
   },
   "windows": {
     "url": "https://dl.tradereplay.dev/TradeReplay-1.59.82-Setup.exe",
@@ -20,16 +20,24 @@
     }
   },
   "mac": {
-    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.60-arm64.dmg",
-    "fileName": "TradeReplay-1.59.60-arm64.dmg",
-    "installerLabel": ".dmg · v1.59.60",
+    "url": "https://dl.tradereplay.dev/TradeReplay-1.59.82-arm64.dmg",
+    "fileName": "TradeReplay-1.59.82-arm64.dmg",
+    "installerLabel": ".dmg · v1.59.82",
     "summary": {
-      "zh": "适用于 Apple 芯片 Mac，以 DMG 磁盘映像安装。",
-      "en": "For Apple silicon Macs, delivered as a DMG disk image."
+      "zh": "适用于 Apple 芯片与 Intel 芯片的 Mac，以 DMG 磁盘映像安装。",
+      "en": "For Apple silicon and Intel Macs, delivered as a DMG disk image."
     },
     "button": {
-      "zh": "下载 Mac 版",
-      "en": "Download for macOS"
+      "zh": "下载 Apple 芯片版",
+      "en": "Download for Apple silicon"
+    },
+    "intel": {
+      "url": "https://dl.tradereplay.dev/TradeReplay-1.59.82-x64.dmg",
+      "fileName": "TradeReplay-1.59.82-x64.dmg",
+      "button": {
+        "zh": "下载 Intel 芯片版",
+        "en": "Download for Intel"
+      }
     }
   },
   "highlights": [

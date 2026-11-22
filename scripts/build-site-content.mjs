@@ -103,6 +103,21 @@ for (const platform of ["windows", "mac"]) {
   requireLocalized(item?.summary, `release.${platform}.summary`);
   requireLocalized(item?.button, `release.${platform}.button`);
 }
+// Mac ships an Apple silicon (arm64) and an Intel (x64) DMG of the same version.
+const macInstallers = [
+  [data.release.mac, "release.mac", "arm64"],
+  [data.release.mac?.intel, "release.mac.intel", "x64"],
+];
+requireWebUrl(data.release.mac?.intel?.url, "release.mac.intel.url");
+requireText(data.release.mac?.intel?.fileName, "release.mac.intel.fileName");
+requireLocalized(data.release.mac?.intel?.button, "release.mac.intel.button");
+for (const [item, label, arch] of macInstallers) {
+  const expected = `TradeReplay-${data.release.mac?.fileName?.match(/^TradeReplay-(\d+\.\d+\.\d+)-/)?.[1]}-${arch}.dmg`;
+  if (item?.fileName !== expected) errors.push(`${label}.fileName 应为 ${expected}`);
+  if (item?.url !== `https://dl.tradereplay.dev/${item?.fileName}`) {
+    errors.push(`${label}.url 应指向 https://dl.tradereplay.dev/${item?.fileName}`);
+  }
+}
 if (!Array.isArray(data.release.highlights) || data.release.highlights.length < 1) {
   errors.push("release.highlights 至少需要一项");
 }
